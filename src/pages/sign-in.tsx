@@ -11,19 +11,19 @@ export function SignIn() {
 			<div className="flex flex-col gap-2">
 				<h2 className="text-2xl font-bold">Conecte-se</h2>
 				<span className="text-sm text-gray-400">
-					Digite seu email e senha abaixo para entrar
+					Digite seu CPF/CPNJ e senha para acessar sua conta
 				</span>
 			</div>
 
 			<div className="flex flex-col gap-4">
 				<div className="flex flex-col gap-2 text-left">
-					<Label>Email</Label>
+					<Label>CPF/CNPJ</Label>
 
 					<Input
 						type="email"
 						id="email"
 						name="email"
-						placeholder="Digite seu email"
+						placeholder="Digite seu CPF ou CNPJ"
 					/>
 				</div>
 
@@ -41,6 +41,10 @@ export function SignIn() {
 				<Button className="mt-2" onClick={() => navigate("/")}>
 					Entrar
 				</Button>
+
+				<a href="/esqueceu-senha" className="text-sm font-medium hover:underline">
+					Esqueci minha senha
+				</a>
 
 				<a href="/cadastro" className="text-sm font-medium hover:underline">
 					Não possui uma conta? Cadastre-se
