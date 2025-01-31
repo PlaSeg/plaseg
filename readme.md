@@ -58,6 +58,7 @@ Quadro de Tarefas (Front-end) disponível em [link]()
 
 - **Cadastro de empresa:** Deve ser possível realizar o cadastro de uma empresa.
 - **Cadastro de município:** Deve ser possível realizar o cadastro de um município.
+- **Realizar pagamento:** Deve ser possível realizar o pagamento de um plano selecionado.
 
 ## Testes da aplicação front-end
 
