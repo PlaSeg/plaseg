@@ -70,7 +70,7 @@ As regras de negócio estão disponívels em [link](https://docs.google.com/docu
 
 Existem vários tipos de testes de software que podem ser aplicados durante o processo de desenvolvimento para garantir a qualidade do software. Logo abaixo seguem os tipos de testes que deverão ser feitos para garantir a qualidade da nossa aplicação.
 
-### Testes Unitários
+1. **Testes Unitários:**
 
 É realizado para verificar se as unidades individuais de código (geralmente funções, métodos ou classes) funcionam corretamente. O objetivo é testar cada unidade isoladamente para identificar possíveis erros lógicos ou funcionais. Geralmente, é executado pelos desenvolvedores.
 
@@ -78,7 +78,7 @@ Existem vários tipos de testes de software que podem ser aplicados durante o pr
 pnpm test
 ```
 
-### Testes E2E (End-to-End)
+2. **Testes E2E (End-to-End)**
 
 Os testes E2E (End-to-End) são realizados para verificar o funcionamento completo de um sistema, desde o início até o fim. O objetivo é simular o comportamento real do usuário, garantindo que todos os componentes do sistema (frontend, backend, banco de dados, etc.) funcionem corretamente em conjunto. Esses testes ajudam a identificar problemas de integração e a validar fluxos de trabalho críticos. Geralmente, são executados por desenvolvedores ou equipes de QA.
 
