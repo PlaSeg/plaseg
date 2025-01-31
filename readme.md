@@ -18,7 +18,7 @@ Disponibilizar uma plataforma para se apoiar na construção de projetos para ed
    - Instale o Node.js na sua máquina no site oficial do [Node.js](https://nodejs.org/en).
    - No Windows/Linux/MacOS instale o pnpm:
      ```bash
-     npm install pnpm -v
+     npm install pnpm -g
      ```
    - Clone a aplicação.
      ```bash
