@@ -6,6 +6,7 @@ import { SignUp } from "@/pages/sign-up";
 import { SignIn } from "@/pages/sign-in";
 import { ForgotPassword } from "@/pages/forgot-password";
 import { Prices } from "@/pages/prices";
+import { Payment } from "@/pages/payment";
 
 export function AppRoutes() {
 	return (
@@ -17,6 +18,7 @@ export function AppRoutes() {
 			</Route>
 
 			<Route path="precos" element={<Prices />} />
+			<Route path="pagamento" element={<Payment />} />
 		</Routes>
 	);
 }

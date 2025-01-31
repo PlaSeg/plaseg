@@ -1,11 +1,16 @@
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router";
 
 export function Prices() {
+	const navigate = useNavigate();
+
 	return (
 		<div className="w-full h-screen flex items-center justify-center">
-			<div className="bg-slate-100 w-[1200px] h-[500px] grid grid-cols-2 p-4
-			rounded-lg " >
-				<div className="space-y-2 m-4" >
+			<div
+				className="bg-slate-100 w-[1200px] h-[500px] grid grid-cols-2 p-4
+			rounded-lg "
+			>
+				<div className="space-y-2 m-4">
 					<strong className="text-blue-500">Bem-vindo(a) ao Plaseg</strong>
 					<h1 className="text-5xl font-bold">Selecione um plano</h1>
 				</div>
@@ -53,7 +58,10 @@ export function Prices() {
 						</div>
 					</div>
 
-					<Button className="w-[300px] bg-blue-500">
+					<Button
+						className="w-[300px] bg-blue-500"
+						onClick={() => navigate("/pagamento")}
+					>
 						Continuar
 					</Button>
 				</div>
