@@ -1,17 +1,18 @@
 # Plaseg - Plataforma de Apoio à Segurança Pública
 
-Disponibilizar uma plataforma para se apoiar na construção de projetos para editais de financiamento.
+Uma plataforma que dá apoio na construção de projetos para editais de financiamento.
 
 ## Índice
 
 1. [Como usar](#como-usar)
-2. [Features Básicas](#features-básicas)
-3. [Quadro de atividades Kanban](#quadro-de-atividades-kanban)
-4. [Regras de Negócio](#regras-de-negócio)
-5. [Testes da aplicação front-end](#testes-da-aplicação-front-end)
-6. [Referências](#referências)
+2. [Funcionalidades](#funcionalidades)
+3. [Aspectos Técnicos](#aspectos-técnicos)
+4. [Quadro de atividades Kanban](#quadro-de-atividades-kanban)
+5. [Regras de Negócio](#regras-de-negócio)
+6. [Testes da aplicação front-end](#testes-da-aplicação-front-end)
+7. [Referências](#referências)
 
-## Como usar
+## Como Usar
 
 1. **Você precisa ter o [NodeJS](https://en.wikipedia.org/wiki/Node.js) instalado na sua máquina para fazer o setup da aplicação.**
 
@@ -33,34 +34,39 @@ Disponibilizar uma plataforma para se apoiar na construção de projetos para ed
      pnpm install
      ```
 
-2. **Execute a aplicação:**
+2. **Execute a Aplicação:**
    - No terminal da pasta raiz, no Windows/Linux/MacOS:
-     `bash
-pnpm dev
-`
-     Observação:
+     ```bash
+     pnpm dev
+     ```
 
-- Antes de executar a aplicação front-end, procure deixar a [aplicação back-end](https://github.com/compexjr/seed_backend) executando para permitir os testes fim a fim (front-end->back-end, back-end->front-end).
+## Funcionalidades
 
-## Features Básicas
+1. Registro de um usuário.
+2. Autenticação de um usuário.
+3. Recuperação de senha.
+4. Pagamento.
+5. Registro de uma empresa.
+6. Registro de um município.
+7. Listagem de editais.
 
-1. F3. Registro de uma nova empresa
-2. F4. Registro de um novo município
-3. F5. Realizar pagamento de um plano selecionado.
+## Aspectos Técnicos
 
-## Quadro de atividades Kanban
+- Uso do React para criar componentes dinâmicos para criar aplicações HTML dinâmicas assíncronas.
+- Uso do [TypeScript](https://www.typescriptlang.org/) para adicionar tipagem estática ao JavaScript, o que ajuda a prevenir erros comuns e torna o código mais robusto e confiável.
+- Mais detalhes sobre a stack escolhida em [link](https://github.com/PlaSeg/plaseg/blob/master/stack.md)
+
+## Quadro de Atividades Kanban
 
 Este projeto é dividido em diferentes tarefas conforme um fluxo de trabalho estruturado. Abaixo estão as tarefas salvas da equipe de front-end:
 
-Quadro de Tarefas (Front-end) disponível em [link]()
+Quadro de Tarefas (Front-end) disponível em [link](https://github.com/orgs/PlaSeg/projects/2/views/1).
 
 ## Regras de Negócio
 
-- **Cadastro de empresa:** Deve ser possível realizar o cadastro de uma empresa.
-- **Cadastro de município:** Deve ser possível realizar o cadastro de um município.
-- **Realizar pagamento:** Deve ser possível realizar o pagamento de um plano selecionado.
+As regras de negócio estão disponívels em [link](https://docs.google.com/document/d/1RCpFobPdQLeoZfBkDB3c8gQ5A_JgcHB1hLac5pvJMK0/edit?tab=t.0).
 
-## Testes da aplicação front-end
+## Testes da Aplicação
 
 Existem vários tipos de testes de software que podem ser aplicados durante o processo de desenvolvimento para garantir a qualidade do software. Logo abaixo seguem os tipos de testes que deverão ser feitos para garantir a qualidade da nossa aplicação.
 
