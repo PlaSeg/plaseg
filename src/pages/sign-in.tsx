@@ -10,8 +10,8 @@ export function SignIn() {
 		<div className="flex flex-col gap-8 text-center w-[350px] rounded-lg">
 			<div className="flex flex-col gap-2">
 				<h2 className="text-2xl font-bold">Conecte-se</h2>
-				<span className="text-sm text-gray-400">
-					Digite seu CPF/CPNJ e senha para acessar sua conta
+				<span className="text-sm text-muted-foreground">
+					Digite suas credenciais para acessar sua conta.
 				</span>
 			</div>
 
@@ -42,8 +42,11 @@ export function SignIn() {
 					Entrar
 				</Button>
 
-				<a href="/esqueceu-senha" className="text-sm font-medium hover:underline">
-					Esqueci minha senha
+				<a
+					href="/esqueceu-senha"
+					className="text-sm font-medium hover:underline"
+				>
+					Esqueceu sua senha? Clique aqui
 				</a>
 
 				<a href="/cadastro" className="text-sm font-medium hover:underline">
