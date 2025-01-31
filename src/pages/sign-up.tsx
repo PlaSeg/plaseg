@@ -11,9 +11,8 @@ export function SignUp() {
 		<div className="flex flex-col gap-8 text-center w-[350px] rounded-lg">
 			<div className="flex flex-col gap-2">
 				<h2 className="text-2xl font-bold">Crie uma conta</h2>
-				<span className="text-sm text-gray-400">
-					Digite seu CPF/CPNJ, nome, email, telefone, tipo de usuário e senha
-					para criar sua conta
+				<span className="text-sm text-muted-foreground">
+					Digite suas credenciais para criar uma conta.
 				</span>
 			</div>
 
@@ -79,7 +78,7 @@ export function SignUp() {
 					/>
 				</div>
 
-				<Button className="mt-2" onClick={() => navigate("/")}>
+				<Button className="mt-2" onClick={() => navigate("/precos")}>
 					Confirmar
 				</Button>
 
