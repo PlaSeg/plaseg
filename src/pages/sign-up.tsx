@@ -11,11 +11,22 @@ export function SignUp() {
 			<div className="flex flex-col gap-2">
 				<h2 className="text-2xl font-bold">Crie uma conta</h2>
 				<span className="text-sm text-gray-400">
-					Digite seu nome, email e senha para criar sua conta
+					Digite seu CPF/CPNJ, nome, email, senha e telefone para criar sua conta
 				</span>
 			</div>
 
 			<div className="flex flex-col gap-2">
+				<div className="flex flex-col gap-2 text-left">
+					<Label>CPF/CNPJ</Label>
+
+					<Input
+						type="text"
+						id="cpf_cnpj"
+						name="cpf_cnpj"
+						placeholder="Digite seu CPF ou CNPJ"
+					/>
+				</div>
+
 				<div className="flex flex-col gap-2 text-left">
 					<Label>Nome</Label>
 
@@ -23,7 +34,7 @@ export function SignUp() {
 						type="text"
 						id="name"
 						name="name"
-						placeholder="Digite seu nome"
+						placeholder="Digite o nome do titular"
 					/>
 				</div>
 
@@ -46,6 +57,17 @@ export function SignUp() {
 						id="password"
 						name="password"
 						placeholder="Digite sua senha"
+					/>
+				</div>
+
+				<div className="flex flex-col gap-2 text-left">
+					<Label>Telefone</Label>
+
+					<Input
+						type="text"
+						id="phone"
+						name="phone"
+						placeholder="Digite seu telefone"
 					/>
 				</div>
 
