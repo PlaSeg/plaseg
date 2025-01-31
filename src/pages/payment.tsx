@@ -1,12 +1,37 @@
+import { SavePaymentInfo } from "@/components/payment/save-payment-info";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 export function Payment() {
 	return (
 		<div className="w-full h-screen grid grid-cols-3">
-			<div className="h-screen bg-muted"></div>
+			<div className="h-screen flex items-center justify-center">
+				<div className="w-[400px] h-[500px] rounded-lg p-4 flex flex-col gap-4">
+					<strong className="text-xl">Plaseg</strong>
 
-			<div className="col-span-2 flex items-center justify-center flex-col gap-2">
+					<div className="flex flex-col">
+						<span className="text-muted-foreground">Valor da compra</span>
+						<strong className="text-3xl">R$ 16.800,00</strong>
+					</div>
+
+					<div className="mt-4 w-full flex justify-between items-center">
+						<span className="text-muted-foreground">
+							Plano Empresa - 6 meses
+						</span>
+						<strong>R$ 16.800,00</strong>
+					</div>
+
+					<hr />
+
+					<div className="mt-4 w-full flex justify-between items-center">
+						<span className="text-muted-foreground">Valor Total</span>
+						<strong>R$ 16.800,00</strong>
+					</div>
+				</div>
+			</div>
+
+			<div className="col-span-2 flex items-center justify-center flex-col gap-2 shadow-lg">
 				<div className="w-[400px] flex flex-col gap-4">
 					<strong className="text-xl">Informações de pagamento</strong>
 
@@ -20,11 +45,27 @@ export function Payment() {
 							<Label>Endereço</Label>
 
 							<div className="space-y-2">
-								<Input type="email" placeholder="Digite seu email" />
-								<Input type="email" placeholder="Digite seu email" />
-								<Input type="email" placeholder="Digite seu email" />
+								<Input type="name" placeholder="Digite seu nome" />
+								<Input type="text" placeholder="Digite seu endereço" />
 							</div>
 						</div>
+
+						<div className="space-y-2">
+							<Label>Detalhes de Pagamento</Label>
+
+							<div className="space-y-2">
+								<Input type="number" placeholder="1234 1234 1234 1234" />
+
+								<div className="grid grid-cols-2 gap-2">
+									<Input type="number" placeholder="MM / YY" />
+									<Input type="number" placeholder="CCV" />
+								</div>
+							</div>
+						</div>
+
+						<SavePaymentInfo />
+
+						<Button className="w-full">Finalizar Pagamento</Button>
 					</form>
 				</div>
 			</div>
