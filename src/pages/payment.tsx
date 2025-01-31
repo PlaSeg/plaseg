@@ -2,8 +2,11 @@ import { SavePaymentInfo } from "@/components/payment/save-payment-info";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useNavigate } from "react-router";
 
 export function Payment() {
+	const navigate = useNavigate();
+
 	return (
 		<div className="w-full h-screen grid grid-cols-3">
 			<div className="h-screen flex items-center justify-center">
@@ -65,7 +68,19 @@ export function Payment() {
 
 						<SavePaymentInfo />
 
-						<Button className="w-full">Finalizar Pagamento</Button>
+						<Button
+							className="w-full"
+							onClick={() => navigate("/cadastro-empresa")}
+						>
+							Finalizar Pagamento
+						</Button>
+
+						<span className="w-full flex justify-center">Ou</span>
+
+						<Button className="w-full" variant="secondary">
+							<img src="/src/assets/pix.svg" alt="pix" className="w-4 h-4" />
+							Pagar via pix
+						</Button>
 					</form>
 				</div>
 			</div>
