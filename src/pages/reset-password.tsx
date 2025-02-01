@@ -1,11 +1,8 @@
 import { Label } from "@/components/ui/label";
 import { Input } from "../components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router";
 
-export function ForgotPassword() {
-	const navigate = useNavigate();
-
+export function ResetPassword() {
 	return (
 		<div className="flex flex-col gap-8 text-center w-[350px] rounded-lg">
 			<div className="flex flex-col gap-2">
@@ -27,7 +24,7 @@ export function ForgotPassword() {
 					/>
 				</div>
 
-				<Button className="mt-2" onClick={() => navigate("/")}>
+				<Button className="mt-2">
 					Resetar senha
 				</Button>
 

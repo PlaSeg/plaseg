@@ -1,0 +1,11 @@
+import { FormStep } from "./form-step";
+
+export function FormSteps() {
+	return (
+		<div className="flex flex-col">
+			{Array.from({ length: 7 }).map((_, index) => (
+				<FormStep step={index + 1} />
+			))}
+		</div>
+	);
+}
