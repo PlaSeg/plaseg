@@ -1,3 +1,4 @@
+import { PaymentPlan } from "@/components/payment/payment-plan";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router";
 
@@ -6,62 +7,38 @@ export function Prices() {
 
 	return (
 		<div className="w-full h-screen grid grid-cols-3">
-			<div className="flex items-center justify-center">
+			<div className="flex items-center justify-center bg-muted/30">
 				<div className="space-y-2 m-4">
 					<strong className="text-blue-500">Bem-vindo(a) ao Plaseg</strong>
-					<h1 className="text-3xl font-bold">Selecione um plano</h1>
+					<h1 className="text-3xl font-bold">
+						Selecione um plano <br /> para sua empresa
+					</h1>
 				</div>
 			</div>
 
-			<div className="col-span-2 flex items-center justify-center shadow-lg">
-				<div className="space-y-4 m-4">
-					<div
-						className="w-[400px] border-2 border-blue-500 p-4 rounded-md
-				flex justify-between hover:bg-slate-50 hover:cursor-pointer"
-					>
-						<div className="flex flex-col gap-2">
-							<strong>Plano Empresa 1</strong>
-							<span className="text-sm text-muted-foreground">
-								Esse é o plano de 3 meses
-							</span>
-						</div>
+			<div className="col-span-2 flex items-center justify-center">
+				<div className="w-[450px] space-y-4 m-4">
+					<PaymentPlan
+						isSelected={true}
+						title="Básico - 3 meses"
+						description={`Funcionalidades essenciais e suporte básico.`}
+						price="R$ 9.000,00"
+					/>
 
-						<div>
-							<strong>R$ 9.000,00</strong>
-						</div>
-					</div>
+					<PaymentPlan
+						title="Intermediário - 6 meses"
+						description=" Suporte prioritário e integrações extras."
+						price="R$ 16.800,00"
+					/>
 
-					<div className="w-[400px] border-2 p-4 rounded-md flex justify-between hover:bg-slate-50 hover:cursor-pointer">
-						<div className="flex flex-col gap-2">
-							<strong>Plano Empresa 2</strong>
-							<span className="text-sm text-muted-foreground">
-								Esse é o plano de 6 meses
-							</span>
-						</div>
-
-						<div>
-							<strong>R$ 16.800,00</strong>
-						</div>
-					</div>
-
-					<div
-						className="w-[400px] border-2 p-4 rounded-md flex justify-between
-					hover:bg-slate-50 hover:cursor-pointer"
-					>
-						<div className="flex flex-col gap-2">
-							<strong>Plano Empresa 3</strong>
-							<span className="text-sm text-muted-foreground">
-								Esse é o plano de 9 meses
-							</span>
-						</div>
-
-						<div>
-							<strong>R$ 30.000,00</strong>
-						</div>
-					</div>
+					<PaymentPlan
+						title="Avançado - 12 meses"
+						description="Personalização, automação e suporte premium."
+						price="R$ 30.000,00"
+					/>
 
 					<Button
-						className="w-[400px] bg-blue-500"
+						className="bg-blue-500 w-full"
 						onClick={() => navigate("/pagamento")}
 					>
 						Continuar

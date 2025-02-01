@@ -9,7 +9,7 @@ export function Payment() {
 
 	return (
 		<div className="w-full h-screen grid grid-cols-3">
-			<div className="h-screen flex items-center justify-center">
+			<div className="h-screen flex items-center justify-center bg-muted/30">
 				<div className="w-[400px] h-[500px] rounded-lg p-4 flex flex-col gap-4">
 					<strong className="text-xl">Plaseg</strong>
 
@@ -34,7 +34,7 @@ export function Payment() {
 				</div>
 			</div>
 
-			<div className="col-span-2 flex items-center justify-center flex-col gap-2 shadow-lg">
+			<div className="col-span-2 flex items-center justify-center flex-col gap-2">
 				<div className="w-[400px] flex flex-col gap-4">
 					<strong className="text-xl">Informações de pagamento</strong>
 
@@ -45,7 +45,7 @@ export function Payment() {
 						</div>
 
 						<div className="space-y-2">
-							<Label>Endereço</Label>
+							<Label>Informações de Endereço</Label>
 
 							<div className="space-y-2">
 								<Input type="name" placeholder="Digite seu nome" />
@@ -53,15 +53,25 @@ export function Payment() {
 							</div>
 						</div>
 
-						<div className="space-y-2">
+						<div className="space-y-4">
 							<Label>Detalhes de Pagamento</Label>
 
 							<div className="space-y-2">
-								<Input type="number" placeholder="1234 1234 1234 1234" />
+								<div className="space-y-2">
+									<Label>Número do cartão</Label>
+									<Input type="number" placeholder="1234 1234 1234 1234" />
+								</div>
 
 								<div className="grid grid-cols-2 gap-2">
-									<Input type="number" placeholder="MM / YY" />
-									<Input type="number" placeholder="CCV" />
+									<div className="space-y-2">
+										<Label>Validade</Label>
+										<Input type="number" placeholder="MM / AA" />
+									</div>
+
+									<div className="space-y-2">
+										<Label>Código de Segurança</Label>
+										<Input type="number" placeholder="CCV" />
+									</div>
 								</div>
 							</div>
 						</div>
@@ -77,7 +87,11 @@ export function Payment() {
 
 						<span className="w-full flex justify-center">Ou</span>
 
-						<Button className="w-full" variant="secondary">
+						<Button
+							className="w-full"
+							variant="secondary"
+							onClick={() => navigate("/cadastro-empresa")}
+						>
 							<img src="/src/assets/pix.svg" alt="pix" className="w-4 h-4" />
 							Pagar via pix
 						</Button>
