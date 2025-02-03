@@ -7,6 +7,8 @@ interface Step {
 
 interface StepsStore {
 	steps: Step[];
+	userType: "municipio" | "empresa";
+	setUserType: (type: "municipio" | "empresa") => void;
 	stepForward: () => void;
 	stepBack: () => void;
 	currentStep: () => number;
@@ -22,9 +24,27 @@ const stepsData: Step[] = [
 	{ title: "Certificações e Qualificações", status: "pending" },
 ];
 
-export const useStepsStore = create<StepsStore>((set, get) => ({
-	steps: stepsData,
+const stepsDataMunicipio: Step[] = [
+	{ title: "Dados Gerais do Município", status: "progress" },
+	{ title: "Dados Administrativos", status: "pending" },
+	{ title: "Contatos Oficiais", status: "pending" },
+	{ title: "Informações Adicionais", status: "pending" },
+];
 
+export const useStepsStore = create<StepsStore>((set, get) => ({
+
+	steps: stepsData,
+	userType: "empresa",
+
+	setUserType: (type) => 
+		set(() => {
+			console.log("Mudando tipo de usuário:", type);
+			return {
+				userType: type,
+				steps: type === "municipio" ? stepsDataMunicipio : stepsData,
+			};
+		}),
+		
 	stepForward: () =>
 		set((state) => {
 			const currentIndex = state.steps.findIndex(
@@ -36,7 +56,7 @@ export const useStepsStore = create<StepsStore>((set, get) => ({
 			const newSteps = [...state.steps];
 			newSteps[currentIndex].status = "completed";
 			newSteps[currentIndex + 1].status = "progress";
-
+			
 			return { steps: newSteps };
 		}),
 
