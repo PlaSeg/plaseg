@@ -10,10 +10,13 @@ import { Payment } from "@/pages/payment";
 import { RegisterCompany } from "@/pages/register-company";
 import { RegisterMunicipality } from "@/pages/register-municipality";
 import { Notices } from "@/pages/notices";
+import { Home } from "@/pages/home";
 
 export function AppRoutes() {
 	return (
 		<Routes>
+			<Route path="/" element={<Home />} />
+
 			<Route element={<AuthLayout />}>
 				<Route path="entrar" element={<SignIn />} />
 				<Route path="cadastro" element={<SignUp />} />
