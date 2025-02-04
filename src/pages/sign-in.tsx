@@ -38,7 +38,7 @@ export function SignIn() {
 					/>
 				</div>
 
-				<Button className="mt-2" onClick={() => navigate("/")}>
+				<Button className="mt-2" onClick={() => navigate("/editais")}>
 					Entrar
 				</Button>
 

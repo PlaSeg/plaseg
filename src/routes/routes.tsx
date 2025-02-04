@@ -9,7 +9,7 @@ import { Prices } from "@/pages/prices";
 import { Payment } from "@/pages/payment";
 import { RegisterCompany } from "@/pages/register-company";
 import { RegisterMunicipality } from "@/pages/register-municipality";
-import {Listing} from "@/pages/listing";
+import { Notices } from "@/pages/notices";
 
 export function AppRoutes() {
 	return (
@@ -24,7 +24,7 @@ export function AppRoutes() {
 			<Route path="pagamento" element={<Payment />} />
 			<Route path="cadastro-empresa" element={<RegisterCompany />} />
 			<Route path="cadastro-municipio" element={<RegisterMunicipality />} />
-			<Route path="listagem" element={<Listing />} />
+			<Route path="editais" element={<Notices />} />
 		</Routes>
 	);
 }
