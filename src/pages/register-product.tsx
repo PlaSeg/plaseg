@@ -1,4 +1,5 @@
 import { CardWithFormDescription } from "@/components/register-product/card-description";
+import { CardWithFormProductDetails } from "@/components/register-product/card-product-details";
 import { CardWithFormStatus } from "@/components/register-product/card-status";
 import {ProductImage} from "@/components/register-product/product-image";
 
@@ -15,8 +16,9 @@ export function RegisterProduct() {
                     <CardWithFormStatus />
                 </div>
 
-                <div className="flex flex-1">
+                <div className="flex flex-col flex-1 gap-6">
                     <CardWithFormDescription />
+                    <CardWithFormProductDetails />
                 </div>
             </div>
         </div>
