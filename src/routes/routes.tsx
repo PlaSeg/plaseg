@@ -10,11 +10,16 @@ import { Payment } from "@/pages/payment";
 import { RegisterCompany } from "@/pages/register-company";
 import { RegisterMunicipality } from "@/pages/register-municipality";
 import { Notices } from "@/pages/notices";
+import { Home } from "@/pages/home";
+import { NoticeDetails } from "@/pages/notice-details";
+import { RegisterProject } from "@/pages/register-project";
 import { RegisterProduct } from "@/pages/register-product";
 
 export function AppRoutes() {
 	return (
 		<Routes>
+			<Route path="/" element={<Home />} />
+
 			<Route element={<AuthLayout />}>
 				<Route path="entrar" element={<SignIn />} />
 				<Route path="cadastro" element={<SignUp />} />
@@ -27,6 +32,8 @@ export function AppRoutes() {
 			<Route path="cadastro-municipio" element={<RegisterMunicipality />} />
 			<Route path="registro-produto" element={<RegisterProduct />} />
 			<Route path="editais" element={<Notices />} />
+			<Route path="detalhes-edital" element={<NoticeDetails />} />
+			<Route path="registrar-projeto" element={<RegisterProject />} />
 		</Routes>
 	);
 }

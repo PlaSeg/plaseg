@@ -20,7 +20,7 @@ export function Payment() {
 
 					<div className="mt-4 w-full flex justify-between items-center">
 						<span className="text-muted-foreground">
-							Plano Empresa - 6 meses
+							Plano Município - 6 meses
 						</span>
 						<strong>R$ 16.800,00</strong>
 					</div>
@@ -80,7 +80,7 @@ export function Payment() {
 
 						<Button
 							className="w-full"
-							onClick={() => navigate("/cadastro-empresa")}
+							onClick={() => navigate("/cadastro-municipio")}
 						>
 							Finalizar Pagamento
 						</Button>
@@ -90,7 +90,7 @@ export function Payment() {
 						<Button
 							className="w-full"
 							variant="secondary"
-							onClick={() => navigate("/cadastro-empresa")}
+							onClick={() => navigate("/cadastro-municipio")}
 						>
 							<img src="/src/assets/pix.svg" alt="pix" className="w-4 h-4" />
 							Pagar via pix

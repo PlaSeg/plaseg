@@ -11,7 +11,7 @@ import {
 import { Label } from "@/components/ui/label"
 import { Input } from "../ui/input"
 import { BrandsSelect } from "./brands-select"
-import { CheckboxDemo } from "../register-municipality-form.tsx/checkbox"
+import { CheckboxDemo } from "../register-municipality-form/checkbox"
 
 export function CardWithFormProductDetails() {
   return (

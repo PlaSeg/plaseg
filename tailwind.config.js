@@ -4,6 +4,13 @@ module.exports = {
 	content: ["src/**/*.{ts,tsx}", "src/components/**/*.{ts,tsx}"],
 	theme: {
 		extend: {
+			backgroundColor: {
+				dark: "#02050c",
+				button: "#3294F4",
+			},
+			textColor: {
+				paragraph: "#90A3BF",
+			},
 			gridTemplateColumns: {
 				app: "16rem 1fr",
 			},
