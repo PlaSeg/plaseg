@@ -32,31 +32,30 @@ const stepsDataMunicipio: Step[] = [
 ];
 
 export const useStepsStore = create<StepsStore>((set, get) => ({
-
 	steps: stepsData,
 	userType: "empresa",
 
-	setUserType: (type) => 
+	setUserType: (type) =>
 		set(() => {
-			console.log("Mudando tipo de usuário:", type);
 			return {
 				userType: type,
 				steps: type === "municipio" ? stepsDataMunicipio : stepsData,
 			};
 		}),
-		
+
 	stepForward: () =>
 		set((state) => {
 			const currentIndex = state.steps.findIndex(
 				(step) => step.status === "progress"
 			);
+			
 			if (currentIndex === -1 || currentIndex === state.steps.length - 1)
 				return state;
 
 			const newSteps = [...state.steps];
 			newSteps[currentIndex].status = "completed";
 			newSteps[currentIndex + 1].status = "progress";
-			
+
 			return { steps: newSteps };
 		}),
 
