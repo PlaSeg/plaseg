@@ -6,14 +6,18 @@ import { StepThree } from "./form-steps/step-three";
 import { Button } from "../ui/button";
 import { useEffect } from "react";
 import { StepFour } from "./form-steps/step-four";
+import { useNavigate } from "react-router";
 
 export function RegisterMunicipalityForm() {
-	const { steps, stepBack, stepForward, currentStep, setUserType } = useStepsStore();
-	
+	const navigate = useNavigate();
+
+	const { steps, stepBack, stepForward, currentStep, setUserType } =
+		useStepsStore();
+
 	useEffect(() => {
 		console.log("Setando userType para municipio...");
-		setUserType("municipio"); 
-	}, []); 
+		setUserType("municipio");
+	}, []);
 
 	return (
 		<div className="flex flex-col w-full p-0 m-0 h-full">
@@ -42,9 +46,20 @@ export function RegisterMunicipalityForm() {
 						{currentStep() === 3 && <StepThree />}
 						{currentStep() === 4 && <StepFour />}
 
-						<Button className="mt-4 w-full" onClick={stepForward}>
-							{currentStep() === steps.length ? "Concluir cadastro" : "Próximo"}
-						</Button>
+						{currentStep() !== steps.length && (
+							<Button className="mt-4 w-full" onClick={stepForward}>
+								Próximo
+							</Button>
+						)}
+
+						{currentStep() === steps.length && (
+							<Button
+								className="mt-4 w-full"
+								onClick={() => navigate("/editais")}
+							>
+								Concluir cadastro
+							</Button>
+						)}
 					</div>
 				</div>
 			</div>

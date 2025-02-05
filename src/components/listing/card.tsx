@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router";
 
 interface CardProps {
 	title: string;
@@ -11,10 +12,10 @@ interface CardProps {
 }
 
 export function Card(props: CardProps) {
+	const navigate = useNavigate();
+
 	return (
-		<div
-			className="flex w-full p-6 rounded-lg justify-between border border-muted	shadow-sm"
-		>
+		<div className="flex w-full p-6 rounded-lg justify-between border border-muted	shadow-sm">
 			<div className="flex flex-col gap-6">
 				<div className="flex flex-col">
 					<strong className="text-xl">{props.title}</strong>
@@ -43,7 +44,7 @@ export function Card(props: CardProps) {
 					<strong>{props.maxValue}</strong>
 				</div>
 
-				<Button>Participar</Button>
+				<Button onClick={() => navigate("/detalhes-edital")}>Participar</Button>
 			</div>
 		</div>
 	);

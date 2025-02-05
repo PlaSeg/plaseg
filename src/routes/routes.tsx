@@ -11,6 +11,8 @@ import { RegisterCompany } from "@/pages/register-company";
 import { RegisterMunicipality } from "@/pages/register-municipality";
 import { Notices } from "@/pages/notices";
 import { Home } from "@/pages/home";
+import { NoticeDetails } from "@/pages/notice-details";
+import { RegisterProject } from "@/pages/register-project";
 
 export function AppRoutes() {
 	return (
@@ -28,6 +30,8 @@ export function AppRoutes() {
 			<Route path="cadastro-empresa" element={<RegisterCompany />} />
 			<Route path="cadastro-municipio" element={<RegisterMunicipality />} />
 			<Route path="editais" element={<Notices />} />
+			<Route path="detalhes-edital" element={<NoticeDetails />} />
+			<Route path="registrar-projeto" element={<RegisterProject />} />
 		</Routes>
 	);
 }

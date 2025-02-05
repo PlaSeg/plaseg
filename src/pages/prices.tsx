@@ -11,7 +11,7 @@ export function Prices() {
 				<div className="space-y-2 m-4">
 					<strong className="text-blue-500">Bem-vindo(a) ao Plaseg</strong>
 					<h1 className="text-3xl font-bold">
-						Selecione um plano <br /> para sua empresa
+						Selecione um plano <br /> para seu município
 					</h1>
 				</div>
 			</div>
