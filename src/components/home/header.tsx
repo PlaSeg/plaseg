@@ -1,17 +1,15 @@
-import { useNavigate } from "react-router";
+import { Link } from "react-router";
 import { Button } from "../ui/button";
 
 export function NavLink({ children }: { children: string }) {
 	return (
-		<li className="hover:text-sky-500 hover:cursor-pointer hover:underline underline-offset-8">
+		<li className="hover:text-blue-500 hover:cursor-pointer transition-colors duration-200">
 			{children}
 		</li>
 	);
 }
 
 export function Header() {
-	const navigate = useNavigate();
-
 	return (
 		<div className="bg-dark text-white w-full py-4 px-4">
 			<div className="w-[1200px] mx-auto flex justify-between items-center py-4">
@@ -29,12 +27,9 @@ export function Header() {
 					</ul>
 				</nav>
 
-				<Button
-					className="bg-button hover:bg-button/90 rounded-full w-[100px]"
-					onClick={() => navigate("/entrar")}
-				>
-					Entrar
-				</Button>
+				<Link to={"/entrar"}>
+					<Button className="font-bold px-8 rounded-full">Entrar</Button>
+				</Link>
 			</div>
 		</div>
 	);
