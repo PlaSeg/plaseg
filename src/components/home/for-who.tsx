@@ -1,5 +1,5 @@
 import { Building2, House, Users } from "lucide-react";
-import { Who } from "./who";
+import { Who } from "./for-who-card";
 
 export function ForWho() {
 	return (

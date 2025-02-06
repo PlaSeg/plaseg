@@ -1,8 +1,7 @@
-import { useNavigate } from "react-router";
+import { Link } from "react-router";
 import { Button } from "../ui/button";
 
 export function Main() {
-	const navigate = useNavigate();
 
 	return (
 		<div className="bg-dark text-white w-full py-36">
@@ -15,14 +14,12 @@ export function Main() {
 				</p>
 
 				<div className="flex items-center gap-4 p-6">
-					<Button
-						className="bg-button hover:bg-button/90 rounded-full w-[150px]"
-						onClick={() => navigate("/entrar")}
-					>
-						Contratar
-					</Button>
+					<Button className="font-bold px-8 rounded-full">Contratar</Button>
 
-					<Button className="bg-[#1A202C] hover:bg-[#1A202C]/50 text-paragraph rounded-full w-[150px]">
+					<Button
+						className="bg-[#1A202C] hover:bg-[#1A202C]/50 text-paragraph rounded-full
+					px-8 font-bold"
+					>
 						Ver mais
 					</Button>
 				</div>

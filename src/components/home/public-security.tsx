@@ -1,9 +1,7 @@
-import { useNavigate } from "react-router";
+import { Link } from "react-router";
 import { Button } from "../ui/button";
 
 export function PublicSecurity() {
-	const navigate = useNavigate();
-
 	return (
 		<div className="w-full py-36">
 			<div className="flex w-[1200px] mx-auto items-center justify-center">
@@ -28,12 +26,11 @@ export function PublicSecurity() {
 					>
 						Cadastre-se agora e simplifique a captação e gestão de recursos para
 						segurança pública!
-						<Button
-							className="bg-button hover:bg-button/90 rounded-full w-[150px]"
-							onClick={() => navigate("/cadastrar")}
-						>
-							Cadastre-se
-						</Button>
+						<Link to={"/cadastro"}>
+							<Button className="font-bold px-8 rounded-full">
+								Cadastre-se
+							</Button>
+						</Link>
 					</div>
 				</div>
 			</div>

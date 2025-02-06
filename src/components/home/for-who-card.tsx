@@ -10,7 +10,7 @@ export function Who({ title, text, children }: FeatureProps) {
 	return (
 		<div
 			className="p-8 flex flex-col gap-4 rounded-lg text-left w-[380px] h-[300px]
-		hover:bg-muted/30 transition-colors duration-300"
+		bg-muted/30"
 		>
 			{children}
 
