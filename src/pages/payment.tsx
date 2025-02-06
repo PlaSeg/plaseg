@@ -80,7 +80,7 @@ export function Payment() {
 
 						<Button
 							className="w-full"
-							onClick={() => navigate("/cadastro-municipio")}
+							onClick={() => navigate("/cadastrar-municipio")}
 						>
 							Finalizar Pagamento
 						</Button>
@@ -90,7 +90,7 @@ export function Payment() {
 						<Button
 							className="w-full"
 							variant="secondary"
-							onClick={() => navigate("/cadastro-municipio")}
+							onClick={() => navigate("/cadastrar-municipio")}
 						>
 							<img src="/src/assets/pix.svg" alt="pix" className="w-4 h-4" />
 							Pagar via pix

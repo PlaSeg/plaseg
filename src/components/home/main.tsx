@@ -5,12 +5,12 @@ export function Main() {
 	const navigate = useNavigate();
 
 	return (
-		<div className="bg-dark text-white w-full">
-			<div className="py-32 mx-auto w-[1200px] flex flex-col gap-4 items-center justify-center">
-				<h1 className="text-4xl font-bold">
-					PlaSeg – Plataforma de Apoio à Segurança Pública
+		<div className="bg-dark text-white w-full py-36">
+			<div className="mx-auto w-[1200px] text-center flex flex-col gap-4 items-center justify-center">
+				<h1 className="text-4xl leading-tight font-bold">
+					PlaSeg - Plataforma de Apoio <br /> à Segurança Pública
 				</h1>
-				<p className="text-muted-foreground text-paragraph">
+				<p className="text-lg text-muted-foreground text-paragraph">
 					Soluções Inteligentes para Municípios e Empresas no Setor de Segurança
 				</p>
 
