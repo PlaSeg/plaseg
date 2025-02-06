@@ -14,6 +14,7 @@ import { Home } from "@/pages/home";
 import { NoticeDetails } from "@/pages/notice-details";
 import { RegisterProject } from "@/pages/register-project";
 import { RegisterProduct } from "@/pages/register-product";
+import {PriceRegistration} from "@/pages/price-registration";
 
 export function AppRoutes() {
 	return (
@@ -34,6 +35,7 @@ export function AppRoutes() {
 			<Route path="editais" element={<Notices />} />
 			<Route path="detalhes-edital" element={<NoticeDetails />} />
 			<Route path="registrar-projeto" element={<RegisterProject />} />
+			<Route path="ata-registro-preco" element={<PriceRegistration />} />
 		</Routes>
 	);
 }
