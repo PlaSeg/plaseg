@@ -3,7 +3,7 @@ import { WhyCards } from "./why-cards";
 
 export function Why() {
 	return (
-		<div className="w-full py-36">
+		<section id="por-que-escolher" className="w-full py-36">
 			<div
 				className="flex flex-col gap-8 w-[1000px] mx-auto items-center justify-center
 				bg-muted/30 rounded-2xl p-8 py-12"
@@ -23,6 +23,6 @@ export function Why() {
 
 				<Button className="font-bold px-8 rounded-full">Cadastre-se</Button>
 			</div>
-		</div>
+		</section>
 	);
 }

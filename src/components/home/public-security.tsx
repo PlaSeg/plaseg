@@ -3,7 +3,7 @@ import { Button } from "../ui/button";
 
 export function PublicSecurity() {
 	return (
-		<div className="w-full py-36">
+		<section id="home" className="w-full py-36">
 			<div className="flex w-[1200px] mx-auto items-center justify-center">
 				<div className="flex flex-col items-center justify-center gap-4 text-center w-[1000px]">
 					<h1 className="text-4xl leading-tight font-bold">
@@ -35,6 +35,6 @@ export function PublicSecurity() {
 					</div>
 				</div>
 			</div>
-		</div>
+		</section>
 	);
 }

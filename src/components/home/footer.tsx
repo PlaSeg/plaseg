@@ -2,7 +2,7 @@ import { Button } from "../ui/button";
 
 export function Footer() {
 	return (
-		<footer className="bg-dark text-white w-full py-36">
+		<footer id="contato" className="bg-dark text-white w-full py-36">
 			<div className="flex flex-col gap-8 w-[1200px] mx-auto">
 				<div className="flex items-center justify-between">
 					<span className="text-muted-foreground">
