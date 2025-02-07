@@ -1,10 +1,10 @@
 import { Link } from "react-router";
 import { Button } from "../ui/button";
 
-export function NavLink({ children }: { children: string }) {
+export function NavLink({ href, children }: { href: string; children: string }) {
 	return (
 		<li className="hover:text-blue-500 hover:cursor-pointer transition-colors duration-200">
-			{children}
+			<a href={href}>{children}</a>
 		</li>
 	);
 }
@@ -17,13 +17,13 @@ export function Header() {
 
 				<nav>
 					<ul className="flex space-x-8">
-						<NavLink>Home</NavLink>
-						<NavLink>O que é PlaSeg?</NavLink>
-						<NavLink>Para quem</NavLink>
-						<NavLink>Como funciona</NavLink>
-						<NavLink>Planos</NavLink>
-						<NavLink>Por que escolher</NavLink>
-						<NavLink>Fale Conosco</NavLink>
+						<NavLink href="#home">Home</NavLink>
+						<NavLink href="#sobre">O que é PlaSeg?</NavLink>
+						<NavLink href="#para-quem">Para quem</NavLink>
+						<NavLink href="#como-funciona">Como funciona</NavLink>
+						<NavLink href="#planos">Planos</NavLink>
+						<NavLink href="#por-que-escolher">Por que escolher</NavLink>
+						<NavLink href="#contato">Fale Conosco</NavLink>
 					</ul>
 				</nav>
 

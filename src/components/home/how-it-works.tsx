@@ -4,7 +4,7 @@ import { Button } from "../ui/button";
 
 export function HowItWorks() {
 	return (
-		<div>
+		<section id="como-funciona">
 			<div className="w-full py-36 bg-muted/30">
 				<div className="flex w-[1200px] mx-auto items-center justify-center">
 					<div className="flex flex-col items-center justify-center gap-4 text-center">
@@ -28,6 +28,6 @@ export function HowItWorks() {
 					</div>
 				</div>
 			</div>
-		</div>
+		</section>
 	);
 }

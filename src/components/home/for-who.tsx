@@ -3,7 +3,7 @@ import { Who } from "./for-who-card";
 
 export function ForWho() {
 	return (
-		<div className="w-full py-36">
+		<section id="para-quem" className="w-full py-36">
 			<div className="flex w-[1200px] mx-auto items-center justify-center">
 				<div className="flex flex-col items-center justify-center gap-4 text-center">
 					<h1 className="text-4xl font-bold leading-tight">
@@ -41,6 +41,6 @@ export function ForWho() {
 					</div>
 				</div>
 			</div>
-		</div>
+		</section>
 	);
 }

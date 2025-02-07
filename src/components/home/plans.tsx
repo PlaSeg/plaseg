@@ -3,7 +3,7 @@ import { PlansCard } from "./plans-card";
 
 export function Plans() {
 	return (
-		<div>
+		<section id="planos">
 			<div className="w-full py-36">
 				<div className="flex flex-col gap-8 w-[1200px] mx-auto items-center justify-center">
 					<h1 className="text-4xl font-bold leading-tight">
@@ -20,6 +20,6 @@ export function Plans() {
 					</div>
 				</div>
 			</div>
-		</div>
+		</section>
 	);
 }

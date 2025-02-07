@@ -9,7 +9,7 @@ import { Feature } from "./feature";
 
 export function WhatIs() {
 	return (
-		<div className="w-full py-36 bg-muted/30">
+		<section id="sobre" className="w-full py-36 bg-muted/30">
 			<div className="flex w-[1200px] mx-auto items-center justify-center">
 				<div className="flex flex-col items-center justify-center gap-4 text-center w-[1000px]">
 					<h1 className="text-4xl font-bold leading-tight">
@@ -17,9 +17,9 @@ export function WhatIs() {
 					</h1>
 
 					<p className="text-lg text-muted-foreground leading-6">
-						A PlaSeg conecta estados, municípios, empresas e consultores para otimizar a
-						criação e execução de projetos de segurança pública. Nossa
-						plataforma oferece:
+						A PlaSeg conecta estados, municípios, empresas e consultores para
+						otimizar a criação e execução de projetos de segurança pública.
+						Nossa plataforma oferece:
 					</p>
 
 					<div className="grid grid-cols-2 gap-4 mt-4">
@@ -57,6 +57,6 @@ export function WhatIs() {
 					</div>
 				</div>
 			</div>
-		</div>
+		</section>
 	);
 }
