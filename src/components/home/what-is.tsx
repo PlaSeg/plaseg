@@ -17,13 +17,13 @@ export function WhatIs() {
 					</h1>
 
 					<p className="text-lg text-muted-foreground leading-6">
-						A PlaSeg conecta municípios, empresas e consultores para otimizar a
+						A PlaSeg conecta estados, municípios, empresas e consultores para otimizar a
 						criação e execução de projetos de segurança pública. Nossa
 						plataforma oferece:
 					</p>
 
 					<div className="grid grid-cols-2 gap-4 mt-4">
-						<Feature text="Consulta a editais de financiamento para projetos municipais.">
+						<Feature text="Consulta oportunidades de financiamento para projetos públicos.">
 							<FileText className="text-[#3294F4]" />
 						</Feature>
 

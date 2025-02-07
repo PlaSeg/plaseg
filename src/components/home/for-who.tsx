@@ -1,4 +1,4 @@
-import { Building2, House, Users } from "lucide-react";
+import { Building2, Factory, House, Landmark, Users } from "lucide-react";
 import { Who } from "./for-who-card";
 
 export function ForWho() {
@@ -10,7 +10,14 @@ export function ForWho() {
 						Para quem é a PlaSeg?
 					</h1>
 
-					<div className="flex items-center justify-between gap-4 mt-4">
+					<div className="grid grid-cols-2 gap-4 mt-4">
+						<Who
+							title="Estados"
+							text="Agilize a execução de projetos, com apoio da plataforma, via sugestão de execução, conexão empresas parceiras para o fornecimento de materiais, equipamentos e serviços,  além de contar com uma rede de consultores especializados para apoiar todas as etapas do seu projeto. Mais eficiência, parceria e resultados em um só lugar."
+						>
+							<Landmark className="text-[#3294F4]" size={32} />
+						</Who>
+
 						<Who
 							title="Municípios"
 							text="Gere projetos de forma automática e amplie a segurança do seu município. Encontre atas de registro de preço, consultores especializados e empresas para auxiliar na melhoria da segurança do seu município."
@@ -27,7 +34,7 @@ export function ForWho() {
 
 						<Who
 							title="Consultores"
-							text="Ofereça seu conhecimento para ajudar municípios a elaborarem e executarem projetos de segurança."
+							text="Ofereça seu conhecimento para ajudar estados e municípios a elaborarem e executarem projetos de segurança."
 						>
 							<Users className="text-[#3294F4]" size={32} />
 						</Who>

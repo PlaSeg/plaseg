@@ -10,7 +10,7 @@ export function Main() {
 					PlaSeg - Plataforma de Apoio <br /> à Segurança Pública
 				</h1>
 				<p className="text-lg text-muted-foreground text-paragraph">
-					Soluções Inteligentes para Municípios e Empresas no Setor de Segurança
+					Soluções Inteligentes para Estados, Municípios e Empresas no Setor de Segurança
 				</p>
 
 				<div className="flex items-center gap-4 p-6">

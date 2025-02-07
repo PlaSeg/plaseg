@@ -18,7 +18,7 @@ export function Why() {
 
 				<span className="text-muted-foreground mt-4">
 					Não perca tempo! Faça parte da PlaSeg agora e leve inovação para a
-					segurança pública do seu município.
+					segurança pública da sua região.
 				</span>
 
 				<Button className="font-bold px-8 rounded-full">Cadastre-se</Button>
