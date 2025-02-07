@@ -7,14 +7,15 @@ export function PublicSecurity() {
 			<div className="flex w-[1200px] mx-auto items-center justify-center">
 				<div className="flex flex-col items-center justify-center gap-4 text-center w-[1000px]">
 					<h1 className="text-4xl leading-tight font-bold">
-						Transforme a Segurança Pública <br /> na sua Cidade!
+						Transforme a Segurança Pública <br /> na sua Região!
 					</h1>
 
 					<p className="text-lg text-muted-foreground leading-snug">
 						A PlaSeg é a primeira plataforma digital do Brasil voltada para
-						ajudar municípios a captarem recursos via projetos. Ela gera esboços
-						de projetos de forma automática, incluindo textos, orçamentos,
-						valores e tudo que é necessário para concorrer em um edital de
+						ajudar estados e municípios a captarem e executarem projetos
+						envolvendo recursos financiados pelo governo. Ela gera esboços de
+						projetos de forma automática, incluindo textos, orçamentos, valores
+						e tudo que é necessário para concorrer em uma oportunidade de
 						financiamento. Além disso, permite encontrar consultores para
 						auxiliar em projetos e conectar empresas e fornecedores de serviços
 						de segurança.

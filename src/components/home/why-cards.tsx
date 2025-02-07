@@ -2,9 +2,9 @@ import { CircleCheckBig } from "lucide-react";
 
 const benefits = [
 	{
-		title: "Inteligência Artificial",
+		title: "Agilidade",
 		description:
-			"Geração automatizada de projetos conforme exigências dos editais.",
+			"Geração rápida de projetos conforme exigências dos editais.",
 	},
 	{
 		title: "Apoio Especializado",

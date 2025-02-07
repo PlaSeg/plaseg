@@ -2,7 +2,7 @@ import { Building2, House, User } from "lucide-react";
 
 const plans = [
 	{
-		name: "Plano Municipal",
+		name: "Plano Estadual e Municipal",
 		price: "R$24.000,00",
 		duration: "12 meses de acesso",
 		icon: <House />,

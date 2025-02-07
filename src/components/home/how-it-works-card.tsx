@@ -2,7 +2,7 @@ const steps = [
 	{
 		title: "Cadastre-se",
 		description:
-			"Escolha seu perfil (Município, Empresa ou Consultor) e faça seu registro na PlaSeg.",
+			"Escolha seu perfil (Estado, Município, Empresa ou Consultor) e faça seu registro na PlaSeg.",
 	},
 	{
 		title: "Escolha um Plano",
