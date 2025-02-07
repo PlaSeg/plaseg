@@ -42,7 +42,7 @@ export function Partners() {
 
 					<a href="http://www.brasimpex.com.br/" target="_blank">
 						<img
-							src="http://www.brasimpex.com.br/2082/img/logo-brasimpex-transp_white.png"
+							src="https://lh4.googleusercontent.com/proxy/W9ES5YMU2smk7ox6i6r0RSXfXmpc6wkgLK9BUeVXG06cSp5ch919QNJFq18oVlEHyT8FYnjxjXkrxwG6M0AXK94zFyQo_5ActHcvApT-IvHO7JxslOd-"
 							alt=""
 							className="h-20 w-[300px]"
 						/>
