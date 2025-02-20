@@ -1,7 +1,7 @@
 import { InputField } from "@/components/price-registration/input-field";
 import { ProductRegistration } from "@/components/price-registration/product-registration";
 
-export function PriceRegistration() {
+export function RegisterPriceRecordAgreement() {
 	return (
 		<div>
 			<header className="bg-blue-600 text-white p-4 mb-6 ">

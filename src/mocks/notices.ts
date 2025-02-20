@@ -1,4 +1,4 @@
-export const notices = [
+export const opportunities = [
 	{
 		title: "Fomento à Segurança Pública Municipal",
 		responsible: "Secretaria Nacional de Segurança Pública (SENASP)",
