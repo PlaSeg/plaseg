@@ -20,6 +20,7 @@ import { PriceRecordAgreements } from "@/pages/company/price-record-agreements";
 import News from "@/pages/company/news";
 import CityLayout from "@/layouts/city-layout";
 import Projects from "@/pages/city/projects";
+import Products from "@/pages/company/products";
 
 export function AppRoutes() {
 	return (
@@ -48,6 +49,7 @@ export function AppRoutes() {
 			{/* Rotas de Empresa */}
 			<Route path="empresa" element={<CompanyLayout />}>
 				<Route path="noticias" element={<News />} />
+				<Route path="produtos" element={<Products />} />
 				<Route path="cadastrar-produto" element={<RegisterProduct />} />
 				<Route
 					path="atas-de-registro-de-preco"
