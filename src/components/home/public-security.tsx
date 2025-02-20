@@ -1,24 +1,23 @@
-import { useNavigate } from "react-router";
+import { Link } from "react-router";
 import { Button } from "../ui/button";
 
 export function PublicSecurity() {
-	const navigate = useNavigate();
-
 	return (
-		<div className="w-full py-24">
+		<section id="home" className="w-full py-36">
 			<div className="flex w-[1200px] mx-auto items-center justify-center">
 				<div className="flex flex-col items-center justify-center gap-4 text-center w-[1000px]">
-					<h1 className="text-4xl font-bold leading-tight">
-						Transforme a Segurança Pública <br /> na sua Cidade!
+					<h1 className="text-4xl leading-tight font-bold">
+						Transforme a Segurança Pública <br /> na sua Região!
 					</h1>
 
-					<p className="text-muted-foreground leading-6">
+					<p className="text-lg text-muted-foreground leading-snug">
 						A PlaSeg é a primeira plataforma digital do Brasil voltada para
-						ajudar municípios a captarem recursos via projetos. Ela gera esboços
-						de projetos de forma automática, incluindo textos, orçamentos,
-						valores e tudo que é necessário para concorrer em um edital de
+						ajudar estados e municípios a captarem e executarem projetos
+						envolvendo recursos financiados pelo governo. Ela gera esboços de
+						projetos de forma automática, incluindo textos, orçamentos, valores
+						e tudo que é necessário para concorrer em uma oportunidade de
 						financiamento. Além disso, permite encontrar consultores para
-						auxiliar em projetos e conecta empresas e fornecedores de serviços
+						auxiliar em projetos e conectar empresas e fornecedores de serviços
 						de segurança.
 					</p>
 
@@ -28,15 +27,14 @@ export function PublicSecurity() {
 					>
 						Cadastre-se agora e simplifique a captação e gestão de recursos para
 						segurança pública!
-						<Button
-							className="bg-button hover:bg-button/90 rounded-full w-[150px]"
-							onClick={() => navigate("/cadastrar")}
-						>
-							Cadastre-se
-						</Button>
+						<Link to={"/cadastro"}>
+							<Button className="font-bold px-8 rounded-full">
+								Cadastre-se
+							</Button>
+						</Link>
 					</div>
 				</div>
 			</div>
-		</div>
+		</section>
 	);
 }
