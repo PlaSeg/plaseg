@@ -30,6 +30,8 @@ import {
 import { products } from "@/mocks/products";
 import { productsTableColumns } from "./products-table-columns";
 import { translateProductsTableKeys } from "@/utils/translate-products-table-keys";
+import { SearchInput } from "@/components/ui/search-input";
+import { Link } from "react-router";
 
 export function ProductsTable() {
 	const [sorting, setSorting] = React.useState<SortingState>([]);
@@ -62,13 +64,12 @@ export function ProductsTable() {
 	return (
 		<div className="w-full">
 			<div className="flex items-center py-4 gap-4">
-				<Input
+				<SearchInput
 					placeholder="Pesquisar produtos..."
 					value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
 					onChange={(event) =>
 						table.getColumn("name")?.setFilterValue(event.target.value)
 					}
-					className="max-w-sm"
 				/>
 
 				<Button
@@ -108,20 +109,22 @@ export function ProductsTable() {
 					</DropdownMenuContent>
 				</DropdownMenu>
 
-				<Button className="font-semibold">
-					<PlusIcon />
-					Adicionar Produto
+				<Button className="font-semibold" asChild>
+					<Link to="/empresa/adicionar-produto">
+						<PlusIcon />
+						Adicionar Produto
+					</Link>
 				</Button>
 			</div>
 
-			<div className="rounded-md border">
+			<div>
 				<Table>
-					<TableHeader>
+					<TableHeader className="bg-slate-50">
 						{table.getHeaderGroups().map((headerGroup) => (
-							<TableRow key={headerGroup.id}>
+							<TableRow key={headerGroup.id} className="border-none">
 								{headerGroup.headers.map((header) => {
 									return (
-										<TableHead key={header.id} className="bg-slate-50">
+										<TableHead key={header.id}>
 											{header.isPlaceholder
 												? null
 												: flexRender(
@@ -141,6 +144,7 @@ export function ProductsTable() {
 								<TableRow
 									key={row.id}
 									data-state={row.getIsSelected() && "selected"}
+									className="border-none"
 								>
 									{row.getVisibleCells().map((cell) => (
 										<TableCell key={cell.id}>
