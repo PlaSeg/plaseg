@@ -21,6 +21,7 @@ import News from "@/pages/company/news";
 import CityLayout from "@/layouts/city-layout";
 import Projects from "@/pages/city/projects";
 import Products from "@/pages/company/products";
+import AddProduct from "@/pages/company/add-product";
 
 export function AppRoutes() {
 	return (
@@ -50,7 +51,8 @@ export function AppRoutes() {
 			<Route path="empresa" element={<CompanyLayout />}>
 				<Route path="noticias" element={<News />} />
 				<Route path="produtos" element={<Products />} />
-				<Route path="cadastrar-produto" element={<RegisterProduct />} />
+				{/* <Route path="adicionar-produto" element={<RegisterProduct />} /> */}
+				<Route path="adicionar-produto" element={<AddProduct />} />
 				<Route
 					path="atas-de-registro-de-preco"
 					element={<PriceRegisterRecord />}

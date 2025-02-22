@@ -30,6 +30,7 @@ import {
 import { priceRegisterRecords } from "@/mocks/register-price-records"; // Ajuste o caminho conforme necessário
 import { priceRegisterRecordsTableColumns } from "./price-register-records-table-columns";
 import { translatePriceRegisterRecordsTableKeys } from "@/utils/translate-price-register-records-table-keys"; // Ajuste ou crie conforme necessário
+import { SearchInput } from "@/components/ui/search-input";
 
 export function PriceRegisterRecordsTable() {
 	const [sorting, setSorting] = React.useState<SortingState>([]);
@@ -62,13 +63,13 @@ export function PriceRegisterRecordsTable() {
 	return (
 		<div className="w-full">
 			<div className="flex items-center py-4 gap-4">
-				<Input
+				<SearchInput
+					type="number"
 					placeholder="Pesquisar atas..."
 					value={(table.getColumn("number")?.getFilterValue() as string) ?? ""}
 					onChange={(event) =>
 						table.getColumn("number")?.setFilterValue(event.target.value)
 					}
-					className="max-w-sm"
 				/>
 
 				<Button
@@ -110,18 +111,21 @@ export function PriceRegisterRecordsTable() {
 
 				<Button className="font-semibold">
 					<PlusIcon />
-					Adicionar Ata
+					Adicionar Ata de Registro de Preço
 				</Button>
 			</div>
 
-			<div className="rounded-md border">
+			<div className="rounded-mm">
 				<Table>
 					<TableHeader>
 						{table.getHeaderGroups().map((headerGroup) => (
-							<TableRow key={headerGroup.id}>
+							<TableRow
+								key={headerGroup.id}
+								className="bg-slate-50 border-none"
+							>
 								{headerGroup.headers.map((header) => {
 									return (
-										<TableHead key={header.id} className="bg-slate-50">
+										<TableHead key={header.id}>
 											{header.isPlaceholder
 												? null
 												: flexRender(
@@ -141,6 +145,7 @@ export function PriceRegisterRecordsTable() {
 								<TableRow
 									key={row.id}
 									data-state={row.getIsSelected() && "selected"}
+									className="border-none"
 								>
 									{row.getVisibleCells().map((cell) => (
 										<TableCell key={cell.id}>

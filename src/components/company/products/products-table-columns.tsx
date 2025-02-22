@@ -12,6 +12,7 @@ import {
 	DropdownMenuItem,
 	DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
+import { Link } from "react-router";
 
 export const productsTableColumns: ColumnDef<ProductsTableItem>[] = [
 	{
@@ -50,7 +51,9 @@ export const productsTableColumns: ColumnDef<ProductsTableItem>[] = [
 				</Button>
 			);
 		},
-		cell: ({ row }) => <div className="capitalize">{row.getValue("name")}</div>,
+		cell: ({ row }) => (
+			<div className="capitalize font-semibold">{row.getValue("name")}</div>
+		),
 	},
 	{
 		accessorKey: "code",
@@ -61,10 +64,7 @@ export const productsTableColumns: ColumnDef<ProductsTableItem>[] = [
 		accessorKey: "type",
 		header: "Tipo",
 		cell: ({ row }) => (
-			<Badge
-				className="rounded-full bg-transparent text-foreground shadow-none border
-			border-slate-300 hover:bg-transparent"
-			>
+			<Badge className="rounded-full text-muted-foreground shadow-none bg-muted hover:bg-muted">
 				{row.getValue("type")}
 			</Badge>
 		),
@@ -165,7 +165,9 @@ export const productsTableColumns: ColumnDef<ProductsTableItem>[] = [
 
 						<DropdownMenuItem>Ver detalhes</DropdownMenuItem>
 
-						<DropdownMenuItem>Editar</DropdownMenuItem>
+						<DropdownMenuItem asChild>
+							<Link to="/empresa/adicionar-produto">Editar</Link>
+						</DropdownMenuItem>
 					</DropdownMenuContent>
 				</DropdownMenu>
 			);
