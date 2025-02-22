@@ -10,14 +10,16 @@ interface NavbarItemProps {
 export function NavbarItem({ link, title, icon }: NavbarItemProps) {
 	const { pathname } = useLocation();
 
-	const styles = pathname.endsWith(link) && "bg-slate-50 text-slate-950";
+	const styles = pathname.endsWith(link)
+		? "bg-slate-800 text-blue-500"
+		: "text-slate-400";
 
 	return (
 		<li>
 			<Link
 				to={link}
-				className={`text-sm font-medium rounded-full py-1.5 px-3 flex items-center gap-1
-			text-muted-foreground	hover:bg-slate-50 transition-colors duration-500 ${styles}`}
+				className={`text-sm font-semibold rounded-full py-1.5 px-3 flex items-center gap-2
+				hover:bg-[#1A202C] transition-colors duration-300 ${styles}`}
 			>
 				{icon}
 				{title}
