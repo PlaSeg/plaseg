@@ -27,11 +27,11 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/components/ui/table";
-import { products } from "@/mocks/products";
-import { productsTableColumns } from "./products-table-columns";
-import { translateProductsTableKeys } from "@/utils/translate-products-table-keys";
+import { priceRegisterRecords } from "@/mocks/register-price-records"; // Ajuste o caminho conforme necessário
+import { priceRegisterRecordsTableColumns } from "./price-register-records-table-columns";
+import { translatePriceRegisterRecordsTableKeys } from "@/utils/translate-price-register-records-table-keys"; // Ajuste ou crie conforme necessário
 
-export function ProductsTable() {
+export function PriceRegisterRecordsTable() {
 	const [sorting, setSorting] = React.useState<SortingState>([]);
 	const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
 		[]
@@ -41,8 +41,8 @@ export function ProductsTable() {
 	const [rowSelection, setRowSelection] = React.useState({});
 
 	const table = useReactTable({
-		data: products,
-		columns: productsTableColumns,
+		data: priceRegisterRecords,
+		columns: priceRegisterRecordsTableColumns,
 		onSortingChange: setSorting,
 		onColumnFiltersChange: setColumnFilters,
 		getCoreRowModel: getCoreRowModel(),
@@ -63,10 +63,10 @@ export function ProductsTable() {
 		<div className="w-full">
 			<div className="flex items-center py-4 gap-4">
 				<Input
-					placeholder="Pesquisar produtos..."
-					value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
+					placeholder="Pesquisar atas..."
+					value={(table.getColumn("number")?.getFilterValue() as string) ?? ""}
 					onChange={(event) =>
-						table.getColumn("name")?.setFilterValue(event.target.value)
+						table.getColumn("number")?.setFilterValue(event.target.value)
 					}
 					className="max-w-sm"
 				/>
@@ -101,7 +101,7 @@ export function ProductsTable() {
 											column.toggleVisibility(!!value)
 										}
 									>
-										{translateProductsTableKeys(column.id)}
+										{translatePriceRegisterRecordsTableKeys(column.id)}
 									</DropdownMenuCheckboxItem>
 								);
 							})}
@@ -110,7 +110,7 @@ export function ProductsTable() {
 
 				<Button className="font-semibold">
 					<PlusIcon />
-					Adicionar Produto
+					Adicionar Ata
 				</Button>
 			</div>
 
@@ -155,7 +155,7 @@ export function ProductsTable() {
 						) : (
 							<TableRow>
 								<TableCell
-									colSpan={productsTableColumns.length}
+									colSpan={priceRegisterRecordsTableColumns.length}
 									className="h-24 text-center"
 								>
 									Sem resultados
@@ -169,7 +169,7 @@ export function ProductsTable() {
 			<div className="flex items-center justify-end space-x-2 py-4">
 				<div className="flex-1 text-sm text-muted-foreground">
 					{table.getFilteredSelectedRowModel().rows.length} de{" "}
-					{table.getFilteredRowModel().rows.length} linha(s) selecionadas(s).
+					{table.getFilteredRowModel().rows.length} linha(s) selecionada(s).
 				</div>
 
 				<div className="space-x-2">

@@ -1,14 +1,14 @@
-interface PregisterPriceRecords {
+export interface PriceRegisterRecord {
 	id: string;
 	number: string;
 	year: number;
 	organ: string;
 	content: string;
-	signingDate: string; // Formato: "DD/MM/AAAA"
-	validity: string; // Formato: "DD/MM/AAAA"
+	signingDate: string;
+	validity: string;
 }
 
-export const pregisterPriceRecords: PregisterPriceRecords[] = [
+export const priceRegisterRecords: PriceRegisterRecord[] = [
 	{
 		id: "100e8400-e29b-41d4-a716-446655440000",
 		number: "001/2025",

@@ -16,7 +16,7 @@ import { NoticeDetails } from "@/pages/city/notice-details";
 import { RegisterProject } from "@/pages/city/register-project";
 import { RegisterProduct } from "@/pages/company/register-product";
 import { RegisterPriceRecordAgreement } from "@/pages/company/register-price-record-agreement";
-import { PriceRecordAgreements } from "@/pages/company/price-record-agreements";
+import  PriceRegisterRecord  from "@/pages/company/price-register-records";
 import News from "@/pages/company/news";
 import CityLayout from "@/layouts/city-layout";
 import Projects from "@/pages/city/projects";
@@ -53,7 +53,7 @@ export function AppRoutes() {
 				<Route path="cadastrar-produto" element={<RegisterProduct />} />
 				<Route
 					path="atas-de-registro-de-preco"
-					element={<PriceRecordAgreements />}
+					element={<PriceRegisterRecord />}
 				/>
 				<Route
 					path="cadastrar-ata-de-registro-de-preco"
