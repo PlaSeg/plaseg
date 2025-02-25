@@ -1,8 +1,8 @@
 import { Label } from "@/components/ui/label";
-import { Input } from "../components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router";
 import { SelectType } from "@/components/sign-up/select-type";
+import { Input } from "@/components/ui/input";
 
 export function SignUp() {
 	const navigate = useNavigate();
