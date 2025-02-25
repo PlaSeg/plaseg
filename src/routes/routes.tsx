@@ -14,7 +14,6 @@ import { RegisterMunicipality } from "@/pages/city/register-city";
 import { Opportunities } from "@/pages/city/opportunities";
 import { NoticeDetails } from "@/pages/city/notice-details";
 import { RegisterProject } from "@/pages/city/register-project";
-import { RegisterProduct } from "@/pages/company/register-product";
 import { RegisterPriceRecordAgreement } from "@/pages/company/register-price-record-agreement";
 import  PriceRegisterRecord  from "@/pages/company/price-register-records";
 import News from "@/pages/company/news";
@@ -22,6 +21,7 @@ import CityLayout from "@/layouts/city-layout";
 import Projects from "@/pages/city/projects";
 import Products from "@/pages/company/products";
 import AddProduct from "@/pages/company/add-product";
+import New from "@/pages/company/new";
 
 export function AppRoutes() {
 	return (
@@ -50,6 +50,7 @@ export function AppRoutes() {
 			{/* Rotas de Empresa */}
 			<Route path="empresa" element={<CompanyLayout />}>
 				<Route path="noticias" element={<News />} />
+				<Route path="noticia" element={<New />}></Route>
 				<Route path="produtos" element={<Products />} />
 				{/* <Route path="adicionar-produto" element={<RegisterProduct />} /> */}
 				<Route path="adicionar-produto" element={<AddProduct />} />
