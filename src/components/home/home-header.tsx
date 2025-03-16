@@ -9,7 +9,7 @@ export function NavLink({ href, children }: { href: string; children: string }) 
 	);
 }
 
-export function Header() {
+export function HomeHeader() {
 	return (
 		<div className="bg-dark text-white w-full py-4 px-4">
 			<div className="w-[1200px] mx-auto flex justify-between items-center py-4">

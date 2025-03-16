@@ -19,19 +19,19 @@ import {
 } from "@/components/ui/popover";
 import { FieldValues, Path } from "react-hook-form";
 
-interface DatePickerProps<TFieldValues extends FieldValues> {
+interface DateRangePickerProps<TFieldValues extends FieldValues> {
 	form: UseFormReturn<TFieldValues>;
 	entity: Path<TFieldValues>;
 	label?: string;
 	placeholder?: string;
 }
 
-export function DatePicker<TFieldValues extends FieldValues>({
+export function DateRangePicker<TFieldValues extends FieldValues>({
 	form,
 	entity,
 	label = "Data",
-	placeholder = "Selecione uma data",
-}: DatePickerProps<TFieldValues>) {
+	placeholder = "Selecione uma intervalo",
+}: DateRangePickerProps<TFieldValues>) {
 	return (
 		<FormField
 			control={form.control}
@@ -49,8 +49,15 @@ export function DatePicker<TFieldValues extends FieldValues>({
 										!field.value && "text-muted-foreground"
 									)}
 								>
-									{field.value ? (
-										format(field.value, "dd/MM/yyyy")
+									{field.value?.from ? (
+										field.value.to ? (
+											<>
+												{format(field.value.from, "dd/MM/yyyy")} -{" "}
+												{format(field.value.to, "dd/MM/yyyy")}
+											</>
+										) : (
+											format(field.value.from, "dd/MM/yyyy")
+										)
 									) : (
 										<span>{placeholder}</span>
 									)}
@@ -61,7 +68,7 @@ export function DatePicker<TFieldValues extends FieldValues>({
 
 						<PopoverContent className="w-auto p-0" align="start">
 							<Calendar
-								mode="single"
+								mode="range"
 								selected={field.value}
 								onSelect={field.onChange}
 								initialFocus

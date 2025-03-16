@@ -11,11 +11,12 @@ import { Prices } from "@/pages/self-registration/prices";
 import { Payment } from "@/pages/self-registration/payment";
 import { RegisterCompany } from "@/pages/company/register-company";
 import { RegisterMunicipality } from "@/pages/city/register-city";
-import { Opportunities } from "@/pages/city/opportunities";
-import { NoticeDetails } from "@/pages/city/notice-details";
-import { RegisterProject } from "@/pages/city/register-project";
-import { RegisterPriceRecordAgreement } from "@/pages/company/register-price-record-agreement";
-import  PriceRegisterRecord  from "@/pages/company/price-register-records";
+
+import Opportunities from "@/pages/city/opportunities";
+import NoticeDetails from "@/pages/city/notice-details";
+import RegisterProject from "@/pages/city/register-project";
+import RegisterPriceRecordAgreement from "@/pages/company/register-price-record-agreement";
+import PriceRegisterRecord from "@/pages/company/price-register-records";
 import News from "@/pages/company/news";
 import CityLayout from "@/layouts/city-layout";
 import Projects from "@/pages/city/projects";
@@ -27,6 +28,10 @@ export function AppRoutes() {
 	return (
 		<Routes>
 			<Route path="/" element={<Home />} />
+			<Route path="precos" element={<Prices />} />
+			<Route path="pagamento" element={<Payment />} />
+			<Route path="cadastrar-empresa" element={<RegisterCompany />} />
+			<Route path="cadastrar-municipio" element={<RegisterMunicipality />} />
 
 			{/* Rotas de Autenticação */}
 			<Route element={<AuthLayout />}>
@@ -34,25 +39,12 @@ export function AppRoutes() {
 				<Route path="cadastro" element={<SignUp />} />
 				<Route path="esqueceu-senha" element={<ResetPassword />} />
 			</Route>
-			<Route path="precos" element={<Prices />} />
-			<Route path="pagamento" element={<Payment />} />
-			<Route path="cadastrar-empresa" element={<RegisterCompany />} />
-			<Route path="cadastrar-municipio" element={<RegisterMunicipality />} />
-
-			{/* Rotas de Município */}
-			<Route path="municipio" element={<CityLayout />}>
-				<Route path="oportunidades" element={<Opportunities />} />
-				<Route path="edital" element={<NoticeDetails />} />
-				<Route path="projetos" element={<Projects />} />
-				<Route path="cadastrar-projeto" element={<RegisterProject />} />
-			</Route>
 
 			{/* Rotas de Empresa */}
 			<Route path="empresa" element={<CompanyLayout />}>
 				<Route path="noticias" element={<News />} />
 				<Route path="noticia" element={<New />}></Route>
 				<Route path="produtos" element={<Products />} />
-				{/* <Route path="adicionar-produto" element={<RegisterProduct />} /> */}
 				<Route path="adicionar-produto" element={<AddProduct />} />
 				<Route
 					path="atas-de-registro-de-preco"
@@ -62,6 +54,14 @@ export function AppRoutes() {
 					path="cadastrar-ata-de-registro-de-preco"
 					element={<RegisterPriceRecordAgreement />}
 				/>
+			</Route>
+
+			{/* Rotas de Município */}
+			<Route path="municipio" element={<CityLayout />}>
+				<Route path="cadastrar-projeto" element={<RegisterProject />} />
+				<Route path="oportunidades" element={<Opportunities />} />
+				<Route path="projetos" element={<Projects />} />
+				<Route path="edital" element={<NoticeDetails />} />
 			</Route>
 		</Routes>
 	);

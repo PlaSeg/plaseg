@@ -1,17 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import {
-	CalendarDays,
-	FileText,
-	Tag,
-	DollarSign,
-	Globe,
-	Users,
-	CheckCircle,
-} from "lucide-react";
+import { Tag, DollarSign, Globe } from "lucide-react";
 
-export function NoticeDetails() {
+export default function NoticeDetails() {
 	return (
 		<div className="h-screen flex flex-col w-full">
 			<header className="flex bg-white border-b p-4 pl-6">

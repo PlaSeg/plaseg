@@ -1,17 +1,22 @@
 import { Avatar, AvatarFallback } from "../ui/avatar";
 
-export function CompanyMenu() {
+interface MenuProps {
+	name: string;
+	email: string;
+}
+
+export function Menu({ name, email }: MenuProps) {
 	return (
 		<div className="flex items-center gap-3">
 			<div className="flex flex-col gap-0">
-				<strong className="text-sm">Compex Jr</strong>
+				<strong className="text-sm">{name}</strong>
 				<span className="text-sm font-medium text-muted-foreground">
-					contato@compexjr.com.br
+					{email}
 				</span>
 			</div>
 
 			<Avatar>
-				<AvatarFallback className="bg-[#1A202C]">C</AvatarFallback>
+				<AvatarFallback className="bg-[#1A202C]">{name[0]}</AvatarFallback>
 			</Avatar>
 		</div>
 	);

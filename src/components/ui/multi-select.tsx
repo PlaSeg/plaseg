@@ -1,17 +1,10 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import {
-	CheckIcon,
-	XCircle,
-	X,
-	ChevronDown,
-	XIcon,
-	WandSparkles,
-} from "lucide-react";
-import { cn } from "@/lib/utils";
+import { CheckIcon, X, ChevronDown, XIcon } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 import {
 	Popover,
 	PopoverContent,
