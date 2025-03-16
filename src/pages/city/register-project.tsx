@@ -1,6 +1,6 @@
 import { Laptop } from "lucide-react";
 
-export function RegisterProject() {
+export default function RegisterProject() {
 	return (
 		<div className="grid grid-cols-3 h-screen w-full">
 			<div className="flex items-center justify-center w-full bg-muted/30">

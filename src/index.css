@@ -10,6 +10,15 @@ body {
 }
 
 @layer base {
+	* {
+		@apply border-border outline-ring/50;
+	}
+	body {
+		@apply bg-background text-foreground;
+	}
+}
+
+@layer base {
 	:root {
 		--background: 0 0% 100%;
 		--foreground: 222.2 84% 4.9%;
@@ -75,13 +84,16 @@ body {
 	}
 }
 
+*::-webkit-scrollbar-thumb {
+	border-radius: 4px;
+	background-color: #dee8f2;
+}
 
+*::-webkit-scrollbar {
+	width: 6px;
+	background-color: #f1f5f9;
+}
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-	}
-  body {
-    @apply bg-background text-foreground;
-	}
+*::-webkit-scrollbar-button {
+	display: none;
 }

@@ -269,18 +269,11 @@ export function AddProductForm() {
 							)}
 						/>
 
-						<FormField
-							control={form.control}
-							name="companyBudgetValidity"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Validade do Orçamento</FormLabel>
-									<FormControl>
-										<DatePicker />
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
+						<DatePicker
+							form={form}
+							label="Validade do Orçamento"
+							placeholder="Validade do Orçamento"
+							entity="companyBudgetValidity"
 						/>
 
 						<FormField
@@ -302,18 +295,11 @@ export function AddProductForm() {
 							)}
 						/>
 
-						<FormField
-							control={form.control}
-							name="competitor1BudgetValidity"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Validade do Orçamento do 1º Concorrente</FormLabel>
-									<FormControl>
-										<DatePicker />
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
+						<DatePicker
+							form={form}
+							label="Validade do Orçamento do 1º Concorrente"
+							placeholder="Validade do Orçamento do 1º Concorrente"
+							entity="competitor1BudgetValidity"
 						/>
 
 						<FormField
@@ -335,18 +321,11 @@ export function AddProductForm() {
 							)}
 						/>
 
-						<FormField
-							control={form.control}
-							name="competitor2BudgetValidity"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Validade do Orçamento do 2º Concorrente</FormLabel>
-									<FormControl>
-										<DatePicker />
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
+						<DatePicker
+							form={form}
+							label="Validade do Orçamento do 2º Concorrente"
+							placeholder="Validade do Orçamento do 2º Concorrente"
+							entity="competitor2BudgetValidity"
 						/>
 					</div>
 
