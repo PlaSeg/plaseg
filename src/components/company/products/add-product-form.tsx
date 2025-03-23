@@ -123,7 +123,7 @@ export function AddProductForm() {
 						<FormField
 							control={form.control}
 							name="brandsModels"
-							render={({ field }) => (
+							render={() => (
 								<FormItem>
 									<FormLabel>Marcas e Modelos Disponíveis</FormLabel>
 									<FormControl>
@@ -177,7 +177,7 @@ export function AddProductForm() {
 						<FormField
 							control={form.control}
 							name="guarantee"
-							render={({ field }) => (
+							render={() => (
 								<FormItem>
 									<FormLabel>Garantia</FormLabel>
 									<FormControl className="flex py-2">
@@ -196,7 +196,7 @@ export function AddProductForm() {
 						<FormField
 							control={form.control}
 							name="support"
-							render={({ field }) => (
+							render={() => (
 								<FormItem>
 									<FormLabel>Suporte Técnico</FormLabel>
 									<FormControl className="flex py-2">

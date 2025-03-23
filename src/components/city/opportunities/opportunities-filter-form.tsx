@@ -14,6 +14,7 @@ import { opportunitiesAreas } from "@/mocks/opportunities-areas";
 import { DatePicker } from "@/components/ui/date-picker";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
+import { Funnel } from "lucide-react";
 
 export function OpportunitiesFilterForm() {
 	const { form } = useFilterOpportunities();
@@ -66,7 +67,11 @@ export function OpportunitiesFilterForm() {
 						<FormLabel>Valor Mínimo do Projeto</FormLabel>
 
 						<FormControl>
-							<Input type="number" placeholder="Mínimo" {...field} />
+							<Input
+								type="number"
+								placeholder="Digite o Valor Mínimo"
+								{...field}
+							/>
 						</FormControl>
 
 						<FormMessage />
@@ -82,7 +87,11 @@ export function OpportunitiesFilterForm() {
 						<FormLabel>Valor Máximo do Projeto</FormLabel>
 
 						<FormControl>
-							<Input type="number" placeholder="Máximo" {...field} />
+							<Input
+								type="number"
+								placeholder="Digite o Valor Máximo"
+								{...field}
+							/>
 						</FormControl>
 
 						<FormMessage />
@@ -93,18 +102,23 @@ export function OpportunitiesFilterForm() {
 			<DatePicker
 				form={form}
 				label="Data Inicial"
-				placeholder="Data Inicial"
+				placeholder="Selecionar Data Inicial"
 				entity="initialDate"
 			/>
 
 			<DatePicker
 				form={form}
 				label="Data Final"
-				placeholder="Data Final"
+				placeholder="Selecionar Data Final"
 				entity="finalDate"
 			/>
 
-			<Button className="w-full bg-muted/30 text-black shadow-none border hover:bg-muted/50">
+			<Button type="submit" className="w-full border" variant="secondary">
+				<Funnel />
+				Aplicar Filtros
+			</Button>
+
+			<Button className="w-full bg-white text-black shadow-none border hover:bg-muted/20">
 				<X />
 				Limpar Filtros
 			</Button>

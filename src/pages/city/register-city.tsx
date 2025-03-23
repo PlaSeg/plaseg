@@ -1,7 +1,7 @@
 import { FormSteps } from "@/components/register-municipality-form/form-steps";
 import { RegisterMunicipalityForm } from "@/components/register-municipality-form/form-container";
 
-export function RegisterMunicipality() {
+export default function RegisterMunicipality() {
 	return (
 		<div className="w-full h-screen grid grid-cols-3">
 			<div className="flex flex-col  items-center justify-center bg-muted/30">

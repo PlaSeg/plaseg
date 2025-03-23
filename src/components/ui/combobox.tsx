@@ -46,7 +46,7 @@ export function Combobox<TFieldValues extends FieldValues>({
 
 	return (
 		<FormField
-			control={form.control as Control<TFieldValues, any>}
+			control={form.control as Control<TFieldValues, unknown>}
 			name={entity}
 			render={({ field }) => (
 				<FormItem className="flex flex-col">
@@ -60,7 +60,7 @@ export function Combobox<TFieldValues extends FieldValues>({
 									role="combobox"
 									aria-expanded={open}
 									className={cn(
-										"justify-between",
+										"justify-between font-normal",
 										!field.value && "text-muted-foreground"
 									)}
 								>

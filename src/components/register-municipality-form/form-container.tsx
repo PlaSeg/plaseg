@@ -17,7 +17,7 @@ export function RegisterMunicipalityForm() {
 	useEffect(() => {
 		console.log("Setando userType para municipio...");
 		setUserType("municipio");
-	}, []);
+	}, [setUserType]);
 
 	return (
 		<div className="flex flex-col w-full p-0 m-0 h-full">

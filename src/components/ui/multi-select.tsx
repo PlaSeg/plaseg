@@ -20,7 +20,7 @@ import {
 	CommandSeparator,
 } from "@/components/ui/command";
 
-const multiSelectVariants = cva(
+export const multiSelectVariants = cva(
 	"m-1 bg-transparent border-red-500 text-black shadow-none! hover:bg-muted",
 	{
 		variants: {
@@ -66,12 +66,14 @@ export const MultiSelect = React.forwardRef<
 		{
 			options,
 			onValueChange,
+			// eslint-disable-next-line @typescript-eslint/no-unused-vars
 			variant,
 			defaultValue = [],
 			placeholder = "Select options",
 			animation = 0,
 			maxCount = 3,
 			modalPopover = false,
+			// eslint-disable-next-line @typescript-eslint/no-unused-vars
 			asChild = false,
 			className,
 			...props

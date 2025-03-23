@@ -1,28 +1,17 @@
 import { Routes, Route } from "react-router";
 
-import AuthLayout from "../layouts/auth-layout";
+import Home from "@/pages/home";
+import Prices from "@/pages/self-registration/prices";
+import Payment from "@/pages/self-registration/payment";
+import RegisterCompany from "@/pages/company/register-company";
+import RegisterMunicipality from "@/pages/city/register-city";
+
+import { AuthRoutes } from "./auth-routes";
+import { CompanyRoutes } from "./company-routes";
+import { CityRoutes } from "./city-routes";
 import CompanyLayout from "@/layouts/company-layout";
-
-import { Home } from "@/pages/home";
-import { SignUp } from "@/pages/self-registration/sign-up";
-import { SignIn } from "@/pages/self-registration/sign-in";
-import { ResetPassword } from "@/pages/self-registration/reset-password";
-import { Prices } from "@/pages/self-registration/prices";
-import { Payment } from "@/pages/self-registration/payment";
-import { RegisterCompany } from "@/pages/company/register-company";
-import { RegisterMunicipality } from "@/pages/city/register-city";
-
-import Opportunities from "@/pages/city/opportunities";
-import NoticeDetails from "@/pages/city/notice-details";
-import RegisterProject from "@/pages/city/register-project";
-import RegisterPriceRecordAgreement from "@/pages/company/register-price-record-agreement";
-import PriceRegisterRecord from "@/pages/company/price-register-records";
-import News from "@/pages/company/news";
 import CityLayout from "@/layouts/city-layout";
-import Projects from "@/pages/city/projects";
-import Products from "@/pages/company/products";
-import AddProduct from "@/pages/company/add-product";
-import New from "@/pages/company/new";
+import AuthLayout from "@/layouts/auth-layout";
 
 export function AppRoutes() {
 	return (
@@ -33,35 +22,16 @@ export function AppRoutes() {
 			<Route path="cadastrar-empresa" element={<RegisterCompany />} />
 			<Route path="cadastrar-municipio" element={<RegisterMunicipality />} />
 
-			{/* Rotas de Autenticação */}
 			<Route element={<AuthLayout />}>
-				<Route path="entrar" element={<SignIn />} />
-				<Route path="cadastro" element={<SignUp />} />
-				<Route path="esqueceu-senha" element={<ResetPassword />} />
+				<Route path="*" element={<AuthRoutes />} />
 			</Route>
 
-			{/* Rotas de Empresa */}
-			<Route path="empresa" element={<CompanyLayout />}>
-				<Route path="noticias" element={<News />} />
-				<Route path="noticia" element={<New />}></Route>
-				<Route path="produtos" element={<Products />} />
-				<Route path="adicionar-produto" element={<AddProduct />} />
-				<Route
-					path="atas-de-registro-de-preco"
-					element={<PriceRegisterRecord />}
-				/>
-				<Route
-					path="cadastrar-ata-de-registro-de-preco"
-					element={<RegisterPriceRecordAgreement />}
-				/>
-			</Route>
-
-			{/* Rotas de Município */}
 			<Route path="municipio" element={<CityLayout />}>
-				<Route path="cadastrar-projeto" element={<RegisterProject />} />
-				<Route path="oportunidades" element={<Opportunities />} />
-				<Route path="projetos" element={<Projects />} />
-				<Route path="edital" element={<NoticeDetails />} />
+				<Route path="*" element={<CityRoutes />} />
+			</Route>
+
+			<Route path="empresa" element={<CompanyLayout />}>
+				<Route path="*" element={<CompanyRoutes />} />
 			</Route>
 		</Routes>
 	);

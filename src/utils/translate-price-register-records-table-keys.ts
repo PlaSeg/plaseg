@@ -1,4 +1,6 @@
-export function translatePriceRegisterRecordsTableKeys(key: string): string {
+export function translatePriceRegistrationRecordsTableKeys(
+	key: string
+): string {
 	const translations: Record<string, string> = {
 		id: "ID",
 		number: "Número",

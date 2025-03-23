@@ -1,6 +1,5 @@
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { PriceRegisterRecord } from "@/mocks/register-price-records"; // Ajuste o caminho conforme necessário
+import { PriceRegisterRecord } from "@/mocks/register-price-records";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";

@@ -1,5 +1,4 @@
 import { Label } from "@/components/ui/label";
-import { NoDocumentationCheckbox } from "../no-documentation-checkbox";
 import { Input } from "@/components/ui/input";
 import { GlobalCheckbox } from "@/components/global/checkbox";
 import { FormField } from "../form-field";

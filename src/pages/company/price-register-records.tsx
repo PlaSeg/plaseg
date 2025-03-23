@@ -1,6 +1,6 @@
-import { PriceRegisterRecordsTable } from "@/components/company/register-price-records/price-register-records-table";
+import { PriceRegistrationRecordsTable } from "@/components/company/price-registration-record/price-registration-records-table";
 
-export default function PriceRegisterRecord() {
+export default function PriceRegisterRecords() {
 	return (
 		<div className="py-4">
 			<div className="w-full">
@@ -10,7 +10,7 @@ export default function PriceRegisterRecord() {
 				</span>
 			</div>
 
-			<PriceRegisterRecordsTable />
+			<PriceRegistrationRecordsTable />
 		</div>
 	);
 }

@@ -2,7 +2,7 @@ import { PaymentPlan } from "@/components/payment/payment-plan";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router";
 
-export function Prices() {
+export default function Prices() {
 	const navigate = useNavigate();
 
 	return (
