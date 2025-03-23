@@ -1,10 +1,13 @@
-import MoreNews from "@/components/company/news/more-news";
+import { MoreNews } from "@/components/company/news/more-news";
 import { NewsSelect } from "@/components/company/news/news-select";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router";
 
 export default function News() {
+	const navigate = useNavigate();
+
 	return (
 		<div className="p-4 flex flex-col gap-4">
 			<div className="flex items-center gap-2">
@@ -41,6 +44,7 @@ export default function News() {
 						<Button
 							variant="link"
 							className="flex items-center gap-2 text-foreground"
+							onClick={() => navigate("/empresa/noticia")}
 						>
 							Acessar <ArrowRight />
 						</Button>

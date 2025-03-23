@@ -2,7 +2,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-export function ResetPassword() {
+export default function ResetPassword() {
 	return (
 		<div className="flex flex-col gap-8 text-center w-[350px] rounded-lg">
 			<div className="flex flex-col gap-2">
@@ -24,9 +24,7 @@ export function ResetPassword() {
 					/>
 				</div>
 
-				<Button className="mt-2">
-					Resetar senha
-				</Button>
+				<Button className="mt-2">Resetar senha</Button>
 
 				<a href="/entrar" className="text-sm font-medium hover:underline">
 					Entrar

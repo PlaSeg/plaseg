@@ -123,7 +123,7 @@ export function AddProductForm() {
 						<FormField
 							control={form.control}
 							name="brandsModels"
-							render={({ field }) => (
+							render={() => (
 								<FormItem>
 									<FormLabel>Marcas e Modelos Disponíveis</FormLabel>
 									<FormControl>
@@ -177,7 +177,7 @@ export function AddProductForm() {
 						<FormField
 							control={form.control}
 							name="guarantee"
-							render={({ field }) => (
+							render={() => (
 								<FormItem>
 									<FormLabel>Garantia</FormLabel>
 									<FormControl className="flex py-2">
@@ -196,7 +196,7 @@ export function AddProductForm() {
 						<FormField
 							control={form.control}
 							name="support"
-							render={({ field }) => (
+							render={() => (
 								<FormItem>
 									<FormLabel>Suporte Técnico</FormLabel>
 									<FormControl className="flex py-2">
@@ -269,18 +269,11 @@ export function AddProductForm() {
 							)}
 						/>
 
-						<FormField
-							control={form.control}
-							name="companyBudgetValidity"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Validade do Orçamento</FormLabel>
-									<FormControl>
-										<DatePicker />
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
+						<DatePicker
+							form={form}
+							label="Validade do Orçamento"
+							placeholder="Validade do Orçamento"
+							entity="companyBudgetValidity"
 						/>
 
 						<FormField
@@ -302,18 +295,11 @@ export function AddProductForm() {
 							)}
 						/>
 
-						<FormField
-							control={form.control}
-							name="competitor1BudgetValidity"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Validade do Orçamento do 1º Concorrente</FormLabel>
-									<FormControl>
-										<DatePicker />
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
+						<DatePicker
+							form={form}
+							label="Validade do Orçamento do 1º Concorrente"
+							placeholder="Validade do Orçamento do 1º Concorrente"
+							entity="competitor1BudgetValidity"
 						/>
 
 						<FormField
@@ -335,18 +321,11 @@ export function AddProductForm() {
 							)}
 						/>
 
-						<FormField
-							control={form.control}
-							name="competitor2BudgetValidity"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Validade do Orçamento do 2º Concorrente</FormLabel>
-									<FormControl>
-										<DatePicker />
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
+						<DatePicker
+							form={form}
+							label="Validade do Orçamento do 2º Concorrente"
+							placeholder="Validade do Orçamento do 2º Concorrente"
+							entity="competitor2BudgetValidity"
 						/>
 					</div>
 

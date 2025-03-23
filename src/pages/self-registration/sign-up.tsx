@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import { SelectType } from "@/components/sign-up/select-type";
 import { Input } from "@/components/ui/input";
 
-export function SignUp() {
+export default function SignUp() {
 	const navigate = useNavigate();
 
 	return (

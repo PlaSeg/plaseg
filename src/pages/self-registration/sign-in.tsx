@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router";
 
-export function SignIn() {
+export default function SignIn() {
 	const navigate = useNavigate();
 
 	return (

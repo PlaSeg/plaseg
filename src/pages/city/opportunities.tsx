@@ -1,11 +1,12 @@
-export function Opportunities() {
-	return (
-		<div className="flex flex-col">
-			<div className="flex p-6 gap-6">
-				<div className="flex"></div>
+import { OpportunitiesFilter } from "@/components/city/opportunities/opportunities-filter";
+import { OpportunitiesList } from "@/components/city/opportunities/opportunities-list";
 
-				<div className="flex flex-col flex-1 gap-6"></div>
-			</div>
-		</div>
+export default function Opportunities() {
+	return (
+		<main className="flex gap-0 h-full">
+			<OpportunitiesFilter />
+
+			<OpportunitiesList />
+		</main>
 	);
 }

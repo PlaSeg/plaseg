@@ -1,6 +1,6 @@
+import { Navbar } from "@/components/navbar/navbar";
+import { NavbarItem } from "@/components/navbar/navbar-item";
 import { KanbanSquare, ScrollText } from "lucide-react";
-import { Navbar } from "../navbar/navbar";
-import { NavbarItem } from "../navbar/navbar-item";
 
 export function CityNavbar() {
 	return (

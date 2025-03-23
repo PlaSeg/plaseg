@@ -1,17 +1,10 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import {
-	CheckIcon,
-	XCircle,
-	X,
-	ChevronDown,
-	XIcon,
-	WandSparkles,
-} from "lucide-react";
-import { cn } from "@/lib/utils";
+import { CheckIcon, X, ChevronDown, XIcon } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 import {
 	Popover,
 	PopoverContent,
@@ -27,7 +20,7 @@ import {
 	CommandSeparator,
 } from "@/components/ui/command";
 
-const multiSelectVariants = cva(
+export const multiSelectVariants = cva(
 	"m-1 bg-transparent border-red-500 text-black shadow-none! hover:bg-muted",
 	{
 		variants: {
@@ -73,12 +66,14 @@ export const MultiSelect = React.forwardRef<
 		{
 			options,
 			onValueChange,
+			// eslint-disable-next-line @typescript-eslint/no-unused-vars
 			variant,
 			defaultValue = [],
 			placeholder = "Select options",
 			animation = 0,
 			maxCount = 3,
 			modalPopover = false,
+			// eslint-disable-next-line @typescript-eslint/no-unused-vars
 			asChild = false,
 			className,
 			...props

@@ -1,4 +1,3 @@
-import * as React from "react";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { news } from "@/mocks/news";
@@ -44,5 +43,3 @@ export function MoreNews() {
 		</div>
 	);
 }
-
-export default MoreNews;

@@ -1,6 +1,6 @@
+import { Navbar } from "@/components/navbar/navbar";
+import { NavbarItem } from "@/components/navbar/navbar-item";
 import { Newspaper, Package, ScrollText } from "lucide-react";
-import { NavbarItem } from "../navbar/navbar-item";
-import { Navbar } from "../navbar/navbar";
 
 export function CompanyNavbar() {
 	return (
