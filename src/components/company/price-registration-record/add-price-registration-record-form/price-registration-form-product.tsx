@@ -18,22 +18,19 @@ import { Button } from "@/components/ui/button";
 import { DatePicker } from "@/components/ui/date-picker";
 import { usePriceAgreement } from "@/hooks/use-price-agreement";
 
-export function PriceAgreementFormProduct() {
+export function PriceRegistrationFormProduct() {
 	const { form } = usePriceAgreement();
 
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmitForm}>
+			<form onSubmit={form.handleSubmitForm} className="w-full">
 				<div className="flex items-center">
 					<h3 className="text-xl font-semibold mb-2">Adicionar item</h3>
 				</div>
 
-				<div className="w-[1000px] grid grid-row rounded-lg border">
-					{form.getValues("itens").map((item, index) => (
-						<div
-							key={index}
-							className="w-[1000px] grid grid-cols-3 gap-x-6 gap-y-4 p-6"
-						>
+				<div className="grid grid-row rounded-lg border">
+					{form.getValues("itens").map((_, index) => (
+						<div key={index} className="grid grid-cols-3 gap-x-6 gap-y-4 p-6">
 							<FormField
 								control={form.control}
 								name={`itens.${index}.productCode`}

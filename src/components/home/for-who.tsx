@@ -1,4 +1,4 @@
-import { Building2, Factory, House, Landmark, Users } from "lucide-react";
+import { Building2, House, Landmark, Users } from "lucide-react";
 import { Who } from "./for-who-card";
 
 export function ForWho() {

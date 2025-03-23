@@ -1,9 +1,9 @@
-import { PriceAgreementForm } from "@/components/company/register-price-record-agreement/price-agreement-form";
+import { AddPriceRegistrationForm } from "@/components/company/price-registration-record/add-price-registration-record-form";
 
-export default function RegisterPriceRecordAgreement() {
+export default function AddPriceRegisterRecord() {
 	return (
 		<div className="pt-4 pb-8">
-			<PriceAgreementForm />
+			<AddPriceRegistrationForm />
 		</div>
 	);
 }

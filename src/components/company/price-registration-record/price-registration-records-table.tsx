@@ -18,7 +18,6 @@ import {
 	DropdownMenuContent,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
 import {
 	Table,
 	TableBody,
@@ -27,12 +26,13 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/components/ui/table";
-import { priceRegisterRecords } from "@/mocks/register-price-records"; // Ajuste o caminho conforme necessário
-import { priceRegisterRecordsTableColumns } from "./price-register-records-table-columns";
-import { translatePriceRegisterRecordsTableKeys } from "@/utils/translate-price-register-records-table-keys"; // Ajuste ou crie conforme necessário
+import { priceRegisterRecords } from "@/mocks/register-price-records";
+import { priceRegisterRecordsTableColumns } from "./price-registration-records-table-columns";
+import { translatePriceRegistrationRecordsTableKeys } from "@/utils/translate-price-register-records-table-keys";
 import { SearchInput } from "@/components/ui/search-input";
+import { Link } from "react-router";
 
-export function PriceRegisterRecordsTable() {
+export function PriceRegistrationRecordsTable() {
 	const [sorting, setSorting] = React.useState<SortingState>([]);
 	const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
 		[]
@@ -102,16 +102,18 @@ export function PriceRegisterRecordsTable() {
 											column.toggleVisibility(!!value)
 										}
 									>
-										{translatePriceRegisterRecordsTableKeys(column.id)}
+										{translatePriceRegistrationRecordsTableKeys(column.id)}
 									</DropdownMenuCheckboxItem>
 								);
 							})}
 					</DropdownMenuContent>
 				</DropdownMenu>
 
-				<Button className="font-semibold">
-					<PlusIcon />
-					Adicionar Ata de Registro de Preço
+				<Button className="font-semibold" asChild>
+					<Link to="/empresa/adicionar-ata-de-registro-de-preco">
+						<PlusIcon />
+						Adicionar Ata de Registro de Preço
+					</Link>
 				</Button>
 			</div>
 

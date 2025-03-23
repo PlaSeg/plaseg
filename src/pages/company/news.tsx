@@ -1,4 +1,4 @@
-import MoreNews from "@/components/company/news/more-news";
+import { MoreNews } from "@/components/company/news/more-news";
 import { NewsSelect } from "@/components/company/news/news-select";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -6,7 +6,6 @@ import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router";
 
 export default function News() {
-
 	const navigate = useNavigate();
 
 	return (

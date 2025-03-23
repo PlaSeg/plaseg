@@ -21,10 +21,22 @@ export const opportunities: Opportunity[] = [
 		badgeText: "Edital",
 	},
 	{
+		id: "8d4e5f6a-2b1c-4d8e-9f7a-1c2d3e4f5a6b",
+		title: "Segurança Digital em Saúde Pública",
+		organization: "Ministério da Saúde",
+		objectives:
+			"Proteção de dados de pacientes; Treinamento contra ataques cibernéticos.",
+		minValue: "R$ 300.000,00",
+		maxValue: "R$ 2.000.000,00",
+		registrationPeriod: "01/04/2025 - 30/06/2025",
+		badgeText: "Chamada Pública",
+	},
+	{
 		id: "6ba7b810-9dad-11d1-80b4-00c04fd430c8",
-		title: "Modernização da Infraestrutura Escolar",
+		title: "Capacitação de Agentes de Segurança Escolar",
 		organization: "Ministério da Educação (MEC)",
-		objectives: "Reforma de escolas; Compra de equipamentos tecnológicos.",
+		objectives:
+			"Treinamento de agentes para segurança em escolas; Instalação de câmeras de monitoramento.",
 		minValue: "R$ 200.000,00",
 		maxValue: "R$ 1.500.000,00",
 		registrationPeriod: "15/03/2025 - 15/05/2025",
@@ -32,9 +44,10 @@ export const opportunities: Opportunity[] = [
 	},
 	{
 		id: "3f2504e0-4f89-11d3-9a0c-0305e82c3301",
-		title: "Saneamento Básico nas Comunidades",
+		title: "Segurança Hídrica em Comunidades",
 		organization: "Ministério das Cidades",
-		objectives: "Implementação de redes de água e esgoto.",
+		objectives:
+			"Proteção de reservatórios contra vandalismo; Monitoramento de áreas de risco.",
 		minValue: "R$ 1.000.000,00",
 		maxValue: "R$ 5.000.000,00",
 		registrationPeriod: "10/04/2025 - 10/06/2025",
@@ -42,29 +55,20 @@ export const opportunities: Opportunity[] = [
 	},
 	{
 		id: "e7e014fd-8c3b-4e2e-8e1e-7e7f2d8b5e7f",
-		title: "Fortalecimento da Agricultura Familiar",
+		title: "Segurança na Agricultura Familiar",
 		organization: "Ministério da Agricultura",
-		objectives: "Capacitação de agricultores; Fornecimento de insumos.",
+		objectives:
+			"Proteção de áreas rurais contra furtos; Capacitação em segurança comunitária.",
 		minValue: "R$ 150.000,00",
 		maxValue: "R$ 800.000,00",
 		registrationPeriod: "20/03/2025 - 20/05/2025",
 		badgeText: "Edital",
 	},
 	{
-		id: "8d4e5f6a-2b1c-4d8e-9f7a-1c2d3e4f5a6b",
-		title: "Inovação em Saúde Pública",
-		organization: "Ministério da Saúde",
-		objectives: "Implementação de telemedicina; Treinamento de equipes.",
-		minValue: "R$ 300.000,00",
-		maxValue: "R$ 2.000.000,00",
-		registrationPeriod: "01/04/2025 - 30/06/2025",
-		badgeText: "Chamada Pública",
-	},
-	{
 		id: "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
-		title: "Preservação do Patrimônio Cultural",
+		title: "Segurança no Patrimônio Cultural",
 		organization: "Ministério da Cultura",
-		objectives: "Restauração de bens tombados; Promoção cultural.",
+		objectives: "Vigilância de bens tombados; Prevenção contra vandalismo.",
 		minValue: "R$ 250.000,00",
 		maxValue: "R$ 1.200.000,00",
 		registrationPeriod: "05/04/2025 - 05/06/2025",
@@ -72,9 +76,10 @@ export const opportunities: Opportunity[] = [
 	},
 	{
 		id: "b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e",
-		title: "Mobilidade Urbana Sustentável",
+		title: "Segurança na Mobilidade Urbana",
 		organization: "Ministério do Desenvolvimento Regional",
-		objectives: "Construção de ciclovias; Melhoria no transporte público.",
+		objectives:
+			"Monitoramento de vias públicas; Prevenção de acidentes e crimes.",
 		minValue: "R$ 800.000,00",
 		maxValue: "R$ 4.000.000,00",
 		registrationPeriod: "15/04/2025 - 15/07/2025",
@@ -82,9 +87,10 @@ export const opportunities: Opportunity[] = [
 	},
 	{
 		id: "c3d4e5f6-a7b8-9c0d-1e2f-3a4b5c6d7e8f",
-		title: "Capacitação em Tecnologia da Informação",
+		title: "Segurança em Tecnologia da Informação",
 		organization: "Ministério da Ciência e Tecnologia",
-		objectives: "Cursos de programação; Montagem de laboratórios.",
+		objectives:
+			"Proteção de dados governamentais; Capacitação contra cyberataques.",
 		minValue: "R$ 100.000,00",
 		maxValue: "R$ 900.000,00",
 		registrationPeriod: "10/03/2025 - 10/05/2025",
@@ -92,9 +98,10 @@ export const opportunities: Opportunity[] = [
 	},
 	{
 		id: "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a",
-		title: "Energia Renovável em Pequenas Comunidades",
+		title: "Segurança Energética em Comunidades",
 		organization: "Ministério de Minas e Energia",
-		objectives: "Instalação de placas solares; Educação energética.",
+		objectives:
+			"Proteção de instalações elétricas; Prevenção de furtos de energia.",
 		minValue: "R$ 400.000,00",
 		maxValue: "R$ 2.500.000,00",
 		registrationPeriod: "25/03/2025 - 25/06/2025",
@@ -102,9 +109,9 @@ export const opportunities: Opportunity[] = [
 	},
 	{
 		id: "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b",
-		title: "Gestão de Resíduos Sólidos",
+		title: "Segurança na Gestão de Resíduos",
 		organization: "Ministério do Meio Ambiente",
-		objectives: "Implantação de reciclagem; Educação ambiental.",
+		objectives: "Controle de acesso a lixões; Prevenção de crimes ambientais.",
 		minValue: "R$ 300.000,00",
 		maxValue: "R$ 1.800.000,00",
 		registrationPeriod: "01/05/2025 - 31/07/2025",

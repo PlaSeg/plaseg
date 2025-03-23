@@ -9,7 +9,7 @@ import { PublicSecurity } from "@/components/home/public-security";
 import { WhatIs } from "@/components/home/what-is";
 import { Why } from "@/components/home/why";
 
-export function Home() {
+export default function Home() {
 	return (
 		<main className="flex flex-col w-full h-screen">
 			<HomeHeader />
