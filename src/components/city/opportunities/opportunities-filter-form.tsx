@@ -13,8 +13,8 @@ import { opportunitiesCategories } from "@/mocks/opportunities-categories";
 import { opportunitiesAreas } from "@/mocks/opportunities-areas";
 import { DatePicker } from "@/components/ui/date-picker";
 import { Button } from "@/components/ui/button";
-import { X } from "lucide-react";
 import { Funnel } from "lucide-react";
+import { X } from "lucide-react";
 
 export function OpportunitiesFilterForm() {
 	const { form } = useFilterOpportunities();
@@ -113,12 +113,15 @@ export function OpportunitiesFilterForm() {
 				entity="finalDate"
 			/>
 
-			<Button type="submit" className="w-full border" variant="secondary">
+			<Button type="submit" className="w-full" variant="secondary">
 				<Funnel />
 				Aplicar Filtros
 			</Button>
 
-			<Button className="w-full bg-white text-black shadow-none border hover:bg-muted/20">
+			<Button
+				className="w-full text-black shadow-none bg-white hover:bg-white border
+			border-muted"
+			>
 				<X />
 				Limpar Filtros
 			</Button>

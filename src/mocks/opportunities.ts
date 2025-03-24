@@ -7,6 +7,7 @@ export interface Opportunity {
 	maxValue: string;
 	registrationPeriod: string;
 	badgeText: string;
+	slug: string;
 }
 
 export const opportunities: Opportunity[] = [
@@ -19,6 +20,7 @@ export const opportunities: Opportunity[] = [
 		maxValue: "R$ 3.000.000,00",
 		registrationPeriod: "01/03/2025 - 30/04/2025",
 		badgeText: "Edital",
+		slug: "fomento-a-seguranca-publica-municipal",
 	},
 	{
 		id: "8d4e5f6a-2b1c-4d8e-9f7a-1c2d3e4f5a6b",
@@ -30,6 +32,7 @@ export const opportunities: Opportunity[] = [
 		maxValue: "R$ 2.000.000,00",
 		registrationPeriod: "01/04/2025 - 30/06/2025",
 		badgeText: "Chamada Pública",
+		slug: "seguranca-digital-em-saude-publica",
 	},
 	{
 		id: "6ba7b810-9dad-11d1-80b4-00c04fd430c8",
@@ -41,6 +44,7 @@ export const opportunities: Opportunity[] = [
 		maxValue: "R$ 1.500.000,00",
 		registrationPeriod: "15/03/2025 - 15/05/2025",
 		badgeText: "Edital",
+		slug: "capacitacao-de-agentes-de-seguranca-escolar",
 	},
 	{
 		id: "3f2504e0-4f89-11d3-9a0c-0305e82c3301",
@@ -52,6 +56,7 @@ export const opportunities: Opportunity[] = [
 		maxValue: "R$ 5.000.000,00",
 		registrationPeriod: "10/04/2025 - 10/06/2025",
 		badgeText: "Chamada Pública",
+		slug: "seguranca-hidrica-em-comunidades",
 	},
 	{
 		id: "e7e014fd-8c3b-4e2e-8e1e-7e7f2d8b5e7f",
@@ -63,6 +68,7 @@ export const opportunities: Opportunity[] = [
 		maxValue: "R$ 800.000,00",
 		registrationPeriod: "20/03/2025 - 20/05/2025",
 		badgeText: "Edital",
+		slug: "seguranca-na-agricultura-familiar",
 	},
 	{
 		id: "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
@@ -73,6 +79,7 @@ export const opportunities: Opportunity[] = [
 		maxValue: "R$ 1.200.000,00",
 		registrationPeriod: "05/04/2025 - 05/06/2025",
 		badgeText: "Edital",
+		slug: "seguranca-no-patrimonio-cultural",
 	},
 	{
 		id: "b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e",
@@ -84,6 +91,7 @@ export const opportunities: Opportunity[] = [
 		maxValue: "R$ 4.000.000,00",
 		registrationPeriod: "15/04/2025 - 15/07/2025",
 		badgeText: "Chamada Pública",
+		slug: "seguranca-na-mobilidade-urbana",
 	},
 	{
 		id: "c3d4e5f6-a7b8-9c0d-1e2f-3a4b5c6d7e8f",
@@ -95,6 +103,7 @@ export const opportunities: Opportunity[] = [
 		maxValue: "R$ 900.000,00",
 		registrationPeriod: "10/03/2025 - 10/05/2025",
 		badgeText: "Edital",
+		slug: "seguranca-em-tecnologia-da-informacao",
 	},
 	{
 		id: "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a",
@@ -106,6 +115,7 @@ export const opportunities: Opportunity[] = [
 		maxValue: "R$ 2.500.000,00",
 		registrationPeriod: "25/03/2025 - 25/06/2025",
 		badgeText: "Chamada Pública",
+		slug: "seguranca-energetica-em-comunidades",
 	},
 	{
 		id: "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b",
@@ -116,5 +126,6 @@ export const opportunities: Opportunity[] = [
 		maxValue: "R$ 1.800.000,00",
 		registrationPeriod: "01/05/2025 - 31/07/2025",
 		badgeText: "Edital",
+		slug: "seguranca-na-gestao-de-residuos",
 	},
 ];

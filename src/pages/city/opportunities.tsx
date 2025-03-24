@@ -3,7 +3,7 @@ import { OpportunitiesList } from "@/components/city/opportunities/opportunities
 
 export default function Opportunities() {
 	return (
-		<main className="flex gap-0 h-full">
+		<main className="flex gap-6 h-full box-content">
 			<OpportunitiesFilter />
 
 			<OpportunitiesList />

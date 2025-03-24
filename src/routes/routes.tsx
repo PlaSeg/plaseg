@@ -6,12 +6,14 @@ import Payment from "@/pages/self-registration/payment";
 import RegisterCompany from "@/pages/company/register-company";
 import RegisterMunicipality from "@/pages/city/register-city";
 
-import { AuthRoutes } from "./auth-routes";
-import { CompanyRoutes } from "./company-routes";
-import { CityRoutes } from "./city-routes";
-import CompanyLayout from "@/layouts/company-layout";
-import CityLayout from "@/layouts/city-layout";
 import AuthLayout from "@/layouts/auth-layout";
+import { AuthRoutes } from "./auth-routes";
+
+import CompanyLayout from "@/layouts/company-layout";
+import { CompanyRoutes } from "./company-routes";
+
+import CityLayout from "@/layouts/city-layout";
+import { CityRoutes } from "./city-routes";
 
 export function AppRoutes() {
 	return (
