@@ -10,7 +10,7 @@ interface NavbarItemProps {
 export function NavbarItem({ link, title, icon }: NavbarItemProps) {
 	const { pathname } = useLocation();
 
-	const styles = pathname.endsWith(link)
+	const styles = pathname.includes(link)
 		? "bg-slate-800 text-blue-500"
 		: "text-slate-400";
 
