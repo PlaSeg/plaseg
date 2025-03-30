@@ -1,11 +1,24 @@
-import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router";
-import { SelectType } from "@/components/sign-up/select-type";
 import { Input } from "@/components/ui/input";
+import { useSignUp } from "@/hooks/use-sign-up";
+import {
+	Form,
+	FormControl,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from "@/components/ui/form";
+import { Combobox } from "@/components/ui/combobox";
+
+const roleOptions = [
+	{ label: "Empresa", value: "COMPANY" },
+	{ label: "Consultor", value: "CONSULTANT" },
+	{ label: "Município", value: "MUNICIPALITY" },
+];
 
 export default function SignUp() {
-	const navigate = useNavigate();
+	const { form } = useSignUp();
 
 	return (
 		<div className="flex flex-col gap-8 text-center w-[350px] rounded-lg">
@@ -17,70 +30,117 @@ export default function SignUp() {
 			</div>
 
 			<div className="flex flex-col gap-4">
-				<div className="flex flex-col gap-2 text-left">
-					<Label>CPF/CNPJ</Label>
+				<Form {...form}>
+					<form onSubmit={form.handleSubmitForm} className="space-y-3">
+						<FormField
+							control={form.control}
+							name={"document"}
+							render={({ field }) => (
+								<FormItem className="flex flex-col text-left">
+									<FormLabel>CPF/CNPJ</FormLabel>
+									<FormControl>
+										<Input
+											type="text"
+											id="document"
+											placeholder="Digite seu CPF ou CNPJ"
+											{...field}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
 
-					<Input
-						type="text"
-						id="cpf_cnpj"
-						name="cpf_cnpj"
-						placeholder="Digite seu CPF ou CNPJ"
-					/>
-				</div>
+						<FormField
+							control={form.control}
+							name={"name"}
+							render={({ field }) => (
+								<FormItem className="flex flex-col text-left">
+									<FormLabel>Nome</FormLabel>
+									<FormControl>
+										<Input
+											type="text"
+											id="name"
+											placeholder="Digite o seu nome"
+											{...field}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
 
-				<div className="flex flex-col gap-2 text-left">
-					<Label>Nome</Label>
+						<FormField
+							control={form.control}
+							name={"email"}
+							render={({ field }) => (
+								<FormItem className="flex flex-col text-left">
+									<FormLabel>Email</FormLabel>
+									<FormControl>
+										<Input
+											type="email"
+											id="email"
+											placeholder="Digite seu email"
+											{...field}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
 
-					<Input
-						type="text"
-						id="name"
-						name="name"
-						placeholder="Digite o nome do titular"
-					/>
-				</div>
+						<FormField
+							control={form.control}
+							name={"phone"}
+							render={({ field }) => (
+								<FormItem className="flex flex-col text-left">
+									<FormLabel>Telefone</FormLabel>
+									<FormControl>
+										<Input
+											type="text"
+											id="phone"
+											placeholder="Digite seu telefone"
+											{...field}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
 
-				<div className="flex flex-col gap-2 text-left">
-					<Label>Email</Label>
+						<FormField
+							control={form.control}
+							name={"password"}
+							render={({ field }) => (
+								<FormItem className="flex flex-col text-left">
+									<FormLabel>Senha</FormLabel>
+									<FormControl>
+										<Input
+											type="password"
+											id="password"
+											placeholder="Digite sua senha"
+											{...field}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
 
-					<Input
-						type="email"
-						id="email"
-						name="email"
-						placeholder="Digite seu email"
-					/>
-				</div>
+						<Combobox
+							form={form}
+							entity="role"
+							translatedEntity="Cargo"
+							placeholder="Selecione o cargo"
+							emptyMessage="Nenhum cargo encontrado"
+							options={roleOptions}
+						/>
 
-				<div className="flex flex-col gap-2 text-left">
-					<Label>Telefone</Label>
-
-					<Input
-						type="text"
-						id="phone"
-						name="phone"
-						placeholder="Digite seu telefone"
-					/>
-				</div>
-
-				<div className="flex flex-col gap-2 text-left">
-					<Label>Tipo de usuário</Label>
-
-					<SelectType />
-				</div>
-
-				<div className="flex flex-col gap-2 text-left">
-					<Label>Senha</Label>
-
-					<Input
-						type="password"
-						id="password"
-						name="password"
-						placeholder="Digite sua senha"
-					/>
-				</div>
-
-				<Button className="mt-2" onClick={() => navigate("/precos")}>
-					Confirmar
-				</Button>
+						<Button type="submit" className="mt-2 w-full">
+							Confirmar
+						</Button>
+					</form>
+				</Form>
 
 				<a href="/entrar" className="text-sm font-medium hover:underline">
 					Já possui uma conta? Conecte-se
