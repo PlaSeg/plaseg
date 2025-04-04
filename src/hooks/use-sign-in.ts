@@ -3,12 +3,8 @@ import { useMutation } from "@tanstack/react-query";
 import { signIn } from "@/api/auth/sign-in";
 import { useAuthStore } from "@/store/auth";
 import { toast } from "sonner";
-import { z } from "zod";
-
-const signInFormSchema = z.object({
-	cpf_cnpj: z.string().min(11, "Digite um CPF/CNPJ válido.").max(14,"Digite um CPF/CNPJ válido."),
-	password: z.string().length(8, "Digite uma senha válida."),
-});
+import { signInFormSchema } from "@/@types/sign-in";
+// import { formatDocument } from "@/utils/format-document";
 
 export function useSignIn() {
 	const { authenticate } = useAuthStore();
@@ -16,7 +12,8 @@ export function useSignIn() {
 	const form = useFormMutation({
 		schema: signInFormSchema,
 		defaultValues: {
-			cpf_cnpj: "",
+			// document: "",
+			email: "",
 			password: "",
 		},
 		onSubmit: (data) => {
@@ -31,10 +28,11 @@ export function useSignIn() {
 		onSuccess: (response) => {
 			if (response.success) {
 				authenticate(response.data.token);
+
 				return;
 			}
 
-			toast.error(response.error);
+			toast.warning(response.errors[0]);
 		},
 	});
 

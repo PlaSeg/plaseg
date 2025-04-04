@@ -12,7 +12,7 @@ export function AppLayout({ children, className }: AppLayoutProps) {
 		<div className={cn("flex flex-col h-full min-h-screen w-full", className)}>
 			{children}
 
-			<div className="w-full h-full max-w-[1400px] mx-auto px-4 md:p-0">
+			<div className="w-full h-full max-w-[1400px] mx-auto px-4 xl:p-0">
 				<Outlet />
 			</div>
 		</div>

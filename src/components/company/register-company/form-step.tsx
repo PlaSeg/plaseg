@@ -1,4 +1,4 @@
-import { useStepsStore } from "@/store/useStepStore";
+import { useStepsStore } from "@/store/step";
 import {
 	Building2,
 	MapPin,
@@ -75,7 +75,9 @@ export function FormStep({ step }: FormStepProps) {
 			{step !== 7 && (
 				<div className="w-[3px] h-5 ml-5 my-3 rounded-lg relative overflow-hidden bg-muted-foreground/50">
 					<div
-						className={`absolute inset-0 ${isCompleted ? "bg-blue-500" : ""} transition-transform duration-500 ${
+						className={`absolute inset-0 ${
+							isCompleted ? "bg-blue-500" : ""
+						} transition-transform duration-500 ${
 							animate ? "translate-y-0" : "-translate-y-full"
 						}`}
 					/>

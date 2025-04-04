@@ -1,4 +1,4 @@
-import { useStepsStore } from "@/store/useStepStore";
+import { useStepsStore } from "@/store/step";
 import {
 	Building2,
 	Check,
@@ -15,9 +15,9 @@ interface FormStepProps {
 export function FormStep({ step }: FormStepProps) {
 	const { steps } = useStepsStore();
 	console.log(steps[step - 1]);
-	const isCompleted = steps[step-1].status === "completed";
-	const isProgress = steps[step-1].status === "progress";
-	const isPending = steps[step-1].status === "pending";
+	const isCompleted = steps[step - 1].status === "completed";
+	const isProgress = steps[step - 1].status === "progress";
+	const isPending = steps[step - 1].status === "pending";
 
 	const styles = isCompleted
 		? "border-blue-500 bg-blue-500 text-white"
@@ -69,7 +69,9 @@ export function FormStep({ step }: FormStepProps) {
 			{step !== 4 && (
 				<div className="w-[3px] h-5 ml-5 my-3 rounded-lg relative overflow-hidden bg-muted-foreground/50">
 					<div
-						className={`absolute inset-0 ${isCompleted ? "bg-blue-500" : ""} transition-transform duration-500 ${
+						className={`absolute inset-0 ${
+							isCompleted ? "bg-blue-500" : ""
+						} transition-transform duration-500 ${
 							animate ? "translate-y-0" : "-translate-y-full"
 						}`}
 					/>

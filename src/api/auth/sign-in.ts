@@ -1,27 +1,28 @@
 import { HTTPErrorResponse, HTTPSuccessResponse } from "@/@types/http";
-import { api } from "@/lib/axios";
+import { api } from "@/services/axios";
 import { AxiosError } from "axios";
 
 interface SignInRequest {
-	cpf_cnpj: string;
+	// document: string;
+	email: string;
 	password: string;
 }
 
-interface SignInSuccessResponse extends HTTPSuccessResponse {
-	data: {
-		token: string;
-		token_type: string;
-		exp: number;
-	};
+interface SignInResponseData {
+	token: string;
+	token_type: string;
+	exp: number;
 }
 
-type SignInResponse = SignInSuccessResponse | HTTPErrorResponse;
+type SignInResponse =
+	| HTTPSuccessResponse<SignInResponseData>
+	| HTTPErrorResponse;
 
 export async function signIn(
 	credentials: SignInRequest
 ): Promise<SignInResponse> {
 	try {
-		const response = await api.post<SignInSuccessResponse>(
+		const response = await api.post<SignInResponse>(
 			"/auth/sign-in",
 			credentials
 		);
@@ -34,7 +35,7 @@ export async function signIn(
 
 		return {
 			success: false,
-			error: "Erro desconhecido",
+			errors: ["Erro desconhecido"],
 			data: null,
 		};
 	}

@@ -1,5 +1,5 @@
 import { ChevronLeft } from "lucide-react";
-import { useStepsStore } from "@/store/useStepStore";
+import { useStepsStore } from "@/store/step";
 import { StepOne } from "./form-steps/step-one";
 import { StepTwo } from "./form-steps/step-two";
 import { StepFive } from "./form-steps/step-five";

@@ -1,7 +1,14 @@
 import { Link } from "react-router";
 import { Button } from "../ui/button";
+import { useAuthStore } from "@/store/auth";
 
-export function NavLink({ href, children }: { href: string; children: string }) {
+export function NavLink({
+	href,
+	children,
+}: {
+	href: string;
+	children: string;
+}) {
 	return (
 		<li className="hover:text-blue-500 hover:cursor-pointer transition-colors duration-200">
 			<a href={href}>{children}</a>
@@ -10,6 +17,8 @@ export function NavLink({ href, children }: { href: string; children: string }) 
 }
 
 export function HomeHeader() {
+	const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+
 	return (
 		<div className="bg-dark text-white w-full py-4 px-4">
 			<div className="w-[1200px] mx-auto flex justify-between items-center py-4">
@@ -27,9 +36,17 @@ export function HomeHeader() {
 					</ul>
 				</nav>
 
-				<Link to={"/entrar"}>
-					<Button className="font-bold px-8 rounded-full">Entrar</Button>
-				</Link>
+				{isAuthenticated && (
+					<Link to={"/empresa/produtos"}>
+						<Button className="font-bold px-8 rounded-full">Dashboard</Button>
+					</Link>
+				)}
+
+				{!isAuthenticated && (
+					<Link to={"/entrar"}>
+						<Button className="font-bold px-8 rounded-full">Entrar</Button>
+					</Link>
+				)}
 			</div>
 		</div>
 	);

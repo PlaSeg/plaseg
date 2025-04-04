@@ -1,0 +1,53 @@
+import { useSignIn } from "@/hooks/use-sign-in";
+import { FormInput } from "../form/form-input";
+import { Form } from "../ui/form";
+import { Button } from "../ui/button";
+import { Loader } from "lucide-react";
+// import { FormDocumentInput } from "../form/form-document";
+
+export function SignInForm() {
+	const { form, isLoadingSignIn } = useSignIn();
+
+	return (
+		<Form {...form}>
+			<form onSubmit={form.handleSubmitForm} className="space-y-6">
+				{/* <FormDocumentInput
+					form={form}
+					entity="document"
+					label="CPF/CNPJ"
+					placeholder="Digite seu CPF ou CNPJ"
+				/> */}
+
+				<FormInput
+					form={form}
+					type="email"
+					entity="email"
+					label="Email"
+					placeholder="Digite seu email"
+				/>
+
+				<FormInput
+					form={form}
+					type="password"
+					entity="password"
+					label="Senha"
+					placeholder="Digite sua senha"
+				/>
+
+				<span className="text-xs block text-left">
+					A senha deve possuir no mínimo 8 caracteres. Deve conter pelo menos um
+					número, uma letra maiúscula e um caractere especial.
+				</span>
+
+				<Button
+					type="submit"
+					className="mt-2 w-full"
+					disabled={isLoadingSignIn}
+				>
+					{isLoadingSignIn && <Loader className="animate-spin" />}
+					Entrar
+				</Button>
+			</form>
+		</Form>
+	);
+}

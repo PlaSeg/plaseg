@@ -12,11 +12,11 @@ export const useAuthStore = create<AuthState>((set) => ({
 
 	authenticate: (access_token) => {
 		Cookies.set("access_token", access_token, {
-			expires: 1 / 24,
+			expires: 1 / 24, // 1 hour
 			secure: true,
 		});
 		set({ isAuthenticated: true });
-		window.location.href = "/";
+		window.location.href = "/empresa/produtos";
 	},
 
 	logout: () => {
