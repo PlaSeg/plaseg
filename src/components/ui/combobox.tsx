@@ -49,7 +49,7 @@ export function Combobox<TFieldValues extends FieldValues>({
 			control={form.control as Control<TFieldValues, unknown>}
 			name={entity}
 			render={({ field }) => (
-				<FormItem className="flex flex-col">
+				<FormItem className="flex flex-col items-start w-full">
 					<FormLabel>{translatedEntity}</FormLabel>
 
 					<Popover open={open} onOpenChange={setOpen}>
@@ -60,7 +60,7 @@ export function Combobox<TFieldValues extends FieldValues>({
 									role="combobox"
 									aria-expanded={open}
 									className={cn(
-										"justify-between font-normal",
+										"justify-between font-normal w-full",
 										!field.value && "text-muted-foreground"
 									)}
 								>

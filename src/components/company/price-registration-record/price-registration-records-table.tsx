@@ -26,8 +26,8 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/components/ui/table";
-import { priceRegisterRecords } from "@/mocks/register-price-records";
-import { priceRegisterRecordsTableColumns } from "./price-registration-records-table-columns";
+import { priceRegistrationRecords } from "@/mocks/register-price-records";
+import { priceRegistrationRecordsTableColumns } from "./price-registration-records-table-columns";
 import { translatePriceRegistrationRecordsTableKeys } from "@/utils/translate-price-register-records-table-keys";
 import { SearchInput } from "@/components/ui/search-input";
 import { Link } from "react-router";
@@ -42,8 +42,8 @@ export function PriceRegistrationRecordsTable() {
 	const [rowSelection, setRowSelection] = React.useState({});
 
 	const table = useReactTable({
-		data: priceRegisterRecords,
-		columns: priceRegisterRecordsTableColumns,
+		data: priceRegistrationRecords,
+		columns: priceRegistrationRecordsTableColumns,
 		onSortingChange: setSorting,
 		onColumnFiltersChange: setColumnFilters,
 		getCoreRowModel: getCoreRowModel(),
@@ -162,7 +162,7 @@ export function PriceRegistrationRecordsTable() {
 						) : (
 							<TableRow>
 								<TableCell
-									colSpan={priceRegisterRecordsTableColumns.length}
+									colSpan={priceRegistrationRecordsTableColumns.length}
 									className="h-24 text-center"
 								>
 									Sem resultados

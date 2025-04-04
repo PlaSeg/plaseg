@@ -1,4 +1,4 @@
-export interface PriceRegisterRecord {
+export interface PriceRegistrationRecord {
 	id: string;
 	number: string;
 	year: number;
@@ -8,7 +8,7 @@ export interface PriceRegisterRecord {
 	validity: string;
 }
 
-export const priceRegisterRecords: PriceRegisterRecord[] = [
+export const priceRegistrationRecords: PriceRegistrationRecord[] = [
 	{
 		id: "100e8400-e29b-41d4-a716-446655440000",
 		number: "001/2025",

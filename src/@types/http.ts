@@ -1,15 +1,11 @@
-export interface HttpResponse {
-	success: boolean;
-	errors: string[] | null;
-	statusCode: number;
-}
-export interface HTTPSuccessResponse {
-	success: true;
-	error: null;
-}
-export interface HTTPErrorResponse {
+export type HTTPErrorResponse = {
 	success: false;
-	error: string;
+	errors: string[];
 	data: null;
-}
+};
 
+export type HTTPSuccessResponse<T = null> = {
+	success: true;
+	errors: null;
+	data: T;
+};
