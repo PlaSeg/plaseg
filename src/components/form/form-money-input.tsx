@@ -28,7 +28,7 @@ const moneyFormatter = Intl.NumberFormat("pt-BR", {
 	maximumFractionDigits: 2,
 });
 
-export default function FormMoneyInput<TFieldValues extends FieldValues>(
+export function FormMoneyInput<TFieldValues extends FieldValues>(
 	props: TextInputProps<TFieldValues>
 ) {
 	const initialValue = props.form.getValues()[props.entity]
