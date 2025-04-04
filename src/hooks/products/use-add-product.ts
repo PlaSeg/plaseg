@@ -1,5 +1,10 @@
 import { z } from "zod";
 import { useFormMutation } from "../use-form-mutation";
+import { useMutation } from "@tanstack/react-query";
+import { createProduct } from "@/api/company/products/create-product";
+import { toast } from "sonner";
+import { useNavigate } from "react-router";
+import { queryClient } from "@/services/react-query";
 
 const productSchema = z.object({
 	name: z.string().min(1, "Campo obrigatório"),
@@ -34,6 +39,7 @@ const productSchema = z.object({
 });
 
 export function useAddProduct() {
+	const navigate = useNavigate();
 	const form = useFormMutation({
 		schema: productSchema,
 		defaultValues: {
@@ -41,25 +47,59 @@ export function useAddProduct() {
 			code: "",
 			itemType: "",
 			brandsModels: [],
-			unitPrice: undefined,
-			minQuantity: undefined,
+			unitPrice: 0,
+			minQuantity: 0,
 			hasGuarantee: false,
 			hasSupport: false,
 			technicalDescription: "",
 			biddingSpecs: "",
-			companyBudget: undefined,
-			companyBudgetValidity: undefined,
-			competitor1Budget: undefined,
-			competitor1BudgetValidity: undefined,
-			competitor2Budget: undefined,
-			competitor2BudgetValidity: undefined,
+			companyBudget: 0,
+			companyBudgetValidity: "",
+			competitor1Budget: 0,
+			competitor1BudgetValidity: "",
+			competitor2Budget: 0,
+			competitor2BudgetValidity: "",
 		},
 		onSubmit: (data) => {
-			console.log(data);
+			createProductFn({
+				name: data.name,
+				code: Number(data.code),
+				item_type: data.itemType,
+				unit_price: data.unitPrice,
+				min_sale_quantity: data.minQuantity,
+				has_warranty: data.hasGuarantee,
+				has_technical_support: data.hasSupport,
+				description: data.technicalDescription,
+				bidding_specification: data.biddingSpecs,
+				budget: data.companyBudget,
+				budget_validity: data.companyBudgetValidity.replace(".000Z", ""),
+				budget_1: data.competitor1Budget,
+				budget_validity_1: data.competitor1BudgetValidity.replace(".000Z", ""),
+				budget_2: data.competitor2Budget,
+				budget_validity_2: data.competitor2BudgetValidity.replace(".000Z", ""),
+			});
 		},
 	});
 
+	const { mutate: createProductFn, isPending: isLoadingCreateProduct } =
+		useMutation({
+			mutationFn: createProduct,
+			mutationKey: ["create-product"],
+			onSuccess: (response) => {
+				if (response.success === true) {
+					toast.success("Produto criado com sucesso!");
+					queryClient.invalidateQueries({
+						queryKey: ["products"],
+					});
+					navigate("/empresa/produtos");
+					return;
+				}
+				toast.error(response.errors[0]);
+			},
+		});
+
 	return {
 		form,
+		isLoadingCreateProduct,
 	};
 }

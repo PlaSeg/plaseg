@@ -10,10 +10,11 @@ import { itemTypes } from "@/mocks/company/item-types";
 import { FormMultiSelect } from "@/components/form/form-multi-select-input";
 import { brands } from "@/mocks/company/brands";
 import { FormSwitch } from "@/components/form/form-switch";
-import FormMoneyInput from "@/components/form/form-money-input";
+import { LoaderCircle } from "lucide-react";
+import { FormMoneyInput } from "@/components/form/form-money-input";
 
 export function AddProductForm() {
-	const { form } = useAddProduct();
+	const { form, isLoadingCreateProduct } = useAddProduct();
 
 	return (
 		<Form {...form}>
@@ -25,10 +26,21 @@ export function AddProductForm() {
 					<h2 className="text-xl font-semibold">Novo Produto</h2>
 
 					<div className="flex ml-auto gap-2">
-						<Button variant="outline" asChild>
+						<Button className="w-[100px]" variant="outline" asChild>
 							<Link to="/empresa/produtos">Cancelar</Link>
 						</Button>
-						<Button type="submit">Salvar</Button>
+
+						<Button
+							className="w-[100px]"
+							type="submit"
+							disabled={isLoadingCreateProduct}
+						>
+							{isLoadingCreateProduct && (
+								<LoaderCircle className="mr-2 animate-spin" />
+							)}
+
+							{!isLoadingCreateProduct && "Salvar"}
+						</Button>
 					</div>
 				</div>
 
@@ -50,7 +62,7 @@ export function AddProductForm() {
 							form={form}
 							entity="code"
 							label="Código do Produto"
-							placeholder="Digite o nome do produto"
+							placeholder="Digite o código do produto"
 							type="number"
 						/>
 

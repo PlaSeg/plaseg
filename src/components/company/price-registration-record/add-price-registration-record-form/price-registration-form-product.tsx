@@ -29,11 +29,11 @@ export function PriceRegistrationRecordFormProduct() {
 				</div>
 
 				<div className="grid grid-row rounded-lg border">
-					{form.getValues("itens").map((_, index) => (
+					{form.getValues("products").map((_, index) => (
 						<div key={index} className="grid grid-cols-3 gap-x-6 gap-y-4 p-6">
 							<FormField
 								control={form.control}
-								name={`itens.${index}.productCode`}
+								name={`products.${index}.productID`}
 								render={({ field }) => (
 									<FormItem>
 										<FormLabel>Código do produto</FormLabel>
@@ -50,7 +50,7 @@ export function PriceRegistrationRecordFormProduct() {
 
 							<FormField
 								control={form.control}
-								name={`itens.${index}.unity`}
+								name={`products.${index}.unit`}
 								render={({ field }) => (
 									<FormItem>
 										<FormLabel>Unidade</FormLabel>
@@ -64,7 +64,7 @@ export function PriceRegistrationRecordFormProduct() {
 
 							<FormField
 								control={form.control}
-								name={`itens.${index}.quantity`}
+								name={`products.${index}.quantityAvailable`}
 								render={({ field }) => (
 									<FormItem>
 										<FormLabel>Quantidade disponível</FormLabel>
@@ -81,7 +81,7 @@ export function PriceRegistrationRecordFormProduct() {
 
 							<FormField
 								control={form.control}
-								name={`itens.${index}.currency`}
+								name={`products.${index}.currency`}
 								render={({ field }) => (
 									<FormItem>
 										<FormLabel>Moeda</FormLabel>
@@ -108,7 +108,7 @@ export function PriceRegistrationRecordFormProduct() {
 
 							<FormField
 								control={form.control}
-								name={`itens.${index}.valueUnitCurrency`}
+								name={`products.${index}.unitPriceSourceCurrency`}
 								render={({ field }) => (
 									<FormItem>
 										<FormLabel>Valor unitário na moeda</FormLabel>
@@ -122,7 +122,7 @@ export function PriceRegistrationRecordFormProduct() {
 
 							<FormField
 								control={form.control}
-								name={`itens.${index}.valueTotalCurrency`}
+								name={`products.${index}.totalValueCurrency`}
 								render={({ field }) => (
 									<FormItem>
 										<FormLabel>Valor total na moeda</FormLabel>
@@ -136,7 +136,7 @@ export function PriceRegistrationRecordFormProduct() {
 
 							<FormField
 								control={form.control}
-								name={`itens.${index}.valueUnitReal`}
+								name={`products.${index}.unitPriceBrl`}
 								render={({ field }) => (
 									<FormItem>
 										<FormLabel>Valor unitário em real</FormLabel>
@@ -150,7 +150,7 @@ export function PriceRegistrationRecordFormProduct() {
 
 							<FormField
 								control={form.control}
-								name={`itens.${index}.valueTotalReal`}
+								name={`products.${index}.totalValueBrl`}
 								render={({ field }) => (
 									<FormItem>
 										<FormLabel>Valor total em real</FormLabel>
@@ -164,7 +164,7 @@ export function PriceRegistrationRecordFormProduct() {
 
 							<FormField
 								control={form.control}
-								name={`itens.${index}.rateConversion`}
+								name={`products.${index}.conversionRate`}
 								render={({ field }) => (
 									<FormItem>
 										<FormLabel>Taxa de conversão</FormLabel>
@@ -183,12 +183,12 @@ export function PriceRegistrationRecordFormProduct() {
 								form={form}
 								label="Data da taxa de conversão"
 								placeholder="Data da taxa de conversão"
-								entity={`itens.${index}.rateConversionDate`}
+								entity={`products.${index}.conversionRateDate`}
 							/>
 
 							<FormField
 								control={form.control}
-								name={`itens.${index}.minQuantityAccession`}
+								name={`products.${index}.minimumQtyForMembership`}
 								render={({ field }) => (
 									<FormItem>
 										<FormLabel>Quantidade mínima para adesão</FormLabel>
@@ -202,7 +202,7 @@ export function PriceRegistrationRecordFormProduct() {
 
 							<FormField
 								control={form.control}
-								name={`itens.${index}.maxQuantityAccession`}
+								name={`products.${index}.maximumQtyForMembership`}
 								render={({ field }) => (
 									<FormItem>
 										<FormLabel>Quantidade máxima para adesão</FormLabel>

@@ -36,3 +36,5 @@ export interface Product {
 	competitor2Budget: number;
 	competitor2BudgetValidity: string;
 }
+
+export type CreateProductRequest = Omit<ProductApi, "id">;

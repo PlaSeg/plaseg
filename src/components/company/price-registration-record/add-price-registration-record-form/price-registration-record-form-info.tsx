@@ -21,7 +21,7 @@ export function PriceRegistrationRecordFormInfo() {
 			>
 				<FormField
 					control={form.control}
-					name="priceAgreementNumber"
+					name="number"
 					render={({ field }) => (
 						<FormItem>
 							<FormLabel>Número da ata</FormLabel>
@@ -49,7 +49,7 @@ export function PriceRegistrationRecordFormInfo() {
 
 				<FormField
 					control={form.control}
-					name="validity"
+					name="validityInMonths"
 					render={({ field }) => (
 						<FormItem>
 							<FormLabel>Validade</FormLabel>
@@ -63,7 +63,7 @@ export function PriceRegistrationRecordFormInfo() {
 
 				<FormField
 					control={form.control}
-					name="responsible"
+					name="responsibleBody"
 					render={({ field }) => (
 						<FormItem>
 							<FormLabel>Órgão responsável</FormLabel>
@@ -79,7 +79,7 @@ export function PriceRegistrationRecordFormInfo() {
 					form={form}
 					label="Data de Assinatura"
 					placeholder="Data de assinatura"
-					entity="signatureDate"
+					entity="date"
 				/>
 
 				<FormField
