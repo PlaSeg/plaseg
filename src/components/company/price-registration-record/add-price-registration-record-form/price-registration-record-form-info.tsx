@@ -7,7 +7,7 @@ import {
 	FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { DatePicker } from "@/components/ui/date-picker";
+import { FormDatePicker } from "@/components/form/form-date-picker";
 import { usePriceAgreement } from "@/hooks/use-price-agreement";
 
 export function PriceRegistrationRecordFormInfo() {
@@ -75,7 +75,7 @@ export function PriceRegistrationRecordFormInfo() {
 					)}
 				/>
 
-				<DatePicker
+				<FormDatePicker
 					form={form}
 					label="Data de Assinatura"
 					placeholder="Data de assinatura"

@@ -1,6 +1,6 @@
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { FormCheckbox } from "@/components/form/form-checkbox";
+// import { FormCheckbox } from "@/components/form/form-checkbox";
 import { FormField } from "../form-field";
 
 export function StepSeven() {
@@ -14,7 +14,7 @@ export function StepSeven() {
 				<Input type="text" name="crea" placeholder="Registro CREA" />
 				<Input type="text" name="crf" placeholder="Registro CRF" />
 
-				<FormCheckbox label="Sem registro em orgão reguladores" />
+				{/* <FormCheckbox label="Sem registro em orgão reguladores" /> */}
 			</div>
 
 			<div className="text-left space-y-4">
@@ -23,7 +23,7 @@ export function StepSeven() {
 				<Input type="text" name="9001" placeholder="ISO 9001" />
 				<Input type="text" name="14001" placeholder="ISO 14001" />
 
-				<FormCheckbox label="Sem certificações de qualidade" />
+				{/* <FormCheckbox label="Sem certificações de qualidade" /> */}
 			</div>
 
 			<FormField

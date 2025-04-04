@@ -1,28 +1,16 @@
-import {
-	Form,
-	FormControl,
-	FormField,
-	FormItem,
-	FormLabel,
-	FormMessage,
-} from "@/components/ui/form";
-
-import {
-	Select,
-	SelectContent,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
-} from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Switch } from "@/components/ui/switch";
+import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { useAddProduct } from "@/hooks/use-add-product";
-import { BrandSelect } from "./add-product-form/brands-select";
 import { Link } from "react-router";
 import { AttachmentsUploader } from "./add-product-form/attachments-uploader";
-import { DatePicker } from "@/components/ui/date-picker";
+import { FormDatePicker } from "@/components/form/form-date-picker";
+import { FormInput } from "@/components/form/form-input";
+import { FormSelect } from "@/components/form/form-select";
+import { itemTypes } from "@/mocks/company/item-types";
+import { FormMultiSelect } from "@/components/form/form-multi-select-input";
+import { brands } from "@/mocks/company/brands";
+import { FormSwitch } from "@/components/form/form-switch";
+import FormMoneyInput from "@/components/form/form-money-input";
 
 export function AddProductForm() {
 	const { form } = useAddProduct();
@@ -45,283 +33,127 @@ export function AddProductForm() {
 				</div>
 
 				<div className="flex gap-6">
-					<div className="w-[1000px] grid grid-cols-2 space-y-4 gap-x-6 p-6 rounded-lg border">
+					<div className="w-[1000px] grid grid-cols-2 space-y-6 gap-x-6 p-6 rounded-lg border">
 						<div className="col-span-2">
 							<h3 className="text-lg font-medium">Detalhes do Produto</h3>
 						</div>
 
-						<FormField
-							control={form.control}
-							name="productName"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Nome</FormLabel>
-									<FormControl>
-										<Input placeholder="Digite o nome do produto" {...field} />
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
+						<FormInput
+							form={form}
+							entity="name"
+							label="Nome do Produto"
+							placeholder="Digite o nome do produto"
+							type="text"
 						/>
 
-						<FormField
-							control={form.control}
-							name="productCode"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Código</FormLabel>
-									<FormControl>
-										<Input
-											placeholder="Digite o código do produto"
-											{...field}
-										/>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
+						<FormInput
+							form={form}
+							entity="code"
+							label="Código do Produto"
+							placeholder="Digite o nome do produto"
+							type="number"
 						/>
 
-						<FormField
-							control={form.control}
-							name="itemType"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Tipo do Item</FormLabel>
-									<FormControl>
-										<Select
-											onValueChange={field.onChange}
-											defaultValue={field.value}
-										>
-											<SelectTrigger>
-												<SelectValue placeholder="Selecione o tipo do item" />
-											</SelectTrigger>
-
-											<SelectContent>
-												<SelectItem value="firearm">Arma de fogo</SelectItem>
-												<SelectItem value="nonLethal">
-													Arma não letal
-												</SelectItem>
-												<SelectItem value="carVehicle">
-													Viatura carro
-												</SelectItem>
-												<SelectItem value="motorcycle">Viatura moto</SelectItem>
-												<SelectItem value="protectionItem">
-													Item de proteção
-												</SelectItem>
-												<SelectItem value="videoMonitoring">
-													Serviço videomonitoramento
-												</SelectItem>
-												<SelectItem value="other">Outros</SelectItem>
-											</SelectContent>
-										</Select>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
+						<FormSelect
+							form={form}
+							entity="itemType"
+							label="Tipo de Item"
+							placeholder="Selecione o tipo de item"
+							options={itemTypes}
 						/>
 
-						<FormField
-							control={form.control}
-							name="brandsModels"
-							render={() => (
-								<FormItem>
-									<FormLabel>Marcas e Modelos Disponíveis</FormLabel>
-									<FormControl>
-										<BrandSelect />
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
+						<FormMultiSelect
+							form={form}
+							entity="brandsModels"
+							label="Marcas e Modelos Disponíveis"
+							placeholder="Selecione as marcas e modelos disponíveis"
+							options={brands}
+							maxCount={2}
 						/>
 
-						<FormField
-							control={form.control}
-							name="unitPrice"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Preço Unitário</FormLabel>
-									<FormControl>
-										<Input
-											type="number"
-											placeholder="Digite o preço unitário"
-											{...field}
-											onChange={(e) =>
-												field.onChange(parseFloat(e.target.value))
-											}
-										/>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
+						<FormMoneyInput
+							form={form}
+							entity="unitPrice"
+							label="Preço Unitário"
+							placeholder="Selecione o preço unitário"
 						/>
 
-						<FormField
-							control={form.control}
-							name="minQuantity"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Quantidade Mínima para Venda</FormLabel>
-									<FormControl>
-										<Input
-											type="number"
-											placeholder="Digite a quantidade mínima para venda"
-											{...field}
-											onChange={(e) => field.onChange(parseInt(e.target.value))}
-										/>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
+						<FormInput
+							form={form}
+							entity="minQuantity"
+							label="Quantidade Mínima"
+							placeholder="Selecione a quantidade mínima"
+							type="number"
 						/>
 
-						<FormField
-							control={form.control}
-							name="guarantee"
-							render={() => (
-								<FormItem>
-									<FormLabel>Garantia</FormLabel>
-									<FormControl className="flex py-2">
-										<div className="flex items-center gap-2">
-											<Switch id="airplane-mode" />
-											<span className="text-sm text-muted-foreground">
-												Este produto possui garantia
-											</span>
-										</div>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
+						<FormSwitch
+							form={form}
+							entity="hasGuarantee"
+							label="Garantia"
+							description="Este produto possui garantia"
 						/>
 
-						<FormField
-							control={form.control}
-							name="support"
-							render={() => (
-								<FormItem>
-									<FormLabel>Suporte Técnico</FormLabel>
-									<FormControl className="flex py-2">
-										<div className="flex items-center gap-2">
-											<Switch id="airplane-mode" />
-											<span className="text-sm text-muted-foreground">
-												Este produto possui suporte técnico
-											</span>
-										</div>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
+						<FormSwitch
+							form={form}
+							entity="hasSupport"
+							label="Suporte Técnico"
+							description="Este produto possui suporte técnico"
 						/>
 
 						<div className="col-span-2 space-y-4">
-							<FormField
-								control={form.control}
-								name="technicalDescription"
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel>Descrição Técnica</FormLabel>
-										<FormControl>
-											<Textarea
-												placeholder="Digite a descrição técnica"
-												{...field}
-											/>
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
+							<FormInput
+								form={form}
+								entity="technicalDescription"
+								label="Descrição Técnica"
+								placeholder="Digite a descrição técnica"
+								type="textarea"
 							/>
 
-							<FormField
-								control={form.control}
-								name="biddingSpecs"
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel>
-											Especificações Detalhadas para Licitação
-										</FormLabel>
-										<FormControl>
-											<Textarea
-												placeholder="Digite as especificações detalhadas para licitação"
-												{...field}
-											/>
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
+							<FormInput
+								form={form}
+								entity="biddingSpecs"
+								label="Especificações para Licitação"
+								placeholder="Digite as especificações para licitação"
+								type="textarea"
 							/>
 						</div>
 
-						<FormField
-							control={form.control}
-							name="companyBudget"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Orçamento</FormLabel>
-									<FormControl>
-										<Input
-											{...field}
-											type="number"
-											placeholder="Ex: R$ 10.000,00"
-											onChange={(e) => field.onChange(parseInt(e.target.value))}
-										/>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
+						<FormMoneyInput
+							form={form}
+							entity="companyBudget"
+							label="Orçamento da Empresa"
+							placeholder="Ex: R$ 10.000,00"
 						/>
 
-						<DatePicker
+						<FormDatePicker
 							form={form}
 							label="Validade do Orçamento"
 							placeholder="Validade do Orçamento"
 							entity="companyBudgetValidity"
 						/>
 
-						<FormField
-							control={form.control}
-							name="competitor1Budget"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Orçamento do 1º Concorrente</FormLabel>
-									<FormControl>
-										<Input
-											{...field}
-											type="number"
-											placeholder="Ex: R$ 10.000,00"
-											onChange={(e) => field.onChange(parseInt(e.target.value))}
-										/>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
+						<FormMoneyInput
+							form={form}
+							entity="competitor1Budget"
+							label="Orçamento do 1º Concorrente"
+							placeholder="Ex: R$ 10.000,00"
 						/>
 
-						<DatePicker
+						<FormDatePicker
 							form={form}
 							label="Validade do Orçamento do 1º Concorrente"
 							placeholder="Validade do Orçamento do 1º Concorrente"
 							entity="competitor1BudgetValidity"
 						/>
 
-						<FormField
-							control={form.control}
-							name="competitor2Budget"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Orçamento do 2º Concorrente</FormLabel>
-									<FormControl>
-										<Input
-											{...field}
-											type="number"
-											placeholder="Ex: R$ 10.000,00"
-											onChange={(e) => field.onChange(parseInt(e.target.value))}
-										/>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
+						<FormMoneyInput
+							form={form}
+							entity="competitor2Budget"
+							label="Orçamento do 2º Concorrente"
+							placeholder="Ex: R$ 10.000,00"
 						/>
 
-						<DatePicker
+						<FormDatePicker
 							form={form}
 							label="Validade do Orçamento do 2º Concorrente"
 							placeholder="Validade do Orçamento do 2º Concorrente"

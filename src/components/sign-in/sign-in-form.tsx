@@ -2,7 +2,7 @@ import { useSignIn } from "@/hooks/use-sign-in";
 import { FormInput } from "../form/form-input";
 import { Form } from "../ui/form";
 import { Button } from "../ui/button";
-import { Loader } from "lucide-react";
+import { LoaderCircle } from "lucide-react";
 // import { FormDocumentInput } from "../form/form-document";
 
 export function SignInForm() {
@@ -44,7 +44,7 @@ export function SignInForm() {
 					className="mt-2 w-full"
 					disabled={isLoadingSignIn}
 				>
-					{isLoadingSignIn && <Loader className="animate-spin" />}
+					{isLoadingSignIn && <LoaderCircle className="animate-spin" />}
 					Entrar
 				</Button>
 			</form>

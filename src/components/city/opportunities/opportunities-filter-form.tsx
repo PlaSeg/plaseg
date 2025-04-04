@@ -11,7 +11,7 @@ import { FormCombobox } from "@/components/form/form-combobox";
 import { useFilterOpportunities } from "@/hooks/use-filter-opportunities";
 import { opportunitiesCategories } from "@/mocks/opportunities-categories";
 import { opportunitiesAreas } from "@/mocks/opportunities-areas";
-import { DatePicker } from "@/components/ui/date-picker";
+import { FormDatePicker } from "@/components/form/form-date-picker";
 import { Button } from "@/components/ui/button";
 import { Funnel } from "lucide-react";
 import { X } from "lucide-react";
@@ -99,14 +99,14 @@ export function OpportunitiesFilterForm() {
 				)}
 			/>
 
-			<DatePicker
+			<FormDatePicker
 				form={form}
 				label="Data Inicial"
 				placeholder="Selecionar Data Inicial"
 				entity="initialDate"
 			/>
 
-			<DatePicker
+			<FormDatePicker
 				form={form}
 				label="Data Final"
 				placeholder="Selecionar Data Final"

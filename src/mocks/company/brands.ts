@@ -1,7 +1,4 @@
-import { MultiSelect } from "@/components/ui/multi-select";
-import { useState } from "react";
-
-const brands = [
+export const brands = [
 	{ value: "glock", label: "Glock" },
 	{ value: "smithWesson", label: "Smith & Wesson" },
 	{ value: "colt", label: "Colt" },
@@ -13,17 +10,3 @@ const brands = [
 	{ value: "hecklerKoch", label: "Heckler & Koch" },
 	{ value: "winchester", label: "Winchester" },
 ];
-
-export function BrandSelect() {
-	const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
-
-	return (
-		<MultiSelect
-			options={brands}
-			onValueChange={setSelectedBrands}
-			defaultValue={selectedBrands}
-			placeholder="Selecione as marcas e modelos disponíveis"
-			maxCount={2}
-		/>
-	);
-}

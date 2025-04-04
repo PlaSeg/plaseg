@@ -1,4 +1,3 @@
-import { MultiSelect } from "@/components/ui/multi-select";
 import {
 	FormField,
 	FormItem,
@@ -6,27 +5,24 @@ import {
 	FormControl,
 	FormMessage,
 } from "@/components/ui/form";
+import { Switch } from "@/components/ui/switch";
 import { FieldValues, Path, UseFormReturn } from "react-hook-form";
 
-interface FormMultiSelectProps<TFieldValues extends FieldValues> {
+interface FormSwitchProps<TFieldValues extends FieldValues> {
 	form: UseFormReturn<TFieldValues>;
 	entity: Path<TFieldValues>;
 	label?: string;
-	options: { label: string; value: string }[];
-	placeholder?: string;
+	description?: string;
 	className?: string;
-	maxCount?: number;
 }
 
-export function FormMultiSelect<TFieldValues extends FieldValues>({
+export function FormSwitch<TFieldValues extends FieldValues>({
 	form,
 	entity,
 	label,
-	options,
-	placeholder,
+	description,
 	className = "",
-	maxCount,
-}: FormMultiSelectProps<TFieldValues>) {
+}: FormSwitchProps<TFieldValues>) {
 	return (
 		<FormField
 			control={form.control}
@@ -34,16 +30,23 @@ export function FormMultiSelect<TFieldValues extends FieldValues>({
 			render={({ field }) => (
 				<FormItem className={`flex flex-col text-left ${className}`}>
 					{label && <FormLabel>{label}</FormLabel>}
-					<FormControl>
-						<MultiSelect
-							options={options}
-							onValueChange={field.onChange}
-							defaultValue={field.value}
-							value={field.value}
-							placeholder={placeholder}
-							maxCount={maxCount}
-						/>
+
+					<FormControl className="flex py-2">
+						<div className="flex items-center gap-2">
+							<Switch
+								id={entity}
+								checked={field.value}
+								onCheckedChange={field.onChange}
+							/>
+
+							{description && (
+								<span className="text-sm text-muted-foreground">
+									{description}
+								</span>
+							)}
+						</div>
 					</FormControl>
+
 					<FormMessage />
 				</FormItem>
 			)}

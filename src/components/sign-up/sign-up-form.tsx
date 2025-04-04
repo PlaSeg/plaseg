@@ -4,7 +4,7 @@ import { Form } from "@/components/ui/form";
 import { FormCombobox } from "@/components/form/form-combobox";
 import { roleOptions } from "@/mocks/sign-up/role-options,";
 import { FormInput } from "../form/form-input";
-import { Loader } from "lucide-react";
+import { LoaderCircle } from "lucide-react";
 
 export function SignUpForm() {
 	const { form, isLoadingSignUp } = useSignUp();
@@ -66,7 +66,7 @@ export function SignUpForm() {
 					className="mt-2 w-full"
 					disabled={isLoadingSignUp}
 				>
-					{isLoadingSignUp && <Loader className="animate-spin" />}
+					{isLoadingSignUp && <LoaderCircle className="animate-spin" />}
 					Confirmar
 				</Button>
 			</form>
