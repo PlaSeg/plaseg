@@ -29,18 +29,22 @@ export function AppRoutes() {
 
 			<Route element={<PrivateRoutes />}>
 				<Route path="precos" element={<Plans />} />
-				<Route path="pagamento" element={<Payment />} />
-				<Route path="cadastrar-empresa" element={<RegisterCompany />} />
-				<Route path="cadastrar-municipio" element={<RegisterMunicipality />} />
+					<Route path="pagamento" element={<Payment />} />
+					<Route path="cadastrar-empresa" element={<RegisterCompany />} />
+					<Route path="cadastrar-municipio" element={<RegisterMunicipality />} />
 
-				<Route path="municipio" element={<CityLayout />}>
-					<Route path="*" element={<CityRoutes />} />
-				</Route>
+					<Route path="municipio" element={<CityLayout />}>
+						<Route path="*" element={<CityRoutes />} />
+					</Route>
 
-				<Route path="empresa" element={<CompanyLayout />}>
-					<Route path="*" element={<CompanyRoutes />} />
-				</Route>
+					<Route path="empresa" element={<CompanyLayout />}>
+						<Route path="*" element={<CompanyRoutes />} />
+					</Route>
+			
+			
 			</Route>
+				
+			
 		</Routes>
 	);
 }

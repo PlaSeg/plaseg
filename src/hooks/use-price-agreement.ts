@@ -2,47 +2,57 @@ import { z } from "zod";
 import { useFormMutation } from "./use-form-mutation";
 
 const priceAgreementSchema = z.object({
-	priceAgreementNumber: z.string().min(1, "Número da Ata é obrigatório"),
-	year: z.string().min(4, "Ano da Ata deve ter 4 dígitos"),
-	validity: z.string().min(1, "Validade é obrigatória"),
-	responsible: z.string().min(1, "Órgão responsável é obrigatório"),
-	signatureDate: z.date(),
+	number: z.number({message: "Campo obrigatório"}),
+
+	year: z.number({
+		message: "Campo obrigatório", 
+	}),
+
+	responsibleBody: z.string().min(1, "Campo obrigatório"),
+	date: z.string({
+		message: "Campo obrigatório", 	
+	}),
+	validityInMonths: z.number({message: "Campo obrigatório"}),
+
 	priceAgreementAttachments: z.any().refine((file) => file instanceof File, {
 		message: "É necessário anexar um documento válido",
 	}),
-	itens: z
+	products: z
 		.array(
 			z.object({
-				productCode: z.string().min(1, "Código do produto é obrigatório"),
-				unity: z.string().min(1, "Unidade é obrigatória"),
-				quantity: z
-					.number()
-					.min(1, "Quantidade disponível deve ser maior que 0"),
-				currency: z.string().min(1, "Tipo de moeda é obrigatório"),
-				valueUnitCurrency: z
-					.number()
-					.min(0.01, "Valor unitário deve ser maior que 0"),
-				valueTotalCurrency: z
-					.number()
-					.min(0.01, "Valor total deve ser maior que 0"),
-				valueUnitReal: z
-					.number()
-					.min(0.01, "Valor unitário em reais deve ser maior que 0"),
-				valueTotalReal: z
-					.number()
-					.min(0.01, "Valor total em reais deve ser maior que 0"),
-				rateConversion: z
-					.number()
-					.min(0, "Taxa de conversão deve ser positiva"),
-				rateConversionDate: z.date({
+				productID: z.string().min(1, "Código do produto é obrigatório"),
+				conversionRate: z.number().min(0, "Taxa de conversão deve ser positiva"),
+				conversionRateDate: z.date({
 					required_error: "Data da taxa de conversão é obrigatória",
 				}),
-				minQuantityAccession: z
-					.number()
-					.min(1, "Quantidade mínima deve ser maior que 0"),
-				maxQuantityAccession: z
+				currency: z.string().min(1, "Tipo de moeda é obrigatório"),
+				maximumQtyForMembership: z
 					.number()
 					.min(1, "Quantidade máxima deve ser maior que 0"),
+				minimumQtyForMembership: z
+					.number()
+					.min(1, "Quantidade máxima deve ser maior que 0"),
+				
+				quantityAvailable: z
+					.number()
+					.min(1, "Quantidade disponível deve ser maior que 0"),
+				totalQuantity:  z
+				.number()
+				.min(1, "Quantidade disponível deve ser maior que 0"),
+				totalValueBrl: z
+				.number()
+				.min(1, "Quantidade disponível deve ser maior que 0"),
+				totalValueCurrency: z
+				.number()
+				.min(1, "Quantidade disponível deve ser maior que 0"),
+				unit: z.string().min(1, "Unidade é obrigatória"),
+				unitPriceBrl:z
+				.number()
+				.min(0.01, "Valor total deve ser maior que 0"),
+				unitPriceSourceCurrency: z
+				.number()
+				.min(0.01, "Valor total deve ser maior que 0")
+				
 			})
 		)
 		.min(1, "Deve haver pelo menos um item na Ata"),
@@ -52,26 +62,27 @@ export function usePriceAgreement() {
 	const form = useFormMutation({
 		schema: priceAgreementSchema,
 		defaultValues: {
-			priceAgreementNumber: "",
-			year: "",
-			validity: "",
-			responsible: "",
-			signatureDate: undefined,
-			priceAgreementAttachments: undefined,
-			itens: [
+			number: undefined,
+			year: undefined,
+			responsibleBody: "",
+			date:undefined,
+			validityInMonths:undefined,
+			products: [
 				{
-					productCode: "",
-					unity: "",
-					quantity: undefined,
-					currency: "",
-					valueUnitCurrency: undefined,
-					valueTotalCurrency: undefined,
-					valueUnitReal: undefined,
-					valueTotalReal: undefined,
-					rateConversion: undefined,
-					rateConversionDate: undefined,
-					minQuantityAccession: 0,
-					maxQuantityAccession: 0,
+					conversionRate:0,
+					conversionRateDate:undefined,
+					currency:"",
+					maximumQtyForMembership:0,
+					minimumQtyForMembership:0,
+					productID:"",
+					quantityAvailable:0,
+					totalQuantity:0,
+					totalValueBrl:0,
+					totalValueCurrency:0,
+					unit:"",
+					unitPriceBrl:0,
+					unitPriceSourceCurrency:0,
+
 				},
 			],
 		},

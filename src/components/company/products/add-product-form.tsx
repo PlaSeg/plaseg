@@ -62,7 +62,7 @@ export function AddProductForm() {
 							form={form}
 							entity="code"
 							label="Código do Produto"
-							placeholder="Digite o nome do produto"
+							placeholder="Digite o código do produto"
 							type="number"
 						/>
 
