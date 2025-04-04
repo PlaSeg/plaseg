@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 export default function ResetPassword() {
 	return (
-		<div className="flex flex-col gap-8 text-center w-[350px] rounded-lg">
+		<div className="flex flex-col gap-8 text-center rounded-lg">
 			<div className="flex flex-col gap-2">
 				<h2 className="text-2xl font-bold">Resetar senha</h2>
 				<span className="text-sm text-muted-foreground">

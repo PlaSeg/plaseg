@@ -11,7 +11,9 @@ export default function AuthLayout() {
 			</div>
 
 			<div className="col-span-2 flex items-center justify-center w-full bg-white">
-				<Outlet />
+				<div className="w-[400px]">
+					<Outlet />
+				</div>
 			</div>
 		</div>
 	);

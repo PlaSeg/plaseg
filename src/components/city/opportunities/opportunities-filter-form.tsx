@@ -7,7 +7,7 @@ import {
 	FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Combobox } from "@/components/ui/combobox";
+import { FormCombobox } from "@/components/form/form-combobox";
 import { useFilterOpportunities } from "@/hooks/use-filter-opportunities";
 import { opportunitiesCategories } from "@/mocks/opportunities-categories";
 import { opportunitiesAreas } from "@/mocks/opportunities-areas";
@@ -41,7 +41,7 @@ export function OpportunitiesFilterForm() {
 				)}
 			/>
 
-			<Combobox
+			<FormCombobox
 				form={form}
 				entity="category"
 				translatedEntity="Categoria"
@@ -50,7 +50,7 @@ export function OpportunitiesFilterForm() {
 				emptyMessage="Nenhuma categoria encontrada"
 			/>
 
-			<Combobox
+			<FormCombobox
 				form={form}
 				entity="area"
 				translatedEntity="Área"

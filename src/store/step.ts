@@ -48,7 +48,7 @@ export const useStepsStore = create<StepsStore>((set, get) => ({
 			const currentIndex = state.steps.findIndex(
 				(step) => step.status === "progress"
 			);
-			
+
 			if (currentIndex === -1 || currentIndex === state.steps.length - 1)
 				return state;
 

@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const signUpFormSchema = z.object({
 	name: z.string().min(3, "O nome deve ter pelo menos 3 caracteres"),
-	email: z.string().email("Email inválido"),
+	email: z.string().email("O e-mail deve ser válido."),
 	document: z
 		.string()
 		.min(11, "O documento deve ter pelo menos 11 caracteres")

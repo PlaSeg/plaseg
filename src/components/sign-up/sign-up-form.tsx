@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { useSignUp } from "@/hooks/use-sign-up";
 import { Form } from "@/components/ui/form";
-import { Combobox } from "@/components/ui/combobox";
+import { FormCombobox } from "@/components/form/form-combobox";
 import { roleOptions } from "@/mocks/sign-up/role-options,";
 import { FormInput } from "../form/form-input";
 import { Loader } from "lucide-react";
@@ -11,7 +11,7 @@ export function SignUpForm() {
 
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmitForm} className="space-y-3">
+			<form onSubmit={form.handleSubmitForm} className="space-y-4">
 				<FormInput
 					form={form}
 					type="text"
@@ -52,7 +52,7 @@ export function SignUpForm() {
 					placeholder="Digite sua senha"
 				/>
 
-				<Combobox
+				<FormCombobox
 					form={form}
 					entity="role"
 					translatedEntity="Cargo"
