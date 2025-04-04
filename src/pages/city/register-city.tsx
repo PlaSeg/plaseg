@@ -1,5 +1,5 @@
-import { FormSteps } from "@/components/register-municipality-form/form-steps";
-import { RegisterMunicipalityForm } from "@/components/register-municipality-form/form-container";
+import { RegisterMunicipalityForm } from "@/components/city/register-city/form-container";
+import { FormSteps } from "@/components/company/register-company/form-steps";
 
 export default function RegisterMunicipality() {
 	return (

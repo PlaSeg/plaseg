@@ -16,10 +16,6 @@
 		},
 		"types": ["vite/client"]
 	},
-	"include": [
-		"src/**/*.ts",
-		"src/**/*.tsx",
-		"src/components/register-municipality-form"
-	],
+	"include": ["src/**/*.ts", "src/**/*.tsx", "src/components/register-city"],
 	"exclude": ["node_modules"]
 }

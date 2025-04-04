@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { DatePicker } from "@/components/ui/date-picker";
 import { usePriceAgreement } from "@/hooks/use-price-agreement";
 
-export function PriceRegistrationFormInfo() {
+export function PriceRegistrationRecordFormInfo() {
 	const { form } = usePriceAgreement();
 
 	return (
