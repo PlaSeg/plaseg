@@ -20,9 +20,8 @@ import { PrivateRoutes } from "./private-routes";
 export function AppRoutes() {
 	return (
 		<Routes>
-			<Route path="/" element={<Home />} />
-
 			<Route element={<PublicRoutes />}>
+				<Route path="/" element={<Home />} />
 				<Route element={<AuthLayout />}>
 					<Route path="*" element={<AuthRoutes />} />
 				</Route>

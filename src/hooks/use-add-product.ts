@@ -2,43 +2,51 @@ import { z } from "zod";
 import { useFormMutation } from "./use-form-mutation";
 
 const productSchema = z.object({
-	productName: z.string().min(1, "Nome do produto é obrigatório"),
-	productCode: z.string().min(1, "Código do produto é obrigatório"),
-	itemType: z.string().min(1, "Tipo do item é obrigatório"),
-	technicalDescription: z.string(),
-	biddingSpecs: z.string(),
-	unitPrice: z.number().min(1, "Preço unitário deve ser maior que 0"),
-	minQuantity: z.number().min(1, "Quantidade mínima deve ser maior que 0"),
-	brandsModels: z.string(),
-	guarantee: z.boolean(),
-	support: z.boolean(),
-	attachments: z.array(z.any()),
+	name: z.string().min(1, "Campo obrigatório"),
+	code: z.string().min(1, "Campo obrigatório"),
+	itemType: z.string().min(1, "Campo obrigatório"),
+	brandsModels: z.array(z.string()).min(1, "Campo obrigatórios"),
+	unitPrice: z.number().min(1, "Campo obrigatório"),
+	minQuantity: z.coerce.number().min(1, "Campo obrigatório"),
+	hasGuarantee: z.boolean({
+		message: "Campo obrigatório",
+	}),
+	hasSupport: z.boolean({
+		message: "Campo obrigatório",
+	}),
+	technicalDescription: z.string().min(1, "Campo obrigatório"),
+	biddingSpecs: z.string().min(1, "Campo obrigatório"),
 
-	companyBudget: z.number(),
-	companyBudgetValidity: z.date(),
+	companyBudget: z.number({
+		message: "Campo obrigatório",
+	}),
+	companyBudgetValidity: z.string().min(1, "Campo obrigatório"),
 
-	competitor1Budget: z.number(),
-	competitor1BudgetValidity: z.date(),
+	competitor1Budget: z.number({
+		message: "Campo obrigatório",
+	}),
+	competitor1BudgetValidity: z.string().min(1, "Campo obrigatório"),
 
-	competitor2Budget: z.number(),
-	competitor2BudgetValidity: z.date(),
+	competitor2Budget: z.number({
+		message: "Campo obrigatório",
+	}),
+	competitor2BudgetValidity: z.string().min(1, "Campo obrigatório"),
 });
 
 export function useAddProduct() {
 	const form = useFormMutation({
 		schema: productSchema,
 		defaultValues: {
-			productName: "",
-			productCode: "",
+			name: "",
+			code: "",
 			itemType: "",
+			brandsModels: [],
+			unitPrice: undefined,
+			minQuantity: undefined,
+			hasGuarantee: false,
+			hasSupport: false,
 			technicalDescription: "",
 			biddingSpecs: "",
-			unitPrice: 0,
-			minQuantity: 0,
-			brandsModels: "",
-			guarantee: false,
-			support: false,
-			attachments: [],
 			companyBudget: undefined,
 			companyBudgetValidity: undefined,
 			competitor1Budget: undefined,

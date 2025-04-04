@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { DatePicker } from "@/components/ui/date-picker";
+import { FormDatePicker } from "@/components/form/form-date-picker";
 import { usePriceAgreement } from "@/hooks/use-price-agreement";
 
 export function PriceRegistrationRecordFormProduct() {
@@ -179,7 +179,7 @@ export function PriceRegistrationRecordFormProduct() {
 								)}
 							/>
 
-							<DatePicker
+							<FormDatePicker
 								form={form}
 								label="Data da taxa de conversão"
 								placeholder="Data da taxa de conversão"
