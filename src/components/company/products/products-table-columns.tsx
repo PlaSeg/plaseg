@@ -1,20 +1,25 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ProductsTableItem } from "@/mocks/products";
 import { ColumnDef } from "@tanstack/react-table";
-import { ArrowUpDown, MoreHorizontal } from "lucide-react";
+import {
+	ArrowUpDown,
+	Copy,
+	Eye,
+	MoreHorizontal,
+	SquarePen,
+	Trash2,
+} from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
 	DropdownMenu,
 	DropdownMenuTrigger,
 	DropdownMenuContent,
-	DropdownMenuLabel,
 	DropdownMenuItem,
-	DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { Link } from "react-router";
+import { Product } from "@/@types/product";
 
-export const productsTableColumns: ColumnDef<ProductsTableItem>[] = [
+export const productsTableColumns: ColumnDef<Product>[] = [
 	{
 		id: "select",
 		header: ({ table }) => (
@@ -61,16 +66,16 @@ export const productsTableColumns: ColumnDef<ProductsTableItem>[] = [
 		cell: ({ row }) => <div className="lowercase">{row.getValue("code")}</div>,
 	},
 	{
-		accessorKey: "type",
-		header: "Tipo",
+		accessorKey: "itemType",
+		header: "Tipo de Item",
 		cell: ({ row }) => (
 			<Badge className="rounded-full text-muted-foreground shadow-none bg-muted hover:bg-muted">
-				{row.getValue("type")}
+				{row.getValue("itemType")}
 			</Badge>
 		),
 	},
 	{
-		accessorKey: "price",
+		accessorKey: "unitPrice",
 		header: ({ column }) => {
 			return (
 				<Button
@@ -84,18 +89,18 @@ export const productsTableColumns: ColumnDef<ProductsTableItem>[] = [
 			);
 		},
 		cell: ({ row }) => {
-			const price = parseFloat(row.getValue("price"));
+			const unitPrice = parseFloat(row.getValue("unitPrice"));
 
 			const formatted = new Intl.NumberFormat("pt-BR", {
 				style: "currency",
 				currency: "BRL",
-			}).format(price);
+			}).format(unitPrice);
 
 			return <div className="font-medium">{formatted}</div>;
 		},
 	},
 	{
-		accessorKey: "max_quantity",
+		accessorKey: "minQuantity",
 		header: ({ column }) => {
 			return (
 				<Button
@@ -103,17 +108,17 @@ export const productsTableColumns: ColumnDef<ProductsTableItem>[] = [
 					className="p-0 hover:bg-transparent"
 					onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
 				>
-					Qtd. Máx
+					Qtd. Mínima para Venda
 					<ArrowUpDown />
 				</Button>
 			);
 		},
 		cell: ({ row }) => (
-			<div className="capitalize">{row.getValue("max_quantity")} unidades</div>
+			<div className="capitalize">{row.getValue("minQuantity")} unidades</div>
 		),
 	},
 	{
-		accessorKey: "budget",
+		accessorKey: "companyBudget",
 		header: ({ column }) => {
 			return (
 				<Button
@@ -127,12 +132,12 @@ export const productsTableColumns: ColumnDef<ProductsTableItem>[] = [
 			);
 		},
 		cell: ({ row }) => {
-			const budget = parseFloat(row.getValue("budget"));
+			const companyBudget = parseFloat(row.getValue("companyBudget"));
 
 			const formatted = new Intl.NumberFormat("pt-BR", {
 				style: "currency",
 				currency: "BRL",
-			}).format(budget);
+			}).format(companyBudget);
 
 			return <div className="font-medium">{formatted}</div>;
 		},
@@ -141,8 +146,6 @@ export const productsTableColumns: ColumnDef<ProductsTableItem>[] = [
 		id: "actions",
 		enableHiding: false,
 		cell: ({ row }) => {
-			const product = row.original;
-
 			return (
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
@@ -153,20 +156,30 @@ export const productsTableColumns: ColumnDef<ProductsTableItem>[] = [
 					</DropdownMenuTrigger>
 
 					<DropdownMenuContent align="end">
-						<DropdownMenuLabel>Ações</DropdownMenuLabel>
-
 						<DropdownMenuItem
-							onClick={() => navigator.clipboard.writeText(product.id)}
+							onClick={() => navigator.clipboard.writeText(row.original.id)}
 						>
-							Copiar id do produto
+							<Copy />
+							Copiar ID do Produto
 						</DropdownMenuItem>
 
-						<DropdownMenuSeparator />
-
-						<DropdownMenuItem>Ver detalhes</DropdownMenuItem>
+						<DropdownMenuItem asChild>
+							<Link to={`/produtos/${row.original.id}`}>
+								<Eye />
+								Ver detalhes
+							</Link>
+						</DropdownMenuItem>
 
 						<DropdownMenuItem asChild>
-							<Link to="/empresa/adicionar-produto">Editar</Link>
+							<Link to="/empresa/adicionar-produto">
+								<SquarePen />
+								Editar
+							</Link>
+						</DropdownMenuItem>
+
+						<DropdownMenuItem>
+							<Trash2 />
+							Excluir
 						</DropdownMenuItem>
 					</DropdownMenuContent>
 				</DropdownMenu>

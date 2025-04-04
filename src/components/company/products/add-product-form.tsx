@@ -1,6 +1,6 @@
 import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
-import { useAddProduct } from "@/hooks/use-add-product";
+import { useAddProduct } from "@/hooks/products/use-add-product";
 import { Link } from "react-router";
 import { AttachmentsUploader } from "./add-product-form/attachments-uploader";
 import { FormDatePicker } from "@/components/form/form-date-picker";

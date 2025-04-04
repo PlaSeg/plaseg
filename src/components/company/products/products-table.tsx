@@ -26,11 +26,13 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/components/ui/table";
-import { products } from "@/mocks/products";
+
 import { productsTableColumns } from "./products-table-columns";
 import { translateProductsTableKeys } from "@/utils/translate-products-table-keys";
 import { SearchInput } from "@/components/ui/search-input";
 import { Link } from "react-router";
+import { useGetProducts } from "@/hooks/products/use-get-products";
+import { ProductsTableSkeleton } from "./products-table-skeleton";
 
 export function ProductsTable() {
 	const [sorting, setSorting] = React.useState<SortingState>([]);
@@ -40,6 +42,7 @@ export function ProductsTable() {
 	const [columnVisibility, setColumnVisibility] =
 		React.useState<VisibilityState>({});
 	const [rowSelection, setRowSelection] = React.useState({});
+	const { products, isLoadingGetProducts } = useGetProducts();
 
 	const table = useReactTable({
 		data: products,
@@ -116,85 +119,92 @@ export function ProductsTable() {
 				</Button>
 			</div>
 
-			<div>
-				<Table>
-					<TableHeader className="bg-slate-50">
-						{table.getHeaderGroups().map((headerGroup) => (
-							<TableRow key={headerGroup.id} className="border-none">
-								{headerGroup.headers.map((header) => {
-									return (
-										<TableHead key={header.id}>
-											{header.isPlaceholder
-												? null
-												: flexRender(
-														header.column.columnDef.header,
-														header.getContext()
-												  )}
-										</TableHead>
-									);
-								})}
-							</TableRow>
-						))}
-					</TableHeader>
+			{isLoadingGetProducts && <ProductsTableSkeleton />}
 
-					<TableBody>
-						{table.getRowModel().rows?.length ? (
-							table.getRowModel().rows.map((row) => (
-								<TableRow
-									key={row.id}
-									data-state={row.getIsSelected() && "selected"}
-									className="border-none"
-								>
-									{row.getVisibleCells().map((cell) => (
-										<TableCell key={cell.id}>
-											{flexRender(
-												cell.column.columnDef.cell,
-												cell.getContext()
-											)}
+			{!isLoadingGetProducts && (
+				<>
+					<div>
+						<Table>
+							<TableHeader className="bg-slate-50">
+								{table.getHeaderGroups().map((headerGroup) => (
+									<TableRow key={headerGroup.id} className="border-none">
+										{headerGroup.headers.map((header) => {
+											return (
+												<TableHead key={header.id}>
+													{header.isPlaceholder
+														? null
+														: flexRender(
+																header.column.columnDef.header,
+																header.getContext()
+														  )}
+												</TableHead>
+											);
+										})}
+									</TableRow>
+								))}
+							</TableHeader>
+
+							<TableBody>
+								{table.getRowModel().rows?.length ? (
+									table.getRowModel().rows.map((row) => (
+										<TableRow
+											key={row.id}
+											data-state={row.getIsSelected() && "selected"}
+											className="border-none"
+										>
+											{row.getVisibleCells().map((cell) => (
+												<TableCell key={cell.id}>
+													{flexRender(
+														cell.column.columnDef.cell,
+														cell.getContext()
+													)}
+												</TableCell>
+											))}
+										</TableRow>
+									))
+								) : (
+									<TableRow>
+										<TableCell
+											colSpan={productsTableColumns.length}
+											className="h-24 text-center"
+										>
+											Sem resultados
 										</TableCell>
-									))}
-								</TableRow>
-							))
-						) : (
-							<TableRow>
-								<TableCell
-									colSpan={productsTableColumns.length}
-									className="h-24 text-center"
-								>
-									Sem resultados
-								</TableCell>
-							</TableRow>
-						)}
-					</TableBody>
-				</Table>
-			</div>
+									</TableRow>
+								)}
+							</TableBody>
+						</Table>
+					</div>
 
-			<div className="flex items-center justify-end space-x-2 py-4">
-				<div className="flex-1 text-sm text-muted-foreground">
-					{table.getFilteredSelectedRowModel().rows.length} de{" "}
-					{table.getFilteredRowModel().rows.length} linha(s) selecionadas(s).
-				</div>
+					<div className="flex items-center justify-end space-x-2 py-4">
+						<div className="flex-1 text-sm text-muted-foreground">
+							{table.getFilteredSelectedRowModel().rows.length} de{" "}
+							{table.getFilteredRowModel().rows.length} linha(s)
+							selecionadas(s).
+						</div>
 
-				<div className="space-x-2">
-					<Button
-						variant="outline"
-						size="sm"
-						onClick={() => table.previousPage()}
-						disabled={!table.getCanPreviousPage()}
-					>
-						Anterior
-					</Button>
+						<div className="space-x-2">
+							<Button
+								variant="outline"
+								size="sm"
+								onClick={() => table.previousPage()}
+								disabled={!table.getCanPreviousPage()}
+							>
+								Anterior
+							</Button>
 
-					<Button
-						variant="outline"
-						size="sm"
-						onClick={() => table.nextPage()}
-						disabled={!table.getCanNextPage()}
-					>
-						Próximo
-					</Button>
-				</div>
-			</div>
+							<Button
+								variant="outline"
+								size="sm"
+								onClick={() => table.nextPage()}
+								disabled={!table.getCanNextPage()}
+							>
+								Próximo
+							</Button>
+						</div>
+					</div>
+				</>
+			)}
 		</div>
 	);
 }

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { useFormMutation } from "./use-form-mutation";
+import { useFormMutation } from "../use-form-mutation";
 
 const productSchema = z.object({
 	name: z.string().min(1, "Campo obrigatório"),
