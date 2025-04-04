@@ -18,7 +18,7 @@ import { Button } from "@/components/ui/button";
 import { DatePicker } from "@/components/ui/date-picker";
 import { usePriceAgreement } from "@/hooks/use-price-agreement";
 
-export function PriceRegistrationFormProduct() {
+export function PriceRegistrationRecordFormProduct() {
 	const { form } = usePriceAgreement();
 
 	return (

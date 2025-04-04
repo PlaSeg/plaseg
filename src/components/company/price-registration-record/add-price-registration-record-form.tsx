@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router";
-import { PriceRegistrationFormProduct } from "./add-price-registration-record-form/price-registration-form-product";
-import { PriceRegistrationFormInfo } from "./add-price-registration-record-form/price-registration-record-form-info";
+import { PriceRegistrationRecordFormProduct } from "./add-price-registration-record-form/price-registration-form-product";
+import { PriceRegistrationRecordFormInfo } from "./add-price-registration-record-form/price-registration-record-form-info";
 
-export function AddPriceRegistrationForm() {
+export function AddPriceRegistrationRecordForm() {
 	return (
 		<div className="flex flex-col items-center gap-4 w-full ">
 			<div className="flex items-center mb-4 w-full">
@@ -18,9 +18,9 @@ export function AddPriceRegistrationForm() {
 			</div>
 
 			<div className="flex items-center flex-col gap-6 w-full">
-				<PriceRegistrationFormInfo />
+				<PriceRegistrationRecordFormInfo />
 
-				<PriceRegistrationFormProduct />
+				<PriceRegistrationRecordFormProduct />
 			</div>
 		</div>
 	);

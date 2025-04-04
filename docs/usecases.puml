@@ -13,20 +13,9 @@ usecase (Meu Perfil) as uc_my_profile
 usecase (Dashboard \nUsuario) as uc_dashboard_user
 usecase (Edtiar Perfil) as uc_edit_my_profile
 usecase (Editar Password) as uc_edit_password
-usecase (Upload de Imagem) as uc_upload_imagem_usuario 
-usecase (Gerenciar Tarefas) as uc_manage_tasks
-usecase (Gerenciar Imagens) as uc_manage_images
-usecase (Nova Tarefa) as uc_new_task
-usecase (Buscar Tarefa) as uc_search_task
-usecase (Listar Tarefas) as uc_list_tasks
-usecase (Editar Tarefa) as uc_edit_task
-usecase (Remover Tarefa) as uc_delete_task
-usecase (Nova Imagem) as uc_new_image
-usecase (Buscar Imagem) as uc_search_image
-usecase (Listar Imagens) as uc_list_image
-usecase (Editar Imagem) as uc_edit_image
-usecase (Remover Imagem) as uc_delete_image
+usecase (Upload de Imagem) as uc_upload_imagem_usuario
 
+' Relationships
 uc_register <- Usuario
 Usuario -> uc_password_recover
 Usuario --> uc_login
@@ -37,19 +26,5 @@ uc_dashboard_user -left-> uc_my_profile
 uc_my_profile --> uc_edit_my_profile
 uc_my_profile --> uc_edit_password
 uc_edit_my_profile --> uc_upload_imagem_usuario
-uc_dashboard_user --> uc_manage_tasks
-uc_dashboard_user --> uc_manage_images
 
-uc_manage_tasks --> uc_new_task
-uc_manage_tasks --> uc_search_task 
-uc_manage_tasks --> uc_list_tasks
-uc_manage_tasks --> uc_edit_task
-uc_manage_tasks --> uc_delete_task
-
-uc_manage_images --> uc_new_image
-uc_manage_images --> uc_search_image 
-uc_manage_images --> uc_list_image
-uc_manage_images --> uc_edit_image
-uc_manage_images --> uc_delete_image
-
-@enduml
+@endum

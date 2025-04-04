@@ -1,9 +1,9 @@
 import { Route, Routes } from "react-router";
 
 import AddProduct from "@/pages/company/add-product";
-import PriceRegisterRecords from "@/pages/company/price-register-records";
+import PriceRegistrationRecords from "@/pages/company/price-registration-records";
 import Products from "@/pages/company/products";
-import AddPriceRegisterRecord from "@/pages/company/register-price-record-agreement";
+import AddPriceRegistrationRecord from "@/pages/company/add-price-registration-record";
 import News from "@/pages/company/news";
 import NewsDetails from "@/pages/company/news-details";
 
@@ -16,11 +16,11 @@ export function CompanyRoutes() {
 			<Route path="adicionar-produto" element={<AddProduct />} />
 			<Route
 				path="atas-de-registro-de-preco"
-				element={<PriceRegisterRecords />}
+				element={<PriceRegistrationRecords />}
 			/>
 			<Route
 				path="adicionar-ata-de-registro-de-preco"
-				element={<AddPriceRegisterRecord />}
+				element={<AddPriceRegistrationRecord />}
 			/>
 		</Routes>
 	);

@@ -1,5 +1,5 @@
-import { RegisterCompanyForm } from "@/components/register-company-form/form-container";
-import { FormSteps } from "@/components/register-company-form/form-steps";
+import { RegisterCompanyForm } from "@/components/company/register-company/form-container";
+import { FormSteps } from "@/components/company/register-company/form-steps";
 
 export default function RegisterCompany() {
 	return (

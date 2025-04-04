@@ -1,21 +1,14 @@
-import { z } from "zod";
 import { useFormMutation } from "./use-form-mutation";
 import { formatDocument } from "@/utils/format-document";
 import { useMutation } from "@tanstack/react-query";
 import { signUp } from "@/api/auth/sign-up";
-
-export const signUpFormSchema = z.object({
-	name: z.string().min(3, "O nome deve ter pelo menos 3 caracteres"),
-	document: z.string().min(11, "O documento deve ter pelo menos 11 caracteres"),
-	email: z.string().email("Email inválido"),
-	password: z.string().min(8, "A senha deve ter pelo menos 8 caracteres"),
-	phone: z.string().min(11, "O telefone deve ter pelo menos 10 caracteres"),
-	role: z.enum(["COMPANY", "CONSULTANT", "MUNICIPALITY"]),
-});
-
-export type SignUpFormSchema = z.infer<typeof signUpFormSchema>;
+import { useNavigate } from "react-router";
+import { toast } from "sonner";
+import { SignUpFormSchema, signUpFormSchema } from "@/@types/sign-up";
 
 export function useSignUp() {
+	const navigate = useNavigate();
+
 	const form = useFormMutation<SignUpFormSchema>({
 		schema: signUpFormSchema,
 		defaultValues: {
@@ -27,6 +20,8 @@ export function useSignUp() {
 			role: "COMPANY",
 		},
 		onSubmit(data) {
+			console.log(data);
+
 			signUpFn({
 				...data,
 				document: formatDocument(data.document),
@@ -34,10 +29,18 @@ export function useSignUp() {
 		},
 	});
 
-	const { mutateAsync: signUpFn } = useMutation({
+	const { mutateAsync: signUpFn, isPending: isLoadingSignUp } = useMutation({
 		mutationKey: ["sign-up"],
 		mutationFn: signUp,
+		onSuccess: (response) => {
+			if (response.success) {
+				navigate(`/entrar?email=${form.watch("email")}`);
+				return;
+			}
+
+			toast.error(response.errors[0]);
+		},
 	});
 
-	return { form };
+	return { form, isLoadingSignUp };
 }
