@@ -22,19 +22,25 @@ const productSchema = z.object({
 	technicalDescription: z.string().min(1, "Campo obrigatório"),
 	biddingSpecs: z.string().min(1, "Campo obrigatório"),
 
-	companyBudget: z.number({
-		message: "Campo obrigatório",
-	}),
+	companyBudget: z
+		.number({
+			message: "Campo obrigatório",
+		})
+		.min(1, "Campo obrigatório"),
 	companyBudgetValidity: z.string().min(1, "Campo obrigatório"),
 
-	competitor1Budget: z.number({
-		message: "Campo obrigatório",
-	}),
+	competitor1Budget: z
+		.number({
+			message: "Campo obrigatório",
+		})
+		.min(1, "Campo obrigatório"),
 	competitor1BudgetValidity: z.string().min(1, "Campo obrigatório"),
 
-	competitor2Budget: z.number({
-		message: "Campo obrigatório",
-	}),
+	competitor2Budget: z
+		.number({
+			message: "Campo obrigatório",
+		})
+		.min(1, "Campo obrigatório"),
 	competitor2BudgetValidity: z.string().min(1, "Campo obrigatório"),
 });
 

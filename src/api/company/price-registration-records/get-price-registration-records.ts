@@ -1,18 +1,16 @@
 import { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http";
 import { AxiosError } from "axios";
 import { api } from "@/services/axios";
-import { ProductApi } from "@/@types/product";
+import { PriceRegistrationRecordData } from "@/@types/price-registration-record";
 
-type GetProductsResponse =
-	| HTTPSuccessResponse<ProductApi[]>
+type GetPriceRegistrationRecordsResponse =
+	| HTTPSuccessResponse<PriceRegistrationRecordData[]>
 	| HTTPErrorResponse;
 
-export async function getProducts(): Promise<GetProductsResponse> {
+export async function getPriceRegistrationRecords(): Promise<GetPriceRegistrationRecordsResponse> {
 	try {
-		// await new Promise((resolve) => setTimeout(resolve, 2000));
-
-		const response = await api.get<HTTPSuccessResponse<ProductApi[]>>(
-			"/company/products"
+		const response = await api.get<GetPriceRegistrationRecordsResponse>(
+			"/company/price_registration_records"
 		);
 
 		return response.data;

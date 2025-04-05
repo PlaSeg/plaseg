@@ -1,4 +1,4 @@
-import { Form } from "@/components/ui/form";
+import { Form, FormLabel } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { useAddProduct } from "@/hooks/products/use-add-product";
 import { Link } from "react-router";
@@ -12,6 +12,7 @@ import { brands } from "@/mocks/company/brands";
 import { FormSwitch } from "@/components/form/form-switch";
 import { LoaderCircle } from "lucide-react";
 import { FormMoneyInput } from "@/components/form/form-money-input";
+import { Input } from "@/components/ui/input";
 
 export function AddProductForm() {
 	const { form, isLoadingCreateProduct } = useAddProduct();
@@ -130,47 +131,64 @@ export function AddProductForm() {
 							/>
 						</div>
 
-						<FormMoneyInput
-							form={form}
-							entity="companyBudget"
-							label="Orçamento da Empresa"
-							placeholder="Ex: R$ 10.000,00"
-						/>
+						<div className="col-span-2 grid gap-6 grid-cols-3">
+							<FormMoneyInput
+								form={form}
+								entity="companyBudget"
+								label="Orçamento da Empresa"
+								placeholder="Ex: R$ 10.000,00"
+							/>
 
-						<FormDatePicker
-							form={form}
-							label="Validade do Orçamento"
-							placeholder="Validade do Orçamento"
-							entity="companyBudgetValidity"
-						/>
+							<FormDatePicker
+								form={form}
+								label="Validade do Orçamento"
+								placeholder="Validade do Orçamento"
+								entity="companyBudgetValidity"
+							/>
 
-						<FormMoneyInput
-							form={form}
-							entity="competitor1Budget"
-							label="Orçamento do 1º Concorrente"
-							placeholder="Ex: R$ 10.000,00"
-						/>
+							<div className="flex flex-col gap-2 m-0">
+								<FormLabel>Documento de Orçamento</FormLabel>
+								<Input type="file" disabled />
+							</div>
 
-						<FormDatePicker
-							form={form}
-							label="Validade do Orçamento do 1º Concorrente"
-							placeholder="Validade do Orçamento do 1º Concorrente"
-							entity="competitor1BudgetValidity"
-						/>
+							<FormMoneyInput
+								form={form}
+								entity="competitor1Budget"
+								label="Orçamento do 1º Concorrente"
+								placeholder="Ex: R$ 10.000,00"
+							/>
 
-						<FormMoneyInput
-							form={form}
-							entity="competitor2Budget"
-							label="Orçamento do 2º Concorrente"
-							placeholder="Ex: R$ 10.000,00"
-						/>
+							<FormDatePicker
+								form={form}
+								label="Validade do 1º Orçamento"
+								placeholder="Validade do Orçamento"
+								entity="competitor1BudgetValidity"
+							/>
 
-						<FormDatePicker
-							form={form}
-							label="Validade do Orçamento do 2º Concorrente"
-							placeholder="Validade do Orçamento do 2º Concorrente"
-							entity="competitor2BudgetValidity"
-						/>
+							<div className="flex flex-col gap-2 m-0">
+								<FormLabel>Documento de Orçamento</FormLabel>
+								<Input type="file" disabled />
+							</div>
+
+							<FormMoneyInput
+								form={form}
+								entity="competitor2Budget"
+								label="Orçamento do 2º Concorrente"
+								placeholder="Ex: R$ 10.000,00"
+							/>
+
+							<FormDatePicker
+								form={form}
+								label="Validade do 2º Orçamento"
+								placeholder="Validade do Orçamento"
+								entity="competitor2BudgetValidity"
+							/>
+
+							<div className="flex flex-col gap-2 m-0">
+								<FormLabel>Documento de Orçamento</FormLabel>
+								<Input type="file" disabled />
+							</div>
+						</div>
 					</div>
 
 					<AttachmentsUploader />

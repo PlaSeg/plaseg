@@ -26,11 +26,12 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/components/ui/table";
-import { priceRegistrationRecords } from "@/mocks/register-price-records";
 import { priceRegistrationRecordsTableColumns } from "./price-registration-records-table-columns";
 import { translatePriceRegistrationRecordsTableKeys } from "@/utils/translate-price-register-records-table-keys";
 import { SearchInput } from "@/components/ui/search-input";
 import { Link } from "react-router";
+import { useGetPriceRegistrationRecords } from "@/hooks/price-registration-records/use-get-records";
+import { ProductsTableSkeleton } from "../products/products-table-skeleton";
 
 export function PriceRegistrationRecordsTable() {
 	const [sorting, setSorting] = React.useState<SortingState>([]);
@@ -40,9 +41,10 @@ export function PriceRegistrationRecordsTable() {
 	const [columnVisibility, setColumnVisibility] =
 		React.useState<VisibilityState>({});
 	const [rowSelection, setRowSelection] = React.useState({});
+	const { records, isLoadingGetRecords } = useGetPriceRegistrationRecords();
 
 	const table = useReactTable({
-		data: priceRegistrationRecords,
+		data: records,
 		columns: priceRegistrationRecordsTableColumns,
 		onSortingChange: setSorting,
 		onColumnFiltersChange: setColumnFilters,
@@ -117,88 +119,94 @@ export function PriceRegistrationRecordsTable() {
 				</Button>
 			</div>
 
-			<div className="rounded-mm">
-				<Table>
-					<TableHeader>
-						{table.getHeaderGroups().map((headerGroup) => (
-							<TableRow
-								key={headerGroup.id}
-								className="bg-slate-50 border-none"
-							>
-								{headerGroup.headers.map((header) => {
-									return (
-										<TableHead key={header.id}>
-											{header.isPlaceholder
-												? null
-												: flexRender(
-														header.column.columnDef.header,
-														header.getContext()
-												  )}
-										</TableHead>
-									);
-								})}
-							</TableRow>
-						))}
-					</TableHeader>
+			{isLoadingGetRecords && <ProductsTableSkeleton />}
 
-					<TableBody>
-						{table.getRowModel().rows?.length ? (
-							table.getRowModel().rows.map((row) => (
-								<TableRow
-									key={row.id}
-									data-state={row.getIsSelected() && "selected"}
-									className="border-none"
-								>
-									{row.getVisibleCells().map((cell) => (
-										<TableCell key={cell.id}>
-											{flexRender(
-												cell.column.columnDef.cell,
-												cell.getContext()
-											)}
+			{!isLoadingGetRecords && (
+				<>
+					<div className="rounded-mm">
+						<Table>
+							<TableHeader>
+								{table.getHeaderGroups().map((headerGroup) => (
+									<TableRow
+										key={headerGroup.id}
+										className="bg-slate-50 border-none"
+									>
+										{headerGroup.headers.map((header) => {
+											return (
+												<TableHead key={header.id}>
+													{header.isPlaceholder
+														? null
+														: flexRender(
+																header.column.columnDef.header,
+																header.getContext()
+														  )}
+												</TableHead>
+											);
+										})}
+									</TableRow>
+								))}
+							</TableHeader>
+
+							<TableBody>
+								{table.getRowModel().rows?.length ? (
+									table.getRowModel().rows.map((row) => (
+										<TableRow
+											key={row.id}
+											data-state={row.getIsSelected() && "selected"}
+											className="border-none"
+										>
+											{row.getVisibleCells().map((cell) => (
+												<TableCell key={cell.id}>
+													{flexRender(
+														cell.column.columnDef.cell,
+														cell.getContext()
+													)}
+												</TableCell>
+											))}
+										</TableRow>
+									))
+								) : (
+									<TableRow>
+										<TableCell
+											colSpan={priceRegistrationRecordsTableColumns.length}
+											className="h-24 text-center"
+										>
+											Sem resultados
 										</TableCell>
-									))}
-								</TableRow>
-							))
-						) : (
-							<TableRow>
-								<TableCell
-									colSpan={priceRegistrationRecordsTableColumns.length}
-									className="h-24 text-center"
-								>
-									Sem resultados
-								</TableCell>
-							</TableRow>
-						)}
-					</TableBody>
-				</Table>
-			</div>
+									</TableRow>
+								)}
+							</TableBody>
+						</Table>
+					</div>
 
-			<div className="flex items-center justify-end space-x-2 py-4">
-				<div className="flex-1 text-sm text-muted-foreground">
-					{table.getFilteredSelectedRowModel().rows.length} de{" "}
-					{table.getFilteredRowModel().rows.length} linha(s) selecionada(s).
-				</div>
+					<div className="flex items-center justify-end space-x-2 py-4">
+						<div className="flex-1 text-sm text-muted-foreground">
+							{table.getFilteredSelectedRowModel().rows.length} de{" "}
+							{table.getFilteredRowModel().rows.length} linha(s) selecionada(s).
+						</div>
 
-				<div className="space-x-2">
-					<Button
-						variant="outline"
-						size="sm"
-						onClick={() => table.previousPage()}
-						disabled={!table.getCanPreviousPage()}
-					>
-						Anterior
-					</Button>
+						<div className="space-x-2">
+							<Button
+								variant="outline"
+								size="sm"
+								onClick={() => table.previousPage()}
+								disabled={!table.getCanPreviousPage()}
+							>
+								Anterior
+							</Button>
 
-					<Button
-						variant="outline"
-						size="sm"
-						onClick={() => table.nextPage()}
-						disabled={!table.getCanNextPage()}
-					>
-						Próximo
-					</Button>
-				</div>
-			</div>
+							<Button
+								variant="outline"
+								size="sm"
+								onClick={() => table.nextPage()}
+								disabled={!table.getCanNextPage()}
+							>
+								Próximo
+							</Button>
+						</div>
+					</div>
+				</>
+			)}
 		</div>
 	);
 }
