@@ -5,6 +5,8 @@ import { FormCombobox } from "@/components/form/form-combobox";
 import { roleOptions } from "@/mocks/sign-up/role-options,";
 import { FormInput } from "../form/form-input";
 import { LoaderCircle } from "lucide-react";
+import { FormDocumentInput } from "../form/form-document";
+import { FormPhoneInput } from "../form/form-phone-input";
 
 export function SignUpForm() {
 	const { form, isLoadingSignUp } = useSignUp();
@@ -12,9 +14,8 @@ export function SignUpForm() {
 	return (
 		<Form {...form}>
 			<form onSubmit={form.handleSubmitForm} className="space-y-4">
-				<FormInput
+				<FormDocumentInput
 					form={form}
-					type="text"
 					entity="document"
 					label="CPF/CNPJ"
 					placeholder="Digite seu CPF ou CNPJ"
@@ -36,9 +37,8 @@ export function SignUpForm() {
 					placeholder="Digite seu email"
 				/>
 
-				<FormInput
+				<FormPhoneInput
 					form={form}
-					type="text"
 					entity="phone"
 					label="Celular"
 					placeholder="Digite seu telefone"
