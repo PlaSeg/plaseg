@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { PriceRegistrationRecord } from "@/mocks/register-price-records";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -11,8 +10,9 @@ import {
 	DropdownMenuItem,
 	DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
+import { PriceRegistrationRecordData } from "@/@types/price-registration-record";
 
-export const priceRegistrationRecordsTableColumns: ColumnDef<PriceRegistrationRecord>[] =
+export const priceRegistrationRecordsTableColumns: ColumnDef<PriceRegistrationRecordData>[] =
 	[
 		{
 			id: "select",
@@ -73,14 +73,14 @@ export const priceRegistrationRecordsTableColumns: ColumnDef<PriceRegistrationRe
 			),
 		},
 		{
-			accessorKey: "organ",
+			accessorKey: "responsible_body",
 			header: "Órgão",
 			cell: ({ row }) => (
-				<div className="capitalize">{row.getValue("organ")}</div>
+				<div className="capitalize">{row.getValue("responsible_body")}</div>
 			),
 		},
 		{
-			accessorKey: "signingDate",
+			accessorKey: "date",
 			header: ({ column }) => {
 				return (
 					<Button
@@ -94,7 +94,7 @@ export const priceRegistrationRecordsTableColumns: ColumnDef<PriceRegistrationRe
 				);
 			},
 			cell: ({ row }) => (
-				<div className="capitalize">{row.getValue("signingDate")}</div>
+				<div className="capitalize">{row.getValue("date")}</div>
 			),
 			sortingFn: (rowA, rowB, columnId) => {
 				const dateA = rowA.getValue<string>(columnId);
@@ -112,7 +112,7 @@ export const priceRegistrationRecordsTableColumns: ColumnDef<PriceRegistrationRe
 			},
 		},
 		{
-			accessorKey: "validity",
+			accessorKey: "validity_in_months",
 			header: ({ column }) => {
 				return (
 					<Button
@@ -126,7 +126,7 @@ export const priceRegistrationRecordsTableColumns: ColumnDef<PriceRegistrationRe
 				);
 			},
 			cell: ({ row }) => (
-				<div className="capitalize">{row.getValue("validity")}</div>
+				<div className="capitalize">{row.getValue("validity_in_months")}</div>
 			),
 		},
 		{

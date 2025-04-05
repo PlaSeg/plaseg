@@ -1,111 +1,113 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import {Form} from "@/components/ui/form";
+import { Form } from "@/components/ui/form";
 import { Link } from "react-router";
 import { FormInput } from "@/components/form/form-input";
 import { FormDatePicker } from "@/components/form/form-date-picker";
-import { usePriceAgreement } from "@/hooks/use-price-agreement";
-import { Card, CardContent } from '@/components/ui/card';
-import { PlusCircle } from 'lucide-react';
-import { ItensTable } from '@/components/company/price-registration-record/add-price-registration-record-form/itens-table';
-import { AddItemDialog } from '@/components/company/price-registration-record/add-price-registration-record-form/add-item-dialog';
-
+import { Card, CardContent } from "@/components/ui/card";
+import { PlusCircle } from "lucide-react";
+import { ItensTable } from "@/components/company/price-registration-record/add-price-registration-record-form/itens-table";
+import { AddItemDialog } from "@/components/company/price-registration-record/add-price-registration-record-form/add-item-dialog";
+import { useCreatePriceRegistrationRecord } from "@/hooks/price-registration-records/use-create-record";
+import { useRecordProductsStore } from "@/store/record";
 
 export function AddPriceRegistrationRecordForm() {
-	const { form } = usePriceAgreement();
-	const [items] = useState([]);
+	const { form } = useCreatePriceRegistrationRecord();
 	const [open, setOpen] = useState(false);
+	const recordProducts = useRecordProductsStore(
+		(state) => state.recordProducts
+	);
 
-	
 	return (
-		<Form {...form}>
-			<form
-				onSubmit={form.handleSubmitForm}
-				className="flex flex-col gap-6 rounded-lg"
-			>
-				<div className="flex flex-col items-center gap-4 w-full ">
-					<div className="flex items-center mb-4 w-full">
-						<h2 className="text-xl font-semibold">Nova Ata de registro de preço</h2>
-					</div>
+		<div className="flex flex-col gap-6 w-full">
+			<Form {...form}>
+				<form
+					onSubmit={form.handleSubmitForm}
+					className="flex flex-col gap-6 rounded-lg"
+				>
+					<div className="flex items-center justify-between w-full">
+						<h2 className="text-xl font-semibold">
+							Nova Ata de registro de preço
+						</h2>
 
-					<div className="grid grid-cols-2 gap-x-6 gap-y-4 p-6 rounded-lg border w-full">
-						<FormInput
-							form={form}
-							entity="number"
-							label="Número da ata"
-							placeholder="Digite o número da ata"
-							type="number"
-						/>
-
-						<FormInput
-							form={form}
-							entity="year"
-							label="Ano da ata"
-							placeholder="Digite o ano da ata"
-							type="number"
-						/>
-
-						<FormInput
-							form={form}
-							entity="validityInMonths"
-							label="Validade"
-							placeholder="ex: 12"
-							type="number"
-						/>
-
-						<FormInput
-							form={form}
-							entity="responsibleBody"
-							label="Órgão responsável"
-							placeholder="Digite o órgão responsável"
-							type="text"
-						/>
-
-						<FormDatePicker
-							form={form}
-							label="Data de Assinatura"
-							placeholder="dd/mm/aaaa"
-							entity="date"
-						/>
-	
-					</div>
-
-					<div className='w-full'>
-						<div className="mb-4 flex flex-row justify-between items-center">
-							<h2 className="text-2xl font-bold">Itens</h2>
-							<Button onClick={() => setOpen(true)} variant="default">
-							<PlusCircle className="mr-2 h-4 w-4" /> Adicionar Item
-							</Button>
-						</div>
-						
-						<Card>
-							<CardContent className="pt-6">
-							<ItensTable items={items} />
-							</CardContent>
-						</Card>
-						
-						<AddItemDialog 
-							open={open} 
-							onOpenChange={setOpen} 
-
-						/>
-
-						<div className="flex justify-end gap-2 pr-0 pt-6 ">
-							<Button variant="outline" asChild>
+						<div className="flex gap-4 pr-0">
+							<Button
+								type="button"
+								variant="outline"
+								className="w-[100px]"
+								asChild
+							>
 								<Link to="/empresa/atas-de-registro-de-preco">Cancelar</Link>
 							</Button>
-							<Button type="submit">Salvar</Button>
-						</div>
 
+							<Button className="w-[100px]" type="submit">
+								Salvar
+							</Button>
+						</div>
 					</div>
 
+					<div className="flex flex-col items-center gap-4 w-full ">
+						<div className="grid grid-cols-2 gap-x-6 gap-y-4 p-6 rounded-lg border w-full">
+							<FormInput
+								form={form}
+								entity="number"
+								label="Número da ata"
+								placeholder="Digite o número da ata"
+								type="number"
+							/>
 
-					
+							<FormInput
+								form={form}
+								entity="year"
+								label="Ano da ata"
+								placeholder="Digite o ano da ata"
+								type="number"
+							/>
+
+							<FormInput
+								form={form}
+								entity="validity_in_months"
+								label="Validade em Meses"
+								placeholder="ex: 12"
+								type="number"
+							/>
+
+							<FormInput
+								form={form}
+								entity="responsible_body"
+								label="Órgão responsável"
+								placeholder="Digite o órgão responsável"
+								type="text"
+							/>
+
+							<FormDatePicker
+								form={form}
+								entity="date"
+								label="Data de Assinatura"
+								placeholder="dd/mm/aaaa"
+							/>
+						</div>
+					</div>
+				</form>
+			</Form>
+
+			<div className="w-full">
+				<div className="mb-4 flex flex-row justify-between items-center">
+					<h2 className="text-2xl font-bold">Itens</h2>
+
+					<Button type="button" onClick={() => setOpen(true)} variant="default">
+						<PlusCircle className="mr-2 h-4 w-4" /> Adicionar Item
+					</Button>
 				</div>
 
-			</form>
-			
-		</Form>
+				<Card>
+					<CardContent className="pt-6">
+						<ItensTable items={recordProducts} />
+					</CardContent>
+				</Card>
 
+				<AddItemDialog open={open} onOpenChange={setOpen} />
+			</div>
+		</div>
 	);
 }
