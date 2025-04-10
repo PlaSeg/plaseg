@@ -16,6 +16,8 @@ import CityLayout from "@/layouts/city-layout";
 import { CityRoutes } from "./city-routes";
 import { PublicRoutes } from "./public-routes";
 import { PrivateRoutes } from "./private-routes";
+import AdminLayout from "@/layouts/admin-layout";
+import { AdminRoutes } from "./admin-routes";
 
 export function AppRoutes() {
 	return (
@@ -29,22 +31,22 @@ export function AppRoutes() {
 
 			<Route element={<PrivateRoutes />}>
 				<Route path="precos" element={<Plans />} />
-					<Route path="pagamento" element={<Payment />} />
-					<Route path="cadastrar-empresa" element={<RegisterCompany />} />
-					<Route path="cadastrar-municipio" element={<RegisterMunicipality />} />
+				<Route path="pagamento" element={<Payment />} />
+				<Route path="cadastrar-empresa" element={<RegisterCompany />} />
+				<Route path="cadastrar-municipio" element={<RegisterMunicipality />} />
 
-					<Route path="municipio" element={<CityLayout />}>
-						<Route path="*" element={<CityRoutes />} />
-					</Route>
+				<Route path="municipio" element={<CityLayout />}>
+					<Route path="*" element={<CityRoutes />} />
+				</Route>
 
-					<Route path="empresa" element={<CompanyLayout />}>
-						<Route path="*" element={<CompanyRoutes />} />
-					</Route>
-			
-			
+				<Route path="empresa" element={<CompanyLayout />}>
+					<Route path="*" element={<CompanyRoutes />} />
+				</Route>
+
+				<Route path="admin" element={<AdminLayout />}>
+					<Route path="*" element={<AdminRoutes />} />
+				</Route>
 			</Route>
-				
-			
 		</Routes>
 	);
 }
