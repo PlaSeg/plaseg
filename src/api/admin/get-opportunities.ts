@@ -9,10 +9,10 @@ type GetOpportunitiesResponse =
 
 export async function getOpportunities(): Promise<GetOpportunitiesResponse> {
 	try {
-		// await new Promise((resolve) => setTimeout(resolve, 2000));
+		await new Promise((resolve) => setTimeout(resolve, 2000));
 
 		const response = await api.get<HTTPSuccessResponse<Opportunity[]>>(
-			"/admin/opportunities"
+			"/opportunities"
 		);
 
 		return response.data;

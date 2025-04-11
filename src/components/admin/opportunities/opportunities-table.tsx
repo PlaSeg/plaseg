@@ -32,6 +32,9 @@ import { SearchInput } from "@/components/ui/search-input";
 import { opportunitiesMock } from "@/mocks/admin/opportunities";
 import { translateOpportunitiesTableKeys } from "@/utils/translate-opportunities-table-keys";
 import { Link } from "react-router";
+import { useGetOpportunities } from "@/hooks/admin/use-get-opportunities";
+import { OpportunitiesTableBodySkeleton } from "./opportunities-table-body-skeleton";
+import { OpportunitiesTableHeader } from "./opportunities-table-header";
 
 export function OpportunitiesTable() {
 	const [sorting, setSorting] = React.useState<SortingState>([
@@ -46,6 +49,7 @@ export function OpportunitiesTable() {
 	const [columnVisibility, setColumnVisibility] =
 		React.useState<VisibilityState>({});
 	const [rowSelection, setRowSelection] = React.useState({});
+	const { opportunities, isLoadingGetOpportunities } = useGetOpportunities();
 
 	const data = opportunitiesMock;
 
@@ -132,27 +136,11 @@ export function OpportunitiesTable() {
 
 			<div>
 				<Table className="overflow-x-scroll">
-					<TableHeader className="bg-slate-50">
-						{table.getHeaderGroups().map((headerGroup) => (
-							<TableRow key={headerGroup.id} className="border-none">
-								{headerGroup.headers.map((header) => {
-									return (
-										<TableHead key={header.id}>
-											{header.isPlaceholder
-												? null
-												: flexRender(
-														header.column.columnDef.header,
-														header.getContext()
-												  )}
-										</TableHead>
-									);
-								})}
-							</TableRow>
-						))}
-					</TableHeader>
+					<OpportunitiesTableHeader table={table} />
 
 					<TableBody>
-						{data.length > 0 &&
+						{!isLoadingGetOpportunities &&
+							data.length > 0 &&
 							table.getRowModel().rows?.length > 0 &&
 							table.getRowModel().rows.map((row) => (
 								<TableRow
@@ -171,7 +159,7 @@ export function OpportunitiesTable() {
 								</TableRow>
 							))}
 
-						{(!data ||
+						{((!isLoadingGetOpportunities && !data) ||
 							data.length === 0 ||
 							table.getRowModel().rows?.length === 0) && (
 							<TableRow>
@@ -182,6 +170,10 @@ export function OpportunitiesTable() {
 									Sem resultados
 								</TableCell>
 							</TableRow>
+						)}
+
+						{isLoadingGetOpportunities && (
+							<OpportunitiesTableBodySkeleton table={table} />
 						)}
 					</TableBody>
 				</Table>
