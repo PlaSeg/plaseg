@@ -18,17 +18,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { translateOpportunitiesTableKeys } from "@/utils/translate-opportunities-table-keys";
 import { Switch } from "@/components/ui/switch";
-
-interface OpportunityColumn {
-	id: string;
-	title: string;
-	category: string;
-	startDate: string;
-	endDate: string;
-	minFundingAmount: number;
-	maxFundingAmount: number;
-	isActive: boolean;
-}
+import { OpportunityColumn } from "@/mocks/admin/opportunities";
 
 export const opportunitiesTableColumns: ColumnDef<OpportunityColumn>[] = [
 	{

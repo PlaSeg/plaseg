@@ -1,4 +1,4 @@
-interface OpportunityColumn {
+export interface OpportunityColumn {
 	id: string;
 	title: string;
 	category: string;
