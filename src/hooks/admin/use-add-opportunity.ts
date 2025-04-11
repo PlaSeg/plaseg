@@ -1,0 +1,49 @@
+import { useFormMutation } from "../use-form-mutation";
+import { z } from "zod";
+
+const addOpportunitySchema = z.object({
+	title: z.string().min(1, "O Título é obrigatório"),
+	category: z.string().min(1, "A Categoria é obrigatória"),
+	responsibleAgency: z.string().min(1, "A Agência responsável é obrigatória"),
+	description: z.string().min(1, "A Descrição é obrigatória"),
+	startDate: z.string().min(1, "A Data de início é obrigatória"),
+	endDate: z.string().min(1, "A Data de término é obrigatória"),
+	executionPeriod: z.number().min(1, "Período de execução é obrigatório"),
+	minFundingAmount: z.number().min(1, "Valor mínimo não pode ser negativo"),
+	maxFundingAmount: z.number().min(1, "Valor máximo não pode ser negativo"),
+	documentation: z
+		.array(
+			z.object({
+				title: z.string().min(1, "O título do documento é obrigatório"),
+				description: z
+					.string()
+					.min(1, "A descrição do documento é obrigatória"),
+			})
+		)
+		.default([]),
+});
+
+export function useAddOpportunity() {
+	const form = useFormMutation({
+		schema: addOpportunitySchema,
+		defaultValues: {
+			title: "",
+			category: "",
+			responsibleAgency: "",
+			description: "",
+			executionPeriod: 0,
+			minFundingAmount: 0,
+			maxFundingAmount: 0,
+			startDate: "",
+			endDate: "",
+			documentation: [],
+		},
+		onSubmit: (data) => {
+			console.log(data);
+		},
+	});
+
+	return {
+		form,
+	};
+}

@@ -1,17 +1,24 @@
 import { Route, Routes } from "react-router";
 import Dashboard from "@/pages/admin/dashboard";
-import Opportunities from "@/pages/admin/opportunities";
+import Opportunities from "@/pages/admin/opportunites/opportunities";
 import Consultants from "@/pages/admin/consultants";
 import Products from "@/pages/admin/products";
 import Types from "@/pages/admin/types";
 import Contracts from "@/pages/admin/contracts";
 import Users from "@/pages/admin/users";
+import AddOpportunity from "@/pages/admin/opportunites/add-opportunity";
 
 export function AdminRoutes() {
 	return (
 		<Routes>
 			<Route path="dashboard" element={<Dashboard />} />
+
 			<Route path="oportunidades" element={<Opportunities />} />
+			<Route
+				path="oportunidades/adicionar-oportunidade"
+				element={<AddOpportunity />}
+			/>
+
 			<Route path="consultores" element={<Consultants />} />
 			<Route path="produtos" element={<Products />} />
 			<Route path="tipos" element={<Types />} />
