@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import type { Opportunity } from "@/mocks/opportunities";
+import type { Opportunity } from "@/mocks/opportunity/opportunities";
 import { Link } from "react-router";
 
 interface OpportunityProps {

@@ -1,19 +1,26 @@
-import { Skeleton } from "@/components/ui/skeleton";
-import {
-	TableCell,
-	TableHead,
-	TableHeader,
-	TableRow,
-} from "@/components/ui/table";
-import { OpportunityColumn } from "@/mocks/admin/opportunities";
+import { Opportunity } from "@/@types/opportunity";
+import { TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { flexRender, Table } from "@tanstack/react-table";
 
 interface OpportunitiesTableHeaderProps {
-	table: Table<OpportunityColumn>;
+	table: Table<Opportunity>;
+	widths?: string[];
 }
 
 export function OpportunitiesTableHeader({
 	table,
+	widths = [
+		"w-[50px]",
+		"w-[300px]",
+		"w-[237px]",
+		"w-[120px]",
+		"w-[120px]",
+		"w-[120px]",
+		"w-[120px]",
+		"w-[10px]",
+		"w-[10px]",
+		"w-full	",
+	],
 }: OpportunitiesTableHeaderProps) {
 	return (
 		<TableHeader className="bg-slate-50">
@@ -23,27 +30,7 @@ export function OpportunitiesTableHeader({
 						return (
 							<TableHead
 								key={header.id}
-								className={`h-5 ${
-									header.index === 0
-										? "w-[50px]"
-										: header.index === 1
-										? "w-[300px]"
-										: header.index === 2
-										? "w-[168px]"
-										: header.index === 3
-										? "w-[120px]"
-										: header.index === 4
-										? "w-[120px]"
-										: header.index === 5
-										? "w-[120px]"
-										: header.index === 6
-										? "w-[120px]"
-										: header.index === 7
-										? "w-[10px]"
-										: header.index === 8
-										? "w-[10px]"
-										: "w-full"
-								}`}
+								className={`h-5 ${widths[header.index] || "w-full"}`}
 							>
 								{header.isPlaceholder
 									? null

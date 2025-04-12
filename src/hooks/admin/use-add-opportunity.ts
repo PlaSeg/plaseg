@@ -1,29 +1,14 @@
+import { addOpportunitySchema } from "@/@schemas/opportunity";
 import { useFormMutation } from "../use-form-mutation";
-import { z } from "zod";
-
-const addOpportunitySchema = z.object({
-	title: z.string().min(1, "O Título é obrigatório"),
-	category: z.string().min(1, "A Categoria é obrigatória"),
-	responsibleAgency: z.string().min(1, "A Agência responsável é obrigatória"),
-	description: z.string().min(1, "A Descrição é obrigatória"),
-	startDate: z.string().min(1, "A Data de início é obrigatória"),
-	endDate: z.string().min(1, "A Data de término é obrigatória"),
-	executionPeriod: z.number().min(1, "Período de execução é obrigatório"),
-	minFundingAmount: z.number().min(1, "Valor mínimo não pode ser negativo"),
-	maxFundingAmount: z.number().min(1, "Valor máximo não pode ser negativo"),
-	documentation: z
-		.array(
-			z.object({
-				title: z.string().min(1, "O título do documento é obrigatório"),
-				description: z
-					.string()
-					.min(1, "A descrição do documento é obrigatória"),
-			})
-		)
-		.default([]),
-});
+import { addOpportunity } from "@/api/admin/add-opportunity";
+import { useMutation } from "@tanstack/react-query";
+import { queryClient } from "@/services/react-query";
+import { toast } from "sonner";
+import { useNavigate } from "react-router";
 
 export function useAddOpportunity() {
+	const navigate = useNavigate();
+
 	const form = useFormMutation({
 		schema: addOpportunitySchema,
 		defaultValues: {
@@ -39,11 +24,39 @@ export function useAddOpportunity() {
 			documentation: [],
 		},
 		onSubmit: (data) => {
-			console.log(data);
+			addOpportunityFn({
+				...data,
+				documentation: (data.documentation || []).map((doc) => ({
+					...doc,
+					code: doc.code ?? Math.floor(Math.random() * 1000),
+				})),
+				startDate: data.startDate.replace(".000Z", ""),
+				endDate: data.endDate.replace(".000Z", ""),
+			});
 		},
 	});
 
+	const { mutate: addOpportunityFn, isPending: isAddingOpportunity } =
+		useMutation({
+			mutationKey: ["add-opportunity"],
+			mutationFn: addOpportunity,
+			onSuccess: (response) => {
+				if (response.success) {
+					queryClient.invalidateQueries({
+						queryKey: ["opportunities"],
+					});
+					navigate("/admin/oportunidades");
+					return;
+				}
+
+				response.errors.forEach((error) => {
+					toast.error(error);
+				});
+			},
+		});
+
 	return {
 		form,
+		isAddingOpportunity,
 	};
 }

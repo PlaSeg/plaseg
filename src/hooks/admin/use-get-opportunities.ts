@@ -8,7 +8,7 @@ export function useGetOpportunities() {
 	});
 
 	return {
-		opportunities: result?.data ?? [],
+		opportunities: result?.success ? result.data : [],
 		isLoadingGetOpportunities,
 	};
 }

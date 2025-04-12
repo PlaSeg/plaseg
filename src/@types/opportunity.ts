@@ -1,11 +1,11 @@
-export interface Documentation {
+export type Documentation = {
 	id: string;
 	code: number;
 	title: string;
 	description: string;
-}
+};
 
-export interface Opportunity {
+export type Opportunity = {
 	id: string;
 	title: string;
 	category: string;
@@ -20,4 +20,4 @@ export interface Opportunity {
 	isActive: boolean;
 	createdAt: Date;
 	updatedAt: Date;
-}
+};
