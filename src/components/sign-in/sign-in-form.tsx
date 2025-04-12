@@ -3,7 +3,6 @@ import { FormInput } from "../form/form-input";
 import { Form } from "../ui/form";
 import { Button } from "../ui/button";
 import { LoaderCircle } from "lucide-react";
-// import { FormDocumentInput } from "../form/form-document";
 
 export function SignInForm() {
 	const { form, isLoadingSignIn } = useSignIn();
@@ -11,13 +10,6 @@ export function SignInForm() {
 	return (
 		<Form {...form}>
 			<form onSubmit={form.handleSubmitForm} className="space-y-6">
-				{/* <FormDocumentInput
-					form={form}
-					entity="document"
-					label="CPF/CNPJ"
-					placeholder="Digite seu CPF ou CNPJ"
-				/> */}
-
 				<FormInput
 					form={form}
 					type="email"

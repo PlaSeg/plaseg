@@ -1,4 +1,4 @@
-import { Opportunity } from "@/mocks/opportunities";
+import { Opportunity } from "@/mocks/opportunity/opportunities";
 import { Banknote, Calendar, Tag } from "lucide-react";
 
 interface OpportunityDetailsOverviewProps {

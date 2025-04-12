@@ -35,6 +35,8 @@ import { Link } from "react-router";
 import { useGetOpportunities } from "@/hooks/admin/use-get-opportunities";
 import { OpportunitiesTableBodySkeleton } from "./opportunities-table-body-skeleton";
 import { OpportunitiesTableHeader } from "./opportunities-table-header";
+import { TableSelect } from "@/components/table/table-select";
+import { opportunitiesCategories } from "@/mocks/opportunity/opportunities-categories";
 
 export function OpportunitiesTable() {
 	const [sorting, setSorting] = React.useState<SortingState>([
@@ -54,7 +56,7 @@ export function OpportunitiesTable() {
 	const data = opportunitiesMock;
 
 	const table = useReactTable({
-		data: data,
+		data: opportunities,
 		columns: opportunitiesTableColumns,
 		onSortingChange: setSorting,
 		onColumnFiltersChange: setColumnFilters,
@@ -81,6 +83,15 @@ export function OpportunitiesTable() {
 					value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
 					onChange={(event) =>
 						table.getColumn("title")?.setFilterValue(event.target.value)
+					}
+				/>
+
+				<TableSelect
+					options={opportunitiesCategories}
+					className="w-full xl:w-[200px]"
+					placeholder="Categoria"
+					onChange={(value) =>
+						table.getColumn("category")?.setFilterValue(value)
 					}
 				/>
 
@@ -159,22 +170,21 @@ export function OpportunitiesTable() {
 								</TableRow>
 							))}
 
-						{((!isLoadingGetOpportunities && !data) ||
-							data.length === 0 ||
-							table.getRowModel().rows?.length === 0) && (
-							<TableRow>
-								<TableCell
-									colSpan={opportunitiesTableColumns.length}
-									className="h-24 text-center"
-								>
-									Sem resultados
-								</TableCell>
-							</TableRow>
-						)}
+						{isLoadingGetOpportunities ||
+							((!data ||
+								data.length === 0 ||
+								table.getRowModel().rows?.length === 0) && (
+								<TableRow>
+									<TableCell
+										colSpan={opportunitiesTableColumns.length}
+										className="h-24 text-center"
+									>
+										Sem resultados
+									</TableCell>
+								</TableRow>
+							))}
 
-						{isLoadingGetOpportunities && (
-							<OpportunitiesTableBodySkeleton table={table} />
-						)}
+						{isLoadingGetOpportunities && <OpportunitiesTableBodySkeleton />}
 					</TableBody>
 				</Table>
 			</div>

@@ -1,5 +1,5 @@
 import { Opportunity } from "./opportunity";
-import { opportunities } from "@/mocks/opportunities";
+import { opportunities } from "@/mocks/opportunity/opportunities";
 
 export function OpportunitiesList() {
 	return (

@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router";
-import { opportunities } from "@/mocks/opportunities";
+import { opportunities } from "@/mocks/opportunity/opportunities";
 import { OpportunityDetailsOverview } from "@/components/city/opportunities/opportunity-details-overview";
 import { Button } from "@/components/ui/button";
 

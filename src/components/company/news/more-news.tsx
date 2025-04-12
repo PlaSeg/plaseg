@@ -1,6 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { news } from "@/mocks/news";
+import { news } from "@/mocks/news/news";
 
 export function MoreNews() {
 	return (

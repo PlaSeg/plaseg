@@ -18,9 +18,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { translateOpportunitiesTableKeys } from "@/utils/translate-opportunities-table-keys";
 import { Switch } from "@/components/ui/switch";
-import { OpportunityColumn } from "@/mocks/admin/opportunities";
+import { Opportunity } from "@/@types/opportunity";
+import { formatDate } from "@/utils/format-date";
+import { DeleteOpportunityDialog } from "./delete-opportunity-dialog";
+import { opportunitiesCategories } from "@/mocks/opportunity/opportunities-categories";
 
-export const opportunitiesTableColumns: ColumnDef<OpportunityColumn>[] = [
+export const opportunitiesTableColumns: ColumnDef<Opportunity>[] = [
 	{
 		id: "select",
 		header: ({ table }) => (
@@ -86,7 +89,9 @@ export const opportunitiesTableColumns: ColumnDef<OpportunityColumn>[] = [
 				className="rounded-full px-3 bg-muted border border-zinc-300 min-w-[130px]
 			text-foreground flex justify-center hover:bg-transparent"
 			>
-				{row.getValue("category")}
+				{opportunitiesCategories.find(
+					(category) => category.value === row.getValue("category")
+				)?.label}
 			</Badge>
 		),
 	},
@@ -107,7 +112,7 @@ export const opportunitiesTableColumns: ColumnDef<OpportunityColumn>[] = [
 				)}
 			</Button>
 		),
-		cell: ({ row }) => <div>{row.getValue("startDate")}</div>,
+		cell: ({ row }) => <div>{formatDate(row.getValue("startDate"))}</div>,
 		sortingFn: "datetime",
 	},
 	{
@@ -136,7 +141,7 @@ export const opportunitiesTableColumns: ColumnDef<OpportunityColumn>[] = [
 
 			return (
 				<div className={`${isExpired ? "text-red-500 font-medium" : ""}`}>
-					{endDate}
+					{formatDate(endDate)}
 				</div>
 			);
 		},
@@ -239,27 +244,26 @@ export const opportunitiesTableColumns: ColumnDef<OpportunityColumn>[] = [
 
 					<DropdownMenuContent align="end">
 						<DropdownMenuItem>
-							<div className="flex items-center">
-								<Eye className="mr-2 h-4 w-4" />
-								Visualizar
-							</div>
+							<Eye />
+							Visualizar
 						</DropdownMenuItem>
 
-						<DropdownMenuItem asChild>
-							<div className="flex items-center">
-								<SquarePen className="h-4 w-4" />
-								Editar
-							</div>
+						<DropdownMenuItem>
+							<SquarePen />
+							Editar
 						</DropdownMenuItem>
 
 						<DropdownMenuItem
 							onClick={() => navigator.clipboard.writeText(opportunity.id)}
 						>
-							<div className="flex items-center">
-								<Copy className="mr-2 h-4 w-4" />
-								Copiar ID
-							</div>
+							<Copy />
+							Copiar ID
 						</DropdownMenuItem>
+
+						<DeleteOpportunityDialog
+							opportunityId={opportunity.id}
+							opportunityName={opportunity.title}
+						/>
 					</DropdownMenuContent>
 				</DropdownMenu>
 			);

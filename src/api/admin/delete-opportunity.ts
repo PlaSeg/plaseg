@@ -1,16 +1,15 @@
 import { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http";
 import { AxiosError } from "axios";
 import { api } from "@/services/axios";
-import { Opportunity } from "@/@types/opportunity";
 
-type GetOpportunitiesResponse =
-	| HTTPSuccessResponse<Opportunity[]>
-	| HTTPErrorResponse;
+type DeleteOpportunityResponse = HTTPSuccessResponse<null> | HTTPErrorResponse;
 
-export async function getOpportunities(): Promise<GetOpportunitiesResponse> {
+export async function deleteOpportunity(
+	id: string
+): Promise<DeleteOpportunityResponse> {
 	try {
-		const response = await api.get<HTTPSuccessResponse<Opportunity[]>>(
-			"/opportunities"
+		const response = await api.delete<HTTPSuccessResponse<null>>(
+			`/admin/opportunities/${id}`
 		);
 
 		return response.data;

@@ -16,7 +16,6 @@ export const useAuthStore = create<AuthState>((set) => ({
 			secure: true,
 		});
 		set({ isAuthenticated: true });
-		window.location.href = "/empresa/produtos";
 	},
 
 	logout: () => {
