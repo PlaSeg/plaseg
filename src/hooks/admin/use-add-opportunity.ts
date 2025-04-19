@@ -24,6 +24,14 @@ export function useAddOpportunity() {
 			documentation: [],
 		},
 		onSubmit: (data) => {
+			if (!data.documentation || data.documentation.length === 0) {
+				form.setError("documentation", {
+					type: "min",
+					message: "A documentação obrigatória deve conter pelo menos um item",
+				});
+				return;
+			}
+
 			addOpportunityFn({
 				...data,
 				documentation: (data.documentation || []).map((doc) => ({

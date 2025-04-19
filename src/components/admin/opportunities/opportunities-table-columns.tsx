@@ -1,27 +1,45 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
-import {
-	ArrowDown,
-	ArrowUp,
-	Copy,
-	Eye,
-	MoreHorizontal,
-	SquarePen,
-} from "lucide-react";
+import { ArrowDown, ArrowUp, Copy, MoreHorizontal } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-	DropdownMenu,
-	DropdownMenuTrigger,
-	DropdownMenuContent,
-	DropdownMenuItem,
-} from "@/components/ui/dropdown-menu";
 import { translateOpportunitiesTableKeys } from "@/utils/translate-opportunities-table-keys";
 import { Switch } from "@/components/ui/switch";
 import { Opportunity } from "@/@types/opportunity";
 import { formatDate } from "@/utils/format-date";
 import { DeleteOpportunityDialog } from "./delete-opportunity-dialog";
 import { opportunitiesCategories } from "@/mocks/opportunity/opportunities-categories";
+import {
+	DropdownMenu,
+	DropdownMenuTrigger,
+	DropdownMenuContent,
+	DropdownMenuItem,
+} from "@/components/ui/dropdown-menu";
+import { useUpdateOpportunityStatus } from "@/hooks/admin/use-update-opportunity-status";
+
+interface StatusSwitchProps {
+	opportunityId: string;
+	isActive: boolean;
+}
+
+function StatusSwitch({ opportunityId, isActive }: StatusSwitchProps) {
+	const { updateOpportunityStatusFn, isLoadingUpdateOpportunityStatus } =
+		useUpdateOpportunityStatus();
+
+	return (
+		<Switch
+			checked={isActive}
+			onCheckedChange={() =>
+				updateOpportunityStatusFn({
+					opportunityId,
+					status: !isActive,
+				})
+			}
+			disabled={isLoadingUpdateOpportunityStatus}
+			className="data-[state=checked]:bg-green-500"
+		/>
+	);
+}
 
 export const opportunitiesTableColumns: ColumnDef<Opportunity>[] = [
 	{
@@ -89,9 +107,11 @@ export const opportunitiesTableColumns: ColumnDef<Opportunity>[] = [
 				className="rounded-full px-3 bg-muted border border-zinc-300 min-w-[130px]
 			text-foreground flex justify-center hover:bg-transparent"
 			>
-				{opportunitiesCategories.find(
-					(category) => category.value === row.getValue("category")
-				)?.label}
+				{
+					opportunitiesCategories.find(
+						(category) => category.value === row.getValue("category")
+					)?.label
+				}
 			</Badge>
 		),
 	},
@@ -217,12 +237,10 @@ export const opportunitiesTableColumns: ColumnDef<Opportunity>[] = [
 		),
 		cell: ({ row }) => {
 			const isActive = row.getValue("isActive") as boolean;
+			const opportunity = row.original;
+
 			return (
-				<Switch
-					checked={isActive}
-					onCheckedChange={() => {}}
-					className="data-[state=checked]:bg-green-500"
-				/>
+				<StatusSwitch opportunityId={opportunity.id} isActive={isActive} />
 			);
 		},
 	},
@@ -243,16 +261,6 @@ export const opportunitiesTableColumns: ColumnDef<Opportunity>[] = [
 					</DropdownMenuTrigger>
 
 					<DropdownMenuContent align="end">
-						<DropdownMenuItem>
-							<Eye />
-							Visualizar
-						</DropdownMenuItem>
-
-						<DropdownMenuItem>
-							<SquarePen />
-							Editar
-						</DropdownMenuItem>
-
 						<DropdownMenuItem
 							onClick={() => navigator.clipboard.writeText(opportunity.id)}
 						>

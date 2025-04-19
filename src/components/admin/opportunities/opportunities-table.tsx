@@ -19,14 +19,7 @@ import {
 	DropdownMenuContent,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {
-	Table,
-	TableBody,
-	TableCell,
-	TableHead,
-	TableHeader,
-	TableRow,
-} from "@/components/ui/table";
+import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { opportunitiesTableColumns } from "./opportunities-table-columns";
 import { SearchInput } from "@/components/ui/search-input";
 import { opportunitiesMock } from "@/mocks/admin/opportunities";
