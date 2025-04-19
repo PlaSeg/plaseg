@@ -10,7 +10,7 @@ export function OpportunitiesTableBodySkeleton({
 }: OpportunitiesTableSkeletonProps) {
 	return (
 		<>
-			{Array.from({ length: 10 }).map((_, i) => (
+			{Array.from({ length: 10 }).map(() => (
 				<TableRow className="border-none">
 					{Array.from({ length: 9 }).map((_, i) => (
 						<TableCell key={i} className="h-14">
