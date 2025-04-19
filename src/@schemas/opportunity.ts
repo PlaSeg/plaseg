@@ -18,10 +18,14 @@ export const addOpportunitySchema = z.object({
 				title: z.string().min(1, "O título do documento é obrigatório"),
 				description: z
 					.string()
-					.min(1, "A descrição do documento é obrigatória"),
+					.min(
+						10,
+						"A descrição do documento deve conter pelo menos 10 caracteres"
+					),
 				code: z.coerce.number().default(Math.floor(Math.random() * 1000)),
 			})
 		)
+		.min(1, "A documentação obrigatória deve conter pelo menos um item")
 		.default([]),
 });
 

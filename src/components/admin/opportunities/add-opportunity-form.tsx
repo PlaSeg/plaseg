@@ -12,11 +12,16 @@ import { useState } from "react";
 import { Dot, LoaderCircle, X } from "lucide-react";
 import { useFieldArray } from "react-hook-form";
 import { opportunitiesCategories } from "@/mocks/opportunity/opportunities-categories";
+import { FormControl, FormItem, FormMessage } from "@/components/ui/form";
 
 export function AddOpportunityForm() {
 	const { form, isAddingOpportunity } = useAddOpportunity();
 	const [docTitle, setDocTitle] = useState("");
 	const [docDescription, setDocDescription] = useState("");
+	const [docFormErrors, setDocFormErrors] = useState({
+		title: "",
+		description: "",
+	});
 
 	const { fields, append, remove } = useFieldArray({
 		control: form.control,
@@ -24,7 +29,28 @@ export function AddOpportunityForm() {
 	});
 
 	const handleAddDocument = () => {
-		if (docTitle && docDescription) {
+		setDocFormErrors({ title: "", description: "" });
+
+		let hasErrors = false;
+
+		if (!docTitle || docTitle.trim() === "") {
+			setDocFormErrors((prev) => ({
+				...prev,
+				title: "O título do documento é obrigatório",
+			}));
+			hasErrors = true;
+		}
+
+		if (!docDescription || docDescription.length < 10) {
+			setDocFormErrors((prev) => ({
+				...prev,
+				description:
+					"A descrição do documento deve conter pelo menos 10 caracteres",
+			}));
+			hasErrors = true;
+		}
+
+		if (!hasErrors) {
 			append({ title: docTitle, description: docDescription });
 			setDocTitle("");
 			setDocDescription("");
@@ -59,6 +85,7 @@ export function AddOpportunityForm() {
 							label="Título"
 							placeholder="Digite o título da oportunidade"
 						/>
+
 						<FormSelect
 							form={form}
 							entity="category"
@@ -66,6 +93,7 @@ export function AddOpportunityForm() {
 							placeholder="Selecione a categoria"
 							options={opportunitiesCategories}
 						/>
+
 						<FormInput
 							form={form}
 							entity="responsibleAgency"
@@ -78,11 +106,13 @@ export function AddOpportunityForm() {
 							entity="startDate"
 							label="Data de Início"
 						/>
+
 						<FormDatePicker
 							form={form}
 							entity="endDate"
 							label="Data de Término"
 						/>
+
 						<FormInput
 							form={form}
 							entity="executionPeriod"
@@ -103,6 +133,7 @@ export function AddOpportunityForm() {
 							label="Valor Máximo de Financiamento"
 							placeholder="Digite o valor máximo"
 						/>
+
 						<FormInput
 							form={form}
 							entity="description"
@@ -111,7 +142,10 @@ export function AddOpportunityForm() {
 						/>
 
 						<div className="col-span-3 flex flex-col gap-2">
-							<Label>Documentação Obrigatória</Label>
+							<div className="flex items-center">
+								<Label>Documentação Obrigatória</Label>
+								<span className="text-destructive ml-1">*</span>
+							</div>
 
 							{/* Lista de documentos já adicionados */}
 							{fields.length > 0 && (
@@ -146,20 +180,48 @@ export function AddOpportunityForm() {
 								</div>
 							)}
 
-							{/* Formulário para adicionar novo documento */}
-							<div className="gap-6 grid grid-cols-3">
-								<Input
-									placeholder="Nome do documento"
-									value={docTitle}
-									onChange={(e) => setDocTitle(e.target.value)}
-								/>
+							{fields.length === 0 && form.formState.errors.documentation && (
+								<p className="text-[0.8rem] font-medium text-destructive">
+									{form.formState.errors.documentation.message}
+								</p>
+							)}
 
-								<Input
-									placeholder="Descrição do documento"
-									className="col-span-2"
-									value={docDescription}
-									onChange={(e) => setDocDescription(e.target.value)}
-								/>
+							<div className="gap-6 grid grid-cols-3">
+								<FormItem className="flex flex-col space-y-1.5">
+									<FormControl>
+										<Input
+											placeholder="Nome do documento"
+											value={docTitle}
+											onChange={(e) => setDocTitle(e.target.value)}
+											className={
+												docFormErrors.title
+													? "border-destructive focus-visible:ring-destructive"
+													: ""
+											}
+										/>
+									</FormControl>
+									{docFormErrors.title && (
+										<FormMessage>{docFormErrors.title}</FormMessage>
+									)}
+								</FormItem>
+
+								<FormItem className="col-span-2 flex flex-col space-y-1.5">
+									<FormControl>
+										<Input
+											placeholder="Descrição do documento"
+											value={docDescription}
+											onChange={(e) => setDocDescription(e.target.value)}
+											className={
+												docFormErrors.description
+													? "border-destructive focus-visible:ring-destructive"
+													: ""
+											}
+										/>
+									</FormControl>
+									{docFormErrors.description && (
+										<FormMessage>{docFormErrors.description}</FormMessage>
+									)}
+								</FormItem>
 							</div>
 
 							<Button
