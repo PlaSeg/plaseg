@@ -131,7 +131,7 @@ export function OpportunitiesTable() {
 				</DropdownMenu>
 
 				<Button className="font-semibold" asChild>
-					<Link to="/admin/oportunidades/adicionar-oportunidade">
+					<Link to="/admin/adicionar-oportunidade">
 						<PlusIcon />
 						Adicionar Oportunidade
 					</Link>

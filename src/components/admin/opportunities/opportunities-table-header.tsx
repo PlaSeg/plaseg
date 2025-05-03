@@ -37,7 +37,7 @@ export function OpportunitiesTableHeader({
 									: flexRender(
 											header.column.columnDef.header,
 											header.getContext()
-									  )}
+										)}
 							</TableHead>
 						);
 					})}
