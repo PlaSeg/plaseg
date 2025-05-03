@@ -6,6 +6,8 @@ import {
 	FileText,
 	UserCog,
 	Banknote,
+	Barcode,
+	FolderKanban,
 } from "lucide-react";
 import { ReactNode } from "react";
 
@@ -26,17 +28,24 @@ export const adminMenuItems: MenuItem[] = [
 	},
 	{
 		icon: <Package size={24} className="text-blue-500" />,
-		title: "Produtos Referência",
+		title: "Produtos Base",
 		description:
-			"Cadastre, edite e gerencie o catálogo completo de produtos que vão servir de referência para as empresas.",
-		url: "/admin/produtos",
+			"Cadastre, edite e gerencie o catálogo completo de produtos que vão servir de base os produtos específicos.",
+		url: "/admin/produtos-base",
+	},
+	{
+		icon: <Barcode size={24} className="text-blue-500" />,
+		title: "Produtos Específicos",
+		description:
+			"Cadastre, edite e gerencie os produtos específicos que serão oferecidos aos municípios.",
+		url: "/admin/produtos-especificos",
 	},
 	{
 		icon: <Users size={24} className="text-blue-500" />,
-		title: "Consultores",
+		title: "Categiorias de Produto",
 		description:
-			"Administre o cadastro de consultores, suas especialidades, áreas de atuação.",
-		url: "/admin/consultores",
+			"Cadastre, edite e gerencie as categorias de produtos que serão oferecidos aos municípios.",
+		url: "/admin/categorias-de-produto",
 	},
 	{
 		icon: <Tags size={24} className="text-blue-500" />,
@@ -44,6 +53,13 @@ export const adminMenuItems: MenuItem[] = [
 		description:
 			"Configure e mantenha os tipos de produtos, serviços e categorias utilizados no sistema",
 		url: "/admin/tipos",
+	},
+	{
+		icon: <FolderKanban size={24} className="text-blue-500" />,
+		title: "Tipos de Projeto",
+		description:
+			"Defina e gerencie os tipos de projetos que podem ser cadastrados no sistema",
+		url: "/admin/tipos-de-projeto",
 	},
 	{
 		icon: <FileText size={24} className="text-blue-500" />,

@@ -1,5 +1,5 @@
 import { AddOpportunityForm } from "@/components/admin/opportunities/add-opportunity-form";
 
-export default function CreateOpportunity() {
+export default function AddOpportunity() {
 	return <AddOpportunityForm />;
 }
