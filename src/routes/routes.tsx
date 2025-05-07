@@ -20,6 +20,7 @@ import { AdminRoutes } from "./admin-routes";
 import { PrivateRoutes } from "./private-routes";
 import { PublicRoutes } from "./public-routes";
 
+
 export function AppRoutes() {
 	return (
 		<Routes>
@@ -29,9 +30,10 @@ export function AppRoutes() {
 				<Route element={<AuthLayout />}>
 					<Route path="*" element={<AuthRoutes />} />
 				</Route>
+					
 			</Route>
 
-			<Route element={<PrivateRoutes />}>
+			<Route element={<PrivateRoutes/>}>
 				<Route path="precos" element={<Plans />} />
 				<Route path="pagamento" element={<Payment />} />
 				<Route path="cadastrar-empresa" element={<RegisterCompany />} />
@@ -49,6 +51,7 @@ export function AppRoutes() {
 					<Route path="*" element={<AdminRoutes />} />
 				</Route>
 			</Route>
+		
 		</Routes>
 	);
 }
