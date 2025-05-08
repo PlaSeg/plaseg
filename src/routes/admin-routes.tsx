@@ -7,6 +7,8 @@ import Types from "@/pages/admin/types";
 import Contracts from "@/pages/admin/contracts";
 import Users from "@/pages/admin/users";
 import AddOpportunity from "@/pages/admin/opportunites/create-opportunity";
+import Categories from "@/pages/admin/categories/categories";
+import AddCategory from "@/pages/admin/categories/create-category";
 
 export function AdminRoutes() {
 	return (
@@ -19,6 +21,8 @@ export function AdminRoutes() {
 			<Route path="tipos" element={<Types />} />
 			<Route path="contratos" element={<Contracts />} />
 			<Route path="usuarios" element={<Users />} />
+			<Route path="categorias" element={<Categories/>}/>
+			<Route path="adicionar-categoria" element={<AddCategory/>}/>
 		</Routes>
 	);
 }

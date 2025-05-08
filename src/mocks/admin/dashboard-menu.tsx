@@ -1,4 +1,4 @@
-import React from "react";
+
 import {
 	Package,
 	Users,
@@ -42,10 +42,10 @@ export const adminMenuItems: MenuItem[] = [
 	},
 	{
 		icon: <Users size={24} className="text-blue-500" />,
-		title: "Categiorias de Produto",
+		title: "Categorias de Produto",
 		description:
 			"Cadastre, edite e gerencie as categorias de produtos que serão oferecidos aos municípios.",
-		url: "/admin/categorias-de-produto",
+		url: "/admin/categorias",
 	},
 	{
 		icon: <Tags size={24} className="text-blue-500" />,
