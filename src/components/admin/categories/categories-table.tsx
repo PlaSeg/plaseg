@@ -22,17 +22,17 @@ import {
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { categoriesTableColumns } from "./categories-table-columns"; 
 import { SearchInput } from "@/components/ui/search-input";
-import { categoriesMock } from "@/mocks/admin/categories"; 
+import { categoriesMock } from "@/mocks/admin/categories/categories"; 
 import { translateCategoriesTableKeys } from "@/utils/translate-categories-table-keys"; 
 import { useGetCategories } from "@/hooks/admin/categories/use-get-categories"; 
 import { CategoriesTableBodySkeleton } from "./categories-table-body-skeleton"; 
 import { CategoriesTableHeader } from "./categories-table-header"; 
-import { AddCategoryForm } from "./add-category-form"; // Import the modal component
+import { AddCategoryForm } from "./add-category-form"; 
 import { Dialog,
     DialogTrigger,
     DialogContent
 
- } from "@/components/ui/dialog"; // Import Dialog if not already in add-category-form
+ } from "@/components/ui/dialog";
 
 export function CategoriesTable() {
     const [sorting, setSorting] = React.useState<SortingState>([
@@ -124,7 +124,7 @@ export function CategoriesTable() {
                     </DropdownMenuContent>
                 </DropdownMenu>
 
-                {/* Modal Trigger Button */}
+             
                 <Dialog>
                     <DialogTrigger asChild>
                         <Button className="font-semibold">
@@ -132,13 +132,13 @@ export function CategoriesTable() {
                             Adicionar Categoria
                         </Button>
                     </DialogTrigger>
-                    <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+                    <DialogContent className="max-w-md max-h-[60vh] overflow-y-auto">
                         <AddCategoryForm />
                     </DialogContent>
                 </Dialog>
             </div>
 
-            {/* Rest of your table code remains the same */}
+            
             <div>
                 <Table className="overflow-x-scroll">
                     <CategoriesTableHeader table={table} />

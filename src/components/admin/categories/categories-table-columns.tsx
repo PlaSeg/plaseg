@@ -14,30 +14,11 @@ import {
     DropdownMenuContent,
     DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
-import { useUpdateCategoryStatus } from "@/hooks/admin/categories/use-update-category-status"; //
+import { useUpdateCategoryStatus } from "@/hooks/admin/categories/use-update-category-status"; 
 
 interface StatusSwitchProps {
     categoryId: string;
     isActive: boolean;
-}
-
-function StatusSwitch({ categoryId, isActive }: StatusSwitchProps) {
-    const { updateCategoryStatusFn, isLoadingUpdateCategoryStatus } =
-        useUpdateCategoryStatus();
-
-    return (
-        <Switch
-            checked={isActive}
-            onCheckedChange={() =>
-                updateCategoryStatusFn({
-                    categoryId,
-                    status: !isActive,
-                })
-            }
-            disabled={isLoadingUpdateCategoryStatus}
-            className="data-[state=checked]:bg-green-500"
-        />
-    );
 }
 
 export const categoriesTableColumns: ColumnDef<Category>[] = [
@@ -64,14 +45,14 @@ export const categoriesTableColumns: ColumnDef<Category>[] = [
         enableHiding: false,
     },
     {
-        accessorKey: "id",
+        accessorKey: "name",
         header: ({ column }) => (
             <Button
                 variant="ghost"
                 className="!p-0 hover:bg-transparent"
                 onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
             >
-                {translateCategoriesTableKeys("id")}
+                {translateCategoriesTableKeys("name")}
                 {column.getIsSorted() !== "desc" && (
                     <ArrowUp className="ml-2 h-4 w-4" />
                 )}
@@ -103,15 +84,16 @@ export const categoriesTableColumns: ColumnDef<Category>[] = [
         ),
         
     },
+    
     {
-        accessorKey: "name",
+        accessorKey: "createdAt",
         header: ({ column }) => (
             <Button
                 variant="ghost"
                 className="!p-0 hover:bg-transparent"
                 onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
             >
-                {translateCategoriesTableKeys("name")}
+                {translateCategoriesTableKeys("createdAt")}
                 {column.getIsSorted() !== "desc" && (
                     <ArrowUp className="ml-2 h-4 w-4" />
                 )}
@@ -120,9 +102,11 @@ export const categoriesTableColumns: ColumnDef<Category>[] = [
                 )}
             </Button>
         ),
-        cell: ({ row }) => <div>{formatDate(row.getValue("name"))}</div>,
+        cell: ({ row }) => <div>{formatDate(row.getValue("createdAt"))}</div>,
         sortingFn: "datetime",
+       
     },
+
     {
         accessorKey: "updatedAt",
         header: ({ column }) => (
@@ -154,15 +138,16 @@ export const categoriesTableColumns: ColumnDef<Category>[] = [
             );
         },
     },
+
     {
-        accessorKey: "createdAt",
+        accessorKey: "hasParentCategory",
         header: ({ column }) => (
             <Button
                 variant="ghost"
                 className="!p-0 hover:bg-transparent"
                 onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
             >
-                {translateCategoriesTableKeys("createdAt")}
+                {translateCategoriesTableKeys("hasParentCategory")}
                 {column.getIsSorted() !== "desc" && (
                     <ArrowUp className="ml-2 h-4 w-4" />
                 )}
@@ -170,28 +155,27 @@ export const categoriesTableColumns: ColumnDef<Category>[] = [
                     <ArrowDown className="ml-2 h-4 w-4" />
                 )}
             </Button>
-
-            //
         ),
-       
+        cell: ({ row }) => <div>{formatDate(row.getValue("name"))}</div>,
+        sortingFn: "datetime",
     },
     
-    {
+   {
         id: "actions",
         header: "Ações",
         cell: ({ row }) => {
             const category = row.original;
-
+   
             return (
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                         <Button variant="ghost" className="h-8 w-8 p-0">
                             <span className="sr-only">Abrir menu</span>
-
+   
                             <MoreHorizontal className="h-4 w-4" />
                         </Button>
                     </DropdownMenuTrigger>
-
+   
                     <DropdownMenuContent align="end">
                         <DropdownMenuItem
                             onClick={() => navigator.clipboard.writeText(category.id)}
@@ -199,7 +183,11 @@ export const categoriesTableColumns: ColumnDef<Category>[] = [
                             <Copy />
                             Copiar ID
                         </DropdownMenuItem>
-
+   
+                        <DeleteCategoryDialog
+                            categoryId={category.id}
+                            categoryName={category.name}
+                        />
                     </DropdownMenuContent>
                 </DropdownMenu>
             );

@@ -12,30 +12,13 @@ export function useAddCategory() {
     const form = useFormMutation({
         schema: addCategorySchema,
         defaultValues: {
-            code: 0,
             name: "",
-            updatedAt: "",
-            createdAt: "",
-            subCategories:[{
-                name:"",
-                code:0,
-                updatedAt:"",
-                createdAt:"",
-                subSubCategories:[
-                    {
-                     name:"",
-                     code:0,
-                     updatedAt:"",
-                     createdAt:"",
-                    }
-                ]
-            }]
+            hasParentCategory: undefined,
+            
         },
         onSubmit: (data) => {
             addCategoryFn({
                 ...data,
-                updatedAt: data.updatedAt.replace(".000Z", ""),
-                createdAt: data.createdAt.replace(".000Z", ""),
             });
         },
     });
