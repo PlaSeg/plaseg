@@ -1,16 +1,22 @@
 import { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http";
 import { AxiosError } from "axios";
 import { api } from "@/services/axios";
-import { Opportunity } from "@/@types/opportunity";
+import { CreateTypeRequest } from "@/@schemas/type";
 
-type GetOpportunitiesResponse =
-	| HTTPSuccessResponse<Opportunity[]>
-	| HTTPErrorResponse;
+type CreateTypeResponse = HTTPSuccessResponse<null> | HTTPErrorResponse;
 
-export async function getOpportunities(): Promise<GetOpportunitiesResponse> {
+/**
+ * @description Adiciona um tipo
+ * @param request
+ * @returns
+ */
+export async function createType(
+	request: CreateTypeRequest
+): Promise<CreateTypeResponse> {
 	try {
-		const response = await api.get<HTTPSuccessResponse<Opportunity[]>>(
-			"/opportunities"
+		const response = await api.post<HTTPSuccessResponse<null>>(
+			"/types",
+			request
 		);
 
 		return response.data;

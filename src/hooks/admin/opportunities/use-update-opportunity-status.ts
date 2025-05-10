@@ -1,4 +1,4 @@
-import { updateOpportunityStatus } from "@/api/admin/update-opportunity-status";
+import { updateOpportunityStatus } from "@/api/admin/opportunities/update-opportunity-status";
 import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "@/services/react-query";
 import { toast } from "sonner";

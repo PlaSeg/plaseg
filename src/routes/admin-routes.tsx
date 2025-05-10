@@ -6,6 +6,8 @@ import Products from "@/pages/admin/products";
 import Types from "@/pages/admin/types";
 import Contracts from "@/pages/admin/contracts";
 import Users from "@/pages/admin/users";
+import EspecificProducts from "@/pages/admin/especific-products";
+import BaseProducts from "@/pages/admin/base-products";
 
 export function AdminRoutes() {
 	return (
@@ -17,6 +19,8 @@ export function AdminRoutes() {
 			<Route path="tipos" element={<Types />} />
 			<Route path="contratos" element={<Contracts />} />
 			<Route path="usuarios" element={<Users />} />
+			<Route path="produtos-especificos" element={<EspecificProducts />} />
+			<Route path="produtos-base" element={<BaseProducts />} />
 		</Routes>
 	);
 }

@@ -11,6 +11,7 @@ export function DashboardMenu() {
 					title={item.title}
 					description={item.description}
 					url={item.url}
+					ready={item.ready}
 				/>
 			))}
 		</main>

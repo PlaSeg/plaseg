@@ -12,22 +12,22 @@ import {
 } from "@tanstack/react-table";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { opportunitiesTableColumns } from "./opportunities-table-columns";
+import { typesTableColumns } from "./types-table-columns";
 import { SearchInput } from "@/components/ui/search-input";
-import { translateOpportunitiesTableKeys } from "@/utils/translate-opportunities-table-keys";
-import { useGetOpportunities } from "@/hooks/admin/opportunities/use-get-opportunities";
+import { translateTypesTableKeys } from "@/utils/translate-types-table-keys";
+import { types } from "@/mocks/admin/types";
 import { TableSelect } from "@/components/table/table-select";
-import { opportunitiesCategories } from "@/mocks/opportunity/opportunities-categories";
-import { CreateOpportunitySheet } from "../modals/create-opportunity-sheet";
-import { OpportunitiesTable } from "./opportunities-table";
+import { TypesTable } from "./types-table";
 import { TablePagination } from "@/components/table/table-footer";
 import { TableHideColumnsDropDown } from "@/components/table/table-hide-columns-dropdown";
+import { TypeGroup } from "@/@types/type";
+import { CreateTypeSheet } from "../modals/create-type-sheet";
 
-export function OpportunitiesTableContainer() {
+export function TypesTableContainer() {
 	const [sorting, setSorting] = React.useState<SortingState>([
 		{
-			id: "maxFundingAmount",
-			desc: true,
+			id: "description",
+			desc: false,
 		},
 	]);
 	const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -36,11 +36,18 @@ export function OpportunitiesTableContainer() {
 	const [columnVisibility, setColumnVisibility] =
 		React.useState<VisibilityState>({});
 	const [rowSelection, setRowSelection] = React.useState({});
-	const { opportunities, isLoadingGetOpportunities } = useGetOpportunities();
+
+	// Create group options for the filter
+	const groupOptions = [
+		{ label: "Categoria", value: TypeGroup.CATEGORY },
+		{ label: "Subcategoria", value: TypeGroup.SUBCATEGORY },
+		{ label: "Subsubcategoria", value: TypeGroup.SUBSUBCATEGORY },
+		{ label: "Oportunidade", value: TypeGroup.OPPORTUNITY },
+	];
 
 	const table = useReactTable({
-		data: opportunities,
-		columns: opportunitiesTableColumns,
+		data: types,
+		columns: typesTableColumns,
 		onSortingChange: setSorting,
 		onColumnFiltersChange: setColumnFilters,
 		getCoreRowModel: getCoreRowModel(),
@@ -62,20 +69,20 @@ export function OpportunitiesTableContainer() {
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:flex items-center gap-4">
 				<SearchInput
 					className="w-full xl:w-[300px]"
-					placeholder="Pesquisar oportunidades..."
-					value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
+					placeholder="Pesquisar tipos..."
+					value={
+						(table.getColumn("description")?.getFilterValue() as string) ?? ""
+					}
 					onChange={(event) =>
-						table.getColumn("title")?.setFilterValue(event.target.value)
+						table.getColumn("description")?.setFilterValue(event.target.value)
 					}
 				/>
 
 				<TableSelect
-					options={opportunitiesCategories}
+					options={groupOptions}
 					className="w-full xl:w-[200px]"
-					placeholder="Categoria"
-					onChange={(value) =>
-						table.getColumn("category")?.setFilterValue(value)
-					}
+					placeholder="Grupo"
+					onChange={(value) => table.getColumn("group")?.setFilterValue(value)}
 				/>
 
 				<Button
@@ -89,17 +96,13 @@ export function OpportunitiesTableContainer() {
 
 				<TableHideColumnsDropDown
 					table={table}
-					translateFunction={translateOpportunitiesTableKeys}
+					translateFunction={translateTypesTableKeys}
 				/>
 
-				<CreateOpportunitySheet className="font-semibold" />
+				<CreateTypeSheet />
 			</div>
 
-			<OpportunitiesTable
-				table={table}
-				isLoadingGetOpportunities={isLoadingGetOpportunities}
-				data={opportunities}
-			/>
+			<TypesTable table={table} isLoadingGetTypes={false} data={types} />
 
 			<TablePagination table={table} />
 		</div>
