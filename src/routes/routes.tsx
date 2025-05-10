@@ -1,5 +1,8 @@
 import { Routes, Route } from "react-router";
 
+import { PrivateRoutes } from "./private-routes";
+import { PublicRoutes } from "./public-routes";
+
 import Home from "@/pages/home";
 import Plans from "@/pages/plans/plans";
 import Payment from "@/pages/payment/payment";
@@ -17,9 +20,6 @@ import { CityRoutes } from "./city-routes";
 
 import AdminLayout from "@/layouts/admin-layout";
 import { AdminRoutes } from "./admin-routes";
-import { PrivateRoutes } from "./private-routes";
-import { PublicRoutes } from "./public-routes";
-
 
 export function AppRoutes() {
 	return (
@@ -30,10 +30,9 @@ export function AppRoutes() {
 				<Route element={<AuthLayout />}>
 					<Route path="*" element={<AuthRoutes />} />
 				</Route>
-					
 			</Route>
 
-			<Route element={<PrivateRoutes/>}>
+			<Route element={<PrivateRoutes />}>
 				<Route path="precos" element={<Plans />} />
 				<Route path="pagamento" element={<Payment />} />
 				<Route path="cadastrar-empresa" element={<RegisterCompany />} />
@@ -50,10 +49,7 @@ export function AppRoutes() {
 				<Route path="admin" element={<AdminLayout />}>
 					<Route path="*" element={<AdminRoutes />} />
 				</Route>
-
-				
 			</Route>
-		
 		</Routes>
 	);
 }

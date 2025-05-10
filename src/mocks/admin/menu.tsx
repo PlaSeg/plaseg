@@ -1,7 +1,5 @@
-
 import {
 	Package,
-	Users,
 	Tags,
 	FileText,
 	UserCog,
@@ -26,6 +24,14 @@ export const adminMenuItems: MenuItem[] = [
 			"Cadastre, edite e gerencie as oportunidades de financiamento que os municípios poderão acessar.",
 		url: "/admin/oportunidades",
 	},
+
+	{
+		icon: <Tags size={24} className="text-blue-500" />,
+		title: "Tipos",
+		description:
+			"Cadastre, edite e gerencie os tipos de produtos, serviços e categorias utilizados no sistema",
+		url: "/admin/tipos",
+	},
 	{
 		icon: <Package size={24} className="text-blue-500" />,
 		title: "Produtos Base",
@@ -39,20 +45,6 @@ export const adminMenuItems: MenuItem[] = [
 		description:
 			"Cadastre, edite e gerencie os produtos específicos que serão oferecidos aos municípios.",
 		url: "/admin/produtos-especificos",
-	},
-	{
-		icon: <Users size={24} className="text-blue-500" />,
-		title: "Categorias de Produto",
-		description:
-			"Cadastre, edite e gerencie as categorias de produtos que serão oferecidos aos municípios.",
-		url: "/admin/categorias",
-	},
-	{
-		icon: <Tags size={24} className="text-blue-500" />,
-		title: "Tipos",
-		description:
-			"Configure e mantenha os tipos de produtos, serviços e categorias utilizados no sistema",
-		url: "/admin/tipos",
 	},
 	{
 		icon: <FolderKanban size={24} className="text-blue-500" />,

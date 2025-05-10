@@ -2,22 +2,24 @@ import { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http";
 import { AxiosError } from "axios";
 import { api } from "@/services/axios";
 import { Opportunity } from "@/@types/opportunity";
-import { AddOpportunityRequestBody } from "@/@schemas/opportunity";
+import { CreateOpportunityRequestSchema } from "@/@schemas/opportunity";
 
-type AddOpportunityResponse =
+type CreateOpportunityResponse =
 	| HTTPSuccessResponse<Opportunity>
 	| HTTPErrorResponse;
 
-export async function addOpportunity(
-	data: AddOpportunityRequestBody
-): Promise<AddOpportunityResponse> {
+/**
+ * @description Adiciona uma oportunidade
+ * @param request
+ * @returns
+ */
+export async function createOpportunity(
+	request: CreateOpportunityRequestSchema
+): Promise<CreateOpportunityResponse> {
 	try {
 		const response = await api.post<HTTPSuccessResponse<Opportunity>>(
-			"/admin/opportunities",
-			{
-				...data,
-				isActive: true,
-			}
+			"/opportunities",
+			request
 		);
 
 		return response.data;

@@ -12,14 +12,11 @@ export function OpportunitiesTableHeader({
 	widths = [
 		"w-[50px]",
 		"w-[300px]",
-		"w-[237px]",
-		"w-[120px]",
-		"w-[120px]",
-		"w-[120px]",
-		"w-[120px]",
+		"w-[200px]",
+		"w-[200px]",
+		"w-[200px]",
+		"w-[200px]",
 		"w-[10px]",
-		"w-[10px]",
-		"w-full	",
 	],
 }: OpportunitiesTableHeaderProps) {
 	return (

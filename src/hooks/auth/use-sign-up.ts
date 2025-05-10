@@ -1,10 +1,10 @@
-import { useFormMutation } from "./use-form-mutation";
+import { useFormMutation } from "../use-form-mutation";
 import { formatDocument } from "@/utils/format-document";
 import { useMutation } from "@tanstack/react-query";
 import { signUp } from "@/api/auth/sign-up";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
-import { SignUpFormSchema, signUpFormSchema } from "@/@types/sign-up";
+import { SignUpFormSchema, signUpFormSchema } from "@/@schemas/sign-up";
 
 export function useSignUp() {
 	const navigate = useNavigate();
@@ -17,7 +17,7 @@ export function useSignUp() {
 			email: "",
 			password: "",
 			phone: "",
-			role: "COMPANY",
+			role: "MUNICIPALITY",
 		},
 		onSubmit(data) {
 			console.log(data);

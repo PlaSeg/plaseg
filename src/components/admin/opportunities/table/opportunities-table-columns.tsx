@@ -1,45 +1,23 @@
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
-import { ArrowDown, ArrowUp, Copy, MoreHorizontal } from "lucide-react";
+import {
+	ArrowDown,
+	ArrowUp,
+	Eye,
+	MoreHorizontal,
+	SquarePen,
+} from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { translateOpportunitiesTableKeys } from "@/utils/translate-opportunities-table-keys";
-import { Switch } from "@/components/ui/switch";
 import { Opportunity } from "@/@types/opportunity";
 import { formatDate } from "@/utils/format-date";
-import { DeleteOpportunityDialog } from "./delete-opportunity-dialog";
-import { opportunitiesCategories } from "@/mocks/opportunity/opportunities-categories";
+import { DeleteOpportunityDialog } from "../modals/delete-opportunity-dialog";
 import {
 	DropdownMenu,
 	DropdownMenuTrigger,
 	DropdownMenuContent,
 	DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
-import { useUpdateOpportunityStatus } from "@/hooks/admin/use-update-opportunity-status";
-
-interface StatusSwitchProps {
-	opportunityId: string;
-	isActive: boolean;
-}
-
-function StatusSwitch({ opportunityId, isActive }: StatusSwitchProps) {
-	const { updateOpportunityStatusFn, isLoadingUpdateOpportunityStatus } =
-		useUpdateOpportunityStatus();
-
-	return (
-		<Switch
-			checked={isActive}
-			onCheckedChange={() =>
-				updateOpportunityStatusFn({
-					opportunityId,
-					status: !isActive,
-				})
-			}
-			disabled={isLoadingUpdateOpportunityStatus}
-			className="data-[state=checked]:bg-green-500"
-		/>
-	);
-}
 
 export const opportunitiesTableColumns: ColumnDef<Opportunity>[] = [
 	{
@@ -86,14 +64,14 @@ export const opportunitiesTableColumns: ColumnDef<Opportunity>[] = [
 		),
 	},
 	{
-		accessorKey: "category",
+		accessorKey: "initialDeadline",
 		header: ({ column }) => (
 			<Button
 				variant="ghost"
 				className="!p-0 hover:bg-transparent"
 				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
 			>
-				{translateOpportunitiesTableKeys("category")}
+				{translateOpportunitiesTableKeys("initialDeadline")}
 				{column.getIsSorted() !== "desc" && (
 					<ArrowUp className="ml-2 h-4 w-4" />
 				)}
@@ -102,48 +80,18 @@ export const opportunitiesTableColumns: ColumnDef<Opportunity>[] = [
 				)}
 			</Button>
 		),
-		cell: ({ row }) => (
-			<Badge
-				className="rounded-full px-3 bg-muted border border-zinc-300 min-w-[130px]
-			text-foreground flex justify-center hover:bg-transparent"
-			>
-				{
-					opportunitiesCategories.find(
-						(category) => category.value === row.getValue("category")
-					)?.label
-				}
-			</Badge>
-		),
-	},
-	{
-		accessorKey: "startDate",
-		header: ({ column }) => (
-			<Button
-				variant="ghost"
-				className="!p-0 hover:bg-transparent"
-				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-			>
-				{translateOpportunitiesTableKeys("startDate")}
-				{column.getIsSorted() !== "desc" && (
-					<ArrowUp className="ml-2 h-4 w-4" />
-				)}
-				{column.getIsSorted() === "desc" && (
-					<ArrowDown className="ml-2 h-4 w-4" />
-				)}
-			</Button>
-		),
-		cell: ({ row }) => <div>{formatDate(row.getValue("startDate"))}</div>,
+		cell: ({ row }) => <div>{formatDate(row.getValue("initialDeadline"))}</div>,
 		sortingFn: "datetime",
 	},
 	{
-		accessorKey: "endDate",
+		accessorKey: "finalDeadline",
 		header: ({ column }) => (
 			<Button
 				variant="ghost"
 				className="!p-0 hover:bg-transparent"
 				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
 			>
-				{translateOpportunitiesTableKeys("endDate")}
+				{translateOpportunitiesTableKeys("finalDeadline")}
 				{column.getIsSorted() !== "desc" && (
 					<ArrowUp className="ml-2 h-4 w-4" />
 				)}
@@ -154,27 +102,27 @@ export const opportunitiesTableColumns: ColumnDef<Opportunity>[] = [
 		),
 		cell: ({ row }) => {
 			const currentDate = new Date();
-			const endDate = row.getValue("endDate") as string;
-			const [day, month, year] = endDate.split("/").map(Number);
+			const finalDeadline = row.getValue("finalDeadline") as string;
+			const [day, month, year] = finalDeadline.split("/").map(Number);
 			const parsedEndDate = new Date(year, month - 1, day);
 			const isExpired = currentDate > parsedEndDate;
 
 			return (
 				<div className={`${isExpired ? "text-red-500 font-medium" : ""}`}>
-					{formatDate(endDate)}
+					{formatDate(finalDeadline)}
 				</div>
 			);
 		},
 	},
 	{
-		accessorKey: "minFundingAmount",
+		accessorKey: "minValue",
 		header: ({ column }) => (
 			<Button
 				variant="ghost"
 				className="!p-0 hover:bg-transparent"
 				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
 			>
-				{translateOpportunitiesTableKeys("minFundingAmount")}
+				{translateOpportunitiesTableKeys("minValue")}
 				{column.getIsSorted() !== "desc" && (
 					<ArrowUp className="ml-2 h-4 w-4" />
 				)}
@@ -185,7 +133,7 @@ export const opportunitiesTableColumns: ColumnDef<Opportunity>[] = [
 		),
 		cell: ({ row }) => (
 			<div>
-				{Number(row.getValue("minFundingAmount")).toLocaleString("pt-BR", {
+				{Number(row.getValue("minValue")).toLocaleString("pt-BR", {
 					style: "currency",
 					currency: "BRL",
 				})}
@@ -193,14 +141,14 @@ export const opportunitiesTableColumns: ColumnDef<Opportunity>[] = [
 		),
 	},
 	{
-		accessorKey: "maxFundingAmount",
+		accessorKey: "maxValue",
 		header: ({ column }) => (
 			<Button
 				variant="ghost"
 				className="!p-0 hover:bg-transparent"
 				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
 			>
-				{translateOpportunitiesTableKeys("maxFundingAmount")}
+				{translateOpportunitiesTableKeys("maxValue")}
 				{column.getIsSorted() !== "desc" && (
 					<ArrowUp className="ml-2 h-4 w-4" />
 				)}
@@ -211,38 +159,12 @@ export const opportunitiesTableColumns: ColumnDef<Opportunity>[] = [
 		),
 		cell: ({ row }) => (
 			<div className="font-semibold">
-				{Number(row.getValue("maxFundingAmount")).toLocaleString("pt-BR", {
+				{Number(row.getValue("maxValue")).toLocaleString("pt-BR", {
 					style: "currency",
 					currency: "BRL",
 				})}
 			</div>
 		),
-	},
-	{
-		accessorKey: "isActive",
-		header: ({ column }) => (
-			<Button
-				variant="ghost"
-				className="!p-0 hover:bg-transparent"
-				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-			>
-				{translateOpportunitiesTableKeys("isActive")}
-				{column.getIsSorted() !== "desc" && (
-					<ArrowUp className="ml-2 h-4 w-4" />
-				)}
-				{column.getIsSorted() === "desc" && (
-					<ArrowDown className="ml-2 h-4 w-4" />
-				)}
-			</Button>
-		),
-		cell: ({ row }) => {
-			const isActive = row.getValue("isActive") as boolean;
-			const opportunity = row.original;
-
-			return (
-				<StatusSwitch opportunityId={opportunity.id} isActive={isActive} />
-			);
-		},
 	},
 	{
 		id: "actions",
@@ -261,11 +183,14 @@ export const opportunitiesTableColumns: ColumnDef<Opportunity>[] = [
 					</DropdownMenuTrigger>
 
 					<DropdownMenuContent align="end">
-						<DropdownMenuItem
-							onClick={() => navigator.clipboard.writeText(opportunity.id)}
-						>
-							<Copy />
-							Copiar ID
+						<DropdownMenuItem>
+							<Eye />
+							Ver Detalhes
+						</DropdownMenuItem>
+
+						<DropdownMenuItem>
+							<SquarePen />
+							Editar
 						</DropdownMenuItem>
 
 						<DeleteOpportunityDialog
