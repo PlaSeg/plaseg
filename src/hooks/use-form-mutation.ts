@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ZodType } from "zod";
 import { toast } from "sonner";
 
-interface UseFormMutationProps<TSchema extends FieldValues> {
+export interface UseFormMutationProps<TSchema extends FieldValues> {
 	schema: ZodType<TSchema>;
 	defaultValues: DefaultValues<TSchema>;
 	onSubmit: (data: TSchema) => void;

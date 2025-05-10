@@ -3,15 +3,12 @@ import { api } from "@/services/axios";
 import { AxiosError } from "axios";
 
 interface SignInRequest {
-	// document: string;
 	email: string;
 	password: string;
 }
 
 interface SignInResponseData {
-	token: string;
-	token_type: string;
-	exp: number;
+	accessToken: string;
 }
 
 type SignInResponse =

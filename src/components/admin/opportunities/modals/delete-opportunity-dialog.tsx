@@ -46,7 +46,7 @@ export function DeleteOpportunityDialog({
 						onClick={() => deleteOpportunityFn(opportunityId)}
 						disabled={isLoadingDeleteOpportunity}
 						variant="destructive"
-						className="w-full mt-4 outline-none"
+						className="w-full mt-4 !outline-none"
 					>
 						{isLoadingDeleteOpportunity && (
 							<LoaderCircle className="animate-spin" />

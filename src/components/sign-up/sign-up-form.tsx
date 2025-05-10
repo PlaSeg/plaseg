@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { useSignUp } from "@/hooks/use-sign-up";
+import { useSignUp } from "@/hooks/auth/use-sign-up";
 import { Form } from "@/components/ui/form";
 import { FormCombobox } from "@/components/form/form-combobox";
 import { roleOptions } from "@/mocks/sign-up/role-options,";

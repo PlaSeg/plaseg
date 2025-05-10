@@ -1,5 +1,5 @@
 import { DashboardMenuItem } from "./dashboard-menu-item";
-import { adminMenuItems } from "@/mocks/admin/dashboard-menu";
+import { adminMenuItems } from "@/mocks/admin/menu";
 
 export function DashboardMenu() {
 	return (

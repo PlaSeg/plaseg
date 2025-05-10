@@ -58,10 +58,7 @@ interface MultiSelectProps
 	className?: string;
 }
 
-export const MultiSelect = React.forwardRef<
-	HTMLButtonElement,
-	MultiSelectProps
->(
+export const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>(
 	(
 		{
 			options,

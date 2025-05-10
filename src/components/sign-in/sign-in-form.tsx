@@ -1,4 +1,4 @@
-import { useSignIn } from "@/hooks/use-sign-in";
+import { useSignIn } from "@/hooks/auth/use-sign-in";
 import { FormInput } from "../form/form-input";
 import { Form } from "../ui/form";
 import { Button } from "../ui/button";

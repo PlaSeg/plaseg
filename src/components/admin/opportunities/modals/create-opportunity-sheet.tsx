@@ -1,0 +1,48 @@
+import { Button } from "@/components/ui/button";
+import {
+	Sheet,
+	SheetContent,
+	SheetDescription,
+	SheetHeader,
+	SheetTitle,
+	SheetTrigger,
+} from "@/components/ui/sheet";
+import { Plus } from "lucide-react";
+import { CreateOpportunityForm } from "../form/create-opportunity-form";
+import { useCreateOpportunity } from "@/hooks/admin/use-create-opportunity";
+
+interface CreateOpportunitySheetProps {
+	className?: string;
+}
+
+export function CreateOpportunitySheet({
+	className,
+}: CreateOpportunitySheetProps) {
+	const { isCreateOpportunitySheetOpen, setIsCreateOpportunitySheetOpen } =
+		useCreateOpportunity();
+
+	return (
+		<Sheet
+			open={isCreateOpportunitySheetOpen}
+			onOpenChange={setIsCreateOpportunitySheetOpen}
+		>
+			<SheetTrigger asChild>
+				<Button className={className}>
+					<Plus />
+					Adicionar Oportunidade
+				</Button>
+			</SheetTrigger>
+
+			<SheetContent className="w-full md:max-w-[1000px] outline-none overflow-y-auto flex flex-col gap-6">
+				<SheetHeader>
+					<SheetTitle>Nova Oportunidade</SheetTitle>
+					<SheetDescription>Adicione uma nova oportunidade.</SheetDescription>
+				</SheetHeader>
+
+				<CreateOpportunityForm
+					setIsCreateOpportunitySheetOpen={setIsCreateOpportunitySheetOpen}
+				/>
+			</SheetContent>
+		</Sheet>
+	);
+}

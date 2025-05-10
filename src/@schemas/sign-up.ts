@@ -7,7 +7,7 @@ export const signUpFormSchema = z.object({
 		.string()
 		.min(11, "O documento deve ter pelo menos 11 caracteres")
 		.max(14, "O documento deve ter no máximo 14 caracteres"),
-	role: z.enum(["COMPANY", "CONSULTANT", "MUNICIPALITY"]),
+	role: z.enum(["MUNICIPALITY"]),
 	phone: z
 		.string()
 		.min(10, "O telefone deve ter pelo menos 10 caracteres")
