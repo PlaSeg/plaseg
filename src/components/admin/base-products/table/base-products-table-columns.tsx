@@ -133,9 +133,7 @@ export const baseProductsTableColumns: ColumnDef<BaseProduct>[] = [
 	{
 		id: "actions",
 		header: "Ações",
-		cell: ({ row }) => {
-			const baseProduct = row.original;
-
+		cell: () => {
 			return (
 				<div className="flex items-center gap-4">
 					<Button variant="outline" size="icon">
@@ -145,10 +143,7 @@ export const baseProductsTableColumns: ColumnDef<BaseProduct>[] = [
 
 					<EditBaseProductSheet />
 
-					<DeleteBaseProductDialog
-						baseProductId={baseProduct.id}
-						baseProductName={baseProduct.name}
-					/>
+					<DeleteBaseProductDialog />
 				</div>
 			);
 		},
