@@ -6,7 +6,7 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/components/ui/table";
-import { CreatePriceRegistrationRecordRequest } from "@/validators/company/price-registration-record";
+import { CreatePriceRegistrationRecordRequest } from "@/@schemas/price-registration-record";
 
 interface ItensTableProps {
 	items: CreatePriceRegistrationRecordRequest["products"];
