@@ -1,17 +1,14 @@
-import { useFormMutation } from "../use-form-mutation";
-import { createOpportunity } from "@/api/admin/create-opportunity";
+import { createOpportunity } from "@/api/admin/opportunities/create-opportunity";
 import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "@/services/react-query";
 import { toast } from "sonner";
-import { useNavigate } from "react-router";
 import { useState } from "react";
 import { createOpportunityRequestSchema } from "@/@schemas/opportunity";
+import { useFormMutation } from "@/hooks/use-form-mutation";
 
 export function useCreateOpportunity() {
 	const [isCreateOpportunitySheetOpen, setIsCreateOpportunitySheetOpen] =
 		useState(false);
-
-	const navigate = useNavigate();
 
 	const form = useFormMutation({
 		schema: createOpportunityRequestSchema,
@@ -41,7 +38,7 @@ export function useCreateOpportunity() {
 				queryClient.invalidateQueries({
 					queryKey: ["opportunities"],
 				});
-				navigate("/admin/oportunidades");
+
 				toast.success("Oportunidade criada com sucesso!");
 				return;
 			}

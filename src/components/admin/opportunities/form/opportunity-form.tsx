@@ -5,15 +5,15 @@ import { FormDatePicker } from "@/components/form/form-date-picker";
 import { FormMoneyInput } from "@/components/form/form-money-input";
 import { Label } from "@/components/ui/label";
 import { LoaderCircle } from "lucide-react";
-import { useCreateOpportunity } from "@/hooks/admin/use-create-opportunity";
+import { useCreateOpportunity } from "@/hooks/admin/opportunities/use-create-opportunity";
 
-interface CreateOpportunityFormProps {
-	setIsCreateOpportunitySheetOpen: (open: boolean) => void;
+interface OpportunityFormProps {
+	setIsOpportunitySheetOpen: (open: boolean) => void;
 }
 
-export function CreateOpportunityForm({
-	setIsCreateOpportunitySheetOpen,
-}: CreateOpportunityFormProps) {
+export function OpportunityForm({
+	setIsOpportunitySheetOpen,
+}: OpportunityFormProps) {
 	const { form, isAddingOpportunity } = useCreateOpportunity();
 
 	return (
@@ -73,7 +73,7 @@ export function CreateOpportunityForm({
 						<Button
 							className="w-full max-w-[170px]"
 							variant="outline"
-							onClick={() => setIsCreateOpportunitySheetOpen(false)}
+							onClick={() => setIsOpportunitySheetOpen(false)}
 						>
 							Cancelar
 						</Button>

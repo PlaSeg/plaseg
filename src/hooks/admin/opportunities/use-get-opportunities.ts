@@ -1,4 +1,4 @@
-import { getOpportunities } from "@/api/admin/get-opportunities";
+import { getOpportunities } from "@/api/admin/opportunities/get-opportunities";
 import { useQuery } from "@tanstack/react-query";
 
 export function useGetOpportunities() {

@@ -1,4 +1,4 @@
-import { deleteOpportunity } from "@/api/admin/delete-opportunity";
+import { deleteOpportunity } from "@/api/admin/opportunities/delete-opportunity";
 import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "@/services/react-query";
 import { toast } from "sonner";

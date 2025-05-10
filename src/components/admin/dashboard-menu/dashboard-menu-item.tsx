@@ -1,3 +1,4 @@
+import { Tag } from "@/components/ui/tag";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router";
 
@@ -6,6 +7,7 @@ interface DashboardMenuItemProps {
 	title: string;
 	description: string;
 	url: string;
+	ready: boolean;
 }
 
 export function DashboardMenuItem({
@@ -13,17 +15,22 @@ export function DashboardMenuItem({
 	title,
 	description,
 	url,
+	ready,
 }: DashboardMenuItemProps) {
 	return (
 		<Link
 			to={url}
-			className="flex flex-col justify-between gap-0 rounded-xl overflow-hidden border border-muted
+			className="flex flex-col justify-between gap-0 rounded-xl overflow-hidden border-2 border-muted
 			hover:border-blue-500 hover:cursor-pointer bg-white transition-all duration-200"
 		>
 			<div className="flex flex-col gap-4 p-4 rounded-lg hover:opacity-90">
-				<div className="flex items-center gap-2">
-					{icon}
-					<strong className="text-lg font-semibold">{title}</strong>
+				<div className="flex items-center justify-between">
+					<div className="flex items-center gap-2">
+						{icon}
+						<strong className="text-base font-semibold">{title}</strong>
+					</div>
+
+					{!ready && <Tag className="text-slate-500">EM BREVE</Tag>}
 				</div>
 
 				<p className="text-sm text-muted-foreground">{description}</p>

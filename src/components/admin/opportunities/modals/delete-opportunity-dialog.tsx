@@ -1,4 +1,4 @@
-import { useDeleteOpportunity } from "@/hooks/admin/use-delete-opportunity";
+import { useDeleteOpportunity } from "@/hooks/admin/opportunities/use-delete-opportunity";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { LoaderCircle, Trash2, TriangleAlert } from "lucide-react";
@@ -18,7 +18,7 @@ export function DeleteOpportunityDialog({
 
 	return (
 		<Dialog>
-			<DialogTrigger className="w-full">
+			<DialogTrigger className="w-full" asChild>
 				<DropdownMenuItem
 					className="text-red-500 focus:text-red-500 hover:text-red-500"
 					onSelect={(e) => e.preventDefault()}
