@@ -2,7 +2,7 @@ import { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http";
 import { AxiosError } from "axios";
 import { api } from "@/services/axios";
 import { PriceRegistrationRecordData } from "@/@types/price-registration-record";
-import { CreatePriceRegistrationRecordRequest } from "@/validators/company/price-registration-record";
+import { CreatePriceRegistrationRecordRequest } from "@/@schemas/price-registration-record";
 
 type CreatePriceRegistrationRecordResponse =
 	| HTTPSuccessResponse<PriceRegistrationRecordData>
