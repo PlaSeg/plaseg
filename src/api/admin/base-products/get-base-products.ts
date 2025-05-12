@@ -4,7 +4,9 @@ import { api } from "@/services/axios";
 import { BaseProduct } from "@/@types/base-product";
 
 type GetBaseProductsResponse =
-	| HTTPSuccessResponse<BaseProduct[]>
+	| HTTPSuccessResponse<{
+			baseProducts: BaseProduct[];
+	  }>
 	| HTTPErrorResponse;
 
 /**
@@ -14,7 +16,9 @@ type GetBaseProductsResponse =
 export async function getBaseProducts(): Promise<GetBaseProductsResponse> {
 	try {
 		const response =
-			await api.get<HTTPSuccessResponse<BaseProduct[]>>("/base-products");
+			await api.get<HTTPSuccessResponse<{ baseProducts: BaseProduct[] }>>(
+				"/base-products"
+			);
 
 		return response.data;
 	} catch (error) {

@@ -3,7 +3,7 @@ import { flexRender, Table as TableType } from "@tanstack/react-table";
 import { baseProductsTableColumns } from "./base-products-table-columns";
 import { BaseProductsTableHeader } from "./base-products-table-header";
 import { BaseProduct } from "@/@types/base-product";
-import { BaseProductsTableBodySkeleton } from "./base-products-table-body-skeleton";
+import { BaseProductsTableBodySkeleton } from "./base-products-table-skeleton";
 
 interface BaseProductsTableProps {
 	table: TableType<BaseProduct>;
@@ -21,6 +21,8 @@ export function BaseProductsTable({
 			<BaseProductsTableHeader table={table} />
 
 			<TableBody>
+				{isLoadingGetBaseProducts && <BaseProductsTableBodySkeleton />}
+
 				{!isLoadingGetBaseProducts &&
 					data &&
 					data.length > 0 &&
@@ -38,8 +40,8 @@ export function BaseProductsTable({
 						</TableRow>
 					))}
 
-				{isLoadingGetBaseProducts ||
-					((!data ||
+				{!isLoadingGetBaseProducts &&
+					(!data ||
 						data.length === 0 ||
 						table.getRowModel().rows?.length === 0) && (
 						<TableRow>
@@ -50,9 +52,7 @@ export function BaseProductsTable({
 								Sem resultados
 							</TableCell>
 						</TableRow>
-					))}
-
-				{isLoadingGetBaseProducts && <BaseProductsTableBodySkeleton />}
+					)}
 			</TableBody>
 		</Table>
 	);

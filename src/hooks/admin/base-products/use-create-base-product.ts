@@ -15,7 +15,7 @@ export function useCreateBaseProduct() {
 		defaultValues: {
 			code: "",
 			name: "",
-			type: "",
+			typeId: "",
 			technicalDescription: "",
 			budget1: 0,
 			budget1Validity: new Date(),
