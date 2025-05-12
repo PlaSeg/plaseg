@@ -75,12 +75,12 @@ export const typesTableColumns: ColumnDef<Type>[] = [
 		cell: ({ row }) => {
 			const group = row.getValue("group") as TypeGroup;
 
-			// Map the enum values to readable text
 			const groupLabels = {
 				[TypeGroup.CATEGORY]: "Categoria",
 				[TypeGroup.SUBCATEGORY]: "Subcategoria",
 				[TypeGroup.SUBSUBCATEGORY]: "Subsubcategoria",
 				[TypeGroup.OPPORTUNITY]: "Oportunidade",
+				[TypeGroup.SERVICE]: "Serviço",
 			};
 
 			return <Tag>{groupLabels[group] || group}</Tag>;
@@ -136,7 +136,7 @@ export const typesTableColumns: ColumnDef<Type>[] = [
 
 			return (
 				<div className="flex items-center gap-4">
-					<Button variant="outline" size="icon">
+					<Button variant="outline" size="icon" disabled>
 						<Eye className="h-4 w-4" />
 						<span className="sr-only">Ver detalhes</span>
 					</Button>

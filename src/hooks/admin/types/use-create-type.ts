@@ -18,11 +18,11 @@ export function useCreateType() {
 			parentId: undefined,
 		},
 		onSubmit: (data) => {
-			console.log(data);
+			createTypeFn(data);
 		},
 	});
 
-	const { isPending: isAddingType } = useMutation({
+	const { mutate: createTypeFn, isPending: isAddingType } = useMutation({
 		mutationKey: ["create-type"],
 		mutationFn: createType,
 		onSuccess: (response) => {
@@ -31,6 +31,8 @@ export function useCreateType() {
 					queryKey: ["types"],
 				});
 
+				form.reset();
+				setIsCreateTypeSheetOpen(false);
 				toast.success("Tipo criado com sucesso!");
 				return;
 			}

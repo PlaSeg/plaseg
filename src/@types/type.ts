@@ -3,6 +3,7 @@ export enum TypeGroup {
 	CATEGORY = "CATEGORY",
 	SUBCATEGORY = "SUBCATEGORY",
 	SUBSUBCATEGORY = "SUBSUBCATEGORY",
+	SERVICE = "SERVICE",
 }
 
 export interface Type {
