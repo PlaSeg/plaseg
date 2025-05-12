@@ -21,6 +21,8 @@ import { TablePagination } from "@/components/table/table-footer";
 import { TableHideColumnsDropDown } from "@/components/table/table-hide-columns-dropdown";
 import { CreateBaseProductSheet } from "../modals/create-base-product-sheet";
 import { useGetBaseProducts } from "@/hooks/admin/base-products/use-get-base-products";
+import { useGetTypes } from "@/hooks/admin/types/use-get-types";
+import { TypeGroup } from "@/@types/type";
 
 export function BaseProductsTableContainer() {
 	const [sorting, setSorting] = React.useState<SortingState>([
@@ -36,13 +38,7 @@ export function BaseProductsTableContainer() {
 		React.useState<VisibilityState>({});
 	const [rowSelection, setRowSelection] = React.useState({});
 	const { baseProducts, isLoadingGetBaseProducts } = useGetBaseProducts();
-
-	// Create type options for the filter
-	const typeOptions = [
-		{ label: "Tipo 1", value: "Tipo 1" },
-		{ label: "Tipo 2", value: "Tipo 2" },
-		{ label: "Tipo 3", value: "Tipo 3" },
-	];
+	const { types } = useGetTypes(TypeGroup.CATEGORY);
 
 	const table = useReactTable({
 		data: baseProducts,
@@ -76,7 +72,10 @@ export function BaseProductsTableContainer() {
 				/>
 
 				<TableSelect
-					options={typeOptions}
+					options={types.map((type) => ({
+						label: type.description,
+						value: type.id,
+					}))}
 					className="w-full xl:w-[200px]"
 					placeholder="Tipo"
 					onChange={(value) => table.getColumn("type")?.setFilterValue(value)}

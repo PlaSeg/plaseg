@@ -6,6 +6,9 @@ import { FormDatePicker } from "@/components/form/form-date-picker";
 import { LoaderCircle } from "lucide-react";
 import { useCreateBaseProduct } from "@/hooks/admin/base-products/use-create-base-product";
 import { FormTextarea } from "@/components/form/form-textarea";
+import { FormSelect } from "@/components/form/form-select";
+import { TypeGroup } from "@/@types/type";
+import { useGetTypes } from "@/hooks/admin/types/use-get-types";
 
 interface BaseProductFormProps {
 	setIsBaseProductSheetOpen: (open: boolean) => void;
@@ -15,6 +18,7 @@ export function BaseProductForm({
 	setIsBaseProductSheetOpen,
 }: BaseProductFormProps) {
 	const { form, isAddingBaseProduct } = useCreateBaseProduct();
+	const { types } = useGetTypes(TypeGroup.CATEGORY);
 
 	return (
 		<Form {...form}>
@@ -35,11 +39,15 @@ export function BaseProductForm({
 							placeholder="Digite o nome do produto"
 						/>
 
-						<FormInput
+						<FormSelect
 							form={form}
-							entity="type"
+							entity="typeId"
 							label="Tipo"
-							placeholder="Digite o tipo do produto"
+							placeholder="Selecione a categoria do produto"
+							options={types.map((type) => ({
+								label: type.description,
+								value: type.id,
+							}))}
 						/>
 
 						<div className="col-span-1 md:col-span-2 lg:col-span-3">

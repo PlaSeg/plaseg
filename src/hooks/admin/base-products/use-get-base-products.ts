@@ -8,7 +8,7 @@ export function useGetBaseProducts() {
 	});
 
 	return {
-		baseProducts: result?.success ? result.data : [],
+		baseProducts: result?.success ? result.data.baseProducts : [],
 		isLoadingGetBaseProducts,
 	};
 }

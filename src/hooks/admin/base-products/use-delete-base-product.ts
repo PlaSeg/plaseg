@@ -1,9 +1,12 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { deleteBaseProduct } from "@/api/admin/base-products/delete-base-product";
 import { toast } from "sonner";
+import { useState } from "react";
+import { queryClient } from "@/services/react-query";
 
 export function useDeleteBaseProduct() {
-	const queryClient = useQueryClient();
+	const [isDeleteBaseProductDialogOpen, setIsDeleteBaseProductDialogOpen] =
+		useState(false);
 
 	const { mutate: deleteBaseProductFn, isPending: isLoadingDeleteBaseProduct } =
 		useMutation({
@@ -21,5 +24,10 @@ export function useDeleteBaseProduct() {
 			},
 		});
 
-	return { deleteBaseProductFn, isLoadingDeleteBaseProduct };
+	return {
+		deleteBaseProductFn,
+		isLoadingDeleteBaseProduct,
+		isDeleteBaseProductDialogOpen,
+		setIsDeleteBaseProductDialogOpen,
+	};
 }

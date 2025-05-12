@@ -1,13 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
-import { ArrowDown, ArrowUp, Eye } from "lucide-react";
+import { ArrowDown, ArrowUp, Eye, SquarePen } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { translateBaseProductsTableKeys } from "@/utils/translate-base-products-table-keys";
 import { BaseProduct } from "@/@types/base-product";
 import { formatDate } from "@/utils/format-date";
-import { EditBaseProductSheet } from "../modals/edit-base-product-sheet";
 import { DeleteBaseProductDialog } from "../modals/delete-base-product-dialog";
 import { formatCurrency } from "@/utils/format-currency";
+import { Tag } from "@/components/ui/tag";
 
 export const baseProductsTableColumns: ColumnDef<BaseProduct>[] = [
 	{
@@ -73,14 +73,14 @@ export const baseProductsTableColumns: ColumnDef<BaseProduct>[] = [
 		),
 	},
 	{
-		accessorKey: "type",
+		accessorKey: "category",
 		header: ({ column }) => (
 			<Button
 				variant="ghost"
 				className="!p-0 hover:bg-transparent"
 				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
 			>
-				{translateBaseProductsTableKeys("type")}
+				{translateBaseProductsTableKeys("category")}
 				{column.getIsSorted() !== "desc" && (
 					<ArrowUp className="ml-2 h-4 w-4" />
 				)}
@@ -89,17 +89,25 @@ export const baseProductsTableColumns: ColumnDef<BaseProduct>[] = [
 				)}
 			</Button>
 		),
-		cell: ({ row }) => <div>{row.getValue("type")}</div>,
+		cell: ({ row }) => {
+			const category = row.getValue("category") as string | null;
+
+			if (!category) {
+				return <div>{"-"}</div>;
+			}
+
+			return <Tag>{category}</Tag>;
+		},
 	},
 	{
-		accessorKey: "unitValue",
+		accessorKey: "subCategory",
 		header: ({ column }) => (
 			<Button
 				variant="ghost"
 				className="!p-0 hover:bg-transparent"
 				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
 			>
-				{translateBaseProductsTableKeys("unitValue")}
+				{translateBaseProductsTableKeys("subCategory")}
 				{column.getIsSorted() !== "desc" && (
 					<ArrowUp className="ml-2 h-4 w-4" />
 				)}
@@ -108,17 +116,25 @@ export const baseProductsTableColumns: ColumnDef<BaseProduct>[] = [
 				)}
 			</Button>
 		),
-		cell: ({ row }) => <div>{formatCurrency(row.getValue("unitValue"))}</div>,
+		cell: ({ row }) => {
+			const subCategory = row.getValue("subCategory") as string | null;
+
+			if (!subCategory) {
+				return <div>{"-"}</div>;
+			}
+
+			return <Tag>{subCategory}</Tag>;
+		},
 	},
 	{
-		accessorKey: "createdAt",
+		accessorKey: "subSubCategory",
 		header: ({ column }) => (
 			<Button
 				variant="ghost"
 				className="!p-0 hover:bg-transparent"
 				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
 			>
-				{translateBaseProductsTableKeys("createdAt")}
+				{translateBaseProductsTableKeys("subSubCategory")}
 				{column.getIsSorted() !== "desc" && (
 					<ArrowUp className="ml-2 h-4 w-4" />
 				)}
@@ -127,23 +143,81 @@ export const baseProductsTableColumns: ColumnDef<BaseProduct>[] = [
 				)}
 			</Button>
 		),
-		cell: ({ row }) => <div>{formatDate(row.getValue("createdAt"))}</div>,
+		cell: ({ row }) => {
+			const subSubCategory = row.getValue("subSubCategory") as string | null;
+
+			if (!subSubCategory) {
+				return <div>{"-"}</div>;
+			}
+
+			return <Tag>{subSubCategory}</Tag>;
+		},
+	},
+	{
+		accessorKey: "budget1",
+		header: ({ column }) => (
+			<Button
+				variant="ghost"
+				className="!p-0 hover:bg-transparent"
+				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+			>
+				{translateBaseProductsTableKeys("budget1")}
+				{column.getIsSorted() !== "desc" && (
+					<ArrowUp className="ml-2 h-4 w-4" />
+				)}
+				{column.getIsSorted() === "desc" && (
+					<ArrowDown className="ml-2 h-4 w-4" />
+				)}
+			</Button>
+		),
+		cell: ({ row }) => (
+			<div className="font-semibold">
+				{formatCurrency(row.getValue("budget1"))}
+			</div>
+		),
+	},
+	{
+		accessorKey: "budget1Validity",
+		header: ({ column }) => (
+			<Button
+				variant="ghost"
+				className="!p-0 hover:bg-transparent"
+				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+			>
+				{translateBaseProductsTableKeys("budget1Validity")}
+				{column.getIsSorted() !== "desc" && (
+					<ArrowUp className="ml-2 h-4 w-4" />
+				)}
+				{column.getIsSorted() === "desc" && (
+					<ArrowDown className="ml-2 h-4 w-4" />
+				)}
+			</Button>
+		),
+		cell: ({ row }) => <div>{formatDate(row.getValue("budget1Validity"))}</div>,
 		sortingFn: "datetime",
 	},
 	{
 		id: "actions",
 		header: "Ações",
-		cell: () => {
+		cell: ({ row }) => {
+			const baseProduct = row.original;
+
 			return (
 				<div className="flex items-center gap-4">
-					<Button variant="outline" size="icon">
+					<Button variant="outline" size="icon" disabled>
 						<Eye className="h-4 w-4" />
 						<span className="sr-only">Ver detalhes</span>
 					</Button>
 
-					<EditBaseProductSheet />
+					<Button variant="outline" size="icon" disabled>
+						<SquarePen className="h-4 w-4" />
+						<span className="sr-only">Editar</span>
+					</Button>
 
-					<DeleteBaseProductDialog />
+					<DeleteBaseProductDialog
+						baseProductId={baseProduct.id}
+						baseProductName={baseProduct.name}
+					/>
 				</div>
 			);
 		},

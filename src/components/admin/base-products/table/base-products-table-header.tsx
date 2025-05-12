@@ -14,8 +14,10 @@ export function BaseProductsTableHeader({
 		"w-[100px]",
 		"w-[300px]",
 		"w-[200px]",
-		"w-[150px]",
-		"w-[200px]",
+		"w-[100px]",
+		"w-[100px]",
+		"w-[100px]",
+		"w-[100px]",
 		"w-[100px]",
 	],
 }: BaseProductsTableHeaderProps) {

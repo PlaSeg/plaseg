@@ -8,6 +8,8 @@ export const typeGroupSchema = z.enum([
 	"OPPORTUNITY",
 ]);
 
+export type TypeGroup = z.infer<typeof typeGroupSchema>;
+
 export const createTypeSchema = z.object({
 	description: z
 		.string()
