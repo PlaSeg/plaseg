@@ -1,18 +1,14 @@
 import { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http";
 import { AxiosError } from "axios";
 import { api } from "@/services/axios";
-import { Type } from "@/@types/type";
-import { GetTypesRequest } from "@/@schemas/type";
 
-type GetTypesResponse = HTTPSuccessResponse<Type[]> | HTTPErrorResponse;
+type DeleteTypeResponse = HTTPSuccessResponse<null> | HTTPErrorResponse;
 
-export async function getTypes(
-	request: GetTypesRequest
-): Promise<GetTypesResponse> {
+export async function deleteType(id: string): Promise<DeleteTypeResponse> {
 	try {
-		const response = await api.get<HTTPSuccessResponse<Type[]>>("/types", {
-			params: request,
-		});
+		const response = await api.delete<HTTPSuccessResponse<null>>(
+			`/types/${id}`
+		);
 
 		return response.data;
 	} catch (error) {

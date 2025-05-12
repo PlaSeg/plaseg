@@ -5,7 +5,7 @@ import { LoaderCircle } from "lucide-react";
 import { useCreateType } from "@/hooks/admin/types/use-create-type";
 import { FormSelect } from "@/components/form/form-select";
 import { TypeGroup } from "@/@types/type";
-import { v4 as uuidv4 } from "uuid";
+import { useGetTypes } from "@/hooks/admin/types/use-get-types";
 
 interface TypeFormProps {
 	setIsTypeSheetOpen: (open: boolean) => void;
@@ -13,6 +13,8 @@ interface TypeFormProps {
 
 export function TypeForm({ setIsTypeSheetOpen }: TypeFormProps) {
 	const { form, isAddingType } = useCreateType();
+	const { types } = useGetTypes();
+
 	const hasParent =
 		form.watch("group") === TypeGroup.SUBCATEGORY ||
 		form.watch("group") === TypeGroup.SUBSUBCATEGORY;
@@ -22,13 +24,15 @@ export function TypeForm({ setIsTypeSheetOpen }: TypeFormProps) {
 		{ label: "Subcategoria", value: TypeGroup.SUBCATEGORY },
 		{ label: "Subsubcategoria", value: TypeGroup.SUBSUBCATEGORY },
 		{ label: "Oportunidade", value: TypeGroup.OPPORTUNITY },
+		{ label: "Serviço", value: TypeGroup.SERVICE },
 	];
 
-	const parentOptions = [
-		{ label: "Arma de Fogo", value: uuidv4() },
-		{ label: "Sistemas de Vigilância", value: uuidv4() },
-		{ label: "Veículos de Patrulha", value: uuidv4() },
-	];
+	const parentOptions = types.map((type) => ({
+		label: type.description,
+		value: type.id,
+	}));
+
+	const isButtonDisabled = hasParent && !form.watch("parentId");
 
 	return (
 		<Form {...form}>
@@ -70,7 +74,11 @@ export function TypeForm({ setIsTypeSheetOpen }: TypeFormProps) {
 						Cancelar
 					</Button>
 
-					<Button className="w-full max-w-[170px]" type="submit">
+					<Button
+						className="w-full max-w-[170px]"
+						type="submit"
+						disabled={isAddingType || isButtonDisabled}
+					>
 						{isAddingType && <LoaderCircle className="mr-2 animate-spin" />}
 						{!isAddingType && "Salvar"}
 					</Button>

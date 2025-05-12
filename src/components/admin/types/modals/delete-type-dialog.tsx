@@ -1,15 +1,30 @@
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Trash2, TriangleAlert } from "lucide-react";
+import { LoaderCircle, Trash2, TriangleAlert } from "lucide-react";
+import { useDeleteType } from "@/hooks/admin/types/use-delete-type";
 
 interface DeleteTypeDialogProps {
 	typeName: string;
 	typeId: string;
 }
 
-export function DeleteTypeDialog({ typeName }: DeleteTypeDialogProps) {
+export function DeleteTypeDialog({ typeName, typeId }: DeleteTypeDialogProps) {
+	const {
+		deleteTypeFn,
+		isDeletingType,
+		isDeleteTypeDialogOpen,
+		setIsDeleteTypeDialogOpen,
+	} = useDeleteType();
+
+	function handleDeleteType() {
+		deleteTypeFn(typeId);
+	}
+
 	return (
-		<Dialog>
+		<Dialog
+			open={isDeleteTypeDialogOpen}
+			onOpenChange={setIsDeleteTypeDialogOpen}
+		>
 			<DialogTrigger>
 				<Button
 					size="icon"
@@ -34,7 +49,13 @@ export function DeleteTypeDialog({ typeName }: DeleteTypeDialogProps) {
 						ser desfeita.
 					</span>
 
-					<Button variant="destructive" className="w-full mt-4 !outline-none">
+					<Button
+						variant="destructive"
+						className="w-full mt-4 !outline-none"
+						onClick={handleDeleteType}
+						disabled={isDeletingType}
+					>
+						{isDeletingType && <LoaderCircle className="mr-2 animate-spin" />}
 						Excluir tipo
 					</Button>
 				</div>
