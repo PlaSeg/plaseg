@@ -1,20 +1,13 @@
 import { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http";
 import { AxiosError } from "axios";
 import { api } from "@/services/axios";
-import { BaseProduct } from "@/@types/base-product";
+import { Type } from "@/@types/type";
 
-type GetBaseProductsResponse =
-	| HTTPSuccessResponse<BaseProduct[]>
-	| HTTPErrorResponse;
+type GetTypesResponse = HTTPSuccessResponse<Type[]> | HTTPErrorResponse;
 
-/**
- * @description Busca todos os produtos base
- * @returns
- */
-export async function getBaseProducts(): Promise<GetBaseProductsResponse> {
+export async function getTypes(): Promise<GetTypesResponse> {
 	try {
-		const response =
-			await api.get<HTTPSuccessResponse<BaseProduct[]>>("/base-products");
+		const response = await api.get<HTTPSuccessResponse<Type[]>>("/types");
 
 		return response.data;
 	} catch (error) {

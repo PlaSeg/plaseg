@@ -21,6 +21,8 @@ export function TypesTable({
 			<TypesTableHeader table={table} />
 
 			<TableBody>
+				{isLoadingGetTypes && <TypesTableBodySkeleton />}
+
 				{!isLoadingGetTypes &&
 					data &&
 					data.length > 0 &&
@@ -38,8 +40,8 @@ export function TypesTable({
 						</TableRow>
 					))}
 
-				{isLoadingGetTypes ||
-					((!data ||
+				{!isLoadingGetTypes &&
+					(!data ||
 						data.length === 0 ||
 						table.getRowModel().rows?.length === 0) && (
 						<TableRow>
@@ -50,9 +52,7 @@ export function TypesTable({
 								Sem resultados
 							</TableCell>
 						</TableRow>
-					))}
-
-				{isLoadingGetTypes && <TypesTableBodySkeleton />}
+					)}
 			</TableBody>
 		</Table>
 	);

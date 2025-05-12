@@ -14,7 +14,7 @@ export async function deleteBaseProduct(
 ): Promise<DeleteBaseProductResponse> {
 	try {
 		const response = await api.delete<HTTPSuccessResponse<null>>(
-			`/products/base-products/${id}`
+			`/base-products/${id}`
 		);
 
 		return response.data;

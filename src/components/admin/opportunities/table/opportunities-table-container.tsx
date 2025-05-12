@@ -17,7 +17,6 @@ import { SearchInput } from "@/components/ui/search-input";
 import { translateOpportunitiesTableKeys } from "@/utils/translate-opportunities-table-keys";
 import { useGetOpportunities } from "@/hooks/admin/opportunities/use-get-opportunities";
 import { TableSelect } from "@/components/table/table-select";
-import { opportunitiesCategories } from "@/mocks/opportunity/opportunities-categories";
 import { CreateOpportunitySheet } from "../modals/create-opportunity-sheet";
 import { OpportunitiesTable } from "./opportunities-table";
 import { TablePagination } from "@/components/table/table-footer";
@@ -70,11 +69,20 @@ export function OpportunitiesTableContainer() {
 				/>
 
 				<TableSelect
-					options={opportunitiesCategories}
+					options={[
+						{
+							label: "Todos",
+							value: "all",
+						},
+						{
+							label: "Edital",
+							value: "edital",
+						},
+					]}
 					className="w-full xl:w-[200px]"
-					placeholder="Categoria"
+					placeholder="Tipo"
 					onChange={(value) =>
-						table.getColumn("category")?.setFilterValue(value)
+						table.getColumn("typeDescription")?.setFilterValue(value)
 					}
 				/>
 

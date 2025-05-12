@@ -15,7 +15,7 @@ export async function createBaseProduct(
 ): Promise<CreateBaseProductResponse> {
 	try {
 		const response = await api.post<HTTPSuccessResponse<null>>(
-			"/products/base-products",
+			"/base-products",
 			request
 		);
 

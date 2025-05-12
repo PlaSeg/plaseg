@@ -41,7 +41,7 @@ export const adminMenuItems: MenuItem[] = [
 		description:
 			"Cadastre, edite e gerencie o catálogo completo de produtos que vão servir de base os produtos específicos.",
 		url: "/admin/produtos-base",
-		ready: false,
+		ready: true,
 	},
 	{
 		icon: <Barcode size={24} className="text-blue-500" />,

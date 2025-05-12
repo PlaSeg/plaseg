@@ -18,8 +18,11 @@ export type Opportunity = {
 	finalDeadline: Date;
 	requiresCounterpart: boolean;
 	counterpartPercentage: number;
-	requiredDocuments: RequiredDocument[];
+	typeDescription: string;
+	isActive: boolean;
 
 	createdAt: Date;
 	updatedAt?: Date | null;
+	
+	requiredDocuments: RequiredDocument[];
 };

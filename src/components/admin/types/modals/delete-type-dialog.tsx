@@ -14,7 +14,7 @@ export function DeleteTypeDialog({ typeName }: DeleteTypeDialogProps) {
 				<Button
 					size="icon"
 					variant="outline"
-					className="hover:bg-red-500 hover:text-white"
+					className="text-red-500 hover:bg-red-500 hover:!text-white"
 				>
 					<Trash2 />
 				</Button>

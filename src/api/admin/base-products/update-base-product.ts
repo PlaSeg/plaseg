@@ -20,7 +20,7 @@ export async function updateBaseProduct(
 ): Promise<UpdateBaseProductResponse> {
 	try {
 		const response = await api.put<HTTPSuccessResponse<BaseProduct>>(
-			`/products/base-products/${id}`,
+			`/base-products/${id}`,
 			request
 		);
 

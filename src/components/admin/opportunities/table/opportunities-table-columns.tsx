@@ -1,23 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
-import {
-	ArrowDown,
-	ArrowUp,
-	Eye,
-	MoreHorizontal,
-	SquarePen,
-} from "lucide-react";
+import { ArrowDown, ArrowUp, Eye, SquarePen } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { translateOpportunitiesTableKeys } from "@/utils/translate-opportunities-table-keys";
 import { Opportunity } from "@/@types/opportunity";
 import { formatDate } from "@/utils/format-date";
 import { DeleteOpportunityDialog } from "../modals/delete-opportunity-dialog";
-import {
-	DropdownMenu,
-	DropdownMenuTrigger,
-	DropdownMenuContent,
-	DropdownMenuItem,
-} from "@/components/ui/dropdown-menu";
+import { Tag } from "@/components/ui/tag";
+import { Switch } from "@/components/ui/switch";
 
 export const opportunitiesTableColumns: ColumnDef<Opportunity>[] = [
 	{
@@ -115,14 +105,14 @@ export const opportunitiesTableColumns: ColumnDef<Opportunity>[] = [
 		},
 	},
 	{
-		accessorKey: "minValue",
+		accessorKey: "typeDescription",
 		header: ({ column }) => (
 			<Button
 				variant="ghost"
 				className="!p-0 hover:bg-transparent"
 				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
 			>
-				{translateOpportunitiesTableKeys("minValue")}
+				{translateOpportunitiesTableKeys("typeDescription")}
 				{column.getIsSorted() !== "desc" && (
 					<ArrowUp className="ml-2 h-4 w-4" />
 				)}
@@ -131,24 +121,17 @@ export const opportunitiesTableColumns: ColumnDef<Opportunity>[] = [
 				)}
 			</Button>
 		),
-		cell: ({ row }) => (
-			<div>
-				{Number(row.getValue("minValue")).toLocaleString("pt-BR", {
-					style: "currency",
-					currency: "BRL",
-				})}
-			</div>
-		),
+		cell: ({ row }) => <Tag>{row.getValue("typeDescription")}</Tag>,
 	},
 	{
-		accessorKey: "maxValue",
+		accessorKey: "isActive",
 		header: ({ column }) => (
 			<Button
 				variant="ghost"
 				className="!p-0 hover:bg-transparent"
 				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
 			>
-				{translateOpportunitiesTableKeys("maxValue")}
+				{translateOpportunitiesTableKeys("isActive")}
 				{column.getIsSorted() !== "desc" && (
 					<ArrowUp className="ml-2 h-4 w-4" />
 				)}
@@ -158,12 +141,10 @@ export const opportunitiesTableColumns: ColumnDef<Opportunity>[] = [
 			</Button>
 		),
 		cell: ({ row }) => (
-			<div className="font-semibold">
-				{Number(row.getValue("maxValue")).toLocaleString("pt-BR", {
-					style: "currency",
-					currency: "BRL",
-				})}
-			</div>
+			<Switch
+				checked={row.getValue("isActive")}
+				onCheckedChange={() => {}}
+			/>
 		),
 	},
 	{
@@ -173,32 +154,22 @@ export const opportunitiesTableColumns: ColumnDef<Opportunity>[] = [
 			const opportunity = row.original;
 
 			return (
-				<DropdownMenu>
-					<DropdownMenuTrigger asChild>
-						<Button variant="ghost" className="h-8 w-8 p-0">
-							<span className="sr-only">Abrir menu</span>
+				<div className="flex items-center gap-4">
+					<Button variant="outline" className="h-10 w-10">
+						<Eye />
+						<span className="sr-only">Ver detalhes</span>
+					</Button>
 
-							<MoreHorizontal className="h-4 w-4" />
-						</Button>
-					</DropdownMenuTrigger>
+					<Button variant="outline" className="h-10 w-10">
+						<SquarePen />
+						<span className="sr-only">Editar</span>
+					</Button>
 
-					<DropdownMenuContent align="end">
-						<DropdownMenuItem>
-							<Eye />
-							Ver Detalhes
-						</DropdownMenuItem>
-
-						<DropdownMenuItem>
-							<SquarePen />
-							Editar
-						</DropdownMenuItem>
-
-						<DeleteOpportunityDialog
-							opportunityId={opportunity.id}
-							opportunityName={opportunity.title}
-						/>
-					</DropdownMenuContent>
-				</DropdownMenu>
+					<DeleteOpportunityDialog
+						opportunityId={opportunity.id}
+						opportunityName={opportunity.title}
+					/>
+				</div>
 			);
 		},
 	},
