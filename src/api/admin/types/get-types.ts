@@ -7,7 +7,7 @@ import { GetTypesRequest } from "@/@schemas/type";
 type GetTypesResponse = HTTPSuccessResponse<Type[]> | HTTPErrorResponse;
 
 export async function getTypes(
-	request: GetTypesRequest
+	request?: GetTypesRequest
 ): Promise<GetTypesResponse> {
 	try {
 		const response = await api.get<HTTPSuccessResponse<Type[]>>("/types", {

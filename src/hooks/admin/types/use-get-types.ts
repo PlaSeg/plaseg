@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 export function useGetTypes() {
 	const { data: result, isLoading: isLoadingGetTypes } = useQuery({
 		queryKey: ["types"],
-		queryFn: getTypes,
+		queryFn: () => getTypes(),
 	});
 
 	return {
