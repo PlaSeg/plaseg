@@ -2,7 +2,6 @@ import { useDeleteOpportunity } from "@/hooks/admin/opportunities/use-delete-opp
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { LoaderCircle, Trash2, TriangleAlert } from "lucide-react";
-import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 
 interface DeleteOpportunityDialogProps {
 	opportunityName: string;
@@ -19,13 +18,13 @@ export function DeleteOpportunityDialog({
 	return (
 		<Dialog>
 			<DialogTrigger className="w-full" asChild>
-				<DropdownMenuItem
-					className="text-red-500 focus:text-red-500 hover:text-red-500"
-					onSelect={(e) => e.preventDefault()}
+				<Button
+					variant="outline"
+					className="text-red-500 hover:bg-red-500 hover:!text-white w-10 h-10"
 				>
-					<Trash2 className="text-red-500 h-4 w-4" />
-					Excluir
-				</DropdownMenuItem>
+					<Trash2 />
+					<span className="sr-only">Excluir oportunidade</span>
+				</Button>
 			</DialogTrigger>
 
 			<DialogContent className="w-[400px]">

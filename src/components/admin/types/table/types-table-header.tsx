@@ -15,7 +15,7 @@ export function TypesTableHeader({
 		"w-[200px]",
 		"w-[200px]",
 		"w-[200px]",
-		"w-[100px]",
+		"w-[200px]",
 	],
 }: TypesTableHeaderProps) {
 	return (

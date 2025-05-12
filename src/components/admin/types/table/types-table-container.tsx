@@ -15,13 +15,13 @@ import { Button } from "@/components/ui/button";
 import { typesTableColumns } from "./types-table-columns";
 import { SearchInput } from "@/components/ui/search-input";
 import { translateTypesTableKeys } from "@/utils/translate-types-table-keys";
-import { types } from "@/mocks/admin/types";
 import { TableSelect } from "@/components/table/table-select";
 import { TypesTable } from "./types-table";
 import { TablePagination } from "@/components/table/table-footer";
 import { TableHideColumnsDropDown } from "@/components/table/table-hide-columns-dropdown";
 import { TypeGroup } from "@/@types/type";
 import { CreateTypeSheet } from "../modals/create-type-sheet";
+import { useGetTypes } from "@/hooks/admin/types/use-get-types";
 
 export function TypesTableContainer() {
 	const [sorting, setSorting] = React.useState<SortingState>([
@@ -36,8 +36,8 @@ export function TypesTableContainer() {
 	const [columnVisibility, setColumnVisibility] =
 		React.useState<VisibilityState>({});
 	const [rowSelection, setRowSelection] = React.useState({});
+	const { types, isLoadingGetTypes } = useGetTypes();
 
-	// Create group options for the filter
 	const groupOptions = [
 		{ label: "Categoria", value: TypeGroup.CATEGORY },
 		{ label: "Subcategoria", value: TypeGroup.SUBCATEGORY },
@@ -102,7 +102,11 @@ export function TypesTableContainer() {
 				<CreateTypeSheet />
 			</div>
 
-			<TypesTable table={table} isLoadingGetTypes={false} data={types} />
+			<TypesTable
+				table={table}
+				isLoadingGetTypes={isLoadingGetTypes}
+				data={types}
+			/>
 
 			<TablePagination table={table} />
 		</div>

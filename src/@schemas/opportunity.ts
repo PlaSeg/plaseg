@@ -78,6 +78,7 @@ export const opportunitySchema = z.object({
 	finalDeadline: z.coerce.date(),
 	requiresCounterpart: z.boolean(),
 	counterpartPercentage: z.number(),
+	typeDescription: z.string(),
 	isActive: z.boolean(),
 	createdAt: z.coerce.date(),
 	updatedAt: z.coerce.date().nullable().optional(),
