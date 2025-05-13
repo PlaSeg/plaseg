@@ -2,9 +2,11 @@ import { useStepsStore } from "@/store/step";
 import {
 	Building2,
 	Check,
-	Smartphone,
-	FileQuestion,
-	Shield,
+	UsersRound,
+	Folders,
+	Handshake,
+	Landmark,
+	UserCog2,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -22,8 +24,8 @@ export function FormStep({ step }: FormStepProps) {
 	const styles = isCompleted
 		? "border-blue-500 bg-blue-500 text-white"
 		: isProgress
-		? "border-blue-500 text-blue-500"
-		: "border-muted-foreground/50 text-muted-foreground/50";
+			? "border-blue-500 text-blue-500"
+			: "border-muted-foreground/50 text-muted-foreground/50";
 
 	const [animate, setAnimate] = useState(false);
 
@@ -44,9 +46,11 @@ export function FormStep({ step }: FormStepProps) {
 					{!isCompleted && (
 						<>
 							{step === 1 && <Building2 size={24} />}
-							{step === 2 && <FileQuestion size={24} />}
-							{step === 3 && <Smartphone size={24} />}
-							{step === 4 && <Shield size={24} />}
+							{step === 2 && <UsersRound size={24} />}
+							{step === 3 && <Folders size={24} />}
+							{step === 4 && <Landmark size={24} />}
+							{step === 5 && <UserCog2 size={24} />}
+							{step === 6 && <Handshake size={24} />}
 						</>
 					)}
 				</div>
@@ -66,7 +70,7 @@ export function FormStep({ step }: FormStepProps) {
 				</div>
 			</div>
 
-			{step !== 4 && (
+			{step !== 6 && (
 				<div className="w-[3px] h-5 ml-5 my-3 rounded-lg relative overflow-hidden bg-muted-foreground/50">
 					<div
 						className={`absolute inset-0 ${
