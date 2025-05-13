@@ -1,20 +1,26 @@
-import { FormField } from "../form-field";
+import { FormInput } from "@/components/form/form-input";
+import { UseFormReturn } from "react-hook-form";
+import { completeData } from "@/@types/municipality-sign-up/sign-up";
 
-export function StepFour() {
+interface StepFourProps {
+	form: UseFormReturn<completeData>;
+}
+
+export function StepFour({ form }: StepFourProps) {
 	return (
 		<div className="flex flex-col gap-6">
-			<FormField
-				type="text"
-				id="description"
-				placeholder="Adicione a Descrição"
+			<FormInput
+				form={form}
+				entity="description"
 				label="Descrição"
+				placeholder="Adicione a Descrição"
 			/>
 
-			<FormField
-				type="text"
-				id="adress"
-				placeholder="Digite um endereço"
+			<FormInput
+				form={form}
+				entity="address"
 				label="Endereço"
+				placeholder="Digite um endereço"
 			/>
 		</div>
 	);

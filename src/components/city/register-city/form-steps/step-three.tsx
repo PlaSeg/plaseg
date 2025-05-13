@@ -1,34 +1,40 @@
-import { FormField } from "../form-field";
+import { FormInput } from "@/components/form/form-input";
+import { UseFormReturn } from "react-hook-form";
+import { completeData } from "@/@types/municipality-sign-up/sign-up";
 
-export function StepThree() {
+interface StepThreeProps {
+	form: UseFormReturn<completeData>;
+}
+
+export function StepThree({ form }: StepThreeProps) {
 	return (
 		<div className="flex flex-col gap-6">
-			<FormField
-				type="text"
-				id="term"
-				placeholder="Digite o Termo"
+			<FormInput
+				form={form}
+				entity="term"
 				label="Termo"
+				placeholder="Digite o Termo"
 			/>
 
-			<FormField
-				type="text"
-				id="agency"
-				placeholder="Digite a Agência"
+			<FormInput
+				form={form}
+				entity="agency"
 				label="Agência"
+				placeholder="Digite a Agência"
 			/>
 
-			<FormField
-				type="text"
-				id="objective"
-				placeholder="Digite o Objetivo"
+			<FormInput
+				form={form}
+				entity="objective"
 				label="Objetivo"
+				placeholder="Digite o Objetivo"
 			/>
 
-			<FormField
-				type="text"
-				id="status"
-				placeholder="Digite o Status atual"
+			<FormInput
+				form={form}
+				entity="status"
 				label="Status"
+				placeholder="Digite o Status atual"
 			/>
 		</div>
 	);

@@ -1,52 +1,66 @@
-import { FormField } from "../form-field";
+import { FormInput } from "@/components/form/form-input";
+import { UseFormReturn } from "react-hook-form";
+import { completeData } from "@/@types/municipality-sign-up/sign-up";
+import { FormSelect } from "@/components/form/form-select";
+import { FormCheckbox } from "@/components/form/form-checkbox";
 
-export function StepTwo() {
+interface StepTwoProps {
+	form: UseFormReturn<completeData>;
+}
+
+const employmentType = [
+	{ label: "CLT", value: "clt" },
+	{ label: "PJ", value: "pj" },
+];
+
+export function StepTwo({ form }: StepTwoProps) {
 	return (
 		<div className="flex flex-col gap-6">
-			<FormField
-				type="text"
-				id="name"
-				placeholder="Digite o Nome do Profissional "
+			<FormInput
+				form={form}
+				entity="name"
 				label="Nome do Profissional (Nome Completo)"
+				placeholder="Digite o Nome do Profissional "
 			/>
 
-			<FormField
-				type="text"
-				id="sector"
-				placeholder="Digite o Setor Atuante"
+			<FormInput
+				form={form}
+				entity="sector"
 				label="Setor Atuante"
+				placeholder="Digite o Setor Atuante"
 			/>
 
-			<FormField
-				type="text"
-				id="education"
-				placeholder="Digite a Formação"
+			<FormInput
+				form={form}
+				entity="education"
 				label="Formação"
+				placeholder="Digite a Formação"
 			/>
-			<FormField
-				type="text"
-				id="experience"
-				placeholder="Digite a Experiência na Área"
+			<FormInput
+				form={form}
+				entity="experience"
 				label="Experiência na Área"
+				placeholder="Digite a Experiência na Área"
 			/>
-			<FormField
-				type="text"
-				id="employmentType"
-				placeholder="Digite o Tipo de Contrato"
+			<FormSelect
+				form={form}
+				entity="employmentType"
 				label="Tipo de contrato"
+				options={employmentType}
+				placeholder="CLT"
 			/>
 
-			<FormField
-				type="text"
-				id="document"
-				placeholder="Insira os documentos"
-				label="Documentos"
+			<FormCheckbox
+				form={form}
+				entity="isResponsible"
+				label="Responsável pelo setor"
 			/>
-			<FormField
-				type="text"
-				id="isResponsible"
-				placeholder="É responsável pelo setor?"
-				label="É responsável pelo setor?"
+
+			<FormInput
+				form={form}
+				entity="document"
+				label="Documentos"
+				placeholder="Insira o link para os documentos"
 			/>
 		</div>
 	);

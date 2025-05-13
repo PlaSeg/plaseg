@@ -1,11 +1,11 @@
-import { FormField } from "../form-field";
+import { FormInput } from "@/components/form/form-input";
 import { FormDatePicker } from "@/components/form/form-date-picker";
 import { UseFormReturn } from "react-hook-form";
-import { generalData } from "@/@types/municipality-sign-up/sign-up";
+import { completeData } from "@/@types/municipality-sign-up/sign-up";
 import { FormSelect } from "@/components/form/form-select";
 
 interface StepOneProps {
-	form: UseFormReturn<generalData>;
+	form: UseFormReturn<completeData>;
 }
 
 const unityOptions = [
@@ -16,44 +16,52 @@ const unityOptions = [
 export function StepOne({ form }: StepOneProps) {
 	return (
 		<div className="flex flex-col gap-6">
-			<FormField
-				type="text"
-				id="nome_municipio"
-				placeholder="Digite o Nome do Município"
+			<FormInput
+				form={form}
+				entity="name"
 				label="Nome do Município"
-			/>
-
-			<FormDatePicker
-				form={form}
-				entity="guardInitialDate"
-				label="Data Inicial da Guarda"
-			/>
-
-			<FormField
-				type="number"
-				id="guardCount"
-				placeholder="Digite a Quantidade de Guardas"
-				label="Quantidade de Guardas"
-			/>
-
-			<FormDatePicker
-				form={form}
-				entity="trafficInitialDate"
-				label="Data Inicial do Trânsito"
-			/>
-
-			<FormField
-				type="number"
-				id="trafficCount"
-				placeholder="Digite a quantidade de registros de trânsito"
-				label="Quantidade de Registros de Trânsito"
-			/>
-
-			<FormField
+				placeholder="Digite o Nome do Município"
 				type="text"
-				id="federativeUnit"
-				placeholder="Digite a Unidade Federativa"
+			/>
+
+			<div className="text-left">
+				<FormDatePicker
+					form={form}
+					entity="guardInitialDate"
+					label="Data Inicial da Guarda"
+				/>
+			</div>
+
+			<FormInput
+				form={form}
+				entity="guardCount"
+				label="Quantidade de Guardas"
+				placeholder="Digite a Quantidade de Guardas"
+				type="number"
+			/>
+
+			<div className="text-left">
+				<FormDatePicker
+					form={form}
+					entity="trafficInitialDate"
+					label="Data Inicial do Trânsito"
+				/>
+			</div>
+
+			<FormInput
+				form={form}
+				entity="trafficCount"
+				label="Quantidade de Registros de Trânsito"
+				placeholder="Digite a quantidade de registros de trânsito"
+				type="number"
+			/>
+
+			<FormInput
+				form={form}
+				entity="federativeUnit"
 				label="Unidade Federativa"
+				placeholder="Digite a Unidade Federativa"
+				type="text"
 			/>
 
 			<FormSelect

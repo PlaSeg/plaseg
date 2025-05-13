@@ -11,12 +11,12 @@ import { StepSix } from "./form-steps/step-six";
 import { useNavigate } from "react-router";
 import { Button } from "@/components/ui/button";
 import { Form } from "react-hook-form";
-import { generalData } from "@/@types/municipality-sign-up/sign-up";
+import { completeData } from "@/@types/municipality-sign-up/sign-up";
 import { FormProvider } from "react-hook-form";
 
 export function RegisterMunicipalityForm() {
 	const navigate = useNavigate();
-	const form = useForm<generalData>();
+	const form = useForm<completeData>();
 
 	const { steps, stepBack, stepForward, currentStep, setUserType } =
 		useStepsStore();
@@ -61,11 +61,11 @@ export function RegisterMunicipalityForm() {
 
 								<div className="w-[400px]">
 									{currentStep() === 1 && <StepOne form={form} />}
-									{currentStep() === 2 && <StepTwo />}
-									{currentStep() === 3 && <StepThree />}
-									{currentStep() === 4 && <StepFour />}
-									{currentStep() === 5 && <StepFive />}
-									{currentStep() === 6 && <StepSix />}
+									{currentStep() === 2 && <StepTwo form={form} />}
+									{currentStep() === 3 && <StepThree form={form} />}
+									{currentStep() === 4 && <StepFour form={form} />}
+									{currentStep() === 5 && <StepFive form={form} />}
+									{currentStep() === 6 && <StepSix form={form} />}
 
 									{currentStep() !== steps.length && (
 										<Button

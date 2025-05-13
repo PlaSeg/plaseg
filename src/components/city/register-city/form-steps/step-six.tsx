@@ -1,19 +1,25 @@
-import { FormField } from "../form-field";
+import { FormInput } from "@/components/form/form-input";
+import { UseFormReturn } from "react-hook-form";
+import { completeData } from "@/@types/municipality-sign-up/sign-up";
 
-export function StepSix() {
+interface StepSixProps {
+	form: UseFormReturn<completeData>;
+}
+
+export function StepSix({ form }: StepSixProps) {
 	return (
 		<div className="flex flex-col gap-6">
-			<FormField
-				type="string"
-				id="description"
-				placeholder="Adicione uma Descrição"
+			<FormInput
+				form={form}
+				entity="description"
 				label="Descrição"
+				placeholder="Adicione uma Descrição"
 			/>
-			<FormField
-				type="string"
-				id="attachment"
-				placeholder="Adicione um Anexo"
+			<FormInput
+				form={form}
+				entity="attachment"
 				label="Anexo"
+				placeholder="Adicione um Anexo"
 			/>
 		</div>
 	);
