@@ -5,7 +5,7 @@ import Consultants from "@/pages/admin/consultants";
 import Products from "@/pages/admin/products";
 import Types from "@/pages/admin/types";
 import Contracts from "@/pages/admin/contracts";
-import Users from "@/pages/admin/users";
+import Administrators from "@/pages/admin/administrators";
 import EspecificProducts from "@/pages/admin/especific-products";
 import BaseProducts from "@/pages/admin/base-products";
 
@@ -18,7 +18,7 @@ export function AdminRoutes() {
 			<Route path="produtos" element={<Products />} />
 			<Route path="tipos" element={<Types />} />
 			<Route path="contratos" element={<Contracts />} />
-			<Route path="usuarios" element={<Users />} />
+			<Route path="administradores" element={<Administrators />} />
 			<Route path="produtos-especificos" element={<EspecificProducts />} />
 			<Route path="produtos-base" element={<BaseProducts />} />
 		</Routes>

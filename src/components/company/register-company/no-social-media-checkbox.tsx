@@ -6,7 +6,7 @@ export function NoSocialMediaCheckbox() {
 			<Checkbox id="no-social-media" />
 			<label
 				htmlFor="no-social-media"
-				className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+				className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opamunicipality-70"
 			>
 				Sem redes sociais
 			</label>

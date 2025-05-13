@@ -12,8 +12,12 @@ import { BaseProductForm } from "../form/base-product-form";
 import { useUpdateBaseProduct } from "@/hooks/admin/base-products/use-update-base-product";
 
 export function EditBaseProductSheet() {
-	const { isUpdateBaseProductSheetOpen, setIsUpdateBaseProductSheetOpen } =
-		useUpdateBaseProduct();
+	const {
+		form,
+		isUpdatingBaseProduct,
+		isUpdateBaseProductSheetOpen,
+		setIsUpdateBaseProductSheetOpen,
+	} = useUpdateBaseProduct();
 
 	return (
 		<Sheet
@@ -34,7 +38,9 @@ export function EditBaseProductSheet() {
 				</SheetHeader>
 
 				<BaseProductForm
-					setIsBaseProductSheetOpen={setIsUpdateBaseProductSheetOpen}
+					form={form}
+					setIsFormOpen={setIsUpdateBaseProductSheetOpen}
+					isLoading={isUpdatingBaseProduct}
 				/>
 			</SheetContent>
 		</Sheet>

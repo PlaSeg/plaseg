@@ -16,7 +16,7 @@ export function OpportunitiesTableHeader({
 		"w-[200px]",
 		"w-[200px]",
 		"w-[200px]",
-		"w-[10px]",
+		"w-[200px]",
 	],
 }: OpportunitiesTableHeaderProps) {
 	return (

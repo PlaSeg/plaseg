@@ -1,6 +1,6 @@
 import { UserCircle } from "lucide-react";
 
-export default function Users() {
+export default function Administrators() {
 	return (
 		<div className="flex flex-col py-4 md:py-6 h-[calc(100vh-10rem)]">
 			<div
@@ -11,7 +11,7 @@ export default function Users() {
 					<UserCircle size={48} strokeWidth={1} />
 				</div>
 
-				<h2 className="text-xl font-semibold">Usuários</h2>
+				<h2 className="text-xl font-semibold">Administradores</h2>
 
 				<span className="text-muted-foreground">Página não disponível</span>
 			</div>
