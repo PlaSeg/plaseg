@@ -17,10 +17,11 @@ export function DeleteOpportunityDialog({
 
 	return (
 		<Dialog>
-			<DialogTrigger className="w-full" asChild>
+			<DialogTrigger asChild>
 				<Button
 					variant="outline"
-					className="text-red-500 hover:bg-red-500 hover:!text-white w-10 h-10"
+					className="text-red-500 hover:bg-red-500 hover:!text-white"
+					size="icon"
 				>
 					<Trash2 />
 					<span className="sr-only">Excluir oportunidade</span>

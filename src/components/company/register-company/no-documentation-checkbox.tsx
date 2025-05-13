@@ -6,7 +6,7 @@ export function NoDocumentationCheckbox() {
 			<Checkbox id="no-documentation" />
 			<label
 				htmlFor="no-documentation"
-				className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+				className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opamunicipality-70"
 			>
 				Sem Documentação Obrigatória
 			</label>

@@ -22,16 +22,16 @@ export function useUpdateBaseProduct(baseProduct?: BaseProduct) {
 			technicalDescription: baseProduct?.technicalDescription ?? "",
 			budget1: baseProduct?.budget1 ?? 0,
 			budget1Validity: baseProduct?.budget1Validity
-				? new Date(baseProduct.budget1Validity)
-				: new Date(),
+				? new Date(baseProduct.budget1Validity).toISOString()
+				: new Date().toISOString(),
 			budget2: baseProduct?.budget2 ?? 0,
 			budget2Validity: baseProduct?.budget2Validity
-				? new Date(baseProduct.budget2Validity)
-				: new Date(),
+				? new Date(baseProduct.budget2Validity).toISOString()
+				: new Date().toISOString(),
 			budget3: baseProduct?.budget3 ?? 0,
 			budget3Validity: baseProduct?.budget3Validity
-				? new Date(baseProduct.budget3Validity)
-				: new Date(),
+				? new Date(baseProduct.budget3Validity).toISOString()
+				: new Date().toISOString(),
 			unitValue: baseProduct?.unitValue ?? 0,
 		},
 		onSubmit: (data) => {

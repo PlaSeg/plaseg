@@ -66,6 +66,13 @@ export function TypesTableContainer() {
 
 	return (
 		<div className="w-full space-y-4 bg-white p-4 border border-muted rounded-lg">
+			<div>
+				<h1 className="text-2xl font-semibold">Tipos</h1>
+				<span className="text-sm text-muted-foreground">
+					Adicione, edite e exclua os tipos da aplicação.
+				</span>
+			</div>
+
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:flex items-center gap-4">
 				<SearchInput
 					className="w-full xl:w-[300px]"

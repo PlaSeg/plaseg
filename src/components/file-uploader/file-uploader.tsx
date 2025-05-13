@@ -200,7 +200,7 @@ export function FileUploader(props: FileUploaderProps) {
 							"bg-muted/50 group relative grid h-52 w-full cursor-pointer place-items-center rounded-lg border-2 border-dashed border-muted-foreground/25 px-5 py-2.5 text-center transition hover:bg-muted/75",
 							"ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
 							isDragActive && "border-muted-foreground/50",
-							isDisabled && "pointer-events-none opacity-60",
+							isDisabled && "pointer-events-none opamunicipality-60",
 							className
 						)}
 						{...dropzoneProps}

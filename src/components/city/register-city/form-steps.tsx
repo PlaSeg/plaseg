@@ -4,7 +4,7 @@ export function FormSteps() {
 	return (
 		<div className="flex flex-col">
 			{Array.from({ length: 4 }).map((_, index) => (
-				<FormStep step={index + 1} key={index} />
+				<FormStep key={index} step={index + 1} />
 			))}
 		</div>
 	);

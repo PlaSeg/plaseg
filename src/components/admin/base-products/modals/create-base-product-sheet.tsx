@@ -7,7 +7,7 @@ import {
 	SheetTitle,
 	SheetTrigger,
 } from "@/components/ui/sheet";
-import { Plus, PlusCircle } from "lucide-react";
+import { Plus } from "lucide-react";
 import { BaseProductForm } from "../form/base-product-form";
 import { useCreateBaseProduct } from "@/hooks/admin/base-products/use-create-base-product";
 
@@ -18,8 +18,12 @@ interface CreateBaseProductSheetProps {
 export function CreateBaseProductSheet({
 	className,
 }: CreateBaseProductSheetProps) {
-	const { isCreateBaseProductSheetOpen, setIsCreateBaseProductSheetOpen } =
-		useCreateBaseProduct();
+	const {
+		form,
+		isAddingBaseProduct,
+		isCreateBaseProductSheetOpen,
+		setIsCreateBaseProductSheetOpen,
+	} = useCreateBaseProduct();
 
 	return (
 		<Sheet
@@ -42,21 +46,11 @@ export function CreateBaseProductSheet({
 				</SheetHeader>
 
 				<BaseProductForm
-					setIsBaseProductSheetOpen={setIsCreateBaseProductSheetOpen}
+					setIsFormOpen={setIsCreateBaseProductSheetOpen}
+					form={form}
+					isLoading={isAddingBaseProduct}
 				/>
 			</SheetContent>
 		</Sheet>
-	);
-}
-
-export function CreateBaseProductSheetPlaceholder() {
-	return (
-		<Button
-			className="bg-primary hover:bg-primary/90 ml-auto"
-			onClick={() => {}}
-		>
-			<PlusCircle className="mr-2 h-4 w-4" />
-			Novo Produto Base
-		</Button>
 	);
 }

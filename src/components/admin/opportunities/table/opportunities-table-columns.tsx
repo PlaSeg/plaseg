@@ -141,10 +141,7 @@ export const opportunitiesTableColumns: ColumnDef<Opportunity>[] = [
 			</Button>
 		),
 		cell: ({ row }) => (
-			<Switch
-				checked={row.getValue("isActive")}
-				onCheckedChange={() => {}}
-			/>
+			<Switch checked={row.getValue("isActive")} onCheckedChange={() => {}} />
 		),
 	},
 	{
@@ -155,12 +152,12 @@ export const opportunitiesTableColumns: ColumnDef<Opportunity>[] = [
 
 			return (
 				<div className="flex items-center gap-4">
-					<Button variant="outline" className="h-10 w-10">
-						<Eye />
+					<Button variant="outline" size="icon" disabled>
+						<Eye className="h-4 w-4" />
 						<span className="sr-only">Ver detalhes</span>
 					</Button>
 
-					<Button variant="outline" className="h-10 w-10">
+					<Button variant="outline" size="icon" disabled>
 						<SquarePen />
 						<span className="sr-only">Editar</span>
 					</Button>
