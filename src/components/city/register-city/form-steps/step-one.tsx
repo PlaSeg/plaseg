@@ -1,11 +1,11 @@
 import { FormInput } from "@/components/form/form-input";
 import { FormDatePicker } from "@/components/form/form-date-picker";
 import { UseFormReturn } from "react-hook-form";
-import { completeData } from "@/@types/municipality-sign-up/sign-up";
 import { FormSelect } from "@/components/form/form-select";
+import { municipalitySchema } from "@/@schemas/sign-up-municipality/sign-up-municipality";
 
 interface StepOneProps {
-	form: UseFormReturn<completeData>;
+	form: UseFormReturn<municipalitySchema>;
 }
 
 const unityOptions = [

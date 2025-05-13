@@ -1,6 +1,6 @@
 import { FormInput } from "@/components/form/form-input";
 import { UseFormReturn } from "react-hook-form";
-import { completeData } from "@/@types/municipality-sign-up/sign-up";
+import { management } from "@/@types/municipality-sign-up/municipality-sign-in";
 import {
 	DropdownMenu,
 	DropdownMenuTrigger,
@@ -10,7 +10,7 @@ import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface StepFiveProps {
-	form: UseFormReturn<completeData>;
+	form: UseFormReturn<management>;
 }
 
 export function StepFive({ form }: StepFiveProps) {

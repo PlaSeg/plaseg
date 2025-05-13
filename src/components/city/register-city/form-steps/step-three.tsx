@@ -1,9 +1,9 @@
 import { FormInput } from "@/components/form/form-input";
 import { UseFormReturn } from "react-hook-form";
-import { completeData } from "@/@types/municipality-sign-up/sign-up";
+import { projectPartnership } from "@/@types/municipality-sign-up/municipality-sign-in";
 
 interface StepThreeProps {
-	form: UseFormReturn<completeData>;
+	form: UseFormReturn<projectPartnership>;
 }
 
 export function StepThree({ form }: StepThreeProps) {

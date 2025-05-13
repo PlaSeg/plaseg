@@ -1,4 +1,4 @@
-export interface generalData {
+export interface municipality {
 	name: string;
 	guardInitialDate: Date;
 	guardCount: number;
@@ -17,19 +17,17 @@ export interface qualifiedStaff {
 	document: string;
 	isResponsible: boolean;
 }
-
 export interface projectPartnership {
 	term: string;
 	agency: string;
 	objective: string;
 	status: string;
 }
-
 export interface allocationDepartment {
 	description: string;
 	address: string;
 }
-export interface managment {
+export interface management {
 	initialDate: Date;
 	endDate: Date;
 	managerName: string;
@@ -48,15 +46,7 @@ export interface managment {
 	legislationAddress: string;
 	legislationPhone: string;
 }
-
 export interface maintenanceContract {
 	description: string;
 	attachment: string;
 }
-
-export type completeData = generalData &
-	qualifiedStaff &
-	projectPartnership &
-	allocationDepartment &
-	managment &
-	maintenanceContract;

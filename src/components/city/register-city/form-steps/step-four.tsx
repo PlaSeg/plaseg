@@ -1,9 +1,9 @@
 import { FormInput } from "@/components/form/form-input";
 import { UseFormReturn } from "react-hook-form";
-import { completeData } from "@/@types/municipality-sign-up/sign-up";
+import { allocationDepartment } from "@/@types/municipality-sign-up/municipality-sign-in";
 
 interface StepFourProps {
-	form: UseFormReturn<completeData>;
+	form: UseFormReturn<allocationDepartment>;
 }
 
 export function StepFour({ form }: StepFourProps) {

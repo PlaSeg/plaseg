@@ -1,11 +1,11 @@
 import { FormInput } from "@/components/form/form-input";
 import { UseFormReturn } from "react-hook-form";
-import { completeData } from "@/@types/municipality-sign-up/sign-up";
+import { qualifiedStaff } from "@/@types/municipality-sign-up/municipality-sign-in";
 import { FormSelect } from "@/components/form/form-select";
 import { FormCheckbox } from "@/components/form/form-checkbox";
 
 interface StepTwoProps {
-	form: UseFormReturn<completeData>;
+	form: UseFormReturn<qualifiedStaff>;
 }
 
 const employmentType = [
