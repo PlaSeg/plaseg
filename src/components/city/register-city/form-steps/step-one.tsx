@@ -1,55 +1,75 @@
-import { FormField } from "../form-field";
+import { FormInput } from "@/components/form/form-input";
+import { FormDatePicker } from "@/components/form/form-date-picker";
+import { UseFormReturn } from "react-hook-form";
+import { FormSelect } from "@/components/form/form-select";
+import { municipalitySchema } from "@/@schemas/sign-up-municipality/sign-up-municipality";
 
-export function StepOne() {
+interface StepOneProps {
+	form: UseFormReturn<municipalitySchema>;
+}
+
+const unityOptions = [
+	{ label: "UF", value: "uf" },
+	{ label: "Cidade", value: "cidade" },
+];
+
+export function StepOne({ form }: StepOneProps) {
 	return (
 		<div className="flex flex-col gap-6">
-			<FormField
-				type="text"
-				id="nome_municipio"
-				placeholder="Digite o nome do município"
+			<FormInput
+				form={form}
+				entity="name"
 				label="Nome do Município"
-			/>
-
-			<FormField
+				placeholder="Digite o Nome do Município"
 				type="text"
-				id="codigo_ibge"
-				placeholder="Digite o código IBGE"
-				label="Código IBGE"
 			/>
 
-			<FormField
-				type="text"
-				id="unidade_federativa"
-				placeholder="Digite a UF"
-				label="Unidade Federativa (Estado – UF)"
-			/>
+			<div className="text-left">
+				<FormDatePicker
+					form={form}
+					entity="guardInitialDate"
+					label="Data Inicial da Guarda"
+				/>
+			</div>
 
-			<FormField
-				type="text"
-				id="regiao_geografica"
-				label="Região Geográfica"
-				placeholder="Digite a Região Geográfica (Norte, Sul, Nordeste...)"
-			/>
-
-			<FormField
+			<FormInput
+				form={form}
+				entity="guardCount"
+				label="Quantidade de Guardas"
+				placeholder="Digite a Quantidade de Guardas"
 				type="number"
-				id="populacao_estimada"
-				label="População Estimada"
-				placeholder="Digite a população estimada"
 			/>
 
-			<FormField
+			<div className="text-left">
+				<FormDatePicker
+					form={form}
+					entity="trafficInitialDate"
+					label="Data Inicial do Trânsito"
+				/>
+			</div>
+
+			<FormInput
+				form={form}
+				entity="trafficCount"
+				label="Quantidade de Registros de Trânsito"
+				placeholder="Digite a quantidade de registros de trânsito"
+				type="number"
+			/>
+
+			<FormInput
+				form={form}
+				entity="federativeUnit"
+				label="Unidade Federativa"
+				placeholder="Digite a Unidade Federativa"
 				type="text"
-				id="area_total"
-				placeholder="Digite a área total"
-				label="Área Total (km²)"
 			/>
 
-			<FormField
-				type="file"
-				id="bandeira_municipio"
-				placeholder="Faça o upload da Imagem da Bandeira"
-				label="Bandeira Município"
+			<FormSelect
+				form={form}
+				entity="unitType"
+				label="Tipo de Unidade"
+				options={unityOptions}
+				placeholder="UF"
 			/>
 		</div>
 	);

@@ -12,7 +12,6 @@ export default function RegisterMunicipality() {
 							Cadastro de Município
 						</span>
 					</div>
-
 					<FormSteps />
 				</div>
 			</div>

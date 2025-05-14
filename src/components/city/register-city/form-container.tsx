@@ -1,15 +1,45 @@
 import { ChevronLeft } from "lucide-react";
 import { useStepsStore } from "@/store/step";
+import { useForm } from "react-hook-form";
 import { StepOne } from "./form-steps/step-one";
 import { StepTwo } from "./form-steps/step-two";
 import { StepThree } from "./form-steps/step-three";
 import { useEffect } from "react";
 import { StepFour } from "./form-steps/step-four";
+import { StepFive } from "./form-steps/step-five";
+import { StepSix } from "./form-steps/step-six";
 import { useNavigate } from "react-router";
 import { Button } from "@/components/ui/button";
+import {
+	municipality,
+	qualifiedStaff,
+	projectPartnership,
+	allocationDepartment,
+	management,
+	maintenanceContract,
+} from "@/@types/municipality-sign-up/municipality-sign-in";
+import {
+	municipalitySchema,
+	qualifiedStaffSchema,
+} from "@/@schemas/sign-up-municipality/sign-up-municipality";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { FormProvider } from "react-hook-form";
 
 export function RegisterMunicipalityForm() {
 	const navigate = useNavigate();
+	const stepOneForm = useForm<municipality>({
+		resolver: zodResolver(municipalitySchema),
+		mode: "onTouched",
+	});
+	const stepTwoForm = useForm<qualifiedStaff>({
+		resolver: zodResolver(qualifiedStaffSchema),
+		mode: "onTouched",
+	});
+	const stepThreeForm = useForm<projectPartnership>();
+	const stepFourForm = useForm<allocationDepartment>();
+	const stepFiveForm = useForm<management>();
+	const stepSixForm = useForm<maintenanceContract>();
 
 	const { steps, stepBack, stepForward, currentStep, setUserType } =
 		useStepsStore();
@@ -19,13 +49,21 @@ export function RegisterMunicipalityForm() {
 		setUserType("municipio");
 	}, [setUserType]);
 
+	const onSubmit = () => {
+		navigate("/editais");
+	};
+
 	return (
 		<div className="flex flex-col w-full p-0 m-0 h-full">
 			<div className="w-full pl-4 pt-4 flex gap-2 items-center cursor-pointer">
-				<Button onClick={stepBack} variant="secondary" className="p-0 w-8 h-8">
+				<Button
+					type="button"
+					onClick={stepBack}
+					variant="secondary"
+					className="p-0 w-8 h-8"
+				>
 					<ChevronLeft />
 				</Button>
-
 				<strong>Voltar</strong>
 			</div>
 
@@ -41,21 +79,52 @@ export function RegisterMunicipalityForm() {
 					</div>
 
 					<div className="w-[400px]">
-						{currentStep() === 1 && <StepOne />}
-						{currentStep() === 2 && <StepTwo />}
-						{currentStep() === 3 && <StepThree />}
-						{currentStep() === 4 && <StepFour />}
+						{currentStep() === 1 && (
+							<FormProvider {...stepOneForm}>
+								<StepOne form={stepOneForm} />
+							</FormProvider>
+						)}
+						{currentStep() === 2 && (
+							<FormProvider {...stepTwoForm}>
+								<StepTwo form={stepTwoForm} />
+							</FormProvider>
+						)}
+						{currentStep() === 3 && (
+							<FormProvider {...stepThreeForm}>
+								<StepThree form={stepThreeForm} />
+							</FormProvider>
+						)}
+						{currentStep() === 4 && (
+							<FormProvider {...stepFourForm}>
+								<StepFour form={stepFourForm} />
+							</FormProvider>
+						)}
+						{currentStep() === 5 && (
+							<FormProvider {...stepFiveForm}>
+								<StepFive form={stepFiveForm} />
+							</FormProvider>
+						)}
+						{currentStep() === 6 && (
+							<FormProvider {...stepSixForm}>
+								<StepSix form={stepSixForm} />
+							</FormProvider>
+						)}
 
 						{currentStep() !== steps.length && (
-							<Button className="mt-4 w-full" onClick={stepForward}>
+							<Button
+								className="mt-4 mb-4 w-full"
+								type="button"
+								onClick={stepForward}
+							>
 								Próximo
 							</Button>
 						)}
 
 						{currentStep() === steps.length && (
 							<Button
-								className="mt-4 w-full"
-								onClick={() => navigate("/editais")}
+								className="mt-4 mb-4 w-full"
+								type="submit"
+								onClick={onSubmit}
 							>
 								Concluir cadastro
 							</Button>

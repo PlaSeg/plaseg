@@ -5,7 +5,7 @@ interface FormInputProps {
 	type: React.HTMLInputTypeAttribute;
 	id: string;
 	label: string;
-	placeholder: string;
+	placeholder?: string;
 }
 
 export function FormField({ type, id, label, placeholder }: FormInputProps) {

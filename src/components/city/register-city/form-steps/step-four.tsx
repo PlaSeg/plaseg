@@ -1,43 +1,27 @@
-import { CheckboxDemo } from "../checkbox";
-import { FormField } from "../form-field";
+import { FormInput } from "@/components/form/form-input";
+import { UseFormReturn } from "react-hook-form";
+import { allocationDepartment } from "@/@types/municipality-sign-up/municipality-sign-in";
 
-export function StepFour() {
+interface StepFourProps {
+	form: UseFormReturn<allocationDepartment>;
+}
+
+export function StepFour({ form }: StepFourProps) {
 	return (
 		<div className="flex flex-col gap-6">
-			
-			<div className="space-y-4">
-				<FormField
-					type="text"
-					id="tem_guarda"
-					placeholder="Quando foi criado a guarda"
-					label="Quando foi criado a guarda?"
-				/>
+			<FormInput
+				form={form}
+				entity="description"
+				label="Descrição"
+				placeholder="Adicione a Descrição"
+			/>
 
-				<CheckboxDemo text="Ainda não foi criado."/>
-			</div>
-
-			<div className="space-y-4">
-				<FormField
-					type="text"
-					id="tem_guarda"
-					placeholder="Quando foi criado a defesa civil"
-					label="Quando foi criado a defesa civil?"
-				/>
-
-				<CheckboxDemo text="Ainda não foi criado."/>
-			</div>
-
-			<div className="space-y-4">
-				<FormField
-					type="text"
-					id="tem_guarda"
-					placeholder="Quando foi criado o trânsito municipalizado"
-					label="Quando foi criado o trânsito municipalizado?"
-				/>
-
-				<CheckboxDemo text="Ainda não foi criado."/>
-			</div>
-
+			<FormInput
+				form={form}
+				entity="address"
+				label="Endereço"
+				placeholder="Digite um endereço"
+			/>
 		</div>
 	);
 }

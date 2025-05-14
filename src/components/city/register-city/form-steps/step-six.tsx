@@ -1,19 +1,26 @@
-import { FormField } from "../form-field";
-import { NoDocumentationCheckbox } from "../no-documentation-checkbox";
+import { FormInput } from "@/components/form/form-input";
+import { UseFormReturn } from "react-hook-form";
+import { maintenanceContract } from "@/@types/municipality-sign-up/municipality-sign-in";
 
-export function StepSix() {
+interface StepSixProps {
+	form: UseFormReturn<maintenanceContract>;
+}
+
+export function StepSix({ form }: StepSixProps) {
 	return (
 		<div className="flex flex-col gap-6">
-			<div className="space-y-4">
-				<FormField
-					type="file"
-					id="mandatory-documentation"
-					placeholder="Selecione o arquivo"
-					label="Certidão Negativa de Débitos com a Receita Federal"
-				/>
-
-				<NoDocumentationCheckbox />
-			</div>
+			<FormInput
+				form={form}
+				entity="description"
+				label="Descrição"
+				placeholder="Adicione uma Descrição"
+			/>
+			<FormInput
+				form={form}
+				entity="attachment"
+				label="Anexo"
+				placeholder="Adicione um Anexo"
+			/>
 		</div>
 	);
 }

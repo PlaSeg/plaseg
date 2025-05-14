@@ -26,9 +26,11 @@ const stepsData: Step[] = [
 
 const stepsDataMunicipio: Step[] = [
 	{ title: "Dados Gerais do Município", status: "progress" },
-	{ title: "Dados Administrativos", status: "pending" },
-	{ title: "Contatos Oficiais", status: "pending" },
-	{ title: "Informações Adicionais", status: "pending" },
+	{ title: "Equipe Qualificada", status: "pending" },
+	{ title: "Projetos anteriores", status: "pending" },
+	{ title: "Setores de Alocações de Bens", status: "pending" },
+	{ title: "Responsáveis pela gestão", status: "pending" },
+	{ title: "Contratos de manutenção", status: "pending" },
 ];
 
 export const useStepsStore = create<StepsStore>((set, get) => ({

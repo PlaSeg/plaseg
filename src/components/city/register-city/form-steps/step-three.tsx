@@ -1,45 +1,41 @@
-import { FormField } from "../form-field";
+import { FormInput } from "@/components/form/form-input";
+import { UseFormReturn } from "react-hook-form";
+import { projectPartnership } from "@/@types/municipality-sign-up/municipality-sign-in";
 
-export function StepThree() {
+interface StepThreeProps {
+	form: UseFormReturn<projectPartnership>;
+}
+
+export function StepThree({ form }: StepThreeProps) {
 	return (
 		<div className="flex flex-col gap-6">
-
-			<FormField
-				type="text"
-				id="endereco_prefeitura"
-				placeholder="Digite o endereço da prefeitura"
-				label="Endereço da Prefeitura"
+			<FormInput
+				form={form}
+				entity="term"
+				label="Termo"
+				placeholder="Digite o Termo"
 			/>
 
-			<FormField
-				type="number"
-				id="telefone"
-				placeholder="Digite o telefone da prefeitura"
-				label="Telefone da Prefeitura"
+			<FormInput
+				form={form}
+				entity="agency"
+				label="Agência"
+				placeholder="Digite a Agência"
 			/>
 
-			
-			<FormField
-				type="text"
-				id="email_prefeitura"
-				placeholder="Digite o email da prefeitura"
-				label="Email da Prefeitura"
+			<FormInput
+				form={form}
+				entity="objective"
+				label="Objetivo"
+				placeholder="Digite o Objetivo"
 			/>
 
-			<FormField
-				type="text"
-				id="site_oficial"
-				placeholder="Digite o site oficial do município"
-				label="Site Oficial do Município"
+			<FormInput
+				form={form}
+				entity="status"
+				label="Status"
+				placeholder="Digite o Status atual"
 			/>
-
-			<FormField
-				type="text"
-				id="redes_sociais"
-				placeholder="Digite o link para as Redes Sociais"
-				label="Redes Sociais"
-			/>
-
 		</div>
 	);
 }
