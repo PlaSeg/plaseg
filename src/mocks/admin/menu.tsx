@@ -36,6 +36,14 @@ export const adminMenuItems: MenuItem[] = [
 		ready: true,
 	},
 	{
+		icon: <UserCog size={24} className="text-blue-500" />,
+		title: "Administradores",
+		description:
+			"Controle o acesso ao sistema, gerencie perfis, permissões e dados dos administradores",
+		url: "/admin/administradores",
+		ready: true,
+	},
+	{
 		icon: <Package size={24} className="text-blue-500" />,
 		title: "Produtos Base",
 		description:
@@ -65,14 +73,6 @@ export const adminMenuItems: MenuItem[] = [
 		description:
 			"Gerencie a documentação contratual, incluindo modelos, versões e status dos contratos ativos",
 		url: "/admin/contratos",
-		ready: false,
-	},
-	{
-		icon: <UserCog size={24} className="text-blue-500" />,
-		title: "Usuários",
-		description:
-			"Controle o acesso ao sistema, gerencie perfis, permissões e dados dos usuários",
-		url: "/admin/usuarios",
 		ready: false,
 	},
 ];

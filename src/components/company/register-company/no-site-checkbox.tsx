@@ -6,7 +6,7 @@ export function NoSiteCheckbox() {
 			<Checkbox id="no-site" />
 			<label
 				htmlFor="no-site"
-				className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+				className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opamunicipality-70"
 			>
 				Sem website
 			</label>

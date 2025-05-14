@@ -2,8 +2,13 @@ export interface BaseProduct {
 	id: string;
 	code: string;
 	name: string;
-	type: string;
 	technicalDescription: string;
+
+	typeId: string;
+	category: string;
+	subCategory: string;
+	subSubCategory: string;
+
 	budget1: number;
 	budget1Validity: Date;
 	budget2: number;
@@ -11,6 +16,7 @@ export interface BaseProduct {
 	budget3: number;
 	budget3Validity: Date;
 	unitValue: number;
+
 	createdAt: Date;
 	updatedAt: Date | null;
 }

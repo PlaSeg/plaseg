@@ -15,37 +15,39 @@ export function useCreateBaseProduct() {
 		defaultValues: {
 			code: "",
 			name: "",
-			type: "",
+			typeId: "",
 			technicalDescription: "",
 			budget1: 0,
-			budget1Validity: new Date(),
+			budget1Validity: new Date().toISOString(),
 			budget2: 0,
-			budget2Validity: new Date(),
+			budget2Validity: new Date().toISOString(),
 			budget3: 0,
-			budget3Validity: new Date(),
+			budget3Validity: new Date().toISOString(),
 			unitValue: 0,
 		},
 		onSubmit: (data) => {
 			console.log(data);
+			createBaseProductFn(data);
 		},
 	});
 
-	const { isPending: isAddingBaseProduct } = useMutation({
-		mutationFn: createBaseProduct,
-		onSuccess: (response) => {
-			if (response.success) {
-				queryClient.invalidateQueries({ queryKey: ["get-base-products"] });
-				form.reset();
-				setIsCreateBaseProductSheetOpen(false);
-				toast.success("Produto base criado com sucesso!");
-				return;
-			}
+	const { mutateAsync: createBaseProductFn, isPending: isAddingBaseProduct } =
+		useMutation({
+			mutationFn: createBaseProduct,
+			onSuccess: (response) => {
+				if (response.success) {
+					queryClient.invalidateQueries({ queryKey: ["get-base-products"] });
+					form.reset();
+					setIsCreateBaseProductSheetOpen(false);
+					toast.success("Produto base criado com sucesso!");
+					return;
+				}
 
-			response.errors.forEach((error) => {
-				toast.error(error);
-			});
-		},
-	});
+				response.errors.forEach((error) => {
+					toast.error(error);
+				});
+			},
+		});
 
 	return {
 		form,

@@ -137,7 +137,7 @@ export const typesTableColumns: ColumnDef<Type>[] = [
 			return (
 				<div className="flex items-center gap-4">
 					<Button variant="outline" size="icon" disabled>
-						<Eye className="h-4 w-4" />
+						<Eye />
 						<span className="sr-only">Ver detalhes</span>
 					</Button>
 

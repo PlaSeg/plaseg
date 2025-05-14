@@ -16,7 +16,7 @@ interface FormStepProps {
 
 export function FormStep({ step }: FormStepProps) {
 	const { steps } = useStepsStore();
-	console.log(steps[step - 1]);
+	
 	const isCompleted = steps[step - 1].status === "completed";
 	const isProgress = steps[step - 1].status === "progress";
 	const isPending = steps[step - 1].status === "pending";
