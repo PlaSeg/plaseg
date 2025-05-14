@@ -6,6 +6,7 @@ import {
 	Banknote,
 	Barcode,
 	FolderKanban,
+	Settings,
 } from "lucide-react";
 import { ReactNode } from "react";
 
@@ -73,6 +74,14 @@ export const adminMenuItems: MenuItem[] = [
 		description:
 			"Gerencie a documentação contratual, incluindo modelos, versões e status dos contratos ativos",
 		url: "/admin/contratos",
+		ready: false,
+	},
+	{
+		icon: <Settings size={24} className="text-blue-500" />,
+		title: "Configurações",
+		description:
+			"Gerencie as configurações do sistema, incluindo parâmetros, templates e notificações",
+		url: "/admin/configuracoes",
 		ready: false,
 	},
 ];
