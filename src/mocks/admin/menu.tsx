@@ -7,6 +7,7 @@ import {
 	Barcode,
 	FolderKanban,
 	Settings,
+	FileStack,
 } from "lucide-react";
 import { ReactNode } from "react";
 
@@ -50,6 +51,14 @@ export const adminMenuItems: MenuItem[] = [
 		description:
 			"Cadastre, edite e gerencie o catálogo completo de produtos que vão servir de base os produtos específicos.",
 		url: "/admin/produtos-base",
+		ready: true,
+	},
+
+	{
+		icon: <FileStack size={24} className="text-blue-500" />,
+		title: "Documentos Obrigatórios",
+		description: "Gerencie os documentos obrigatórios do sistema.",
+		url: "/admin/documentos-obrigatorios",
 		ready: true,
 	},
 	{
