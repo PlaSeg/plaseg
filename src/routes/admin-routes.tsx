@@ -8,6 +8,7 @@ import Contracts from "@/pages/admin/contracts";
 import Administrators from "@/pages/admin/administrators";
 import EspecificProducts from "@/pages/admin/especific-products";
 import BaseProducts from "@/pages/admin/base-products";
+import MandatoryDocuments from "@/pages/admin/mandatory-documents";
 
 export function AdminRoutes() {
 	return (
@@ -21,6 +22,7 @@ export function AdminRoutes() {
 			<Route path="administradores" element={<Administrators />} />
 			<Route path="produtos-especificos" element={<EspecificProducts />} />
 			<Route path="produtos-base" element={<BaseProducts />} />
+			<Route path="documentos-obrigatorios" element={<MandatoryDocuments />} />
 		</Routes>
 	);
 }
