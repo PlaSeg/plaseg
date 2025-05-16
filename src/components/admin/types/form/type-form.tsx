@@ -4,7 +4,7 @@ import { FormInput } from "@/components/form/form-input";
 import { LoaderCircle } from "lucide-react";
 import { useCreateType } from "@/hooks/admin/types/use-create-type";
 import { FormSelect } from "@/components/form/form-select";
-import { TypeGroup } from "@/@types/type";
+import { TypeGroup } from "@/@types/admin/type";
 import { useGetTypes } from "@/hooks/admin/types/use-get-types";
 
 interface TypeFormProps {

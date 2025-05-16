@@ -6,7 +6,7 @@ import { FormDatePicker } from "@/components/form/form-date-picker";
 import { LoaderCircle } from "lucide-react";
 import { FormTextarea } from "@/components/form/form-textarea";
 import { FormSelect } from "@/components/form/form-select";
-import { TypeGroup } from "@/@types/type";
+import { TypeGroup } from "@/@types/admin/type";
 import { useGetTypes } from "@/hooks/admin/types/use-get-types";
 import { CreateBaseProductRequest } from "@/@schemas/base-product";
 import { UseFormReturn } from "react-hook-form";

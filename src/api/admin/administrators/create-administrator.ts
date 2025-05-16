@@ -12,14 +12,16 @@ export async function createAdministrator(
 ): Promise<CreateAdministratorResponse> {
 	try {
 		const response = await api.post<HTTPSuccessResponse<null>>(
-			"/administrators",
+			"/admin/create",
 			data
 		);
+
 		return response.data;
 	} catch (error) {
 		if (error instanceof AxiosError && error.response?.data) {
 			return error.response.data;
 		}
+
 		return {
 			success: false,
 			errors: ["Erro desconhecido"],

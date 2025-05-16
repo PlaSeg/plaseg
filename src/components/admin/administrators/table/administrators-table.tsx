@@ -1,29 +1,29 @@
 import { Table, TableBody, TableRow, TableCell } from "@/components/ui/table";
 import { flexRender, Table as TableType } from "@tanstack/react-table";
-import { baseProductsTableColumns } from "./base-products-table-columns";
-import { BaseProductsTableHeader } from "./base-products-table-header";
-import { BaseProduct } from "@/@types/admin/base-product";
-import { BaseProductsTableBodySkeleton } from "./base-products-table-skeleton";
+import { Administrator } from "@/@types/admin/administrator";
+import { administratorsTableColumns } from "./administrators-table-columns";
+import { AdministratorsTableHeader } from "./administrators-table-header";
+import { AdministratorsTableBodySkeleton } from "./administrators-table-skeleton";
 
-interface BaseProductsTableProps {
-	table: TableType<BaseProduct>;
-	isLoadingGetBaseProducts: boolean;
-	data: BaseProduct[];
+interface AdministratorsTableProps {
+	table: TableType<Administrator>;
+	isLoadingGetAdministrators: boolean;
+	data: Administrator[];
 }
 
-export function BaseProductsTable({
+export function AdministratorsTable({
 	table,
-	isLoadingGetBaseProducts,
+	isLoadingGetAdministrators,
 	data,
-}: BaseProductsTableProps) {
+}: AdministratorsTableProps) {
 	return (
 		<Table>
-			<BaseProductsTableHeader table={table} />
+			<AdministratorsTableHeader table={table} />
 
 			<TableBody>
-				{isLoadingGetBaseProducts && <BaseProductsTableBodySkeleton />}
+				{isLoadingGetAdministrators && <AdministratorsTableBodySkeleton />}
 
-				{!isLoadingGetBaseProducts &&
+				{!isLoadingGetAdministrators &&
 					data &&
 					data.length > 0 &&
 					table.getRowModel().rows?.length > 0 &&
@@ -40,13 +40,13 @@ export function BaseProductsTable({
 						</TableRow>
 					))}
 
-				{!isLoadingGetBaseProducts &&
+				{!isLoadingGetAdministrators &&
 					(!data ||
 						data.length === 0 ||
 						table.getRowModel().rows?.length === 0) && (
 						<TableRow>
 							<TableCell
-								colSpan={baseProductsTableColumns.length}
+								colSpan={administratorsTableColumns.length}
 								className="h-24 text-center"
 							>
 								Sem resultados

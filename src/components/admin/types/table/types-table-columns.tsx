@@ -3,7 +3,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { ArrowDown, ArrowUp, Eye } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { translateTypesTableKeys } from "@/utils/translate-types-table-keys";
-import { Type, TypeGroup } from "@/@types/type";
+import { Type, TypeGroup } from "@/@types/admin/type";
 import { formatDate } from "@/utils/format-date";
 import { Tag } from "@/components/ui/tag";
 import { EditTypeSheet } from "../modals/edit-type-sheet";

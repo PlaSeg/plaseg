@@ -1,9 +1,7 @@
 export enum TypeGroup {
 	OPPORTUNITY = "OPPORTUNITY",
-	CATEGORY = "CATEGORY",
-	SUBCATEGORY = "SUBCATEGORY",
-	SUBSUBCATEGORY = "SUBSUBCATEGORY",
 	SERVICE = "SERVICE",
+	CATEGORY = "CATEGORY",
 }
 
 export interface Type {
@@ -11,6 +9,7 @@ export interface Type {
 	description: string;
 	group: TypeGroup;
 	parent: string | null;
-	createdAt: string;
-	updatedAt: string | null;
+
+	createdAt: Date;
+	updatedAt: Date | null;
 }

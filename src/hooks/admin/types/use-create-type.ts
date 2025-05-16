@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import { useState } from "react";
 import { createTypeSchema } from "@/@schemas/type";
 import { useFormMutation } from "@/hooks/use-form-mutation";
-import { TypeGroup } from "@/@types/type";
+import { TypeGroup } from "@/@types/admin/type";
 
 export function useCreateType() {
 	const [isCreateTypeSheetOpen, setIsCreateTypeSheetOpen] = useState(false);

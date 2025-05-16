@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowDown, ArrowUp, Eye } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
-import { MandatoryDocuments } from "@/@types/mandatory-documents";
+import { MandatoryDocuments } from "@/@types/admin/mandatory-documents";
 import { translateMandatoryDocumentsTableKeys } from "@/utils/translate-mandatory-documents-table-keys";
 import { formatDate } from "@/utils/format-date";
 import { EditMandatoryDocumentSheet } from "../modals/edit-mandatory-document";

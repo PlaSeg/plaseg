@@ -2,14 +2,12 @@ import { Button } from "@/components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowDown, ArrowUp, Eye, SquarePen } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
-import { translateOpportunitiesTableKeys } from "@/utils/translate-opportunities-table-keys";
-import { Opportunity } from "@/@types/admin/opportunity";
+import { Administrator } from "@/@types/admin/administrator";
 import { formatDate } from "@/utils/format-date";
-import { DeleteOpportunityDialog } from "../modals/delete-opportunity-dialog";
+import { DeleteAdministratorDialog } from "../modals/delete-administrator-dialog";
 import { Tag } from "@/components/ui/tag";
-import { Switch } from "@/components/ui/switch";
 
-export const opportunitiesTableColumns: ColumnDef<Opportunity>[] = [
+export const administratorsTableColumns: ColumnDef<Administrator>[] = [
 	{
 		id: "select",
 		header: ({ table }) => (
@@ -33,14 +31,14 @@ export const opportunitiesTableColumns: ColumnDef<Opportunity>[] = [
 		enableHiding: false,
 	},
 	{
-		accessorKey: "title",
+		accessorKey: "name",
 		header: ({ column }) => (
 			<Button
 				variant="ghost"
 				className="!p-0 hover:bg-transparent"
 				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
 			>
-				{translateOpportunitiesTableKeys("title")}
+				Nome
 				{column.getIsSorted() !== "desc" && (
 					<ArrowUp className="ml-2 h-4 w-4" />
 				)}
@@ -50,18 +48,18 @@ export const opportunitiesTableColumns: ColumnDef<Opportunity>[] = [
 			</Button>
 		),
 		cell: ({ row }) => (
-			<div className="capitalize font-semibold">{row.getValue("title")}</div>
+			<div className="font-semibold">{row.getValue("name")}</div>
 		),
 	},
 	{
-		accessorKey: "initialDeadline",
+		accessorKey: "email",
 		header: ({ column }) => (
 			<Button
 				variant="ghost"
 				className="!p-0 hover:bg-transparent"
 				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
 			>
-				{translateOpportunitiesTableKeys("initialDeadline")}
+				Email
 				{column.getIsSorted() !== "desc" && (
 					<ArrowUp className="ml-2 h-4 w-4" />
 				)}
@@ -70,18 +68,55 @@ export const opportunitiesTableColumns: ColumnDef<Opportunity>[] = [
 				)}
 			</Button>
 		),
-		cell: ({ row }) => <div>{formatDate(row.getValue("initialDeadline"))}</div>,
-		sortingFn: "datetime",
+		cell: ({ row }) => <div>{row.getValue("email")}</div>,
 	},
 	{
-		accessorKey: "finalDeadline",
+		accessorKey: "phone",
 		header: ({ column }) => (
 			<Button
 				variant="ghost"
 				className="!p-0 hover:bg-transparent"
 				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
 			>
-				{translateOpportunitiesTableKeys("finalDeadline")}
+				Telefone
+				{column.getIsSorted() !== "desc" && (
+					<ArrowUp className="ml-2 h-4 w-4" />
+				)}
+				{column.getIsSorted() === "desc" && (
+					<ArrowDown className="ml-2 h-4 w-4" />
+				)}
+			</Button>
+		),
+		cell: ({ row }) => <div>{row.getValue("phone")}</div>,
+	},
+	{
+		accessorKey: "document",
+		header: ({ column }) => (
+			<Button
+				variant="ghost"
+				className="!p-0 hover:bg-transparent"
+				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+			>
+				Documento
+				{column.getIsSorted() !== "desc" && (
+					<ArrowUp className="ml-2 h-4 w-4" />
+				)}
+				{column.getIsSorted() === "desc" && (
+					<ArrowDown className="ml-2 h-4 w-4" />
+				)}
+			</Button>
+		),
+		cell: ({ row }) => <div>{row.getValue("document")}</div>,
+	},
+	{
+		accessorKey: "role",
+		header: ({ column }) => (
+			<Button
+				variant="ghost"
+				className="!p-0 hover:bg-transparent"
+				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+			>
+				Cargo
 				{column.getIsSorted() !== "desc" && (
 					<ArrowUp className="ml-2 h-4 w-4" />
 				)}
@@ -91,28 +126,19 @@ export const opportunitiesTableColumns: ColumnDef<Opportunity>[] = [
 			</Button>
 		),
 		cell: ({ row }) => {
-			const currentDate = new Date();
-			const finalDeadline = row.getValue("finalDeadline") as string;
-			const [day, month, year] = finalDeadline.split("/").map(Number);
-			const parsedEndDate = new Date(year, month - 1, day);
-			const isExpired = currentDate > parsedEndDate;
-
-			return (
-				<div className={`${isExpired ? "text-red-500 font-medium" : ""}`}>
-					{formatDate(finalDeadline)}
-				</div>
-			);
+			const role = row.getValue("role") as string;
+			return <Tag>{role}</Tag>;
 		},
 	},
 	{
-		accessorKey: "typeDescription",
+		accessorKey: "createdAt",
 		header: ({ column }) => (
 			<Button
 				variant="ghost"
 				className="!p-0 hover:bg-transparent"
 				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
 			>
-				{translateOpportunitiesTableKeys("typeDescription")}
+				Data de Criação
 				{column.getIsSorted() !== "desc" && (
 					<ArrowUp className="ml-2 h-4 w-4" />
 				)}
@@ -121,34 +147,14 @@ export const opportunitiesTableColumns: ColumnDef<Opportunity>[] = [
 				)}
 			</Button>
 		),
-		cell: ({ row }) => <Tag>{row.getValue("typeDescription")}</Tag>,
-	},
-	{
-		accessorKey: "isActive",
-		header: ({ column }) => (
-			<Button
-				variant="ghost"
-				className="!p-0 hover:bg-transparent"
-				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-			>
-				{translateOpportunitiesTableKeys("isActive")}
-				{column.getIsSorted() !== "desc" && (
-					<ArrowUp className="ml-2 h-4 w-4" />
-				)}
-				{column.getIsSorted() === "desc" && (
-					<ArrowDown className="ml-2 h-4 w-4" />
-				)}
-			</Button>
-		),
-		cell: ({ row }) => (
-			<Switch checked={row.getValue("isActive")} onCheckedChange={() => {}} />
-		),
+		cell: ({ row }) => <div>{formatDate(row.getValue("createdAt"))}</div>,
+		sortingFn: "datetime",
 	},
 	{
 		id: "actions",
 		header: "Ações",
 		cell: ({ row }) => {
-			const opportunity = row.original;
+			const administrator = row.original;
 
 			return (
 				<div className="flex items-center gap-4">
@@ -158,13 +164,13 @@ export const opportunitiesTableColumns: ColumnDef<Opportunity>[] = [
 					</Button>
 
 					<Button variant="outline" size="icon" disabled>
-						<SquarePen />
+						<SquarePen className="h-4 w-4" />
 						<span className="sr-only">Editar</span>
 					</Button>
 
-					<DeleteOpportunityDialog
-						opportunityId={opportunity.id}
-						opportunityName={opportunity.title}
+					<DeleteAdministratorDialog
+						administratorId={administrator.id}
+						administratorName={administrator.name}
 					/>
 				</div>
 			);

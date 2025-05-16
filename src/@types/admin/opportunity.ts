@@ -23,6 +23,6 @@ export type Opportunity = {
 
 	createdAt: Date;
 	updatedAt?: Date | null;
-	
+
 	requiredDocuments: RequiredDocument[];
 };

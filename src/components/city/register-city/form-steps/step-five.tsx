@@ -1,6 +1,6 @@
 import { FormInput } from "@/components/form/form-input";
 import { UseFormReturn } from "react-hook-form";
-import { management } from "@/@types/municipality-sign-up/municipality-sign-in";
+import { management } from "@/@types/municipality/municipality";
 import {
 	DropdownMenu,
 	DropdownMenuTrigger,

@@ -3,6 +3,6 @@ export interface MandatoryDocuments {
 	name: string;
 	description: string;
 	model: string;
-	createdAt: string;
-	updatedAt: string | null;
+	createdAt: Date;
+	updatedAt: Date | null;
 }

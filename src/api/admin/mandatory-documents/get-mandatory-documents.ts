@@ -1,7 +1,7 @@
 import { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http";
 import { AxiosError } from "axios";
 import { api } from "@/services/axios";
-import { MandatoryDocuments } from "@/@types/mandatory-documents";
+import { MandatoryDocuments } from "@/@types/admin/mandatory-documents";
 import { GetMandatoryDocumentsRequest } from "@/@schemas/mandatory-documents";
 
 type GetMandatoryDocumentsResponse =

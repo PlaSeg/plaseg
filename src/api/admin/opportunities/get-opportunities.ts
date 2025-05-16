@@ -1,7 +1,7 @@
 import { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http";
 import { AxiosError } from "axios";
 import { api } from "@/services/axios";
-import { Opportunity } from "@/@types/opportunity";
+import { Opportunity } from "@/@types/admin/opportunity";
 
 type GetOpportunitiesResponse =
 	| HTTPSuccessResponse<Opportunity[]>

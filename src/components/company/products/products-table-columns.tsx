@@ -17,7 +17,7 @@ import {
 	DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import { Link } from "react-router";
-import { Product } from "@/@types/product";
+import { Product } from "@/@types/company/product";
 
 export const productsTableColumns: ColumnDef<Product>[] = [
 	{

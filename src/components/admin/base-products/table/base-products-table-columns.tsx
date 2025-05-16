@@ -3,7 +3,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { ArrowDown, ArrowUp, Eye, SquarePen } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { translateBaseProductsTableKeys } from "@/utils/translate-base-products-table-keys";
-import { BaseProduct } from "@/@types/base-product";
+import { BaseProduct } from "@/@types/admin/base-product";
 import { formatDate } from "@/utils/format-date";
 import { DeleteBaseProductDialog } from "../modals/delete-base-product-dialog";
 import { formatCurrency } from "@/utils/format-currency";

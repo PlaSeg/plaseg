@@ -3,7 +3,7 @@ import { flexRender, Table as TableType } from "@tanstack/react-table";
 import { MandatoryDocumentsBodySkeleton } from "./mandatory-documents-body-skeleton";
 import { mandatoryDocumentsTableColumns } from "./mandatory-documents-columns";
 import { MandatoryDocumentsTableHeader } from "./mandatory-documents-header";
-import { MandatoryDocuments } from "@/@types/mandatory-documents";
+import { MandatoryDocuments } from "@/@types/admin/mandatory-documents";
 
 interface MandatoryDocumentsTableProps {
 	table: TableType<MandatoryDocuments>;

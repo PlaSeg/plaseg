@@ -1,27 +1,29 @@
-import { MandatoryDocuments } from "@/@types/admin/mandatory-documents";
+import { Administrator } from "@/@types/admin/administrator";
 import { TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { flexRender, Table } from "@tanstack/react-table";
 
-interface MandatoryDocumentsTableHeaderProps {
-	table: Table<MandatoryDocuments>;
+interface AdministratorsTableHeaderProps {
+	table: Table<Administrator>;
 	widths?: string[];
 }
 
-export function MandatoryDocumentsTableHeader({
+export function AdministratorsTableHeader({
 	table,
 	widths = [
 		"w-[50px]",
 		"w-[300px]",
+		"w-[220px]",
 		"w-[200px]",
 		"w-[200px]",
-		"w-[200px]",
+		"w-[100px]",
+		"w-[100px]",
 		"w-[200px]",
 	],
-}: MandatoryDocumentsTableHeaderProps) {
+}: AdministratorsTableHeaderProps) {
 	return (
-		<TableHeader className="bg-slate-50">
+		<TableHeader>
 			{table.getHeaderGroups().map((headerGroup) => (
-				<TableRow key={headerGroup.id} className="border-none">
+				<TableRow key={headerGroup.id}>
 					{headerGroup.headers.map((header) => {
 						return (
 							<TableHead

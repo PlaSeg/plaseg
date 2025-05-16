@@ -1,7 +1,7 @@
 import { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http";
 import { AxiosError } from "axios";
 import { api } from "@/services/axios";
-import { CreateProductRequest, Product } from "@/@types/product";
+import { CreateProductRequest, Product } from "@/@types/company/product";
 
 type CreateProductResponse = HTTPSuccessResponse<Product> | HTTPErrorResponse;
 
