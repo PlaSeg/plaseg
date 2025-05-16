@@ -10,7 +10,7 @@ import {
 	DropdownMenuItem,
 	DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { PriceRegistrationRecordData } from "@/@types/price-registration-record";
+import { PriceRegistrationRecordData } from "@/@types/company/price-registration-record";
 
 export const priceRegistrationRecordsTableColumns: ColumnDef<PriceRegistrationRecordData>[] =
 	[

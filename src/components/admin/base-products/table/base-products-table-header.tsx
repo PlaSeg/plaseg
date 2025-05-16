@@ -1,4 +1,4 @@
-import { BaseProduct } from "@/@types/base-product";
+import { BaseProduct } from "@/@types/admin/base-product";
 import { TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { flexRender, Table } from "@tanstack/react-table";
 
@@ -22,9 +22,9 @@ export function BaseProductsTableHeader({
 	],
 }: BaseProductsTableHeaderProps) {
 	return (
-		<TableHeader className="bg-slate-50">
+		<TableHeader>
 			{table.getHeaderGroups().map((headerGroup) => (
-				<TableRow key={headerGroup.id} className="border-none">
+				<TableRow key={headerGroup.id}>
 					{headerGroup.headers.map((header) => {
 						return (
 							<TableHead

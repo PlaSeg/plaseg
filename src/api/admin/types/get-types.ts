@@ -1,7 +1,7 @@
 import { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http";
 import { AxiosError } from "axios";
 import { api } from "@/services/axios";
-import { Type } from "@/@types/type";
+import { Type } from "@/@types/admin/type";
 import { GetTypesRequest } from "@/@schemas/type";
 
 type GetTypesResponse = HTTPSuccessResponse<Type[]> | HTTPErrorResponse;

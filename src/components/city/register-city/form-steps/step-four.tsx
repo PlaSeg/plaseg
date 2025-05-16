@@ -1,6 +1,6 @@
 import { FormInput } from "@/components/form/form-input";
 import { UseFormReturn } from "react-hook-form";
-import { allocationDepartment } from "@/@types/municipality-sign-up/municipality-sign-in";
+import { allocationDepartment } from "@/@types/municipality/municipality";
 
 interface StepFourProps {
 	form: UseFormReturn<allocationDepartment>;

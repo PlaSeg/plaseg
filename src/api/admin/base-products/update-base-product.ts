@@ -2,7 +2,7 @@ import { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http";
 import { AxiosError } from "axios";
 import { api } from "@/services/axios";
 import { UpdateBaseProductRequestSchema } from "@/@schemas/base-product";
-import { BaseProduct } from "@/@types/base-product";
+import { BaseProduct } from "@/@types/admin/base-product";
 
 type UpdateBaseProductResponse =
 	| HTTPSuccessResponse<BaseProduct>

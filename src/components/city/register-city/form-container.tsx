@@ -17,11 +17,11 @@ import {
 	allocationDepartment,
 	management,
 	maintenanceContract,
-} from "@/@types/municipality-sign-up/municipality-sign-in";
+} from "@/@types/municipality/municipality";
 import {
 	municipalitySchema,
 	qualifiedStaffSchema,
-} from "@/@schemas/sign-up-municipality/sign-up-municipality";
+} from "@/@schemas/municipality";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider } from "react-hook-form";

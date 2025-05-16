@@ -22,7 +22,7 @@ import { TableHideColumnsDropDown } from "@/components/table/table-hide-columns-
 import { CreateBaseProductSheet } from "../modals/create-base-product-sheet";
 import { useGetBaseProducts } from "@/hooks/admin/base-products/use-get-base-products";
 import { useGetTypes } from "@/hooks/admin/types/use-get-types";
-import { TypeGroup } from "@/@types/type";
+import { TypeGroup } from "@/@types/admin/type";
 
 export function BaseProductsTableContainer() {
 	const [sorting, setSorting] = React.useState<SortingState>([

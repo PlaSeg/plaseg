@@ -3,7 +3,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { ArrowDown, ArrowUp, Eye } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { translateTypesTableKeys } from "@/utils/translate-types-table-keys";
-import { Type, TypeGroup } from "@/@types/type";
+import { Type, TypeGroup } from "@/@types/admin/type";
 import { formatDate } from "@/utils/format-date";
 import { Tag } from "@/components/ui/tag";
 import { EditTypeSheet } from "../modals/edit-type-sheet";
@@ -76,11 +76,9 @@ export const typesTableColumns: ColumnDef<Type>[] = [
 			const group = row.getValue("group") as TypeGroup;
 
 			const groupLabels = {
-				[TypeGroup.CATEGORY]: "Categoria",
-				[TypeGroup.SUBCATEGORY]: "Subcategoria",
-				[TypeGroup.SUBSUBCATEGORY]: "Subsubcategoria",
 				[TypeGroup.OPPORTUNITY]: "Oportunidade",
 				[TypeGroup.SERVICE]: "Serviço",
+				[TypeGroup.CATEGORY]: "Categoria",
 			};
 
 			return <Tag>{groupLabels[group] || group}</Tag>;

@@ -1,6 +1,6 @@
 import { getTypes } from "@/api/admin/types/get-types";
 import { useQuery } from "@tanstack/react-query";
-import { TypeGroup } from "@/@types/type";
+import { TypeGroup } from "@/@types/admin/type";
 
 export function useGetTypes(group?: TypeGroup, parentId?: string) {
 	const { data: result, isLoading: isLoadingGetTypes } = useQuery({

@@ -1,17 +1,16 @@
 import { z } from "zod";
 import { Role } from "@/@types/user";
 
-export const createAdministratorRequestSchema = z.object({
+export const createAdministratorBodySchema = z.object({
 	name: z.string().min(3, "Nome deve ter pelo menos 3 caracteres"),
 	email: z.string().email("Email inválido"),
 	document: z.string().min(11, "Documento deve ter pelo menos 11 caracteres"),
 	phone: z.string().min(10, "Telefone deve ter pelo menos 10 caracteres"),
 	password: z.string().min(6, "Senha deve ter pelo menos 6 caracteres"),
-	role: z.nativeEnum(Role),
 });
 
 export type CreateAdministratorRequest = z.infer<
-	typeof createAdministratorRequestSchema
+	typeof createAdministratorBodySchema
 >;
 
 export const administratorSchema = z.object({
@@ -32,5 +31,5 @@ export const getAdministratorsResponseSchema = z
 export type AdministratorSchema = z.infer<typeof administratorSchema>;
 
 export type UpdateAdministratorRequest = z.infer<
-	typeof createAdministratorRequestSchema
+	typeof createAdministratorBodySchema
 >;

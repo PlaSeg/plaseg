@@ -6,4 +6,3 @@ export interface PriceRegistrationRecordData {
 	date: string;
 	validity_in_months: number;
 }
-

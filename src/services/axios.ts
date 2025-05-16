@@ -13,7 +13,7 @@ api.interceptors.request.use(async (config) => {
 	}
 
 	if (import.meta.env.VITE_AXIOS_DELAY === "true") {
-		await new Promise((resolve) => setTimeout(resolve, 3000));
+		await new Promise((resolve) => setTimeout(resolve, 2000));
 	}
 
 	return config;

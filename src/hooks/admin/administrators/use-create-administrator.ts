@@ -1,19 +1,53 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { createAdministrator } from "@/api/admin/administrators/create-administrator";
-import { CreateAdministratorRequest } from "@/@schemas/administrator";
+import { useFormMutation } from "@/hooks/use-form-mutation";
+import { createAdministratorBodySchema } from "@/@schemas/administrator";
+import { useState } from "react";
+import { queryClient } from "@/services/react-query";
 import { toast } from "sonner";
 
 export function useCreateAdministrator() {
-	const queryClient = useQueryClient();
+	const [isCreateAdministratorSheetOpen, setIsCreateAdministratorSheetOpen] =
+		useState(false);
 
-	return useMutation({
-		mutationFn: (data: CreateAdministratorRequest) => createAdministrator(data),
-		onSuccess: () => {
-			toast.success("Administrador criado com sucesso!");
-			queryClient.invalidateQueries({ queryKey: ["administrators"] });
+	const form = useFormMutation({
+		schema: createAdministratorBodySchema,
+		defaultValues: {
+			name: "",
+			email: "",
+			document: "",
+			phone: "",
+			password: "",
 		},
-		onError: () => {
-			toast.error("Erro ao criar administrador!");
+		onSubmit: (data) => {
+			createAdministratorFn(data);
 		},
 	});
+
+	const {
+		mutateAsync: createAdministratorFn,
+		isPending: isCreatingAdministrator,
+	} = useMutation({
+		mutationFn: createAdministrator,
+		onSuccess: (response) => {
+			if (response.success) {
+				queryClient.invalidateQueries({ queryKey: ["get-administrators"] });
+				form.reset();
+				setIsCreateAdministratorSheetOpen(false);
+				toast.success("Administrador criado com sucesso!");
+				return;
+			}
+
+			response.errors.forEach((error) => {
+				toast.error(error);
+			});
+		},
+	});
+
+	return {
+		form,
+		isCreatingAdministrator,
+		isCreateAdministratorSheetOpen,
+		setIsCreateAdministratorSheetOpen,
+	};
 }

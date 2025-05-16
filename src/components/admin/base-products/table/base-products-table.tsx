@@ -2,7 +2,7 @@ import { Table, TableBody, TableRow, TableCell } from "@/components/ui/table";
 import { flexRender, Table as TableType } from "@tanstack/react-table";
 import { baseProductsTableColumns } from "./base-products-table-columns";
 import { BaseProductsTableHeader } from "./base-products-table-header";
-import { BaseProduct } from "@/@types/base-product";
+import { BaseProduct } from "@/@types/admin/base-product";
 import { BaseProductsTableBodySkeleton } from "./base-products-table-skeleton";
 
 interface BaseProductsTableProps {

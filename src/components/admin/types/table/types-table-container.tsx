@@ -19,7 +19,7 @@ import { TableSelect } from "@/components/table/table-select";
 import { TypesTable } from "./types-table";
 import { TablePagination } from "@/components/table/table-footer";
 import { TableHideColumnsDropDown } from "@/components/table/table-hide-columns-dropdown";
-import { TypeGroup } from "@/@types/type";
+import { TypeGroup } from "@/@types/admin/type";
 import { CreateTypeSheet } from "../modals/create-type-sheet";
 import { useGetTypes } from "@/hooks/admin/types/use-get-types";
 
@@ -39,10 +39,9 @@ export function TypesTableContainer() {
 	const { types, isLoadingGetTypes } = useGetTypes();
 
 	const groupOptions = [
-		{ label: "Categoria", value: TypeGroup.CATEGORY },
-		{ label: "Subcategoria", value: TypeGroup.SUBCATEGORY },
-		{ label: "Subsubcategoria", value: TypeGroup.SUBSUBCATEGORY },
 		{ label: "Oportunidade", value: TypeGroup.OPPORTUNITY },
+		{ label: "Serviço", value: TypeGroup.SERVICE },
+		{ label: "Categoria", value: TypeGroup.CATEGORY },
 	];
 
 	const table = useReactTable({

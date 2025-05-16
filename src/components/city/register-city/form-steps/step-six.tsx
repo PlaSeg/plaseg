@@ -1,6 +1,6 @@
 import { FormInput } from "@/components/form/form-input";
 import { UseFormReturn } from "react-hook-form";
-import { maintenanceContract } from "@/@types/municipality-sign-up/municipality-sign-in";
+import { maintenanceContract } from "@/@types/municipality/municipality";
 
 interface StepSixProps {
 	form: UseFormReturn<maintenanceContract>;

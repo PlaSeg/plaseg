@@ -6,7 +6,7 @@ import {
 import { updateBaseProduct } from "@/api/admin/base-products/update-base-product";
 import { useState } from "react";
 import { toast } from "sonner";
-import { BaseProduct } from "@/@types/base-product";
+import { BaseProduct } from "@/@types/admin/base-product";
 import { useFormMutation } from "@/hooks/use-form-mutation";
 
 export function useUpdateBaseProduct(baseProduct?: BaseProduct) {

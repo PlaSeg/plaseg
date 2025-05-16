@@ -3,7 +3,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { ArrowDown, ArrowUp, Eye, SquarePen } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { translateOpportunitiesTableKeys } from "@/utils/translate-opportunities-table-keys";
-import { Opportunity } from "@/@types/opportunity";
+import { Opportunity } from "@/@types/admin/opportunity";
 import { formatDate } from "@/utils/format-date";
 import { DeleteOpportunityDialog } from "../modals/delete-opportunity-dialog";
 import { Tag } from "@/components/ui/tag";

@@ -1,4 +1,4 @@
-import { Opportunity } from "@/@types/opportunity";
+import { Opportunity } from "@/@types/admin/opportunity";
 import { TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { flexRender, Table } from "@tanstack/react-table";
 

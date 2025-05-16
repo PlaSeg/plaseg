@@ -1,6 +1,6 @@
 import { FormInput } from "@/components/form/form-input";
 import { UseFormReturn } from "react-hook-form";
-import { projectPartnership } from "@/@types/municipality-sign-up/municipality-sign-in";
+import { projectPartnership } from "@/@types/municipality/municipality";
 
 interface StepThreeProps {
 	form: UseFormReturn<projectPartnership>;

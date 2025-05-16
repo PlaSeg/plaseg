@@ -1,6 +1,6 @@
 import { FormInput } from "@/components/form/form-input";
 import { UseFormReturn } from "react-hook-form";
-import { qualifiedStaff } from "@/@types/municipality-sign-up/municipality-sign-in";
+import { qualifiedStaff } from "@/@types/municipality/municipality";
 import { FormSelect } from "@/components/form/form-select";
 import { FormCheckbox } from "@/components/form/form-checkbox";
 
