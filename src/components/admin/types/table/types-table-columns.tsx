@@ -76,11 +76,9 @@ export const typesTableColumns: ColumnDef<Type>[] = [
 			const group = row.getValue("group") as TypeGroup;
 
 			const groupLabels = {
-				[TypeGroup.CATEGORY]: "Categoria",
-				[TypeGroup.SUBCATEGORY]: "Subcategoria",
-				[TypeGroup.SUBSUBCATEGORY]: "Subsubcategoria",
 				[TypeGroup.OPPORTUNITY]: "Oportunidade",
 				[TypeGroup.SERVICE]: "Serviço",
+				[TypeGroup.CATEGORY]: "Categoria",
 			};
 
 			return <Tag>{groupLabels[group] || group}</Tag>;

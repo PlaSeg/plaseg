@@ -39,10 +39,9 @@ export function TypesTableContainer() {
 	const { types, isLoadingGetTypes } = useGetTypes();
 
 	const groupOptions = [
-		{ label: "Categoria", value: TypeGroup.CATEGORY },
-		{ label: "Subcategoria", value: TypeGroup.SUBCATEGORY },
-		{ label: "Subsubcategoria", value: TypeGroup.SUBSUBCATEGORY },
 		{ label: "Oportunidade", value: TypeGroup.OPPORTUNITY },
+		{ label: "Serviço", value: TypeGroup.SERVICE },
+		{ label: "Categoria", value: TypeGroup.CATEGORY },
 	];
 
 	const table = useReactTable({

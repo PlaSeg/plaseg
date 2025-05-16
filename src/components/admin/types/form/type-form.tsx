@@ -6,31 +6,30 @@ import { useCreateType } from "@/hooks/admin/types/use-create-type";
 import { FormSelect } from "@/components/form/form-select";
 import { TypeGroup } from "@/@types/admin/type";
 import { useGetTypes } from "@/hooks/admin/types/use-get-types";
+import { useState } from "react";
+import { SetHasParentCheckbox } from "./set-has-parent-checkbox";
 
 interface TypeFormProps {
 	setIsTypeSheetOpen: (open: boolean) => void;
 }
 
 export function TypeForm({ setIsTypeSheetOpen }: TypeFormProps) {
+	const [hasParent, setHasParent] = useState(false);
 	const { form, isAddingType } = useCreateType();
 	const { types } = useGetTypes();
 
-	const hasParent =
-		form.watch("group") === TypeGroup.SUBCATEGORY ||
-		form.watch("group") === TypeGroup.SUBSUBCATEGORY;
-
 	const typeGroupOptions = [
-		{ label: "Categoria", value: TypeGroup.CATEGORY },
-		{ label: "Subcategoria", value: TypeGroup.SUBCATEGORY },
-		{ label: "Subsubcategoria", value: TypeGroup.SUBSUBCATEGORY },
 		{ label: "Oportunidade", value: TypeGroup.OPPORTUNITY },
 		{ label: "Serviço", value: TypeGroup.SERVICE },
+		{ label: "Categoria", value: TypeGroup.CATEGORY },
 	];
 
-	const parentOptions = types.map((type) => ({
-		label: type.description,
-		value: type.id,
-	}));
+	const parentOptions = types
+		.filter((type) => type.group === TypeGroup.CATEGORY)
+		.map((type) => ({
+			label: type.description,
+			value: type.id,
+		}));
 
 	const isButtonDisabled = hasParent && !form.watch("parentId");
 
@@ -53,14 +52,23 @@ export function TypeForm({ setIsTypeSheetOpen }: TypeFormProps) {
 						options={typeGroupOptions}
 					/>
 
-					{hasParent && (
-						<FormSelect
-							form={form}
-							entity="parentId"
-							label="Tipo Pai"
-							placeholder="Selecione o tipo pai"
-							options={parentOptions}
-						/>
+					{form.watch("group") === TypeGroup.CATEGORY && (
+						<>
+							<SetHasParentCheckbox
+								hasParent={hasParent}
+								setHasParent={setHasParent}
+							/>
+
+							{hasParent && (
+								<FormSelect
+									form={form}
+									entity="parentId"
+									label="Tipo Pai"
+									placeholder="Selecione o tipo pai"
+									options={parentOptions}
+								/>
+							)}
+						</>
 					)}
 				</div>
 
