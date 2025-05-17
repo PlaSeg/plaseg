@@ -1,6 +1,6 @@
-import { Users } from "lucide-react";
+import { Settings as SettingsIcon } from "lucide-react";
 
-export default function Consultants() {
+export default function Settings() {
 	return (
 		<div className="flex flex-col py-4 md:py-6 h-[calc(100vh-10rem)]">
 			<div
@@ -8,10 +8,10 @@ export default function Consultants() {
 			border-dashed bg-white"
 			>
 				<div className="w-20 h-20 flex items-center justify-center rounded-full bg-muted">
-					<Users size={48} strokeWidth={1} />
+					<SettingsIcon size={48} strokeWidth={1} />
 				</div>
 
-				<h2 className="text-xl font-semibold">Consultores</h2>
+				<h2 className="text-xl font-semibold">Configurações</h2>
 
 				<span className="text-muted-foreground">Página não disponível</span>
 			</div>

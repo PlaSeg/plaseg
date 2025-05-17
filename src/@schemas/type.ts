@@ -19,3 +19,9 @@ export const createTypeSchema = z.object({
 });
 
 export type CreateTypeRequest = z.infer<typeof createTypeSchema>;
+
+export const updateTypeSchema = createTypeSchema.extend({
+	id: z.string().uuid(),
+});
+
+export type UpdateTypeRequest = z.infer<typeof updateTypeSchema>;
