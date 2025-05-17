@@ -6,6 +6,8 @@ import { Administrator } from "@/@types/admin/administrator";
 import { formatDate } from "@/utils/format-date";
 import { DeleteAdministratorDialog } from "../modals/delete-administrator-dialog";
 import { Tag } from "@/components/ui/tag";
+import { formatPhoneNumber } from "@/utils/format-phone-number";
+import { formatDocument } from "@/utils/format-document";
 
 export const administratorsTableColumns: ColumnDef<Administrator>[] = [
 	{
@@ -87,7 +89,7 @@ export const administratorsTableColumns: ColumnDef<Administrator>[] = [
 				)}
 			</Button>
 		),
-		cell: ({ row }) => <div>{row.getValue("phone")}</div>,
+		cell: ({ row }) => <div>{formatPhoneNumber(row.getValue("phone"))}</div>,
 	},
 	{
 		accessorKey: "document",
@@ -106,7 +108,7 @@ export const administratorsTableColumns: ColumnDef<Administrator>[] = [
 				)}
 			</Button>
 		),
-		cell: ({ row }) => <div>{row.getValue("document")}</div>,
+		cell: ({ row }) => <div>{formatDocument(row.getValue("document"))}</div>,
 	},
 	{
 		accessorKey: "role",

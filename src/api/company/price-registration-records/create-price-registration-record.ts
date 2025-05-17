@@ -1,4 +1,4 @@
-import { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http";
+import { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http/http";
 import { AxiosError } from "axios";
 import { api } from "@/services/axios";
 import { PriceRegistrationRecordData } from "@/@types/company/price-registration-record";

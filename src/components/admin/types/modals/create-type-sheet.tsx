@@ -16,7 +16,12 @@ interface CreateTypeSheetProps {
 }
 
 export function CreateTypeSheet({ className }: CreateTypeSheetProps) {
-	const { isCreateTypeSheetOpen, setIsCreateTypeSheetOpen } = useCreateType();
+	const {
+		form,
+		isAddingType,
+		isCreateTypeSheetOpen,
+		setIsCreateTypeSheetOpen,
+	} = useCreateType();
 
 	return (
 		<Sheet open={isCreateTypeSheetOpen} onOpenChange={setIsCreateTypeSheetOpen}>
@@ -33,7 +38,11 @@ export function CreateTypeSheet({ className }: CreateTypeSheetProps) {
 					<SheetDescription>Adicione um novo tipo.</SheetDescription>
 				</SheetHeader>
 
-				<TypeForm setIsTypeSheetOpen={setIsCreateTypeSheetOpen} />
+				<TypeForm
+					form={form}
+					isLoading={isAddingType}
+					setIsFormOpen={setIsCreateTypeSheetOpen}
+				/>
 			</SheetContent>
 		</Sheet>
 	);

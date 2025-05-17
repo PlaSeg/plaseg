@@ -20,22 +20,8 @@ export const createTypeSchema = z.object({
 
 export type CreateTypeRequest = z.infer<typeof createTypeSchema>;
 
-export const typeSchema = z.object({
+export const updateTypeSchema = createTypeSchema.extend({
 	id: z.string().uuid(),
-	description: z.string(),
-	group: typeGroupSchema,
-	parent: z.string().uuid().optional(),
-	createdAt: z.string(),
-	updatedAt: z.string().optional(),
 });
 
-export const getTypesResponseSchema = z.array(typeSchema).nullable();
-
-export type GetTypesResponse = z.infer<typeof getTypesResponseSchema>;
-
-export const getTypesRequestSchema = z.object({
-	group: typeGroupSchema.optional(),
-	parentId: z.string().uuid().optional(),
-});
-
-export type GetTypesRequest = z.infer<typeof getTypesRequestSchema>;
+export type UpdateTypeRequest = z.infer<typeof updateTypeSchema>;

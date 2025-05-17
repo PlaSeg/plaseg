@@ -1,0 +1,131 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Guia de como implementar as rotas do backend
+
+## Step 1: Define Types
+Primeiro, você vai criar um arquivo com o nome da entidade com letras minúsculas dentro de `src/@types` a partir de algum dado modelo, por exemplo, a "Entity" genérica no schema do Prisma abaixo:
+
+```prisma
+model Entity {
+  id       String @id @default(uuid())
+  name     String
+	description String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+
+  @@map("entities")
+}
+```
+
+Vai virar essa interface abaixo dentro de `@types`
+
+```typescript
+// src/@types/entity.ts
+export interface Entity {
+  id: string;
+  name: string;
+  description: string;
+  // Add all required properties
+  createdAt: Date;
+  updatedAt?: Date | null;
+}
+```
+## Step 2: Define zod schemas
+No segundo passo você deve criar um arquivo dentro de `src/@schemas` com o nome da entidade usando letras minúsculas e dentro terá o schema de criação da entidade no banco, bem como um schema de edição que extende o schema de criação e adiciona o id que deve vir junto no obejto.
+
+```typescript
+// src/@schemas/entity.ts
+import { z } from 'zod';
+
+export const createEntityBodySchema = z.object({
+  name: z.string().min(1, 'Name is required'),
+  description: z.string().min(1, 'Description is required'),
+});
+
+export type CreateEntityRequest = z.infer<typeof createEntityBodySchema>;
+
+export const updateEntityBodySchema = z.createEntityBodySchema.extend({
+	id: z.string().uuid(),
+});
+
+export type UpdateEntityRequest = z.infer<typeof updateEntityBodySchema>;
+```
+
+## Step 3: Create the create and edit routes
+No terceiro passo, dentro `src/api/entity`, você deve criar as rotas `create-entity.ts` e `edit-entity.ts`. No caso, abaixo está a rota de criação, mas a rota de edição é exatamente igual, só mudando as tipagens, nome e o método que será PUT.
+
+```typescript
+// src/api/entity/create-entity.ts
+import { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http/http";
+import { AxiosError } from "axios";
+import { api } from "@/services/axios";
+import { CreateTypeRequest } from "@/@schemas/type";
+
+type CreateTypeResponse = HTTPSuccessResponse<null> | HTTPErrorResponse;
+
+/**
+ * @description Add a new entity
+ * @param request The data of the new entity to be created
+ * @returns Promise with the success response or error(s)
+ */
+export async function createType(
+	request: CreateTypeRequest
+): Promise<CreateTypeResponse> {
+	try {
+		const response = await api.post<HTTPSuccessResponse<null>>(
+			"/types",
+			request
+		);
+
+		return response.data;
+	} catch (error) {
+		if (error instanceof AxiosError && error.response?.data) {
+			return error.response.data;
+		}
+
+		return {
+			success: false,
+			errors: ["Erro desconhecido"],
+			data: null,
+		};
+	}
+}
+```
+
+## Step 4: Create the get entities route
+No terceiro passo, dentro `src/api/entity`, você deve criar a rota `get-entities.ts`, que busca todas as entidades.
+
+```typescript
+// src/api/entity/get-entities.ts
+import { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http/http";
+import { AxiosError } from "axios";
+import { api } from "@/services/axios";
+import { Entity } from "@/@types/entity";
+
+type GetEntitiesResponse = HTTPSuccessResponse<Entity[]> | HTTPErrorResponse;
+
+/**
+* @description Fetches all entities
+* @returns All entitites or an array with the errors in the request
+*/
+export async function getEntities(): Promise<GetEntitiesResponse> {
+   try {
+   	const response = await api.get<HTTPSuccessResponse<Entity[]>>("/entities");
+
+   	return response.data;
+   } catch (error) {
+   	if (error instanceof AxiosError && error.response?.data) {
+   		return error.response.data;
+   	}
+
+   	return {
+   		success: false,
+   		errors: ["Erro desconhecido"],
+   		data: null,
+   	};
+   }
+}
+```

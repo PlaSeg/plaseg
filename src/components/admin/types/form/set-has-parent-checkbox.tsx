@@ -2,7 +2,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 
 interface SetHasParentCheckboxProps {
 	hasParent: boolean;
-	setHasParent: React.Dispatch<React.SetStateAction<boolean>>;
+	setHasParent: (value: boolean) => void;
 }
 
 export function SetHasParentCheckbox({
@@ -10,15 +10,16 @@ export function SetHasParentCheckbox({
 	setHasParent,
 }: SetHasParentCheckboxProps) {
 	return (
-		<div className="flex items-center space-x-2">
+		<div className="flex items-center space-x-2 cursor-pointer">
 			<Checkbox
 				id="terms"
 				checked={hasParent}
-				onCheckedChange={(checked) => setHasParent(!checked)}
+				onCheckedChange={() => setHasParent(!hasParent)}
 			/>
+
 			<label
 				htmlFor="terms"
-				className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+				className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
 			>
 				Possui um tipo pai?
 			</label>
