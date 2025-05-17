@@ -1,11 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
-import { ArrowDown, ArrowUp, Eye } from "lucide-react";
+import { ArrowDown, ArrowUp, Eye, FileText } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { RequiredDocument } from "@/@types/admin/required-document";
 import { formatDate } from "@/utils/format-date";
 import { EditRequiredDocumentSheet } from "../modals/edit-required-document";
 import { translateRequiredDocumentsTableKeys } from "@/utils/translate-required-documents-table-keys";
+import { Tag } from "@/components/ui/tag";
+import { Link } from "react-router";
 
 export const requiredDocumentsTableColumns: ColumnDef<RequiredDocument>[] = [
 	{
@@ -68,11 +70,7 @@ export const requiredDocumentsTableColumns: ColumnDef<RequiredDocument>[] = [
 				)}
 			</Button>
 		),
-		cell: ({ row }) => (
-			<div className="capitalize font-semibold">
-				{row.getValue("description")}
-			</div>
-		),
+		cell: ({ row }) => <div>{row.getValue("description")}</div>,
 	},
 
 	{
@@ -93,7 +91,15 @@ export const requiredDocumentsTableColumns: ColumnDef<RequiredDocument>[] = [
 			</Button>
 		),
 		cell: ({ row }) => (
-			<div className="capitalize font-semibold">{row.getValue("model")}</div>
+			<Link to={row.getValue("model")} target="_blank">
+				<Tag
+					className="text-xs flex items-center gap-2 max-w-max rounded-full py-1
+			cursor-pointer hover:bg-slate-200"
+				>
+					<FileText size={16} />
+					Vizualizar Documento
+				</Tag>
+			</Link>
 		),
 	},
 

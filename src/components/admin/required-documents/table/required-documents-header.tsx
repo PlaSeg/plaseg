@@ -12,7 +12,7 @@ export function RequiredDocumentsTableHeader({
 	widths = [
 		"w-[50px]",
 		"w-[300px]",
-		"w-[200px]",
+		"w-[450px]",
 		"w-[200px]",
 		"w-[200px]",
 		"w-[200px]",

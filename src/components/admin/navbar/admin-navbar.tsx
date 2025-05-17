@@ -8,7 +8,7 @@ export function AdminNavbar() {
 			<NavbarItem
 				title="Dashboard"
 				icon={<LayoutDashboard size={16} />}
-				link="/admin/dashboard"
+				link="/admin"
 			/>
 		</Navbar>
 	);

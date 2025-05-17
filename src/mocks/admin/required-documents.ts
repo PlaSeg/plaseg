@@ -1,4 +1,4 @@
-import { RequiredDocument } from "@/@types/admin/opportunity";
+import { RequiredDocument } from "@/@types/admin/required-document";
 
 export const requiredDocuments: RequiredDocument[] = [
 	{

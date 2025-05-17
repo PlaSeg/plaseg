@@ -16,10 +16,10 @@ import { SearchInput } from "@/components/ui/search-input";
 import { TablePagination } from "@/components/table/table-footer";
 import { TableHideColumnsDropDown } from "@/components/table/table-hide-columns-dropdown";
 import { CreateRequiredDocumentSheet } from "../modals/create-required-document";
-import { useGetRequiredDocuments } from "@/hooks/admin/mandatory-documents/use-get-required-documents";
 import { requiredDocumentsTableColumns } from "./required-documents-columns";
 import { RequiredDocumentsTable } from "./required-documents-table";
 import { translateRequiredDocumentsTableKeys } from "@/utils/translate-required-documents-table-keys";
+import { requiredDocuments } from "@/mocks/admin/required-documents";
 
 export function RequiredDocumentsTableContainer() {
 	const [sorting, setSorting] = React.useState<SortingState>([
@@ -34,11 +34,9 @@ export function RequiredDocumentsTableContainer() {
 	const [columnVisibility, setColumnVisibility] =
 		React.useState<VisibilityState>({});
 	const [rowSelection, setRowSelection] = React.useState({});
-	const { documents, isLoadingGetRequiredDocuments } =
-		useGetRequiredDocuments();
 
 	const table = useReactTable({
-		data: documents,
+		data: requiredDocuments,
 		columns: requiredDocumentsTableColumns,
 		onSortingChange: setSorting,
 		onColumnFiltersChange: setColumnFilters,
@@ -94,8 +92,8 @@ export function RequiredDocumentsTableContainer() {
 
 			<RequiredDocumentsTable
 				table={table}
-				isLoadingGetDocuments={isLoadingGetRequiredDocuments}
-				data={documents}
+				isLoadingGetDocuments={false}
+				data={requiredDocuments}
 			/>
 
 			<TablePagination table={table} />

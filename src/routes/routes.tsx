@@ -12,6 +12,8 @@ import { AuthRoutes } from "./auth-routes";
 import CityLayout from "@/layouts/city-layout";
 import { MunicipalityRoutes } from "./minicipality-routes";
 
+import AdminLayout from "@/layouts/admin-layout";
+
 import Dashboard from "@/pages/admin/dashboard";
 import Opportunities from "@/pages/admin/opportunities";
 import Consultants from "@/pages/admin/consultants";
@@ -21,9 +23,8 @@ import Contracts from "@/pages/admin/contracts";
 import Administrators from "@/pages/admin/administrators";
 import EspecificProducts from "@/pages/admin/especific-products";
 import BaseProducts from "@/pages/admin/base-products";
-
-import AdminLayout from "@/layouts/admin-layout";
 import RequiredDocuments from "@/pages/admin/required-documents";
+import ProjectTypes from "@/pages/admin/project-types";
 
 export function AppRoutes() {
 	return (
@@ -52,6 +53,7 @@ export function AppRoutes() {
 					<Route path="contratos" element={<Contracts />} />
 					<Route path="administradores" element={<Administrators />} />
 					<Route path="produtos-especificos" element={<EspecificProducts />} />
+					<Route path="tipos-de-projeto" element={<ProjectTypes />} />
 					<Route path="produtos-base" element={<BaseProducts />} />
 					<Route
 						path="documentos-obrigatorios"

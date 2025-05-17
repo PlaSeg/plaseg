@@ -37,7 +37,7 @@ export function HomeHeader() {
 				</nav>
 
 				{isAuthenticated && (
-					<Link to={"/admin/dashboard"}>
+					<Link to={"/admin"}>
 						<Button className="font-bold px-8 rounded-full">Dashboard</Button>
 					</Link>
 				)}
