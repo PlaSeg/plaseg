@@ -1,8 +1,8 @@
-import { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http";
+import { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http/http";
 import { AxiosError } from "axios";
 import { api } from "@/services/axios";
 import { UpdateAdministratorRequest } from "@/@schemas/administrator";
-import { User } from "@/@types/user";
+import { User } from "@/@types/auth/user";
 
 type UpdateAdministratorResponse =
 	| HTTPSuccessResponse<User>

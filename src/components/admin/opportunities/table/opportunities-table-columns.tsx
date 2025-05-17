@@ -5,7 +5,6 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { translateOpportunitiesTableKeys } from "@/utils/translate-opportunities-table-keys";
 import { Opportunity } from "@/@types/admin/opportunity";
 import { formatDate } from "@/utils/format-date";
-import { DeleteOpportunityDialog } from "../modals/delete-opportunity-dialog";
 import { Tag } from "@/components/ui/tag";
 import { Switch } from "@/components/ui/switch";
 
@@ -147,8 +146,8 @@ export const opportunitiesTableColumns: ColumnDef<Opportunity>[] = [
 	{
 		id: "actions",
 		header: "Ações",
-		cell: ({ row }) => {
-			const opportunity = row.original;
+		cell: () => {
+			// const opportunity = row.original;
 
 			return (
 				<div className="flex items-center gap-4">
@@ -161,11 +160,6 @@ export const opportunitiesTableColumns: ColumnDef<Opportunity>[] = [
 						<SquarePen />
 						<span className="sr-only">Editar</span>
 					</Button>
-
-					<DeleteOpportunityDialog
-						opportunityId={opportunity.id}
-						opportunityName={opportunity.title}
-					/>
 				</div>
 			);
 		},

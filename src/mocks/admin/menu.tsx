@@ -21,15 +21,6 @@ interface MenuItem {
 
 export const adminMenuItems: MenuItem[] = [
 	{
-		icon: <Banknote size={24} className="text-blue-500" />,
-		title: "Oportunidades",
-		description:
-			"Cadastre, edite e gerencie as oportunidades de financiamento que os municípios poderão acessar.",
-		url: "/admin/oportunidades",
-		ready: true,
-	},
-
-	{
 		icon: <Tags size={24} className="text-blue-500" />,
 		title: "Tipos",
 		description:
@@ -46,19 +37,26 @@ export const adminMenuItems: MenuItem[] = [
 		ready: true,
 	},
 	{
+		icon: <FileStack size={24} className="text-blue-500" />,
+		title: "Documentos Obrigatórios",
+		description: "Gerencie os documentos obrigatórios do sistema.",
+		url: "/admin/documentos-obrigatorios",
+		ready: true,
+	},
+	{
+		icon: <Banknote size={24} className="text-blue-500" />,
+		title: "Oportunidades",
+		description:
+			"Cadastre, edite e gerencie as oportunidades de financiamento que os municípios poderão acessar.",
+		url: "/admin/oportunidades",
+		ready: true,
+	},
+	{
 		icon: <Package size={24} className="text-blue-500" />,
 		title: "Produtos Base",
 		description:
 			"Cadastre, edite e gerencie o catálogo completo de produtos que vão servir de base os produtos específicos.",
 		url: "/admin/produtos-base",
-		ready: true,
-	},
-
-	{
-		icon: <FileStack size={24} className="text-blue-500" />,
-		title: "Documentos Obrigatórios",
-		description: "Gerencie os documentos obrigatórios do sistema.",
-		url: "/admin/documentos-obrigatorios",
 		ready: true,
 	},
 	{

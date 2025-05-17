@@ -1,21 +1,22 @@
 import { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http/http";
 import { AxiosError } from "axios";
 import { api } from "@/services/axios";
-import { CreateBaseProductRequest } from "@/@schemas/base-product";
+import { CreateTypeRequest } from "@/@schemas/type";
 
-type CreateBaseProductResponse = HTTPSuccessResponse<null> | HTTPErrorResponse;
+type EditTypeResponse = HTTPSuccessResponse<null> | HTTPErrorResponse;
 
 /**
- * @description Adiciona um produto base
+ * @description Adiciona um tipo
  * @param request
  * @returns
  */
-export async function createBaseProduct(
-	request: CreateBaseProductRequest
-): Promise<CreateBaseProductResponse> {
+export async function editType(
+	id: string,
+	request: CreateTypeRequest
+): Promise<EditTypeResponse> {
 	try {
-		const response = await api.post<HTTPSuccessResponse<null>>(
-			"/base-products",
+		const response = await api.put<HTTPSuccessResponse<null>>(
+			`/types/${id}`,
 			request
 		);
 
@@ -24,6 +25,7 @@ export async function createBaseProduct(
 		if (error instanceof AxiosError && error.response?.data) {
 			return error.response.data;
 		}
+
 		return {
 			success: false,
 			errors: ["Erro desconhecido"],

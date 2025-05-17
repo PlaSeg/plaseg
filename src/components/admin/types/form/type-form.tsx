@@ -2,20 +2,27 @@ import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { FormInput } from "@/components/form/form-input";
 import { LoaderCircle } from "lucide-react";
-import { useCreateType } from "@/hooks/admin/types/use-create-type";
 import { FormSelect } from "@/components/form/form-select";
 import { TypeGroup } from "@/@types/admin/type";
 import { useGetTypes } from "@/hooks/admin/types/use-get-types";
 import { useState } from "react";
 import { SetHasParentCheckbox } from "./set-has-parent-checkbox";
+import { UseFormReturn } from "react-hook-form";
+import { CreateTypeRequest } from "@/@schemas/type";
 
 interface TypeFormProps {
-	setIsTypeSheetOpen: (open: boolean) => void;
+	form: UseFormReturn<CreateTypeRequest> & {
+		handleSubmitForm: () => void;
+	};
+	setIsFormOpen: (open: boolean) => void;
+	isLoading: boolean;
 }
 
-export function TypeForm({ setIsTypeSheetOpen }: TypeFormProps) {
-	const [hasParent, setHasParent] = useState(false);
-	const { form, isAddingType } = useCreateType();
+export function TypeForm({ setIsFormOpen, form, isLoading }: TypeFormProps) {
+	const [hasParent, setHasParent] = useState(
+		form.watch("parentId") !== undefined
+	);
+
 	const { types } = useGetTypes({
 		group: TypeGroup.CATEGORY,
 	});
@@ -37,7 +44,10 @@ export function TypeForm({ setIsTypeSheetOpen }: TypeFormProps) {
 
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmitForm} className="space-y-12">
+			<form
+				onSubmit={form.handleSubmitForm}
+				className="flex-1 flex flex-col justify-between"
+			>
 				<div className="flex flex-col gap-4">
 					<FormInput
 						form={form}
@@ -61,7 +71,7 @@ export function TypeForm({ setIsTypeSheetOpen }: TypeFormProps) {
 								setHasParent={setHasParent}
 							/>
 
-							{hasParent && (
+							{hasParent === true && (
 								<FormSelect
 									form={form}
 									entity="parentId"
@@ -79,7 +89,7 @@ export function TypeForm({ setIsTypeSheetOpen }: TypeFormProps) {
 						type="button"
 						className="w-full max-w-[170px]"
 						variant="outline"
-						onClick={() => setIsTypeSheetOpen(false)}
+						onClick={() => setIsFormOpen(false)}
 					>
 						Cancelar
 					</Button>
@@ -87,10 +97,10 @@ export function TypeForm({ setIsTypeSheetOpen }: TypeFormProps) {
 					<Button
 						className="w-full max-w-[170px]"
 						type="submit"
-						disabled={isAddingType || isButtonDisabled}
+						disabled={isLoading || isButtonDisabled}
 					>
-						{isAddingType && <LoaderCircle className="mr-2 animate-spin" />}
-						{!isAddingType && "Salvar"}
+						{isLoading && <LoaderCircle className="mr-2 animate-spin" />}
+						{!isLoading && "Salvar"}
 					</Button>
 				</div>
 			</form>
