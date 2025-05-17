@@ -1,23 +1,23 @@
 import { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http";
 import { AxiosError } from "axios";
 import { api } from "@/services/axios";
-import { CreateMandatoryDocumentRequest } from "@/@schemas/mandatory-documents";
+import { CreateRequiredDocumentRequest } from "@/@schemas/required-document";
 
-type CreateMandatoryDocumentResponse =
+type CreateRequiredDocumentResponse =
 	| HTTPSuccessResponse<null>
 	| HTTPErrorResponse;
 
 /**
  * @description Adiciona um documento obrigatório
- * @param request
- * @returns
+ * @param request - Dados do documento obrigatório
+ * @returns Resposta da API
  */
-export async function createMandatoryDocument(
-	request: CreateMandatoryDocumentRequest //
-): Promise<CreateMandatoryDocumentResponse> {
+export async function createRequiredDocument(
+	request: CreateRequiredDocumentRequest //
+): Promise<CreateRequiredDocumentResponse> {
 	try {
 		const response = await api.post<HTTPSuccessResponse<null>>(
-			"/mandatory-documents",
+			"/required-documents",
 			request
 		);
 
@@ -26,6 +26,7 @@ export async function createMandatoryDocument(
 		if (error instanceof AxiosError && error.response?.data) {
 			return error.response.data;
 		}
+
 		return {
 			success: false,
 			errors: ["Erro desconhecido"],

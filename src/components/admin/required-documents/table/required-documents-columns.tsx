@@ -2,13 +2,12 @@ import { Button } from "@/components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowDown, ArrowUp, Eye } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
-import { MandatoryDocuments } from "@/@types/admin/mandatory-documents";
-import { translateMandatoryDocumentsTableKeys } from "@/utils/translate-mandatory-documents-table-keys";
+import { RequiredDocument } from "@/@types/admin/required-document";
 import { formatDate } from "@/utils/format-date";
-import { EditMandatoryDocumentSheet } from "../modals/edit-mandatory-document";
-import { DeleteMandatoryDocument } from "../modals/delete-mandatory-document";
+import { EditRequiredDocumentSheet } from "../modals/edit-required-document";
+import { translateRequiredDocumentsTableKeys } from "@/utils/translate-required-documents-table-keys";
 
-export const mandatoryDocumentsTableColumns: ColumnDef<MandatoryDocuments>[] = [
+export const requiredDocumentsTableColumns: ColumnDef<RequiredDocument>[] = [
 	{
 		id: "select",
 		header: ({ table }) => (
@@ -39,7 +38,7 @@ export const mandatoryDocumentsTableColumns: ColumnDef<MandatoryDocuments>[] = [
 				className="!p-0 hover:bg-transparent"
 				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
 			>
-				{translateMandatoryDocumentsTableKeys("name")}
+				{translateRequiredDocumentsTableKeys("name")}
 				{column.getIsSorted() !== "desc" && (
 					<ArrowUp className="ml-2 h-4 w-4" />
 				)}
@@ -60,7 +59,7 @@ export const mandatoryDocumentsTableColumns: ColumnDef<MandatoryDocuments>[] = [
 				className="!p-0 hover:bg-transparent"
 				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
 			>
-				{translateMandatoryDocumentsTableKeys("description")}
+				{translateRequiredDocumentsTableKeys("description")}
 				{column.getIsSorted() !== "desc" && (
 					<ArrowUp className="ml-2 h-4 w-4" />
 				)}
@@ -84,7 +83,7 @@ export const mandatoryDocumentsTableColumns: ColumnDef<MandatoryDocuments>[] = [
 				className="!p-0 hover:bg-transparent"
 				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
 			>
-				{translateMandatoryDocumentsTableKeys("model")}
+				{translateRequiredDocumentsTableKeys("model")}
 				{column.getIsSorted() !== "desc" && (
 					<ArrowUp className="ml-2 h-4 w-4" />
 				)}
@@ -106,10 +105,12 @@ export const mandatoryDocumentsTableColumns: ColumnDef<MandatoryDocuments>[] = [
 				className="!p-0 hover:bg-transparent"
 				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
 			>
-				{translateMandatoryDocumentsTableKeys("createdAt")}
+				{translateRequiredDocumentsTableKeys("createdAt")}
+
 				{column.getIsSorted() !== "desc" && (
 					<ArrowUp className="ml-2 h-4 w-4" />
 				)}
+
 				{column.getIsSorted() === "desc" && (
 					<ArrowDown className="ml-2 h-4 w-4" />
 				)}
@@ -131,9 +132,7 @@ export const mandatoryDocumentsTableColumns: ColumnDef<MandatoryDocuments>[] = [
 						<span className="sr-only">Ver detalhes</span>
 					</Button>
 
-					<EditMandatoryDocumentSheet />
-
-					<DeleteMandatoryDocument id={document.id} name={document.name} />
+					<EditRequiredDocumentSheet requiredDocument={document} />
 				</div>
 			);
 		},

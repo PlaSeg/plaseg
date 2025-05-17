@@ -1,13 +1,13 @@
-import { MandatoryDocuments } from "@/@types/admin/mandatory-documents";
+import { RequiredDocument } from "@/@types/admin/required-document";
 import { TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { flexRender, Table } from "@tanstack/react-table";
 
-interface MandatoryDocumentsTableHeaderProps {
-	table: Table<MandatoryDocuments>;
+interface RequiredDocumentsTableHeaderProps {
+	table: Table<RequiredDocument>;
 	widths?: string[];
 }
 
-export function MandatoryDocumentsTableHeader({
+export function RequiredDocumentsTableHeader({
 	table,
 	widths = [
 		"w-[50px]",
@@ -17,7 +17,7 @@ export function MandatoryDocumentsTableHeader({
 		"w-[200px]",
 		"w-[200px]",
 	],
-}: MandatoryDocumentsTableHeaderProps) {
+}: RequiredDocumentsTableHeaderProps) {
 	return (
 		<TableHeader className="bg-slate-50">
 			{table.getHeaderGroups().map((headerGroup) => (

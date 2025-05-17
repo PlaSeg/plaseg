@@ -6,7 +6,7 @@ import Projects from "@/pages/city/projects";
 import RegisterProject from "@/pages/city/register-project";
 import OpportunityDetails from "@/pages/city/opportunity-details";
 
-export function CityRoutes() {
+export function MunicipalityRoutes() {
 	return (
 		<Routes>
 			<Route path="oportunidades" element={<Opportunities />} />

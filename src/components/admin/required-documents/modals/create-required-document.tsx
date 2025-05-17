@@ -8,20 +8,28 @@ import {
 	SheetTrigger,
 } from "@/components/ui/sheet";
 import { Plus } from "lucide-react";
-import { MandatoryDocumentForm } from "../form/mandatory-document-form";
-import { useCreateType } from "@/hooks/admin/types/use-create-type"; //
+import { RequiredDocumentForm } from "../form/required-document-form";
+import { useCreateRequiredDocument } from "@/hooks/admin/mandatory-documents/use-create-required-document";
 
 interface CreateDocumentSheetProps {
 	className?: string;
 }
 
-export function CreateMandatoryDocumentSheet({
+export function CreateRequiredDocumentSheet({
 	className,
 }: CreateDocumentSheetProps) {
-	const { isCreateTypeSheetOpen, setIsCreateTypeSheetOpen } = useCreateType(); //
+	const {
+		form,
+		isAddingRequiredDocument,
+		isCreateRequiredDocumentSheetOpen,
+		setIsCreateRequiredDocumentSheetOpen,
+	} = useCreateRequiredDocument();
 
 	return (
-		<Sheet open={isCreateTypeSheetOpen} onOpenChange={setIsCreateTypeSheetOpen}>
+		<Sheet
+			open={isCreateRequiredDocumentSheetOpen}
+			onOpenChange={setIsCreateRequiredDocumentSheetOpen}
+		>
 			<SheetTrigger asChild>
 				<Button className={className}>
 					<Plus />
@@ -37,8 +45,10 @@ export function CreateMandatoryDocumentSheet({
 					</SheetDescription>
 				</SheetHeader>
 
-				<MandatoryDocumentForm
-					setIsDocumentSheetOpen={setIsCreateTypeSheetOpen}
+				<RequiredDocumentForm
+					form={form}
+					isLoading={isAddingRequiredDocument}
+					setIsFormOpen={setIsCreateRequiredDocumentSheetOpen}
 				/>
 			</SheetContent>
 		</Sheet>

@@ -38,7 +38,9 @@ export function BaseProductsTableContainer() {
 		React.useState<VisibilityState>({});
 	const [rowSelection, setRowSelection] = React.useState({});
 	const { baseProducts, isLoadingGetBaseProducts } = useGetBaseProducts();
-	const { types } = useGetTypes(TypeGroup.CATEGORY);
+	const { types } = useGetTypes({
+		group: TypeGroup.CATEGORY,
+	});
 
 	const table = useReactTable({
 		data: baseProducts,

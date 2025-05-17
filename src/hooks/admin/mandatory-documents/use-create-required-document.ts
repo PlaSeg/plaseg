@@ -1,41 +1,42 @@
-import { createMandatoryDocument } from "@/api/admin/mandatory-documents/create-mandatory-document";
+import { createRequiredDocument } from "@/api/admin/mandatory-documents/create-required-document";
 import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "@/services/react-query";
 import { toast } from "sonner";
 import { useState } from "react";
-import { createMandatoryDocumentSchema } from "@/@schemas/mandatory-documents";
+import { createRequiredDocumentSchema } from "@/@schemas/required-document";
 import { useFormMutation } from "@/hooks/use-form-mutation";
 
-export function useCreateMandatoryDocument() {
-	const [isCreateDocumentSheetOpen, setIsCreateDocumentSheetOpen] =
-		useState(false);
+export function useCreateRequiredDocument() {
+	const [
+		isCreateRequiredDocumentSheetOpen,
+		setIsCreateRequiredDocumentSheetOpen,
+	] = useState(false);
 
 	const form = useFormMutation({
-		schema: createMandatoryDocumentSchema,
+		schema: createRequiredDocumentSchema,
 		defaultValues: {
 			name: "",
 			description: "",
 			model: "",
 		},
 		onSubmit: (data) => {
-			createMandatoryDocumentFn(data);
+			createRequiredDocumentFn(data);
 		},
 	});
 
 	const {
-		mutate: createMandatoryDocumentFn,
-		isPending: isAddingMandatoryDocument,
+		mutate: createRequiredDocumentFn,
+		isPending: isAddingRequiredDocument,
 	} = useMutation({
 		mutationKey: ["create-mandatory-document"],
-		mutationFn: createMandatoryDocument,
+		mutationFn: createRequiredDocument,
 		onSuccess: (response) => {
 			if (response.success) {
 				queryClient.invalidateQueries({
-					queryKey: ["mandatory-document"],
+					queryKey: ["get-required-documents"],
 				});
-
 				form.reset();
-				setIsCreateDocumentSheetOpen(false);
+				setIsCreateRequiredDocumentSheetOpen(false);
 				toast.success("Documento obrigatório adicionado com sucesso!");
 				return;
 			}
@@ -48,8 +49,8 @@ export function useCreateMandatoryDocument() {
 
 	return {
 		form,
-		isAddingMandatoryDocument,
-		isCreateDocumentSheetOpen,
-		setIsCreateDocumentSheetOpen,
+		isAddingRequiredDocument,
+		isCreateRequiredDocumentSheetOpen,
+		setIsCreateRequiredDocumentSheetOpen,
 	};
 }

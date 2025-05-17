@@ -1,27 +1,27 @@
 import { Table, TableBody, TableRow, TableCell } from "@/components/ui/table";
 import { flexRender, Table as TableType } from "@tanstack/react-table";
-import { MandatoryDocumentsBodySkeleton } from "./mandatory-documents-body-skeleton";
-import { mandatoryDocumentsTableColumns } from "./mandatory-documents-columns";
-import { MandatoryDocumentsTableHeader } from "./mandatory-documents-header";
-import { MandatoryDocuments } from "@/@types/admin/mandatory-documents";
+import { RequiredDocumentsBodySkeleton } from "./required-documents-body-skeleton";
+import { RequiredDocumentsTableHeader } from "./required-documents-header";
+import { RequiredDocument } from "@/@types/admin/required-document";
+import { requiredDocumentsTableColumns } from "./required-documents-columns";
 
-interface MandatoryDocumentsTableProps {
-	table: TableType<MandatoryDocuments>;
+interface RequiredDocumentsTableProps {
+	table: TableType<RequiredDocument>;
 	isLoadingGetDocuments: boolean;
-	data: MandatoryDocuments[];
+	data: RequiredDocument[];
 }
 
-export function MandatoryDocumentsTable({
+export function RequiredDocumentsTable({
 	table,
 	isLoadingGetDocuments,
 	data,
-}: MandatoryDocumentsTableProps) {
+}: RequiredDocumentsTableProps) {
 	return (
 		<Table>
-			<MandatoryDocumentsTableHeader table={table} />
+			<RequiredDocumentsTableHeader table={table} />
 
 			<TableBody>
-				{isLoadingGetDocuments && <MandatoryDocumentsBodySkeleton />}
+				{isLoadingGetDocuments && <RequiredDocumentsBodySkeleton />}
 
 				{!isLoadingGetDocuments &&
 					data &&
@@ -46,7 +46,7 @@ export function MandatoryDocumentsTable({
 						table.getRowModel().rows?.length === 0) && (
 						<TableRow>
 							<TableCell
-								colSpan={mandatoryDocumentsTableColumns.length}
+								colSpan={requiredDocumentsTableColumns.length}
 								className="h-24 text-center"
 							>
 								Sem resultados

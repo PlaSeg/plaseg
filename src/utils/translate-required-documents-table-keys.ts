@@ -1,4 +1,4 @@
-export function translateMandatoryDocumentsTableKeys(key: string): string {
+export function translateRequiredDocumentsTableKeys(key: string): string {
 	const translations: Record<string, string> = {
 		id: "ID",
 		name: "Documento",

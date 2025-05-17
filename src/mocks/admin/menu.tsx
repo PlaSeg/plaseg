@@ -67,7 +67,7 @@ export const adminMenuItems: MenuItem[] = [
 		description:
 			"Cadastre, edite e gerencie os produtos específicos que serão oferecidos aos municípios.",
 		url: "/admin/produtos-especificos",
-		ready: false,
+		ready: true,
 	},
 	{
 		icon: <FolderKanban size={24} className="text-blue-500" />,
@@ -75,7 +75,7 @@ export const adminMenuItems: MenuItem[] = [
 		description:
 			"Defina e gerencie os tipos de projetos que podem ser cadastrados no sistema",
 		url: "/admin/tipos-de-projeto",
-		ready: false,
+		ready: true,
 	},
 	{
 		icon: <FileText size={24} className="text-blue-500" />,

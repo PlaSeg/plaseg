@@ -2,17 +2,23 @@ import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { FormInput } from "@/components/form/form-input";
 import { LoaderCircle } from "lucide-react";
-import { useCreateMandatoryDocument } from "@/hooks/admin/mandatory-documents/use-create-mandatory-document";
+import { UseFormReturn } from "react-hook-form";
+import { CreateRequiredDocumentRequest } from "@/@schemas/required-document";
+import { FormTextarea } from "@/components/form/form-textarea";
 
-interface MandatoryDocumentFormProps {
-	setIsDocumentSheetOpen: (open: boolean) => void;
+interface RequiredDocumentFormProps {
+	form: UseFormReturn<CreateRequiredDocumentRequest> & {
+		handleSubmitForm: () => void;
+	};
+	setIsFormOpen: (open: boolean) => void;
+	isLoading: boolean;
 }
 
-export function MandatoryDocumentForm({
-	setIsDocumentSheetOpen,
-}: MandatoryDocumentFormProps) {
-	const { form, isAddingMandatoryDocument } = useCreateMandatoryDocument();
-
+export function RequiredDocumentForm({
+	form,
+	isLoading,
+	setIsFormOpen,
+}: RequiredDocumentFormProps) {
 	return (
 		<Form {...form}>
 			<form onSubmit={form.handleSubmitForm} className="space-y-12">
@@ -24,7 +30,7 @@ export function MandatoryDocumentForm({
 						placeholder="Digite o nome do documento"
 					/>
 
-					<FormInput
+					<FormTextarea
 						form={form}
 						entity="description"
 						label="Descrição"
@@ -44,7 +50,7 @@ export function MandatoryDocumentForm({
 						type="button"
 						className="w-full max-w-[170px]"
 						variant="outline"
-						onClick={() => setIsDocumentSheetOpen(false)}
+						onClick={() => setIsFormOpen(false)}
 					>
 						Cancelar
 					</Button>
@@ -52,12 +58,10 @@ export function MandatoryDocumentForm({
 					<Button
 						className="w-full max-w-[170px]"
 						type="submit"
-						disabled={isAddingMandatoryDocument}
+						disabled={isLoading}
 					>
-						{isAddingMandatoryDocument && (
-							<LoaderCircle className="mr-2 animate-spin" />
-						)}
-						{!isAddingMandatoryDocument && "Salvar"}
+						{isLoading && <LoaderCircle className="mr-2 animate-spin" />}
+						{!isLoading && "Salvar"}
 					</Button>
 				</div>
 			</form>

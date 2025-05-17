@@ -16,7 +16,9 @@ interface TypeFormProps {
 export function TypeForm({ setIsTypeSheetOpen }: TypeFormProps) {
 	const [hasParent, setHasParent] = useState(false);
 	const { form, isAddingType } = useCreateType();
-	const { types } = useGetTypes();
+	const { types } = useGetTypes({
+		group: TypeGroup.CATEGORY,
+	});
 
 	const typeGroupOptions = [
 		{ label: "Oportunidade", value: TypeGroup.OPPORTUNITY },

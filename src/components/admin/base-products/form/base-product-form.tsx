@@ -24,7 +24,9 @@ export function BaseProductForm({
 	form,
 	isLoading,
 }: BaseProductFormProps) {
-	const { types } = useGetTypes(TypeGroup.CATEGORY);
+	const { types } = useGetTypes({
+		group: TypeGroup.CATEGORY,
+	});
 
 	return (
 		<Form {...form}>

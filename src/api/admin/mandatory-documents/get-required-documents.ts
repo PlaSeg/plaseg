@@ -1,17 +1,16 @@
 import { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http";
 import { AxiosError } from "axios";
 import { api } from "@/services/axios";
+import { RequiredDocument } from "@/@types/admin/required-document";
 
-type DeleteMandatoryDocumentResponse =
-	| HTTPSuccessResponse<null>
+type GetRequiredDocumentsResponse =
+	| HTTPSuccessResponse<RequiredDocument[]>
 	| HTTPErrorResponse;
 
-export async function deleteMandatoryDocument(
-	id: string
-): Promise<DeleteMandatoryDocumentResponse> {
+export async function getRequiredDocuments(): Promise<GetRequiredDocumentsResponse> {
 	try {
-		const response = await api.delete<HTTPSuccessResponse<null>>(
-			`/mandatory-document/${id}`
+		const response = await api.get<HTTPSuccessResponse<RequiredDocument[]>>(
+			"/required-documents"
 		);
 
 		return response.data;
@@ -19,6 +18,7 @@ export async function deleteMandatoryDocument(
 		if (error instanceof AxiosError && error.response?.data) {
 			return error.response.data;
 		}
+
 		return {
 			success: false,
 			errors: ["Erro desconhecido"],

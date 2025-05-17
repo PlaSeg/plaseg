@@ -12,16 +12,16 @@ import {
 } from "@tanstack/react-table";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { mandatoryDocumentsTableColumns } from "./mandatory-documents-columns";
 import { SearchInput } from "@/components/ui/search-input";
-import { translateMandatoryDocumentsTableKeys } from "@/utils/translate-mandatory-documents-table-keys";
-import { MandatoryDocumentsTable } from "./mandatory-documents-table";
 import { TablePagination } from "@/components/table/table-footer";
 import { TableHideColumnsDropDown } from "@/components/table/table-hide-columns-dropdown";
-import { CreateMandatoryDocumentSheet } from "../modals/create-mandatory-document";
-import { useGetMandatoryDocuments } from "@/hooks/admin/mandatory-documents/use-get-mandatory-documents";
+import { CreateRequiredDocumentSheet } from "../modals/create-required-document";
+import { useGetRequiredDocuments } from "@/hooks/admin/mandatory-documents/use-get-required-documents";
+import { requiredDocumentsTableColumns } from "./required-documents-columns";
+import { RequiredDocumentsTable } from "./required-documents-table";
+import { translateRequiredDocumentsTableKeys } from "@/utils/translate-required-documents-table-keys";
 
-export function MandatoryDocumentsTableContainer() {
+export function RequiredDocumentsTableContainer() {
 	const [sorting, setSorting] = React.useState<SortingState>([
 		{
 			id: "name",
@@ -34,12 +34,12 @@ export function MandatoryDocumentsTableContainer() {
 	const [columnVisibility, setColumnVisibility] =
 		React.useState<VisibilityState>({});
 	const [rowSelection, setRowSelection] = React.useState({});
-	const { documents, isLoadingGetMandatoryDocuments } =
-		useGetMandatoryDocuments();
+	const { documents, isLoadingGetRequiredDocuments } =
+		useGetRequiredDocuments();
 
 	const table = useReactTable({
 		data: documents,
-		columns: mandatoryDocumentsTableColumns,
+		columns: requiredDocumentsTableColumns,
 		onSortingChange: setSorting,
 		onColumnFiltersChange: setColumnFilters,
 		getCoreRowModel: getCoreRowModel(),
@@ -86,15 +86,15 @@ export function MandatoryDocumentsTableContainer() {
 
 				<TableHideColumnsDropDown
 					table={table}
-					translateFunction={translateMandatoryDocumentsTableKeys}
+					translateFunction={translateRequiredDocumentsTableKeys}
 				/>
 
-				<CreateMandatoryDocumentSheet />
+				<CreateRequiredDocumentSheet />
 			</div>
 
-			<MandatoryDocumentsTable
+			<RequiredDocumentsTable
 				table={table}
-				isLoadingGetDocuments={isLoadingGetMandatoryDocuments}
+				isLoadingGetDocuments={isLoadingGetRequiredDocuments}
 				data={documents}
 			/>
 
