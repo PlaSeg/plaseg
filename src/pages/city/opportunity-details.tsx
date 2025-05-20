@@ -1,17 +1,19 @@
 import { Link, useParams } from "react-router";
-import { opportunities } from "@/mocks/opportunity/opportunities";
 import { OpportunityDetailsOverview } from "@/components/city/opportunities/opportunity-details-overview";
 import { Button } from "@/components/ui/button";
+import { useGetOpportunities } from "@/hooks/admin/opportunities/use-get-opportunities";
 
 export default function OpportunityDetails() {
 	const { slug } = useParams<{ slug: string }>();
+
+	const { opportunities } = useGetOpportunities();
 
 	const opportunity = opportunities.find((opp) => opp.slug === slug);
 
 	if (!opportunity) {
 		return (
-			<div className="container mx-auto py-8">
-				<h1 className="text-2xl font-bold text-red-600">
+			<div className="w-full flex h-screen items-center justify-center container mx-auto py-8">
+				<h1 className="text-2xl text-muted-foreground">
 					Oportunidade não encontrada
 				</h1>
 			</div>
@@ -31,7 +33,7 @@ export default function OpportunityDetails() {
 							</h1>
 
 							<span className="text-muted-foreground">
-								{opportunity.organization}
+								Secretaria Nacional de Segurança Pública (SENASP)
 							</span>
 						</div>
 
@@ -51,21 +53,7 @@ export default function OpportunityDetails() {
 
 					<div className="flex flex-col gap-1">
 						<strong className="font-medium">Descrição</strong>
-						<p className="text-muted-foreground">
-							Este edital tem como objetivo fortalecer a segurança pública em
-							âmbito municipal por meio da capacitação contínua da Guarda
-							Municipal e da aquisição de equipamentos modernos. O programa
-							busca melhorar a infraestrutura de segurança nas cidades,
-							promovendo a formação de agentes para lidar com situações de risco
-							e a implementação de tecnologias que auxiliem na prevenção e
-							combate à criminalidade. Além disso, visa fomentar a integração
-							entre as forças de segurança locais e a comunidade, incentivando a
-							criação de políticas públicas que priorizem a proteção e o
-							bem-estar da população. Podem participar municípios que apresentem
-							projetos alinhados aos objetivos do edital e que atendam aos
-							critérios de elegibilidade estabelecidos pela Secretaria Nacional
-							de Segurança Pública (SENASP).
-						</p>
+						<p className="text-muted-foreground">{opportunity.description}</p>
 					</div>
 
 					<div className="flex flex-col gap-1">
@@ -78,6 +66,7 @@ export default function OpportunityDetails() {
 									proponente.
 								</p>
 							</li>
+
 							<li>
 								Plano de Trabalho detalhado
 								<p className="text-muted-foreground text-sm">
@@ -85,6 +74,7 @@ export default function OpportunityDetails() {
 									cronograma e orçamento detalhado.
 								</p>
 							</li>
+
 							<li>
 								Comprovante de regularidade fiscal
 								<p className="text-muted-foreground text-sm">

@@ -1,7 +1,7 @@
 import { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http/http";
 import { AxiosError } from "axios";
 import { api } from "@/services/axios";
-import { Opportunity } from "@/@types/admin/opportunity";
+import { Opportunity } from "@/@types/common/opportunity";
 
 type GetOpportunitiesResponse =
 	| HTTPSuccessResponse<Opportunity[]>
@@ -17,6 +17,7 @@ export async function getOpportunities(): Promise<GetOpportunitiesResponse> {
 		if (error instanceof AxiosError && error.response?.data) {
 			return error.response.data;
 		}
+
 		return {
 			success: false,
 			errors: ["Erro desconhecido"],

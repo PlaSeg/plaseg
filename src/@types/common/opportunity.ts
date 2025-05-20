@@ -10,6 +10,8 @@ export interface RequiredDocument {
 export type Opportunity = {
 	id: string;
 	title: string;
+	slug: string;
+	responsibleAgency: string;
 	description: string;
 	availableValue: number;
 	minValue: number;

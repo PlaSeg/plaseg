@@ -4,7 +4,6 @@ import {
 	FileText,
 	UserCog,
 	Banknote,
-	Barcode,
 	FolderKanban,
 	Settings,
 	FileStack,
@@ -20,6 +19,21 @@ interface MenuItem {
 }
 
 export const adminMenuItems: MenuItem[] = [
+	{
+		icon: <Banknote size={24} className="text-blue-500" />,
+		title: "Oportunidades",
+		description:
+			"Cadastre, edite e gerencie as oportunidades de financiamento que os municípios poderão acessar.",
+		url: "/admin/oportunidades",
+		ready: true,
+	},
+	{
+		icon: <FileStack size={24} className="text-blue-500" />,
+		title: "Documentos Obrigatórios",
+		description: "Gerencie os documentos obrigatórios do sistema.",
+		url: "/admin/documentos-obrigatorios",
+		ready: true,
+	},
 	{
 		icon: <Tags size={24} className="text-blue-500" />,
 		title: "Tipos",
@@ -37,21 +51,6 @@ export const adminMenuItems: MenuItem[] = [
 		ready: true,
 	},
 	{
-		icon: <FileStack size={24} className="text-blue-500" />,
-		title: "Documentos Obrigatórios",
-		description: "Gerencie os documentos obrigatórios do sistema.",
-		url: "/admin/documentos-obrigatorios",
-		ready: true,
-	},
-	{
-		icon: <Banknote size={24} className="text-blue-500" />,
-		title: "Oportunidades",
-		description:
-			"Cadastre, edite e gerencie as oportunidades de financiamento que os municípios poderão acessar.",
-		url: "/admin/oportunidades",
-		ready: true,
-	},
-	{
 		icon: <Package size={24} className="text-blue-500" />,
 		title: "Produtos Base",
 		description:
@@ -60,20 +59,12 @@ export const adminMenuItems: MenuItem[] = [
 		ready: true,
 	},
 	{
-		icon: <Barcode size={24} className="text-blue-500" />,
-		title: "Produtos Específicos",
-		description:
-			"Cadastre, edite e gerencie os produtos específicos que serão oferecidos aos municípios.",
-		url: "/admin/produtos-especificos",
-		ready: true,
-	},
-	{
 		icon: <FolderKanban size={24} className="text-blue-500" />,
 		title: "Tipos de Projeto",
 		description:
 			"Defina e gerencie os tipos de projetos que podem ser cadastrados no sistema",
 		url: "/admin/tipos-de-projeto",
-		ready: true,
+		ready: false,
 	},
 	{
 		icon: <FileText size={24} className="text-blue-500" />,
