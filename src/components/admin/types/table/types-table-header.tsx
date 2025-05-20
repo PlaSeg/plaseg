@@ -12,10 +12,10 @@ export function TypesTableHeader({
 	widths = [
 		"w-[50px]",
 		"w-[300px]",
+		"w-[300px]",
+		"w-[300px]",
 		"w-[200px]",
-		"w-[200px]",
-		"w-[200px]",
-		"w-[200px]",
+		"w-[100px]",
 	],
 }: TypesTableHeaderProps) {
 	return (
