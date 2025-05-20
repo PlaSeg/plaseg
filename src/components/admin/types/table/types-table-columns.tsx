@@ -7,7 +7,6 @@ import { Type, TypeGroup } from "@/@types/admin/type";
 import { formatDate } from "@/utils/format-date";
 import { Tag } from "@/components/ui/tag";
 import { EditTypeSheet } from "../modals/edit-type-sheet";
-import { DeleteTypeDialog } from "../modals/delete-type-dialog";
 
 export const typesTableColumns: ColumnDef<Type>[] = [
 	{
@@ -139,9 +138,7 @@ export const typesTableColumns: ColumnDef<Type>[] = [
 						<span className="sr-only">Ver detalhes</span>
 					</Button>
 
-					<EditTypeSheet />
-
-					<DeleteTypeDialog typeId={type.id} typeName={type.description} />
+					<EditTypeSheet type={type} />
 				</div>
 			);
 		},

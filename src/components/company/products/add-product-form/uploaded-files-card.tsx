@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/card";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { FileEmptyCard } from "./file-empty-card";
-import { UploadedFile } from "@/@types/uploadthing";
+import { UploadedFile } from "@/@types/uploadthing/uploadthing";
 
 interface UploadedFilesCardProps {
 	uploadedFiles: UploadedFile[];

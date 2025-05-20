@@ -10,14 +10,19 @@ import {
 import { SquarePen } from "lucide-react";
 import { BaseProductForm } from "../form/base-product-form";
 import { useUpdateBaseProduct } from "@/hooks/admin/base-products/use-update-base-product";
+import { BaseProduct } from "@/@types/admin/base-product";
 
-export function EditBaseProductSheet() {
+interface EditBaseProductSheetProps {
+	baseProduct: BaseProduct;
+}
+
+export function EditBaseProductSheet({ baseProduct }: EditBaseProductSheetProps) {
 	const {
 		form,
 		isUpdatingBaseProduct,
 		isUpdateBaseProductSheetOpen,
 		setIsUpdateBaseProductSheetOpen,
-	} = useUpdateBaseProduct();
+	} = useUpdateBaseProduct(baseProduct);
 
 	return (
 		<Sheet
@@ -31,7 +36,7 @@ export function EditBaseProductSheet() {
 				</Button>
 			</SheetTrigger>
 
-			<SheetContent className="w-full md:max-w-[500px] outline-none overflow-y-auto flex flex-col gap-6">
+			<SheetContent className="w-full md:max-w-[1000px] outline-none overflow-y-auto flex flex-col gap-6">
 				<SheetHeader>
 					<SheetTitle>Editar Produto Base</SheetTitle>
 					<SheetDescription>Faça alterações no produto base.</SheetDescription>

@@ -15,7 +15,6 @@ import { Button } from "@/components/ui/button";
 import { baseProductsTableColumns } from "./base-products-table-columns";
 import { SearchInput } from "@/components/ui/search-input";
 import { translateBaseProductsTableKeys } from "@/utils/translate-base-products-table-keys";
-import { TableSelect } from "@/components/table/table-select";
 import { BaseProductsTable } from "./base-products-table";
 import { TablePagination } from "@/components/table/table-footer";
 import { TableHideColumnsDropDown } from "@/components/table/table-hide-columns-dropdown";
@@ -23,6 +22,7 @@ import { CreateBaseProductSheet } from "../modals/create-base-product-sheet";
 import { useGetBaseProducts } from "@/hooks/admin/base-products/use-get-base-products";
 import { useGetTypes } from "@/hooks/admin/types/use-get-types";
 import { TypeGroup } from "@/@types/admin/type";
+import { TableCombobox } from "@/components/table/table-combobox";
 
 export function BaseProductsTableContainer() {
 	const [sorting, setSorting] = React.useState<SortingState>([
@@ -38,7 +38,9 @@ export function BaseProductsTableContainer() {
 		React.useState<VisibilityState>({});
 	const [rowSelection, setRowSelection] = React.useState({});
 	const { baseProducts, isLoadingGetBaseProducts } = useGetBaseProducts();
-	const { types } = useGetTypes(TypeGroup.CATEGORY);
+	const { types } = useGetTypes({
+		group: TypeGroup.CATEGORY,
+	});
 
 	const table = useReactTable({
 		data: baseProducts,
@@ -78,14 +80,15 @@ export function BaseProductsTableContainer() {
 					}
 				/>
 
-				<TableSelect
+				<TableCombobox
+					className="w-full xl:w-[200px]"
+					placeholder="Categoria"
+					translatedEntity="Categoria"
+					onChange={(value) => table.getColumn("type")?.setFilterValue(value)}
 					options={types.map((type) => ({
 						label: type.description,
 						value: type.id,
 					}))}
-					className="w-full xl:w-[200px]"
-					placeholder="Tipo"
-					onChange={(value) => table.getColumn("type")?.setFilterValue(value)}
 				/>
 
 				<Button

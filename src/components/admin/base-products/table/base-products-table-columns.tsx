@@ -1,13 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
-import { ArrowDown, ArrowUp, Eye, SquarePen } from "lucide-react";
+import { ArrowDown, ArrowUp, Eye } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { translateBaseProductsTableKeys } from "@/utils/translate-base-products-table-keys";
 import { BaseProduct } from "@/@types/admin/base-product";
 import { formatDate } from "@/utils/format-date";
-import { DeleteBaseProductDialog } from "../modals/delete-base-product-dialog";
 import { formatCurrency } from "@/utils/format-currency";
 import { Tag } from "@/components/ui/tag";
+import { EditBaseProductSheet } from "../modals/edit-base-product-sheet";
 
 export const baseProductsTableColumns: ColumnDef<BaseProduct>[] = [
 	{
@@ -100,14 +100,14 @@ export const baseProductsTableColumns: ColumnDef<BaseProduct>[] = [
 		},
 	},
 	{
-		accessorKey: "subCategory",
+		accessorKey: "unitValue",
 		header: ({ column }) => (
 			<Button
 				variant="ghost"
 				className="!p-0 hover:bg-transparent"
 				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
 			>
-				{translateBaseProductsTableKeys("subCategory")}
+				{translateBaseProductsTableKeys("unitValue")}
 				{column.getIsSorted() !== "desc" && (
 					<ArrowUp className="ml-2 h-4 w-4" />
 				)}
@@ -116,42 +116,11 @@ export const baseProductsTableColumns: ColumnDef<BaseProduct>[] = [
 				)}
 			</Button>
 		),
-		cell: ({ row }) => {
-			const subCategory = row.getValue("subCategory") as string | null;
-
-			if (!subCategory) {
-				return <div>{"-"}</div>;
-			}
-
-			return <Tag>{subCategory}</Tag>;
-		},
-	},
-	{
-		accessorKey: "subSubCategory",
-		header: ({ column }) => (
-			<Button
-				variant="ghost"
-				className="!p-0 hover:bg-transparent"
-				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-			>
-				{translateBaseProductsTableKeys("subSubCategory")}
-				{column.getIsSorted() !== "desc" && (
-					<ArrowUp className="ml-2 h-4 w-4" />
-				)}
-				{column.getIsSorted() === "desc" && (
-					<ArrowDown className="ml-2 h-4 w-4" />
-				)}
-			</Button>
+		cell: ({ row }) => (
+			<div className="font-semibold">
+				{formatCurrency(row.getValue("unitValue"))}
+			</div>
 		),
-		cell: ({ row }) => {
-			const subSubCategory = row.getValue("subSubCategory") as string | null;
-
-			if (!subSubCategory) {
-				return <div>{"-"}</div>;
-			}
-
-			return <Tag>{subSubCategory}</Tag>;
-		},
 	},
 	{
 		accessorKey: "budget1",
@@ -209,15 +178,7 @@ export const baseProductsTableColumns: ColumnDef<BaseProduct>[] = [
 						<span className="sr-only">Ver detalhes</span>
 					</Button>
 
-					<Button variant="outline" size="icon" disabled>
-						<SquarePen className="h-4 w-4" />
-						<span className="sr-only">Editar</span>
-					</Button>
-
-					<DeleteBaseProductDialog
-						baseProductId={baseProduct.id}
-						baseProductName={baseProduct.name}
-					/>
+					<EditBaseProductSheet baseProduct={baseProduct} />
 				</div>
 			);
 		},

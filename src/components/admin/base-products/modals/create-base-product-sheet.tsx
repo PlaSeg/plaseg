@@ -46,8 +46,8 @@ export function CreateBaseProductSheet({
 				</SheetHeader>
 
 				<BaseProductForm
-					setIsFormOpen={setIsCreateBaseProductSheetOpen}
 					form={form}
+					setIsFormOpen={setIsCreateBaseProductSheetOpen}
 					isLoading={isAddingBaseProduct}
 				/>
 			</SheetContent>

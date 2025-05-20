@@ -36,7 +36,7 @@ export function TypesTableContainer() {
 	const [columnVisibility, setColumnVisibility] =
 		React.useState<VisibilityState>({});
 	const [rowSelection, setRowSelection] = React.useState({});
-	const { types, isLoadingGetTypes } = useGetTypes();
+	const { types, isLoadingGetTypes } = useGetTypes({});
 
 	const groupOptions = [
 		{ label: "Oportunidade", value: TypeGroup.OPPORTUNITY },

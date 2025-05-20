@@ -6,8 +6,6 @@ export interface BaseProduct {
 
 	typeId: string;
 	category: string;
-	subCategory: string;
-	subSubCategory: string;
 
 	budget1: number;
 	budget1Validity: Date;

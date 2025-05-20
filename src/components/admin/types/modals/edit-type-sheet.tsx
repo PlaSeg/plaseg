@@ -10,14 +10,20 @@ import {
 import { SquarePen } from "lucide-react";
 import { TypeForm } from "../form/type-form";
 import { useEditType } from "@/hooks/admin/types/use-edit-type";
+import { Type } from "@/@types/admin/type";
 
-export function EditTypeSheet() {
-	const { isEditTypeSheetOpen, setIsEditTypeSheetOpen } = useEditType();
+interface EditTypeSheetProps {
+	type: Type;
+}
+
+export function EditTypeSheet({ type }: EditTypeSheetProps) {
+	const { isEditTypeSheetOpen, setIsEditTypeSheetOpen, form, isEditingType } =
+		useEditType(type);
 
 	return (
 		<Sheet open={isEditTypeSheetOpen} onOpenChange={setIsEditTypeSheetOpen}>
 			<SheetTrigger asChild>
-				<Button variant="outline" size="icon" disabled>
+				<Button variant="outline" size="icon">
 					<SquarePen />
 					<span className="sr-only">Editar</span>
 				</Button>
@@ -29,7 +35,11 @@ export function EditTypeSheet() {
 					<SheetDescription>Faça alterações no tipo de.</SheetDescription>
 				</SheetHeader>
 
-				<TypeForm setIsTypeSheetOpen={setIsEditTypeSheetOpen} />
+				<TypeForm
+					form={form}
+					setIsFormOpen={setIsEditTypeSheetOpen}
+					isLoading={isEditingType}
+				/>
 			</SheetContent>
 		</Sheet>
 	);
