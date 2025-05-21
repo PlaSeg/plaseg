@@ -22,6 +22,7 @@ export default tseslint.config(
 		rules: {
 			...reactHooks.configs.recommended.rules,
 			"@typescript-eslint/no-empty-object-type": "off",
+			"no-useless-escape": "off",
 			"unused-imports/no-unused-imports": "error",
 			"@typescript-eslint/no-unused-vars": "warn",
 		},

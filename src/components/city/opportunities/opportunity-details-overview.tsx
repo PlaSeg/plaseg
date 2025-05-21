@@ -1,4 +1,5 @@
-import { Opportunity } from "@/mocks/opportunity/opportunities";
+import { Opportunity } from "@/@types/common/opportunity";
+import { formatDate } from "@/utils/format-date";
 import { Banknote, Calendar, Tag } from "lucide-react";
 
 interface OpportunityDetailsOverviewProps {
@@ -22,7 +23,7 @@ export function OpportunityDetailsOverview({
 
 					<div className="flex flex-col">
 						<span className="text-muted-foreground">Categoria</span>
-						<span className="font-medium">{opportunity.badgeText}</span>
+						<span className="font-medium">{opportunity.typeDescription}</span>
 					</div>
 				</div>
 
@@ -34,7 +35,7 @@ export function OpportunityDetailsOverview({
 					<div className="flex flex-col">
 						<span className="text-muted-foreground">Período de Inscrição</span>
 						<span className="font-medium">
-							{opportunity.registrationPeriod}
+							{formatDate(opportunity.initialDeadline)}
 						</span>
 					</div>
 				</div>

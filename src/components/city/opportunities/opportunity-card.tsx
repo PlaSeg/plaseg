@@ -1,13 +1,15 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import type { Opportunity } from "@/mocks/opportunity/opportunities";
 import { Link } from "react-router";
+import { Opportunity } from "@/@types/common/opportunity";
+import { formatDate } from "@/utils/format-date";
+import { slugfy } from "@/utils/slugfy";
 
 interface OpportunityProps {
 	opportunity: Opportunity;
 }
 
-export function Opportunity({ opportunity }: OpportunityProps) {
+export function OpportunityCard({ opportunity }: OpportunityProps) {
 	return (
 		<div className="overflow-hidden rounded-2xl border border-border/50 bg-white">
 			<div className="p-6 flex justify-between items-baseline">
@@ -17,14 +19,14 @@ export function Opportunity({ opportunity }: OpportunityProps) {
 					</h3>
 
 					<p className="text-sm text-muted-foreground">
-						{opportunity.organization}
+						Secretaria de Segurança Pública
 					</p>
 
 					<div className="pt-2">
 						<p className="text-sm space-x-2">
 							<span>Objetivos:</span>
 							<span className="text-muted-foreground">
-								{opportunity.objectives}
+								{opportunity.description}
 							</span>
 						</p>
 					</div>
@@ -36,7 +38,7 @@ export function Opportunity({ opportunity }: OpportunityProps) {
 							hover:bg-secondary
 							font-normal"
 						>
-							{opportunity.badgeText}
+							{opportunity.typeDescription}
 						</Badge>
 					</div>
 				</div>
@@ -59,14 +61,16 @@ export function Opportunity({ opportunity }: OpportunityProps) {
 			<div className="bg-muted/30 border-t border-border/40 p-4 flex items-center justify-between">
 				<div className="text-sm">
 					<span className="text-muted-foreground">Inscrições: </span>
-					<span>{opportunity.registrationPeriod}</span>
+					<span>{formatDate(opportunity.initialDeadline)}</span>
+					<span> - </span>
+					<span>{formatDate(opportunity.finalDeadline)}</span>
 				</div>
 
 				<Button
 					className="bg-dark hover:bg-dark/90 text-primary-foreground transition-colors	w-[200px]"
 					asChild
 				>
-					<Link to={`/municipio/oportunidades/${opportunity.slug}`}>
+					<Link to={`/municipio/oportunidades/${slugfy(opportunity.title)}`}>
 						Acessar
 					</Link>
 				</Button>

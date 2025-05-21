@@ -3,7 +3,7 @@ import { flexRender, Table as TableType } from "@tanstack/react-table";
 import { OpportunitiesTableBodySkeleton } from "./opportunities-table-body-skeleton";
 import { opportunitiesTableColumns } from "./opportunities-table-columns";
 import { OpportunitiesTableHeader } from "./opportunities-table-header";
-import { Opportunity } from "@/@types/admin/opportunity";
+import { Opportunity } from "@/@types/common/opportunity";
 
 interface OpportunitiesTableProps {
 	table: TableType<Opportunity>;
