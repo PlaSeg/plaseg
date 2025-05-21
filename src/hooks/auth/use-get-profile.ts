@@ -8,7 +8,7 @@ export function useGetProfile() {
 	});
 
 	return {
-		profile: result?.data,
+		user: result?.data,
 		isLoadingGetProfile,
 	};
 }
