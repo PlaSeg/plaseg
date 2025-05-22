@@ -1,5 +1,5 @@
-import { OpportunitiesFilter } from "@/components/city/opportunities/opportunities-filter";
-import { OpportunitiesList } from "@/components/city/opportunities/opportunities-list";
+import { OpportunitiesFilter } from "@/components/municipality/opportunities/opportunities-filter";
+import { OpportunitiesList } from "@/components/municipality/opportunities/opportunities-list";
 
 export default function Opportunities() {
 	return (

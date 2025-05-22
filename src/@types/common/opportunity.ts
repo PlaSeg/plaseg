@@ -20,7 +20,8 @@ export type Opportunity = {
 	finalDeadline: Date;
 	requiresCounterpart: boolean;
 	counterpartPercentage: number;
-	typeDescription: string;
+	type: string;
+	typeId: string;
 	isActive: boolean;
 
 	createdAt: Date;

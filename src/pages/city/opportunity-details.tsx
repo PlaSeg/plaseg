@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router";
-import { OpportunityDetailsOverview } from "@/components/city/opportunities/opportunity-details-overview";
+import { OpportunityDetailsOverview } from "@/components/municipality/opportunities/opportunity-details-overview";
 import { Button } from "@/components/ui/button";
 import { useGetOpportunities } from "@/hooks/admin/opportunities/use-get-opportunities";
 
@@ -33,7 +33,7 @@ export default function OpportunityDetails() {
 							</h1>
 
 							<span className="text-muted-foreground">
-								Secretaria Nacional de Segurança Pública (SENASP)
+								{opportunity.responsibleAgency}
 							</span>
 						</div>
 
@@ -58,45 +58,16 @@ export default function OpportunityDetails() {
 
 					<div className="flex flex-col gap-1">
 						<strong className="font-medium">Documentação Obrigatória</strong>
+
 						<ul className="list-disc pl-5 space-y-4">
-							<li>
-								Cópia do CNPJ do município
-								<p className="text-muted-foreground text-sm">
-									Documento que comprova a regularidade cadastral do município
-									proponente.
-								</p>
-							</li>
-
-							<li>
-								Plano de Trabalho detalhado
-								<p className="text-muted-foreground text-sm">
-									Documento contendo a descrição do projeto, objetivos, metas,
-									cronograma e orçamento detalhado.
-								</p>
-							</li>
-
-							<li>
-								Comprovante de regularidade fiscal
-								<p className="text-muted-foreground text-sm">
-									Certidões negativas de débitos (CND) municipais, estaduais e
-									federais, demonstrando que o município está adimplente.
-								</p>
-							</li>
-							<li>
-								Declaração de contrapartida
-								<p className="text-muted-foreground text-sm">
-									Documento assinado pelo representante legal do município,
-									atestando a disponibilidade de recursos para a contrapartida
-									exigida no edital.
-								</p>
-							</li>
-							<li>
-								Cópia do RG e CPF do responsável legal
-								<p className="text-muted-foreground text-sm">
-									Documentos de identificação do prefeito ou representante legal
-									do município que assinará o termo de adesão ao programa.
-								</p>
-							</li>
+							{opportunity.requiredDocuments.map((document) => (
+								<li key={document.id}>
+									<span>{document.name}</span>
+									<p className="text-muted-foreground text-sm">
+										{document.description}
+									</p>
+								</li>
+							))}
 						</ul>
 					</div>
 				</div>
