@@ -14,11 +14,13 @@ import { MunicipalityRoutes } from "./minicipality-routes";
 
 import AdminLayout from "@/layouts/admin-layout";
 import { AdminRoutes } from "./admin-routes";
+import RegisterCompany from "@/pages/company/register-company";
 
 export function AppRoutes() {
 	return (
 		<Routes>
 			<Route path="/" element={<Home />} />
+			<Route path="cadastrar-empresa" element={<RegisterCompany />} />
 
 			<Route element={<PublicRoutes />}>
 				<Route element={<AuthLayout />}>
