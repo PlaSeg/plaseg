@@ -1,7 +1,6 @@
 import { Opportunity } from "@/@types/common/opportunity";
-import { formatCurrency } from "@/utils/format-currency";
-import { formatDate } from "@/utils/format-date";
-import { Banknote, Calendar, Tag } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router";
 
 interface OpportunityDetailsOverviewProps {
 	opportunity: Opportunity;
@@ -11,60 +10,51 @@ export function OpportunityDetailsOverview({
 	opportunity,
 }: OpportunityDetailsOverviewProps) {
 	return (
-		<div className="py-6">
-			<div className="p-6 w-[350px] space-y-6 rounded-2xl border border-muted bg-white">
-				<span className="font-medium">Detalhes</span>
+		<div className="p-6 w-full">
+			<div className="p-6 flex flex-col gap-6 rounded-2xl border border-muted bg-white">
+				<div className="w-full flex items-start justify-between">
+					<div className="flex flex-col gap-1">
+						<h1 className="text-3xl leading-snug font-medium">
+							{opportunity.title}
+						</h1>
 
-				<div className="flex gap-4 text-sm">
-					<div className="bg-muted/50 border rounded-full w-10 h-10 flex items-center justify-center">
-						<Tag size={18} />
+						<span className="text-muted-foreground">
+							{opportunity.responsibleAgency}
+						</span>
 					</div>
 
-					<div className="flex flex-col">
-						<span className="text-muted-foreground">Categoria</span>
-						<span className="font-medium">{opportunity.type}</span>
+					<div className="flex items-center gap-4">
+						<Button variant="outline" className="w-[100px]">
+							<Link to="/municipio/oportunidades">Cancelar</Link>
+						</Button>
+
+						<Button
+							className="bg-dark hover:bg-dark/90 text-primary-foreground transition-colors
+							w-[100px]"
+						>
+							Participar
+						</Button>
 					</div>
 				</div>
 
-				<div className="flex gap-4 text-sm">
-					<div className="bg-muted/50 border rounded-full w-10 h-10 flex items-center justify-center">
-						<Calendar size={18} />
-					</div>
-
-					<div className="flex flex-col">
-						<span className="text-muted-foreground">Período de Inscrição</span>
-						<span className="font-medium">
-							{formatDate(opportunity.initialDeadline)}
-							<span> à </span>
-							{formatDate(opportunity.finalDeadline)}
-						</span>
-					</div>
+				<div className="flex flex-col gap-1">
+					<strong className="font-medium">Descrição</strong>
+					<p className="text-muted-foreground">{opportunity.description}</p>
 				</div>
 
-				<div className="flex gap-4 text-sm">
-					<div className="bg-muted/50 border rounded-full w-10 h-10 flex items-center justify-center">
-						<Banknote size={18} />
-					</div>
+				<div className="flex flex-col gap-1">
+					<strong className="font-medium">Documentação Obrigatória</strong>
 
-					<div className="flex flex-col">
-						<span className="text-muted-foreground">Valor Máximo</span>
-						<span className="font-medium">
-							{formatCurrency(opportunity.maxValue)}
-						</span>
-					</div>
-				</div>
-
-				<div className="flex gap-4 text-sm">
-					<div className="bg-muted/50 border rounded-full w-10 h-10 flex items-center justify-center">
-						<Banknote size={18} />
-					</div>
-
-					<div className="flex flex-col">
-						<span className="text-muted-foreground">Valor Mínimo</span>
-						<span className="font-medium">
-							{formatCurrency(opportunity.minValue)}
-						</span>
-					</div>
+					<ul className="list-disc pl-5 space-y-4">
+						{opportunity.requiredDocuments.map((document) => (
+							<li key={document.id}>
+								<span>{document.name}</span>
+								<p className="text-muted-foreground text-sm">
+									{document.description}
+								</p>
+							</li>
+						))}
+					</ul>
 				</div>
 			</div>
 		</div>

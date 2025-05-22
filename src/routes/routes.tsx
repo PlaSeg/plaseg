@@ -4,7 +4,7 @@ import { PrivateRoutes } from "./private-routes";
 import { PublicRoutes } from "./public-routes";
 
 import Home from "@/pages/home";
-import RegisterMunicipality from "@/pages/city/register-city";
+import RegisterMunicipality from "@/pages/municipality/register-municipality";
 
 import AuthLayout from "@/layouts/auth-layout";
 import { AuthRoutes } from "./auth-routes";
