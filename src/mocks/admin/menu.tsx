@@ -1,7 +1,6 @@
 import {
 	Package,
 	Tags,
-	FileText,
 	UserCog,
 	Banknote,
 	FolderKanban,
@@ -56,14 +55,6 @@ export const adminMenuItems: MenuItem[] = [
 		description:
 			"Defina e gerencie os tipos de projetos que podem ser cadastrados no sistema",
 		url: "/admin/tipos-de-projeto",
-		ready: false,
-	},
-	{
-		icon: <FileText size={24} className="text-blue-500" />,
-		title: "Contratos",
-		description:
-			"Gerencie a documentação contratual, incluindo modelos, versões e status dos contratos ativos",
-		url: "/admin/contratos",
 		ready: false,
 	},
 	{

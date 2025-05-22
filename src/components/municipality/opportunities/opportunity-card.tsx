@@ -75,7 +75,7 @@ export function OpportunityCard({ opportunity }: OpportunityProps) {
 					className="bg-dark hover:bg-dark/90 text-primary-foreground transition-colors	w-[200px]"
 					asChild
 				>
-					<Link to={`/municipio/oportunidades/${slugfy(opportunity.title)}`}>
+					<Link to={`/oportunidades/${slugfy(opportunity.title)}`}>
 						Acessar
 					</Link>
 				</Button>

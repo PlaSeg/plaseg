@@ -25,7 +25,7 @@ export function OpportunityDetailsOverview({
 
 					<div className="flex items-center gap-4">
 						<Button variant="outline" className="w-[100px]">
-							<Link to="/municipio/oportunidades">Cancelar</Link>
+							<Link to="/oportunidades">Cancelar</Link>
 						</Button>
 
 						<Button

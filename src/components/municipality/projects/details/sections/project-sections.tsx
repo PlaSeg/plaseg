@@ -6,6 +6,7 @@ import {
 	CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { ProjectSection } from "./project-section";
+
 const sections = [
 	{
 		title: "Declaração de capacidade técnica e gerencial",
@@ -40,7 +41,7 @@ const sections = [
 ];
 
 export function ProjectsSections() {
-	const [isOpen, setIsOpen] = useState(false);
+	const [isOpen, setIsOpen] = useState(true);
 
 	return (
 		<div className="w-full">
