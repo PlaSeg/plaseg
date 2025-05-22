@@ -4,6 +4,7 @@ import { Link } from "react-router";
 import { Opportunity } from "@/@types/common/opportunity";
 import { formatDate } from "@/utils/format-date";
 import { slugfy } from "@/utils/slugfy";
+import { formatCurrency } from "@/utils/format-currency";
 
 interface OpportunityProps {
 	opportunity: Opportunity;
@@ -19,7 +20,7 @@ export function OpportunityCard({ opportunity }: OpportunityProps) {
 					</h3>
 
 					<p className="text-sm text-muted-foreground">
-						Secretaria de Segurança Pública
+						{opportunity.responsibleAgency}
 					</p>
 
 					<div className="pt-2">
@@ -38,7 +39,7 @@ export function OpportunityCard({ opportunity }: OpportunityProps) {
 							hover:bg-secondary
 							font-normal"
 						>
-							{opportunity.typeDescription}
+							{opportunity.type}
 						</Badge>
 					</div>
 				</div>
@@ -47,13 +48,17 @@ export function OpportunityCard({ opportunity }: OpportunityProps) {
 					<div className="space-y-1">
 						<p className="text-xs text-muted-foreground">Valor mínimo</p>
 
-						<p className="font-medium">{opportunity.minValue}</p>
+						<p className="font-medium">
+							{formatCurrency(opportunity.minValue)}
+						</p>
 					</div>
 
 					<div className="space-y-1">
 						<p className="text-xs text-muted-foreground">Valor Máximo</p>
 
-						<p className="font-medium">{opportunity.maxValue}</p>
+						<p className="font-medium">
+							{formatCurrency(opportunity.maxValue)}
+						</p>
 					</div>
 				</div>
 			</div>

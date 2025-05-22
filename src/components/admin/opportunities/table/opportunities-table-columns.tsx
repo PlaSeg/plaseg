@@ -104,14 +104,14 @@ export const opportunitiesTableColumns: ColumnDef<Opportunity>[] = [
 		},
 	},
 	{
-		accessorKey: "typeDescription",
+		accessorKey: "type",
 		header: ({ column }) => (
 			<Button
 				variant="ghost"
 				className="!p-0 hover:bg-transparent"
 				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
 			>
-				{translateOpportunitiesTableKeys("typeDescription")}
+				{translateOpportunitiesTableKeys("type")}
 				{column.getIsSorted() !== "desc" && (
 					<ArrowUp className="ml-2 h-4 w-4" />
 				)}
@@ -120,7 +120,7 @@ export const opportunitiesTableColumns: ColumnDef<Opportunity>[] = [
 				)}
 			</Button>
 		),
-		cell: ({ row }) => <Tag>{row.getValue("typeDescription")}</Tag>,
+		cell: ({ row }) => <Tag>{row.getValue("type")}</Tag>,
 	},
 	{
 		accessorKey: "isActive",
