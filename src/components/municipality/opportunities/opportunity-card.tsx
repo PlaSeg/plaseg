@@ -24,9 +24,9 @@ export function OpportunityCard({ opportunity }: OpportunityProps) {
 					</p>
 
 					<div className="pt-2">
-						<p className="text-sm space-x-2">
+						<p className="text-sm flex items-center gap-2">
 							<span>Objetivos:</span>
-							<span className="text-muted-foreground">
+							<span className="text-muted-foreground truncate max-w-xl">
 								{opportunity.description}
 							</span>
 						</p>

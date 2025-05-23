@@ -1,7 +1,7 @@
 import { ProjectAttachments } from "@/components/municipality/projects/details/attachments/project-attachments";
 import { ProjectHeading } from "@/components/municipality/projects/details/heading/project-heading";
 import { ProjectItems } from "@/components/municipality/projects/details/items/project-items";
-import { ProjectTasks } from "@/components/municipality/projects/details/project-tasks";
+import { ProjectTasks } from "@/components/municipality/projects/details/tasks/project-tasks";
 import { ProjectsSections } from "@/components/municipality/projects/details/sections/project-sections";
 import { unslugfy } from "@/utils/unslugfy";
 import { useParams } from "react-router";

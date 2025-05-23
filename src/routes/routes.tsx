@@ -18,6 +18,7 @@ import OpportunityDetails from "@/pages/opportunities/opportunity-details";
 import Projects from "@/pages/projects/projects";
 import ProjectsDetails from "@/pages/projects/projects-details";
 import MunicipalityLayout from "@/layouts/municipality-layout";
+import { ProjectSectionDetails } from "@/pages/projects/projects-section-details";
 
 export function AppRoutes() {
 	return (
@@ -40,6 +41,7 @@ export function AppRoutes() {
 
 					<Route path="projetos" element={<Projects />} />
 					<Route path="projetos/:slug" element={<ProjectsDetails />} />
+					<Route path="projetos/:slug/:secao" element={<ProjectSectionDetails />} />
 				</Route>
 
 				<Route path="admin" element={<AdminLayout />}>

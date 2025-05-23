@@ -1,34 +1,24 @@
-import { Button } from "@/components/ui/button";
-import { CircleProgressIcon } from "@/components/ui/circle-progress-icon";
-import { SquarePen } from "lucide-react";
+import { ProjectSectionTopics } from "./project-section-topics";
+import { ProjectSectionTopic } from "./project-section-topic";
+import { ProjectSectionTopic2 } from "./project-section-topic2";
+import { ProjectSectionTopic3 } from "./project-section-topic3";
 
-interface ProjectSectionProps {
-	title: string;
-	done: number;
-	total: number;
-}
-
-export function ProjectSection({ title, done, total }: ProjectSectionProps) {
+export function ProjectSection() {
 	return (
-		<div
-			className="bg-white rounded-lg border border-slate-200 p-6
-					flex justify-between items-center gap-4"
-		>
-			<div className="flex items-center gap-4">
-				<CircleProgressIcon percentage={(done / total) * 100} />
+		<div className="w-full">
+			<h1 className="text-2xl font-semibold mb-6">
+				Justificativa Completa do Projeto
+			</h1>
 
-				<div className="flex flex-col">
-					<strong className="font-medium">{title}</strong>
+			<div className="grid grid-cols-3 gap-8">
+				<ProjectSectionTopics />
 
-					<span className="text-muted-foreground text-sm">
-						{done} de {total} concluídos
-					</span>
+				<div className="col-span-2 flex flex-col gap-6">
+					<ProjectSectionTopic />
+					<ProjectSectionTopic2 />
+					<ProjectSectionTopic3 />
 				</div>
 			</div>
-
-			<Button variant="outline" size="icon">
-				<SquarePen />
-			</Button>
 		</div>
 	);
 }
