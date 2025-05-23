@@ -5,7 +5,8 @@ import {
 	CollapsibleContent,
 	CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import { ProjectSection } from "./project-section";
+import { ProjectSectionCard } from "./project-section-card";
+
 const sections = [
 	{
 		title: "Declaração de capacidade técnica e gerencial",
@@ -40,7 +41,7 @@ const sections = [
 ];
 
 export function ProjectsSections() {
-	const [isOpen, setIsOpen] = useState(false);
+	const [isOpen, setIsOpen] = useState(true);
 
 	return (
 		<div className="w-full">
@@ -55,7 +56,7 @@ export function ProjectsSections() {
 
 				<CollapsibleContent className="space-y-4">
 					{sections.map((section) => (
-						<ProjectSection
+						<ProjectSectionCard
 							key={section.title}
 							title={section.title}
 							done={section.done}

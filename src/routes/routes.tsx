@@ -9,12 +9,16 @@ import RegisterMunicipality from "@/pages/municipality/register-municipality";
 import AuthLayout from "@/layouts/auth-layout";
 import { AuthRoutes } from "./auth-routes";
 
-import CityLayout from "@/layouts/city-layout";
-import { MunicipalityRoutes } from "./minicipality-routes";
-
-import AdminLayout from "@/layouts/admin-layout";
 import { AdminRoutes } from "./admin-routes";
+import AdminLayout from "@/layouts/admin-layout";
+
 import RegisterCompany from "@/pages/company/register-company";
+import Opportunities from "@/pages/opportunities/opportunities";
+import OpportunityDetails from "@/pages/opportunities/opportunity-details";
+import Projects from "@/pages/projects/projects";
+import ProjectsDetails from "@/pages/projects/projects-details";
+import MunicipalityLayout from "@/layouts/municipality-layout";
+import { ProjectSectionDetails } from "@/pages/projects/projects-section-details";
 
 export function AppRoutes() {
 	return (
@@ -31,12 +35,13 @@ export function AppRoutes() {
 			<Route element={<PrivateRoutes />}>
 				<Route path="cadastrar-municipio" element={<RegisterMunicipality />} />
 
-				<Route path="municipio" element={<CityLayout />}>
-					<Route
-						index
-						element={<Navigate to="/municipio/oportunidades" replace />}
-					/>
-					<Route path="*" element={<MunicipalityRoutes />} />
+				<Route path="*" element={<MunicipalityLayout />}>
+					<Route path="oportunidades" element={<Opportunities />} />
+					<Route path="oportunidades/:slug" element={<OpportunityDetails />} />
+
+					<Route path="projetos" element={<Projects />} />
+					<Route path="projetos/:slug" element={<ProjectsDetails />} />
+					<Route path="projetos/:slug/:secao" element={<ProjectSectionDetails />} />
 				</Route>
 
 				<Route path="admin" element={<AdminLayout />}>

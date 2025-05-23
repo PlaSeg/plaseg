@@ -4,7 +4,7 @@ import { Navbar } from "@/components/navbar/navbar";
 import { NavbarItem } from "@/components/navbar/navbar-item";
 import { ScrollText, KanbanSquare } from "lucide-react";
 
-export default function CityLayout() {
+export default function MunicipalityLayout() {
 	return (
 		<AppLayout className="bg-muted/50">
 			<Header>
@@ -12,13 +12,13 @@ export default function CityLayout() {
 					<NavbarItem
 						title="Oportunidades"
 						icon={<ScrollText size={16} />}
-						link="/municipio/oportunidades"
+						link="/oportunidades"
 					/>
 
 					<NavbarItem
 						title="Projetos"
 						icon={<KanbanSquare size={16} />}
-						link="/municipio/projetos"
+						link="/projetos"
 					/>
 				</Navbar>
 			</Header>

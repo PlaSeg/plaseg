@@ -24,9 +24,9 @@ export function OpportunityCard({ opportunity }: OpportunityProps) {
 					</p>
 
 					<div className="pt-2">
-						<p className="text-sm space-x-2">
+						<p className="text-sm flex items-center gap-2">
 							<span>Objetivos:</span>
-							<span className="text-muted-foreground">
+							<span className="text-muted-foreground truncate max-w-xl">
 								{opportunity.description}
 							</span>
 						</p>
@@ -75,7 +75,7 @@ export function OpportunityCard({ opportunity }: OpportunityProps) {
 					className="bg-dark hover:bg-dark/90 text-primary-foreground transition-colors	w-[200px]"
 					asChild
 				>
-					<Link to={`/municipio/oportunidades/${slugfy(opportunity.title)}`}>
+					<Link to={`/oportunidades/${slugfy(opportunity.title)}`}>
 						Acessar
 					</Link>
 				</Button>
