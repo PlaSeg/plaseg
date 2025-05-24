@@ -1,6 +1,8 @@
 import { Opportunity } from "@/@types/common/opportunity";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router";
+import { OpportunityDetailsDocument } from "./opportunity-details-document";
+import { CreateProjectDialog } from "./create-project-dialog";
 
 interface OpportunityDetailsOverviewProps {
 	opportunity: Opportunity;
@@ -28,33 +30,21 @@ export function OpportunityDetailsOverview({
 							<Link to="/oportunidades">Cancelar</Link>
 						</Button>
 
-						<Button
-							className="bg-dark hover:bg-dark/90 text-primary-foreground transition-colors
-							w-[100px]"
-						>
-							Participar
-						</Button>
+						<CreateProjectDialog />
 					</div>
 				</div>
 
 				<div className="flex flex-col gap-1">
-					<strong className="font-medium">Descrição</strong>
+					<h2 className="text-lg font-medium">Descrição</h2>
 					<p className="text-muted-foreground">{opportunity.description}</p>
 				</div>
 
-				<div className="flex flex-col gap-1">
-					<strong className="font-medium">Documentação Obrigatória</strong>
+				<div className="flex flex-col gap-2">
+					<h2 className="text-lg font-medium">Documentação Obrigatória</h2>
 
-					<ul className="list-disc pl-5 space-y-4">
-						{opportunity.requiredDocuments.map((document) => (
-							<li key={document.id}>
-								<span>{document.name}</span>
-								<p className="text-muted-foreground text-sm">
-									{document.description}
-								</p>
-							</li>
-						))}
-					</ul>
+					{opportunity.requiredDocuments.map((document) => (
+						<OpportunityDetailsDocument key={document.id} document={document} />
+					))}
 				</div>
 			</div>
 		</div>

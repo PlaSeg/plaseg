@@ -104,7 +104,7 @@ export function ProjectTasks() {
 	const filteredTasks = getFilteredTasks();
 
 	return (
-		<div className="w-full max-w-md mx-auto bg-white rounded-lg shadow p-6">
+		<div className="w-full max-w-md mx-auto bg-white rounded-lg border border-slate-200 p-6">
 			<div className="flex justify-between items-center mb-4">
 				<h2 className="text-xl font-semibold">Tarefas</h2>
 				<span className="text-sm text-gray-500">

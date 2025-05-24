@@ -1,7 +1,7 @@
 import { useParams } from "react-router";
-import { OpportunityDetailsInfo } from "@/components/municipality/opportunities/opportunity-details-info";
+import { OpportunityDetailsInfo } from "@/components/municipality/opportunities/details/opportunity-details-info";
 import { useGetOpportunities } from "@/hooks/admin/opportunities/use-get-opportunities";
-import { OpportunityDetailsOverview } from "@/components/municipality/opportunities/opportunity-details-overview";
+import { OpportunityDetailsOverview } from "@/components/municipality/opportunities/details/opportunity-details-overview";
 
 export default function OpportunityDetails() {
 	const { slug } = useParams<{ slug: string }>();
