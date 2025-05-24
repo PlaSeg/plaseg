@@ -1,0 +1,67 @@
+import { BaseProduct } from "../admin/base-product";
+
+export type Task = {
+	id: string;
+	name: string;
+	done: boolean;
+
+	createdAt: Date;
+	updatedAt: Date | null;
+};
+
+export type Field = {
+	id: string;
+	name: string;
+	value: string | null;
+	parentId: string | null;
+	fields: Field[];
+
+	createdAt: Date;
+	updatedAt: Date | null;
+};
+
+export type Document = {
+	id: string;
+	name: string;
+	description: string;
+	attachedFile: string;
+
+	createdAt: Date;
+	updatedAt: Date | null;
+};
+
+export type ProjectItem = BaseProduct & {
+	quantity: number;
+}
+
+export type Project = {
+	id: string;
+	name: string;
+
+	responsibleDocument: string;
+	responsibleName: string;
+	responsibleEmail: string;
+	responsiblePhone: string;
+	responsibleTelephone: string;
+
+	totalValue: number;
+	baseValue: number;
+	requestedValue: number;
+
+	counterpartCapitalInitials: string;
+	counterpartCapitalAmount: number;
+
+	counterpartCostInitials: string;
+	counterpartCostAmount: number;
+
+	counterpartDescription: string;
+	counterpartAttachedFile: string;
+
+	tasks: Task[];
+	fields: Field[];
+	documents: Document[];
+	items: ProjectItem[];
+
+	createdAt: Date;
+	updatedAt: Date | null;
+};

@@ -1,6 +1,7 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import { OpportunitiesFilterForm } from "./opportunities-filter-form";
 import { useGetOpportunities } from "@/hooks/admin/opportunities/use-get-opportunities";
+
 export function OpportunitiesFilter() {
 	const { opportunities, isLoadingGetOpportunities } = useGetOpportunities();
 

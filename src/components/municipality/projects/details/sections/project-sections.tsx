@@ -41,7 +41,7 @@ const sections = [
 ];
 
 export function ProjectsSections() {
-	const [isOpen, setIsOpen] = useState(true);
+	const [isOpen, setIsOpen] = useState(false);
 
 	return (
 		<div className="w-full">
