@@ -1,7 +1,6 @@
-import { ProjectSectionTopics } from "./project-section-topics";
+import { fields } from "@/mocks/project/fields";
 import { ProjectSectionTopic } from "./project-section-topic";
-import { ProjectSectionTopic2 } from "./project-section-topic2";
-import { ProjectSectionTopic3 } from "./project-section-topic3";
+import { ProjectSectionTopics } from "./project-section-topics";
 
 export function ProjectSection() {
 	return (
@@ -14,9 +13,9 @@ export function ProjectSection() {
 				<ProjectSectionTopics />
 
 				<div className="col-span-2 flex flex-col gap-6">
-					<ProjectSectionTopic />
-					<ProjectSectionTopic2 />
-					<ProjectSectionTopic3 />
+					{fields.map((field) => (
+						<ProjectSectionTopic key={field.id} field={field} />
+					))}
 				</div>
 			</div>
 		</div>

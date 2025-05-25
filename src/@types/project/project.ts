@@ -1,4 +1,4 @@
-import { BaseProduct } from "../admin/base-product";
+import type { BaseProduct } from "../admin/base-product";
 
 export type Task = {
 	id: string;
@@ -14,7 +14,7 @@ export type Field = {
 	name: string;
 	value: string | null;
 	parentId: string | null;
-	fields: Field[];
+	fields: Field[] | null;
 
 	createdAt: Date;
 	updatedAt: Date | null;
@@ -32,7 +32,7 @@ export type Document = {
 
 export type ProjectItem = BaseProduct & {
 	quantity: number;
-}
+};
 
 export type Project = {
 	id: string;

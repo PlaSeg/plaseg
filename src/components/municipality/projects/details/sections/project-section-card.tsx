@@ -32,7 +32,7 @@ export function ProjectSectionCard({
 			</div>
 
 			<Button variant="outline" size="icon" asChild>
-				<Link to={'/projetos/projeto-x/justificativa-completa-do-projeto'}>
+				<Link to={"/projetos/projeto-x/justificativa-completa-do-projeto"}>
 					<SquarePen />
 				</Link>
 			</Button>

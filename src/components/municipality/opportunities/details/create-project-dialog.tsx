@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Link } from "react-router";
 
 export function CreateProjectDialog() {
 	return (
@@ -71,8 +72,11 @@ export function CreateProjectDialog() {
 						<DialogClose>Cancelar</DialogClose>
 					</Button>
 
-					<Button className="bg-dark hover:bg-dark/90 text-primary-foreground transition-colors">
-						Criar Projeto
+					<Button
+						className="bg-dark hover:bg-dark/90 text-primary-foreground transition-colors"
+						asChild
+					>
+						<Link to="/projetos/projeto-x">Criar Projeto</Link>
 					</Button>
 				</DialogFooter>
 			</DialogContent>

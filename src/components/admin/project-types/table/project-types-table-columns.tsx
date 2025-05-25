@@ -1,12 +1,10 @@
+import type { ProjectType } from "@/@types/admin/project-types";
 import { Button } from "@/components/ui/button";
-import { ColumnDef } from "@tanstack/react-table";
-import { ArrowDown, ArrowUp, Eye } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
+import { formatDate } from "@/utils/format-date";
 import { translateProjectTypesTableKeys } from "@/utils/translate-project-types-table-keys";
-import { ProjectType } from "@/@types/admin/project-types"; 
-import { formatDate } from "@/utils/format-date"; 
-
-
+import type { ColumnDef } from "@tanstack/react-table";
+import { ArrowDown, ArrowUp, Eye } from "lucide-react";
 
 export const projectTypesTableColumns: ColumnDef<ProjectType>[] = [
 	{
@@ -31,7 +29,7 @@ export const projectTypesTableColumns: ColumnDef<ProjectType>[] = [
 		enableSorting: false,
 		enableHiding: false,
 	},
-	
+
 	{
 		accessorKey: "name",
 		header: ({ column }) => (
@@ -50,13 +48,10 @@ export const projectTypesTableColumns: ColumnDef<ProjectType>[] = [
 			</Button>
 		),
 		cell: ({ row }) => (
-			<div className="capitalize font-semibold">
-				{row.getValue("name")}
-			</div>
+			<div className="capitalize font-semibold">{row.getValue("name")}</div>
 		),
 	},
-	
-	
+
 	{
 		accessorKey: "createdAt",
 		header: ({ column }) => (
@@ -80,16 +75,13 @@ export const projectTypesTableColumns: ColumnDef<ProjectType>[] = [
 	{
 		id: "actions",
 		header: "Ações",
-		cell: ({ row }) => {
-			const type = row.original;
-
+		cell: () => {
 			return (
 				<div className="flex items-center gap-4">
 					<Button variant="outline" size="icon" disabled>
 						<Eye />
 						<span className="sr-only">Ver detalhes</span>
 					</Button>
-
 				</div>
 			);
 		},
