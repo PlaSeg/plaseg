@@ -49,6 +49,7 @@ export function AppRoutes() {
 					<Route path="*" element={<AdminRoutes />} />
 				</Route>
 			</Route>
+			
 		</Routes>
 	);
 }
