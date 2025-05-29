@@ -5,6 +5,7 @@ import {
 	Banknote,
 	FolderKanban,
 	Settings,
+	CircleCheckBig,
 } from "lucide-react";
 import { ReactNode } from "react";
 
@@ -58,6 +59,15 @@ export const adminMenuItems: MenuItem[] = [
 		ready: true,
 	},
 	{
+		icon: <CircleCheckBig size={24} className="text-blue-500" />,
+		title: "Aprovar usuários",
+		description:
+			"Aprove os usuários que ainda não foram aprovados para acessar o sistema e suas funcionalidades",
+		url: "/admin/aprovar-usuarios",
+		ready: true,
+	},
+
+	{
 		icon: <Settings size={24} className="text-blue-500" />,
 		title: "Configurações",
 		description:
@@ -65,4 +75,6 @@ export const adminMenuItems: MenuItem[] = [
 		url: "/admin/configuracoes",
 		ready: false,
 	},
+
+	
 ];
