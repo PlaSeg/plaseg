@@ -1,4 +1,4 @@
-export function translateApproveUsersTableKeys(key: string): string {
+export function translateUsersTableKeys(key: string): string {
 	const translations: Record<string, string> = {
 		id: "ID",
 		name: "Nome",

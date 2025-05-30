@@ -1,29 +1,29 @@
 import { Table, TableBody, TableRow, TableCell } from "@/components/ui/table";
 import { flexRender, Table as TableType } from "@tanstack/react-table";
-import { ApproveUsersTableBodySkeleton } from "./approve-users-table-body-skeleton";
-import { ApproveUsersTableColumns } from "./approve-users-table-columns";
-import { ApproveUsersTableHeader } from "./approve-users-table-header";
-import { ApproveUser } from "@/@types/admin/approve-users";
+import { UsersTableBodySkeleton } from "./users-table-body-skeleton";
+import { UsersTableColumns } from "./users-table-columns";
+import { UsersTableHeader } from "./users-table-header";
+import { User } from "@/@types/admin/user";
 
-interface ApproveUsersTableProps {
-	table: TableType<ApproveUser>;
-	isLoadingGetApproveUsers: boolean;
-	data: ApproveUser[];
+interface UsersTableProps {
+	table: TableType<User>;
+	isLoadingGetUsers: boolean;
+	data: User[];
 }
 
-export function ApproveUsersTable({
+export function UsersTable({
 	table,
-	isLoadingGetApproveUsers,
+	isLoadingGetUsers,
 	data,
-}: ApproveUsersTableProps) {
+}: UsersTableProps) {
 	return (
 		<Table>
-			<ApproveUsersTableHeader table={table} />
+			<UsersTableHeader table={table} />
 
 			<TableBody>
-				{isLoadingGetApproveUsers && <ApproveUsersTableBodySkeleton />}
+				{isLoadingGetUsers && <UsersTableBodySkeleton />}
 
-				{!isLoadingGetApproveUsers &&
+				{!isLoadingGetUsers &&
 					data &&
 					data.length > 0 &&
 					table.getRowModel().rows?.length > 0 &&
@@ -40,13 +40,13 @@ export function ApproveUsersTable({
 						</TableRow>
 					))}
 
-				{!isLoadingGetApproveUsers &&
+				{!isLoadingGetUsers &&
 					(!data ||
 						data.length === 0 ||
 						table.getRowModel().rows?.length === 0) && (
 						<TableRow>
 							<TableCell
-								colSpan={ApproveUsersTableColumns.length}
+								colSpan={UsersTableColumns.length}
 								className="h-24 text-center"
 							>
 								Sem resultados

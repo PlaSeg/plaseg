@@ -1,13 +1,13 @@
-import { ApproveUser } from "@/@types/admin/approve-users";
+import { User } from "@/@types/admin/user";
 import { TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { flexRender, Table } from "@tanstack/react-table";
 
-interface ApproveUsersTableHeaderProps {
-	table: Table<ApproveUser>;
+interface UsersTableHeaderProps {
+	table: Table<User>;
 	widths?: string[];
 }
 
-export function ApproveUsersTableHeader({
+export function UsersTableHeader({
 	table,
 	widths = [
 		"w-[50px]",
@@ -19,7 +19,7 @@ export function ApproveUsersTableHeader({
 		"w-[100px]",
 		"w-[200px]",
 	],
-}: ApproveUsersTableHeaderProps) {
+}: UsersTableHeaderProps) {
 	return (
 		<TableHeader className="bg-slate-50">
 			{table.getHeaderGroups().map((headerGroup) => (

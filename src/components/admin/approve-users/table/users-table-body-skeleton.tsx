@@ -1,13 +1,13 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import { TableCell, TableRow } from "@/components/ui/table";
 
-interface ApproveUsersTableSkeletonProps {
+interface UsersTableSkeletonProps {
 	widths?: string[];
 }
 
-export function ApproveUsersTableBodySkeleton({
+export function UsersTableBodySkeleton({
 	widths = ["w-4 h-4 shadow-sm"],
-}: ApproveUsersTableSkeletonProps) {
+}: UsersTableSkeletonProps) {
 	return (
 		<>
 			{Array.from({ length: 10 }).map((_, index) => (

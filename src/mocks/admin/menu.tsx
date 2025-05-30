@@ -60,10 +60,10 @@ export const adminMenuItems: MenuItem[] = [
 	},
 	{
 		icon: <CircleCheckBig size={24} className="text-blue-500" />,
-		title: "Aprovar usuários",
+		title: "Usuários",
 		description:
-			"Aprove os usuários que ainda não foram aprovados para acessar o sistema e suas funcionalidades",
-		url: "/admin/aprovar-usuarios",
+			"Aprove ou bloqueie os usuários para acessarem o sistema e suas funcionalidades",
+		url: "/admin/usuarios",
 		ready: true,
 	},
 

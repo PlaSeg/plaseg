@@ -1,16 +1,19 @@
+
 import { Button } from "@/components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
-import { ArrowDown, ArrowUp, Eye } from "lucide-react";
+import { ArrowDown, ArrowUp } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
-import { translateApproveUsersTableKeys } from "@/utils/translate-approve-users-table-keys"; 
-import { ApproveUser, Role } from "@/@types/admin/approve-users"; 
+import { translateUsersTableKeys } from "@/utils/translate-users-table-keys";
+import { User, Role } from "@/@types/admin/user"; 
 import { formatDate } from "@/utils/format-date";
 import { Tag } from "@/components/ui/tag";
-import { SquarePen } from "lucide-react";
 
 
 
-export const ApproveUsersTableColumns: ColumnDef<ApproveUser>[] = [
+
+export const UsersTableColumns: ColumnDef<User>[] = [
+	
+
 	{
 		id: "select",
 		header: ({ table }) => (
@@ -43,7 +46,7 @@ export const ApproveUsersTableColumns: ColumnDef<ApproveUser>[] = [
 				className="!p-0 hover:bg-transparent"
 				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
 			>
-				{translateApproveUsersTableKeys("name")}
+				{translateUsersTableKeys("name")}
 				{column.getIsSorted() !== "desc" && (
 					<ArrowUp className="ml-2 h-4 w-4" />
 				)}
@@ -53,7 +56,7 @@ export const ApproveUsersTableColumns: ColumnDef<ApproveUser>[] = [
 			</Button>
 		),
 		cell: ({ row }) => (
-			<div className="capitalize font-semibold">
+			<div className="capitalize ">
 				{row.getValue("name")}
 			</div>
 		),
@@ -67,7 +70,7 @@ export const ApproveUsersTableColumns: ColumnDef<ApproveUser>[] = [
 				className="!p-0 hover:bg-transparent"
 				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
 			>
-				{translateApproveUsersTableKeys("email")}
+				{translateUsersTableKeys("email")}
 				{column.getIsSorted() !== "desc" && (
 					<ArrowUp className="ml-2 h-4 w-4" />
 				)}
@@ -77,7 +80,7 @@ export const ApproveUsersTableColumns: ColumnDef<ApproveUser>[] = [
 			</Button>
 		),
 		cell: ({ row }) => (
-			<div className="capitalize font-semibold">
+			<div>
 				{row.getValue("email")}
 			</div>
 		),
@@ -91,7 +94,7 @@ export const ApproveUsersTableColumns: ColumnDef<ApproveUser>[] = [
 				className="!p-0 hover:bg-transparent"
 				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
 			>
-				{translateApproveUsersTableKeys("document")}
+				{translateUsersTableKeys("document")}
 				{column.getIsSorted() !== "desc" && (
 					<ArrowUp className="ml-2 h-4 w-4" />
 				)}
@@ -101,7 +104,7 @@ export const ApproveUsersTableColumns: ColumnDef<ApproveUser>[] = [
 			</Button>
 		),
 		cell: ({ row }) => (
-			<div className="capitalize font-semibold">
+			<div>
 				{row.getValue("document")}
 			</div>
 		),
@@ -115,7 +118,7 @@ export const ApproveUsersTableColumns: ColumnDef<ApproveUser>[] = [
 				className="!p-0 hover:bg-transparent"
 				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
 			>
-				{translateApproveUsersTableKeys("phone")}
+				{translateUsersTableKeys("phone")}
 				{column.getIsSorted() !== "desc" && (
 					<ArrowUp className="ml-2 h-4 w-4" />
 				)}
@@ -125,7 +128,7 @@ export const ApproveUsersTableColumns: ColumnDef<ApproveUser>[] = [
 			</Button>
 		),
 		cell: ({ row }) => (
-			<div className="capitalize font-semibold">
+			<div className="capitalize">
 				{row.getValue("phone")}
 			</div>
 		),
@@ -139,7 +142,7 @@ export const ApproveUsersTableColumns: ColumnDef<ApproveUser>[] = [
 				className="!p-0 hover:bg-transparent"
 				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
 			>
-				{translateApproveUsersTableKeys("role")}
+				{translateUsersTableKeys("role")}
 				{column.getIsSorted() !== "desc" && (
 					<ArrowUp className="ml-2 h-4 w-4" />
 				)}
@@ -169,7 +172,7 @@ export const ApproveUsersTableColumns: ColumnDef<ApproveUser>[] = [
 				className="!p-0 hover:bg-transparent"
 				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
 			>
-				{translateApproveUsersTableKeys("createdAt")}
+				{translateUsersTableKeys("createdAt")}
 				{column.getIsSorted() !== "desc" && (
 					<ArrowUp className="ml-2 h-4 w-4" />
 				)}
@@ -186,18 +189,19 @@ export const ApproveUsersTableColumns: ColumnDef<ApproveUser>[] = [
 		header: "Ações",
 		cell: ({ row }) => {
 			const type = row.original;
+			
 
 			return (
 				<div className="flex items-center gap-4">
-					<Button variant="outline" size="icon" disabled>
-						<Eye />
-						<span className="sr-only">Ver detalhes</span>
-					</Button>
-
-					<Button variant="outline" size="icon">
-					<SquarePen />
-					<span className="sr-only">Editar</span>
-				</Button>
+					{type.allowed ? (
+						<Button variant="secondary" size="sm" className="font-semibold">
+							Negar Acesso
+						</Button>
+					) : (
+						<Button  size="sm" className="font-semibold">
+							Permitir Acesso
+						</Button>
+					)}
 				</div>
 			);
 		},

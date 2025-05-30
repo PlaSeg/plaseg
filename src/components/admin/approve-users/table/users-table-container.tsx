@@ -10,20 +10,21 @@ import {
 	getSortedRowModel,
 	useReactTable,
 } from "@tanstack/react-table";
-import { Check, X } from "lucide-react";
+import {  X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ApproveUsersTableColumns } from "./approve-users-table-columns";
+import { UsersTableColumns } from "./users-table-columns";
 import { SearchInput } from "@/components/ui/search-input";
-import { translateApproveUsersTableKeys } from "@/utils/translate-approve-users-table-keys";
+import { translateUsersTableKeys } from "@/utils/translate-users-table-keys";
 import { TableSelect } from "@/components/table/table-select";
-import { ApproveUsersTable } from "./approve-users-table";
+import { UsersTable } from "./users-table";
 import { TablePagination } from "@/components/table/table-footer";
 import { TableHideColumnsDropDown } from "@/components/table/table-hide-columns-dropdown";
-import { Role } from "@/@types/admin/approve-users";
+import { Role } from "@/@types/admin/user";
+import { users } from "@/mocks/admin/users";
 
 
 
-export function ApproveUsersTableContainer() {
+export function UsersTableContainer() {
 	const [sorting, setSorting] = React.useState<SortingState>([
 		{
 			id: "name",
@@ -45,8 +46,8 @@ export function ApproveUsersTableContainer() {
 	];
 
 	const table = useReactTable({
-		data: [],
-		columns: ApproveUsersTableColumns,
+		data: users,
+		columns: UsersTableColumns,
 		onSortingChange: setSorting,
 		onColumnFiltersChange: setColumnFilters,
 		getCoreRowModel: getCoreRowModel(),
@@ -68,7 +69,7 @@ export function ApproveUsersTableContainer() {
 			<div>
 				<h1 className="text-2xl font-semibold">Usuários</h1>
 				<span className="text-sm text-muted-foreground">
-					Aprove os usuários da aplicação.
+					Aprove ou bloqueie os usuários da aplicação.
 				</span>
 			</div>
 
@@ -102,19 +103,16 @@ export function ApproveUsersTableContainer() {
 
 				<TableHideColumnsDropDown
 					table={table}
-					translateFunction={translateApproveUsersTableKeys}
+					translateFunction={translateUsersTableKeys}
 				/>
 
-				<Button className="font-semibold">
-					<Check />
-					Permitir Acesso
-				</Button>
+				
 			</div>
 
-			<ApproveUsersTable
+			<UsersTable
 				table={table}
-				isLoadingGetApproveUsers= {false}
-				data={[]}
+				isLoadingGetUsers= {false}
+				data={users}
 			/>
 
 			<TablePagination table={table} />

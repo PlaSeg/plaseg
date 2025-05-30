@@ -11,7 +11,7 @@ import RequiredDocuments from "@/pages/admin/required-documents";
 import ProjectTypes from "@/pages/admin/project-types";
 import Settings from "@/pages/admin/settings";
 import SpecificProducts from "@/pages/admin/specific-products";
-import ApproveUsers from "@/pages/admin/approve-users";
+import Users from "@/pages/admin/users";
 
 export function AdminRoutes() {
 	return (
@@ -26,7 +26,7 @@ export function AdminRoutes() {
 			<Route path="contratos" element={<Contracts />} />
 			<Route path="configuracoes" element={<Settings />} />
 			<Route path="documentos-obrigatorios" element={<RequiredDocuments />} />
-			<Route path="aprovar-usuarios" element={<ApproveUsers/>} />
+			<Route path="usuarios" element={<Users/>} />
 		</Routes>
 	);
 }
