@@ -1,4 +1,4 @@
-import { useStepsStore } from "@/store/step";
+import { useStepsStore } from "@/hooks/step";
 import {
 	Building2,
 	Check,
@@ -16,7 +16,7 @@ interface FormStepProps {
 
 export function FormStep({ step }: FormStepProps) {
 	const { steps } = useStepsStore();
-	
+
 	const isCompleted = steps[step - 1].status === "completed";
 	const isProgress = steps[step - 1].status === "progress";
 	const isPending = steps[step - 1].status === "pending";

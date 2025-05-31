@@ -15,8 +15,6 @@ import Home from "@/pages/home";
 
 import RegisterMunicipality from "@/pages/municipality/register-municipality";
 
-import RegisterCompany from "@/pages/company/register-company";
-
 import Opportunities from "@/pages/opportunities/opportunities";
 import OpportunityDetails from "@/pages/opportunities/opportunity-details";
 
@@ -28,7 +26,7 @@ export function AppRoutes() {
 	return (
 		<Routes>
 			<Route path="/" element={<Home />} />
-			<Route path="cadastrar-empresa" element={<RegisterCompany />} />
+			<Route path="cadastrar-municipio" element={<RegisterMunicipality />} />
 
 			<Route element={<PublicRoutes />}>
 				<Route element={<AuthLayout />}>
@@ -37,8 +35,6 @@ export function AppRoutes() {
 			</Route>
 
 			<Route element={<PrivateRoutes />}>
-				<Route path="cadastrar-municipio" element={<RegisterMunicipality />} />
-
 				<Route path="*" element={<MunicipalityLayout />}>
 					<Route path="oportunidades" element={<Opportunities />} />
 					<Route path="oportunidades/:slug" element={<OpportunityDetails />} />
