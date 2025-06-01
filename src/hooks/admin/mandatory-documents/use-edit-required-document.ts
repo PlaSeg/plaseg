@@ -4,7 +4,7 @@ import { queryClient } from "@/services/react-query";
 import { toast } from "sonner";
 import { useState } from "react";
 import { createRequiredDocumentSchema } from "@/@schemas/required-document";
-import { useFormMutation } from "@/hooks/use-form-mutation";
+import { useFormMutation } from "@/hooks/common/use-form-mutation";
 import { RequiredDocument } from "@/@types/admin/required-document";
 
 export function useEditRequiredDocument(requiredDocument: RequiredDocument) {

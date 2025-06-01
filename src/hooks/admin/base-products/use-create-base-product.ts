@@ -4,7 +4,7 @@ import { createBaseProduct } from "@/api/admin/base-products/create-base-product
 import { useState } from "react";
 import { toast } from "sonner";
 import { queryClient } from "@/services/react-query";
-import { useFormMutation } from "@/hooks/use-form-mutation";
+import { useFormMutation } from "@/hooks/common/use-form-mutation";
 
 export function useCreateBaseProduct() {
 	const [isCreateBaseProductSheetOpen, setIsCreateBaseProductSheetOpen] =

@@ -4,7 +4,6 @@ export enum Role {
 	COMPANY = "COMPANY",
 }
 
-
 export interface User {
 	id: string;
 	name: string;
@@ -15,5 +14,4 @@ export interface User {
 	allowed: boolean;
 	createdAt: Date;
 	updatedAt: Date | null;
-	
 }

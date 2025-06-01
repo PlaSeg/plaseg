@@ -13,7 +13,7 @@ import { FormDatePicker } from "@/components/form/form-date-picker";
 import { FormMultiSelect } from "@/components/form/form-multi-select-input";
 import { currencies } from "@/mocks/company/currencies";
 import { useForm } from "react-hook-form";
-import { useRecordProductsStore } from "@/hooks/record";
+import { useRecordProductsStore } from "@/hooks/price-registration-records/record";
 import { z } from "zod";
 
 export const addItemFormSchema = z.object({
