@@ -3,7 +3,7 @@ import { flexRender, Table as TableType } from "@tanstack/react-table";
 import { UsersTableBodySkeleton } from "./users-table-body-skeleton";
 import { UsersTableColumns } from "./users-table-columns";
 import { UsersTableHeader } from "./users-table-header";
-import { User } from "@/@types/admin/user";
+import { User } from "@/@types/auth/user";
 
 interface UsersTableProps {
 	table: TableType<User>;

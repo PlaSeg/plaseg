@@ -1,4 +1,3 @@
-"use client";
 import * as React from "react";
 import {
 	ColumnFiltersState,
@@ -18,9 +17,11 @@ import { translateUsersTableKeys } from "@/utils/translate-users-table-keys";
 import { UsersTable } from "./users-table";
 import { TablePagination } from "@/components/table/table-footer";
 import { TableHideColumnsDropDown } from "@/components/table/table-hide-columns-dropdown";
-import { users } from "@/mocks/admin/users";
+import { useGetUsers } from "@/hooks/users/use-get-users";
 
 export function UsersTableContainer() {
+	const { users, isLoadingGetUsers } = useGetUsers();
+
 	const [sorting, setSorting] = React.useState<SortingState>([
 		{
 			id: "name",
@@ -87,7 +88,11 @@ export function UsersTableContainer() {
 				/>
 			</div>
 
-			<UsersTable table={table} isLoadingGetUsers={false} data={users} />
+			<UsersTable
+				table={table}
+				isLoadingGetUsers={isLoadingGetUsers}
+				data={users}
+			/>
 
 			<TablePagination table={table} />
 		</div>

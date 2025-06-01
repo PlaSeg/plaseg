@@ -1,9 +1,9 @@
 import { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http/http";
 import { AxiosError } from "axios";
 import { api } from "@/services/axios";
-import { User } from "@/@types/admin/user";
+import { User } from "@/@types/auth/user";
 
-type GetUsersResponse = HTTPSuccessResponse<User[]> | HTTPErrorResponse;
+export type GetUsersResponse = HTTPSuccessResponse<User[]> | HTTPErrorResponse;
 
 /**
  * @description Busca todos os usuários de municipalidade

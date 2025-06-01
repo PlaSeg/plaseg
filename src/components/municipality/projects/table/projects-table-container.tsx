@@ -1,4 +1,3 @@
-"use client";
 import * as React from "react";
 import {
 	ColumnFiltersState,
@@ -113,7 +112,11 @@ export function ProjectsTableContainer() {
 				</Button>
 			</div>
 
-			<ProjectsTable table={table} isLoadingGetProjects={false} data={projects} />
+			<ProjectsTable
+				table={table}
+				isLoadingGetProjects={false}
+				data={projects}
+			/>
 
 			<TablePagination table={table} />
 		</div>

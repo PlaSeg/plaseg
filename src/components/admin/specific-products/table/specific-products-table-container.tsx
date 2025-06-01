@@ -1,4 +1,3 @@
-"use client";
 import * as React from "react";
 import {
 	ColumnFiltersState,
@@ -33,7 +32,6 @@ export function SpecificProductsTableContainer() {
 	const [columnVisibility, setColumnVisibility] =
 		React.useState<VisibilityState>({});
 	const [rowSelection, setRowSelection] = React.useState({});
-
 
 	const table = useReactTable({
 		data: specificProducts,

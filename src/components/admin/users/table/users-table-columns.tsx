@@ -1,19 +1,16 @@
-
 import { Button } from "@/components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowDown, ArrowUp } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { translateUsersTableKeys } from "@/utils/translate-users-table-keys";
-import { User, Role } from "@/@types/admin/user"; 
+import { User, Role } from "@/@types/auth/user";
 import { formatDate } from "@/utils/format-date";
 import { Tag } from "@/components/ui/tag";
-
-
-
+import { AllowUserButton } from "./allow-deny-user-button";
+import { formatDocument } from "@/utils/format-document";
+import { formatPhoneNumber } from "@/utils/format-phone-number";
 
 export const UsersTableColumns: ColumnDef<User>[] = [
-	
-
 	{
 		id: "select",
 		header: ({ table }) => (
@@ -36,8 +33,6 @@ export const UsersTableColumns: ColumnDef<User>[] = [
 		enableSorting: false,
 		enableHiding: false,
 	},
-
-    
 	{
 		accessorKey: "name",
 		header: ({ column }) => (
@@ -56,13 +51,10 @@ export const UsersTableColumns: ColumnDef<User>[] = [
 			</Button>
 		),
 		cell: ({ row }) => (
-			<div className="capitalize ">
-				{row.getValue("name")}
-			</div>
+			<div className="capitalize font-semibold">{row.getValue("name")}</div>
 		),
 	},
-
-    {
+	{
 		accessorKey: "email",
 		header: ({ column }) => (
 			<Button
@@ -79,14 +71,9 @@ export const UsersTableColumns: ColumnDef<User>[] = [
 				)}
 			</Button>
 		),
-		cell: ({ row }) => (
-			<div>
-				{row.getValue("email")}
-			</div>
-		),
+		cell: ({ row }) => <div>{row.getValue("email")}</div>,
 	},
-	
-    {
+	{
 		accessorKey: "document",
 		header: ({ column }) => (
 			<Button
@@ -103,14 +90,9 @@ export const UsersTableColumns: ColumnDef<User>[] = [
 				)}
 			</Button>
 		),
-		cell: ({ row }) => (
-			<div>
-				{row.getValue("document")}
-			</div>
-		),
+		cell: ({ row }) => <div className="font-medium">{formatDocument(row.getValue("document"))}</div>,
 	},
-
-    {
+	{
 		accessorKey: "phone",
 		header: ({ column }) => (
 			<Button
@@ -128,13 +110,12 @@ export const UsersTableColumns: ColumnDef<User>[] = [
 			</Button>
 		),
 		cell: ({ row }) => (
-			<div className="capitalize">
-				{row.getValue("phone")}
+			<div className="font-medium">
+				{formatPhoneNumber(row.getValue("phone"))}
 			</div>
 		),
 	},
-
-    {
+	{
 		accessorKey: "role",
 		header: ({ column }) => (
 			<Button
@@ -157,13 +138,11 @@ export const UsersTableColumns: ColumnDef<User>[] = [
 			const roleLabels = {
 				[Role.ADMIN]: "Administrador",
 				[Role.MUNICIPALITY]: "Município",
-				[Role.COMPANY]: "Empresa",
 			};
 
 			return <Tag>{roleLabels[role] || role}</Tag>;
 		},
 	},
-
 	{
 		accessorKey: "createdAt",
 		header: ({ column }) => (
@@ -188,20 +167,11 @@ export const UsersTableColumns: ColumnDef<User>[] = [
 		id: "actions",
 		header: "Ações",
 		cell: ({ row }) => {
-			const type = row.original;
-			
+			const user = row.original;
 
 			return (
 				<div className="flex items-center gap-4">
-					{type.allowed ? (
-						<Button variant="secondary" size="sm" className="font-semibold">
-							Negar Acesso
-						</Button>
-					) : (
-						<Button  size="sm" className="font-semibold">
-							Permitir Acesso
-						</Button>
-					)}
+					<AllowUserButton user={user} />
 				</div>
 			);
 		},

@@ -1,4 +1,3 @@
-"use client";
 import * as React from "react";
 import {
 	ColumnFiltersState,
@@ -88,9 +87,7 @@ export function OpportunitiesTableContainer() {
 					]}
 					className="w-full xl:w-[200px]"
 					placeholder="Tipo"
-					onChange={(value) =>
-						table.getColumn("type")?.setFilterValue(value)
-					}
+					onChange={(value) => table.getColumn("type")?.setFilterValue(value)}
 				/>
 
 				<Button
