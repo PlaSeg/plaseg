@@ -1,7 +1,7 @@
 import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import { useCreateForm } from "@/hooks/municipality/use-create-municipality";
+import { ArrowLeft, ArrowRight, LoaderCircle } from "lucide-react";
+import { useCreateMunicipality } from "@/hooks/municipality/use-create-municipality";
 import { StepIndicator } from "./steps-indicator";
 import { GeneralDataStep } from "./steps/general-data-step";
 import { QualifiedStaffStep } from "./steps/qualified-staff-step";
@@ -16,7 +16,7 @@ export function MunicipalityForm() {
 	const {
 		form,
 		currentStep,
-		isSubmitting,
+		isLoadingCreateMunicipality,
 		staffFieldArray,
 		projectsFieldArray,
 		departmentsFieldArray,
@@ -24,8 +24,7 @@ export function MunicipalityForm() {
 		contractsFieldArray,
 		handleNext,
 		handlePrevious,
-		handleSubmit,
-	} = useCreateForm();
+	} = useCreateMunicipality();
 
 	const renderCurrentStep = () => {
 		switch (currentStep) {
@@ -77,7 +76,7 @@ export function MunicipalityForm() {
 			<div className="col-span-2 flex	max-h-screen overflow-y-auto p-24">
 				<Form {...form}>
 					<form
-						onSubmit={form.handleSubmit(handleSubmit)}
+						onSubmit={form.handleSubmitForm}
 						className="w-[700px] mx-auto m-0 space-y-8"
 					>
 						{renderCurrentStep()}
@@ -96,10 +95,14 @@ export function MunicipalityForm() {
 							{isLastStep && (
 								<Button
 									type="submit"
-									disabled={isSubmitting}
-									className="bg-blue-600 hover:bg-blue-700"
+									disabled={isLoadingCreateMunicipality}
+									className="bg-blue-600 hover:bg-blue-700 w-[150px]"
 								>
-									{isSubmitting ? "Enviando..." : "Finalizar Cadastro"}
+									{isLoadingCreateMunicipality && (
+										<LoaderCircle className="animate-spin" />
+									)}
+
+									{!isLoadingCreateMunicipality && "Finalizar Cadastro"}
 								</Button>
 							)}
 

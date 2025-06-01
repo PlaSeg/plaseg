@@ -1,4 +1,4 @@
-import { MunicipalityFormData } from "@/@schemas/municipality-schema";
+import { CreateMunicipalityRequest } from "@/@schemas/municipality-schema";
 import { FormTextarea } from "@/components/form/form-textarea";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -6,9 +6,9 @@ import { Trash2, Plus } from "lucide-react";
 import type { UseFormReturn, useFieldArray } from "react-hook-form";
 
 interface AllocationDepartmentsStepProps {
-	form: UseFormReturn<MunicipalityFormData>;
+	form: UseFormReturn<CreateMunicipalityRequest>;
 	departmentsFieldArray: ReturnType<
-		typeof useFieldArray<MunicipalityFormData, "allocationDepartments">
+		typeof useFieldArray<CreateMunicipalityRequest, "allocationDepartments">
 	>;
 }
 

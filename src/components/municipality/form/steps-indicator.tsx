@@ -48,7 +48,7 @@ const steps = [
 
 export function StepIndicator({ currentStep }: StepIndicatorProps) {
 	return (
-		<div className="bg-muted/30 flex items-center justify-center">
+		<div className="bg-muted/30 flex items-center justify-center p-6">
 			<div className="w-[400px]">
 				<div className="mb-8">
 					<h1 className="text-3xl font-bold">Plaseg</h1>

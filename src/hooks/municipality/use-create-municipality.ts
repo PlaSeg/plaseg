@@ -1,29 +1,25 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import {
-	useForm,
-	useFieldArray,
-	UseFormReturn,
-	UseFieldArrayReturn,
-} from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useFieldArray } from "react-hook-form";
 import {
 	municipalityFormSchema,
-	type MunicipalityFormData,
+	type CreateMunicipalityRequest,
 } from "@/@schemas/municipality-schema";
 import { toast } from "sonner";
+import { useMutation } from "@tanstack/react-query";
+import { createMunicipality } from "@/api/municipality/create-municipality";
+import { useNavigate } from "react-router";
+import { useFormMutation } from "../use-form-mutation";
 
-interface FormStore {
+interface CreateMunicipalityStore {
 	currentStep: number;
-	formData: Partial<MunicipalityFormData>;
-	isSubmitting: boolean;
+	formData: Partial<CreateMunicipalityRequest>;
 	setCurrentStep: (step: number) => void;
-	updateFormData: (data: Partial<MunicipalityFormData>) => void;
-	setIsSubmitting: (value: boolean) => void;
+	updateFormData: (data: Partial<CreateMunicipalityRequest>) => void;
 	resetForm: () => void;
 }
 
-const initialFormData: Partial<MunicipalityFormData> = {
+const initialFormData: Partial<CreateMunicipalityRequest> = {
 	name: "",
 	guardCount: 0,
 	trafficCount: 0,
@@ -66,23 +62,20 @@ const initialFormData: Partial<MunicipalityFormData> = {
 	maintenanceContracts: [],
 };
 
-const useFormStore = create<FormStore>()(
+const useCreateMunicipalityForm = create<CreateMunicipalityStore>()(
 	persist(
 		(set) => ({
 			currentStep: 0,
 			formData: initialFormData,
-			isSubmitting: false,
 			setCurrentStep: (step) => set({ currentStep: step }),
 			updateFormData: (data) =>
 				set((state) => ({
 					formData: { ...state.formData, ...data },
 				})),
-			setIsSubmitting: (value) => set({ isSubmitting: value }),
 			resetForm: () =>
 				set({
 					currentStep: 0,
 					formData: initialFormData,
-					isSubmitting: false,
 				}),
 		}),
 		{
@@ -95,46 +88,14 @@ const useFormStore = create<FormStore>()(
 	)
 );
 
-interface UseCreateFormReturn {
-	form: UseFormReturn<MunicipalityFormData>;
-	currentStep: number;
-	isSubmitting: boolean;
-	staffFieldArray: UseFieldArrayReturn<MunicipalityFormData, "qualifiedStaff">;
-	projectsFieldArray: UseFieldArrayReturn<
-		MunicipalityFormData,
-		"projectsPartnerships"
-	>;
-	departmentsFieldArray: UseFieldArrayReturn<
-		MunicipalityFormData,
-		"allocationDepartments"
-	>;
-	managementFieldArray: UseFieldArrayReturn<
-		MunicipalityFormData,
-		"managements"
-	>;
-	contractsFieldArray: UseFieldArrayReturn<
-		MunicipalityFormData,
-		"maintenanceContracts"
-	>;
-	handleNext: () => Promise<void>;
-	handlePrevious: () => void;
-	handleSubmit: (data: MunicipalityFormData) => Promise<void>;
-	validateCurrentStep: () => Promise<boolean>;
-	getStepFields: (step: number) => (keyof MunicipalityFormData)[];
-}
+export function useCreateMunicipality() {
+	const navigate = useNavigate();
 
-export function useCreateForm(): UseCreateFormReturn {
-	const {
-		currentStep,
-		formData,
-		isSubmitting,
-		setCurrentStep,
-		updateFormData,
-		setIsSubmitting,
-	} = useFormStore();
+	const { currentStep, formData, setCurrentStep, updateFormData } =
+		useCreateMunicipalityForm();
 
-	const form = useForm<MunicipalityFormData>({
-		resolver: zodResolver(municipalityFormSchema),
+	const form = useFormMutation<CreateMunicipalityRequest>({
+		schema: municipalityFormSchema,
 		defaultValues: {
 			name: formData.name || "",
 			guardInitialDate: formData.guardInitialDate || new Date(),
@@ -149,7 +110,9 @@ export function useCreateForm(): UseCreateFormReturn {
 			managements: formData.managements || initialFormData.managements,
 			maintenanceContracts: formData.maintenanceContracts || [],
 		},
-		mode: "onChange",
+		onSubmit: (data) => {
+			createMunicipalityFn(data);
+		},
 	});
 
 	const staffFieldArray = useFieldArray({
@@ -177,7 +140,7 @@ export function useCreateForm(): UseCreateFormReturn {
 		name: "maintenanceContracts",
 	});
 
-	const getStepFields = (step: number): (keyof MunicipalityFormData)[] => {
+	const getStepFields = (step: number): (keyof CreateMunicipalityRequest)[] => {
 		switch (step) {
 			case 0:
 				return [
@@ -231,45 +194,29 @@ export function useCreateForm(): UseCreateFormReturn {
 		}
 	};
 
-	const handleSubmit = async (data: MunicipalityFormData) => {
-		setIsSubmitting(true);
+	const {
+		mutateAsync: createMunicipalityFn,
+		isPending: isLoadingCreateMunicipality,
+	} = useMutation({
+		mutationKey: ["create-municipality"],
+		mutationFn: createMunicipality,
+		onSuccess(response) {
+			if (response.success) {
+				form.reset();
+				navigate("/oportunidades");
+				return;
+			}
 
-		try {
-			// Format the data to match the expected payload structure
-			const formattedData = {
-				...data,
-				guardInitialDate: data.guardInitialDate.toISOString(),
-				trafficInitialDate: data.trafficInitialDate.toISOString(),
-				managements: data.managements.map((management) => ({
-					...management,
-					initialDate: management.initialDate.toISOString(),
-					endDate: management.endDate.toISOString(),
-				})),
-			};
-
-			console.log("Dados do formulário:", formattedData);
-
-			// Here you would typically send the data to your API
-			// await submitMunicipalityData(formattedData)
-
-			toast.success(
-				"Formulário enviado com sucesso! Verifique o console para ver os dados."
-			);
-
-			// resetForm();
-			// form.reset();
-		} catch (error) {
-			console.error("Erro ao enviar formulário:", error);
-			alert("Erro ao enviar formulário. Tente novamente.");
-		} finally {
-			setIsSubmitting(false);
-		}
-	};
+			for (const error of response.errors) {
+				toast.error(error);
+			}
+		},
+	});
 
 	return {
 		form,
 		currentStep,
-		isSubmitting,
+		isLoadingCreateMunicipality,
 		staffFieldArray,
 		projectsFieldArray,
 		departmentsFieldArray,
@@ -277,7 +224,6 @@ export function useCreateForm(): UseCreateFormReturn {
 		contractsFieldArray,
 		handleNext,
 		handlePrevious,
-		handleSubmit,
 		validateCurrentStep,
 		getStepFields,
 	};

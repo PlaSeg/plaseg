@@ -2,10 +2,10 @@ import { FormInput } from "@/components/form/form-input";
 import { FormDatePicker } from "@/components/form/form-date-picker";
 import { FormSelect } from "@/components/form/form-select";
 import type { UseFormReturn } from "react-hook-form";
-import type { MunicipalityFormData } from "@/@schemas/municipality-schema";
+import type { CreateMunicipalityRequest } from "@/@schemas/municipality-schema";
 
 interface GeneralDataStepProps {
-	form: UseFormReturn<MunicipalityFormData>;
+	form: UseFormReturn<CreateMunicipalityRequest>;
 }
 
 const unitTypeOptions = [

@@ -103,4 +103,4 @@ export const municipalityFormSchema = z.object({
 	maintenanceContracts: z.array(maintenanceContractSchema),
 });
 
-export type MunicipalityFormData = z.infer<typeof municipalityFormSchema>;
+export type CreateMunicipalityRequest = z.infer<typeof municipalityFormSchema>;

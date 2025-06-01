@@ -4,12 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Trash2, Plus } from "lucide-react";
 import type { UseFormReturn, useFieldArray } from "react-hook-form";
-import type { MunicipalityFormData } from "@/@schemas/municipality-schema";
+import type { CreateMunicipalityRequest } from "@/@schemas/municipality-schema";
 
 interface MaintenanceContractsStepProps {
-	form: UseFormReturn<MunicipalityFormData>;
+	form: UseFormReturn<CreateMunicipalityRequest>;
 	contractsFieldArray: ReturnType<
-		typeof useFieldArray<MunicipalityFormData, "maintenanceContracts">
+		typeof useFieldArray<CreateMunicipalityRequest, "maintenanceContracts">
 	>;
 }
 

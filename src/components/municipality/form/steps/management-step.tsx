@@ -7,13 +7,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Trash2, Plus } from "lucide-react";
 import type { UseFormReturn, useFieldArray } from "react-hook-form";
-import type { MunicipalityFormData } from "@/@schemas/municipality-schema";
+import type { CreateMunicipalityRequest } from "@/@schemas/municipality-schema";
 import { FormCpfInput } from "@/components/form/form-cpf-input";
 
 interface ManagementStepProps {
-	form: UseFormReturn<MunicipalityFormData>;
+	form: UseFormReturn<CreateMunicipalityRequest>;
 	managementFieldArray: ReturnType<
-		typeof useFieldArray<MunicipalityFormData, "managements">
+		typeof useFieldArray<CreateMunicipalityRequest, "managements">
 	>;
 }
 
