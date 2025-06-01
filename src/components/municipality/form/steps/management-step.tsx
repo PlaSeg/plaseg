@@ -1,7 +1,6 @@
 import { FormInput } from "@/components/form/form-input";
 import { FormDatePicker } from "@/components/form/form-date-picker";
 import { FormPhoneInput } from "@/components/form/form-phone-input";
-// import { FormCpfInput } from "@/components/form/form-cpf-input";
 import { FormTextarea } from "@/components/form/form-textarea";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -106,11 +105,11 @@ export function ManagementStep({
 										label="Nome"
 										placeholder="Digite o nome do gestor"
 									/>
-									{/* <FormCpfInput
+									<FormCpfInput
 										form={form}
-										name={`managements.${index}.managerCpf`}
+										entity={`managements.${index}.managerCpf`}
 										label="CPF"
-									/> */}
+									/>
 									<FormInput
 										form={form}
 										entity={`managements.${index}.managerEmail`}

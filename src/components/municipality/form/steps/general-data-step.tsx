@@ -9,9 +9,8 @@ interface GeneralDataStepProps {
 }
 
 const unitTypeOptions = [
-	{ value: "UF", label: "UF" },
+	{ value: "ESTADO", label: "Estado" },
 	{ value: "MUNICIPIO", label: "Município" },
-	{ value: "DISTRITO", label: "Distrito" },
 ];
 
 export function GeneralDataStep({ form }: GeneralDataStepProps) {
@@ -64,13 +63,6 @@ export function GeneralDataStep({ form }: GeneralDataStepProps) {
 					placeholder="Digite a quantidade de registros de trânsito"
 				/>
 
-				<FormInput
-					form={form}
-					entity="federativeUnit"
-					label="Unidade Federativa"
-					placeholder="Digite a Unidade Federativa"
-				/>
-
 				<FormSelect
 					form={form}
 					entity="unitType"
@@ -78,6 +70,24 @@ export function GeneralDataStep({ form }: GeneralDataStepProps) {
 					placeholder="Selecione o tipo"
 					options={unitTypeOptions}
 				/>
+
+				{form.watch("unitType") === "MUNICIPIO" && (
+					<FormInput
+						form={form}
+						entity="federativeUnit"
+						label="Município"
+						placeholder="Digite o Município"
+					/>
+				)}
+
+				{form.watch("unitType") === "ESTADO" && (
+					<FormInput
+						form={form}
+						entity="federativeUnit"
+						label="Estado"
+						placeholder="Digite o Estado"
+					/>
+				)}
 			</div>
 		</div>
 	);

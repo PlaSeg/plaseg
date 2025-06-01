@@ -23,8 +23,8 @@ const allocationDepartmentSchema = z.object({
 });
 
 const managementSchema = z.object({
-	initialDate: z.date({ required_error: "Data inicial é obrigatória" }),
-	endDate: z.date({ required_error: "Data final é obrigatória" }),
+	initialDate: z.coerce.date({ required_error: "Data inicial é obrigatória" }),
+	endDate: z.coerce.date({ required_error: "Data final é obrigatória" }),
 	managerName: z.string().min(1, "Nome do gestor é obrigatório"),
 	managerCpf: z.string().min(11, "CPF do gestor é obrigatório"),
 	managerEmail: z.string().email("Email do gestor inválido"),
@@ -69,20 +69,29 @@ const maintenanceContractSchema = z.object({
 
 export const municipalityFormSchema = z.object({
 	name: z.string().min(1, "Nome do município é obrigatório"),
-	guardInitialDate: z.date({
+	guardInitialDate: z.coerce.date({
 		required_error: "Data inicial da guarda é obrigatória",
 	}),
-	guardCount: z
-		.number()
-		.min(0, "Quantidade de guardas deve ser maior ou igual a 0"),
-	trafficInitialDate: z.date({
+	guardCount: z.coerce
+		.number({
+			required_error: "Quantidade de guardas é obrigatória",
+		})
+		.positive({
+			message: "Quantidade de guardas deve ser maior ou igual a 0",
+		}),
+	trafficInitialDate: z.coerce.date({
 		required_error: "Data inicial do trânsito é obrigatória",
 	}),
-	trafficCount: z
-		.number()
-		.min(0, "Quantidade de registros de trânsito deve ser maior ou igual a 0"),
+	trafficCount: z.coerce
+		.number({
+			required_error: "Quantidade de registros de trânsito é obrigatória",
+		})
+		.positive({
+			message:
+				"Quantidade de registros de trânsito deve ser maior ou igual a 0",
+		}),
 	federativeUnit: z.string().min(2, "Unidade federativa é obrigatória"),
-	unitType: z.enum(["UF", "MUNICIPIO", "DISTRITO"]),
+	unitType: z.enum(["ESTADO", "MUNICIPIO"]),
 	qualifiedStaff: z
 		.array(qualifiedStaffSchema)
 		.min(1, "Pelo menos um membro da equipe é obrigatório"),
