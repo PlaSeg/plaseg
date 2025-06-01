@@ -1,4 +1,4 @@
-import { User } from "@/@types/admin/user";
+import { User } from "@/@types/auth/user";
 import { TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { flexRender, Table } from "@tanstack/react-table";
 

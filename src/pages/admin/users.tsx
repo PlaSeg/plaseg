@@ -1,4 +1,4 @@
-import { UsersTableContainer } from "@/components/admin/approve-users/table/users-table-container";
+import { UsersTableContainer } from "@/components/admin/users/table/users-table-container";
 
 export default function Users() {
 	return (

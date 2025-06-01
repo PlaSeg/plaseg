@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { FormCombobox } from "@/components/form/form-combobox";
-import { useFilterOpportunities } from "@/hooks/municipality/use-filter-opportunities";
+import { useFilterOpportunities } from "@/hooks/municipalities/use-filter-opportunities";
 import { opportunitiesCategories } from "@/mocks/opportunity/opportunities-categories";
 import { opportunitiesAreas } from "@/mocks/opportunity/opportunities-areas";
 import { FormDatePicker } from "@/components/form/form-date-picker";

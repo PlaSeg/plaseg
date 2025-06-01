@@ -5,7 +5,7 @@ import {
 	Banknote,
 	FolderKanban,
 	Settings,
-	CircleCheckBig,
+	Users,
 } from "lucide-react";
 import { ReactNode } from "react";
 
@@ -35,14 +35,6 @@ export const adminMenuItems: MenuItem[] = [
 		ready: true,
 	},
 	{
-		icon: <UserCog size={24} className="text-blue-500" />,
-		title: "Administradores",
-		description:
-			"Controle o acesso ao sistema, gerencie perfis, permissões e dados dos administradores",
-		url: "/admin/administradores",
-		ready: true,
-	},
-	{
 		icon: <Package size={24} className="text-blue-500" />,
 		title: "Produtos Base",
 		description:
@@ -59,14 +51,21 @@ export const adminMenuItems: MenuItem[] = [
 		ready: true,
 	},
 	{
-		icon: <CircleCheckBig size={24} className="text-blue-500" />,
+		icon: <Users size={24} className="text-blue-500" />,
 		title: "Usuários",
 		description:
 			"Aprove ou bloqueie os usuários para acessarem o sistema e suas funcionalidades",
 		url: "/admin/usuarios",
 		ready: true,
 	},
-
+	{
+		icon: <UserCog size={24} className="text-blue-500" />,
+		title: "Administradores",
+		description:
+			"Controle o acesso ao sistema, gerencie perfis, permissões e dados dos administradores",
+		url: "/admin/administradores",
+		ready: true,
+	},
 	{
 		icon: <Settings size={24} className="text-blue-500" />,
 		title: "Configurações",
@@ -75,6 +74,4 @@ export const adminMenuItems: MenuItem[] = [
 		url: "/admin/configuracoes",
 		ready: false,
 	},
-
-	
 ];

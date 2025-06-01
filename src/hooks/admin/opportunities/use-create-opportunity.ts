@@ -4,7 +4,7 @@ import { queryClient } from "@/services/react-query";
 import { toast } from "sonner";
 import { useState } from "react";
 import { createOpportunityRequestSchema } from "@/@schemas/opportunity";
-import { useFormMutation } from "@/hooks/use-form-mutation";
+import { useFormMutation } from "@/hooks/common/use-form-mutation";
 
 export function useCreateOpportunity() {
 	const [isCreateOpportunitySheetOpen, setIsCreateOpportunitySheetOpen] =

@@ -1,11 +1,11 @@
-import { useFormMutation } from "../use-form-mutation";
+import { useFormMutation } from "../common/use-form-mutation";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useNavigate } from "react-router";
 import { queryClient } from "@/services/react-query";
 import { createPriceRegistrationRecord } from "@/api/company/price-registration-records/create-price-registration-record";
 import { createPriceRegistrationRecordSchema } from "@/@schemas/price-registration-record";
-import { useRecordProductsStore } from "@/hooks/record";
+import { useRecordProductsStore } from "@/hooks/price-registration-records/record";
 
 export function useCreatePriceRegistrationRecord() {
 	const recordProducts = useRecordProductsStore(

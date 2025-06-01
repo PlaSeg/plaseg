@@ -1,4 +1,3 @@
-"use client";
 import * as React from "react";
 import {
 	ColumnFiltersState,
@@ -10,21 +9,19 @@ import {
 	getSortedRowModel,
 	useReactTable,
 } from "@tanstack/react-table";
-import {  X } from "lucide-react";
+import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { UsersTableColumns } from "./users-table-columns";
 import { SearchInput } from "@/components/ui/search-input";
 import { translateUsersTableKeys } from "@/utils/translate-users-table-keys";
-import { TableSelect } from "@/components/table/table-select";
 import { UsersTable } from "./users-table";
 import { TablePagination } from "@/components/table/table-footer";
 import { TableHideColumnsDropDown } from "@/components/table/table-hide-columns-dropdown";
-import { Role } from "@/@types/admin/user";
-import { users } from "@/mocks/admin/users";
-
-
+import { useGetUsers } from "@/hooks/users/use-get-users";
 
 export function UsersTableContainer() {
+	const { users, isLoadingGetUsers } = useGetUsers();
+
 	const [sorting, setSorting] = React.useState<SortingState>([
 		{
 			id: "name",
@@ -37,13 +34,6 @@ export function UsersTableContainer() {
 	const [columnVisibility, setColumnVisibility] =
 		React.useState<VisibilityState>({});
 	const [rowSelection, setRowSelection] = React.useState({});
-	
-
-	const roleOptions = [
-		{ label: "Administrador", value: Role.ADMIN },
-		{ label: "Município", value: Role.MUNICIPALITY },
-		{ label: "Empresa", value: Role.COMPANY },
-	];
 
 	const table = useReactTable({
 		data: users,
@@ -77,19 +67,10 @@ export function UsersTableContainer() {
 				<SearchInput
 					className="w-full xl:w-[300px]"
 					placeholder="Pesquisar usuário..."
-					value={
-						(table.getColumn("name")?.getFilterValue() as string) ?? ""
-					}
+					value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
 					onChange={(event) =>
 						table.getColumn("name")?.setFilterValue(event.target.value)
 					}
-				/>
-
-				<TableSelect
-					options={roleOptions}
-					className="w-full xl:w-[200px]"
-					placeholder="Cargo"
-					onChange={(value) => table.getColumn("role")?.setFilterValue(value)}
 				/>
 
 				<Button
@@ -105,13 +86,11 @@ export function UsersTableContainer() {
 					table={table}
 					translateFunction={translateUsersTableKeys}
 				/>
-
-				
 			</div>
 
 			<UsersTable
 				table={table}
-				isLoadingGetUsers= {false}
+				isLoadingGetUsers={isLoadingGetUsers}
 				data={users}
 			/>
 

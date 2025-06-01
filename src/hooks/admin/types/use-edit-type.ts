@@ -4,7 +4,7 @@ import { queryClient } from "@/services/react-query";
 import { toast } from "sonner";
 import { useState } from "react";
 import { CreateTypeRequest, createTypeSchema } from "@/@schemas/type";
-import { useFormMutation } from "@/hooks/use-form-mutation";
+import { useFormMutation } from "@/hooks/common/use-form-mutation";
 import { useGetTypes } from "./use-get-types";
 import { editType } from "@/api/admin/types/edit-type";
 

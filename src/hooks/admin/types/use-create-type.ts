@@ -4,7 +4,7 @@ import { queryClient } from "@/services/react-query";
 import { toast } from "sonner";
 import { useState } from "react";
 import { createTypeSchema } from "@/@schemas/type";
-import { useFormMutation } from "@/hooks/use-form-mutation";
+import { useFormMutation } from "@/hooks/common/use-form-mutation";
 import { TypeGroup } from "@/@types/admin/type";
 
 export function useCreateType() {

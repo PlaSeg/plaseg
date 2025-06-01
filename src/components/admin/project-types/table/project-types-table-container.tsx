@@ -1,4 +1,3 @@
-"use client";
 import * as React from "react";
 import {
 	ColumnFiltersState,
@@ -13,17 +12,15 @@ import {
 import { Plus, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-import { projectTypesTableColumns } from "./project-types-table-columns"; 
+import { projectTypesTableColumns } from "./project-types-table-columns";
 import { SearchInput } from "@/components/ui/search-input";
-import { translateProjectTypesTableKeys } from "@/utils/translate-project-types-table-keys"; 
-import { ProjectTypesTable } from "./project-types-table"; 
+import { translateProjectTypesTableKeys } from "@/utils/translate-project-types-table-keys";
+import { ProjectTypesTable } from "./project-types-table";
 import { TablePagination } from "@/components/table/table-footer";
 import { TableHideColumnsDropDown } from "@/components/table/table-hide-columns-dropdown";
 
-
-
 export function ProjectTypesContainer() {
-    const [sorting, setSorting] = React.useState<SortingState>([
+	const [sorting, setSorting] = React.useState<SortingState>([
 		{
 			id: "name",
 			desc: false,
@@ -35,7 +32,6 @@ export function ProjectTypesContainer() {
 	const [columnVisibility, setColumnVisibility] =
 		React.useState<VisibilityState>({});
 	const [rowSelection, setRowSelection] = React.useState({});
-
 
 	const table = useReactTable({
 		data: [],
@@ -69,15 +65,12 @@ export function ProjectTypesContainer() {
 				<SearchInput
 					className="w-full xl:w-[300px]"
 					placeholder="Pesquisar tipos de projeto..."
-					value={
-						(table.getColumn("name")?.getFilterValue() as string) ?? ""
-					}
+					value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
 					onChange={(event) =>
 						table.getColumn("name")?.setFilterValue(event.target.value)
 					}
 				/>
 
-	
 				<Button
 					variant="secondary"
 					className="font-semibold"
@@ -92,12 +85,10 @@ export function ProjectTypesContainer() {
 					translateFunction={translateProjectTypesTableKeys}
 				/>
 
-				<Button  className="bg-primary text-white">
+				<Button className="bg-primary text-white">
 					<Plus />
-					Adicionar 
+					Adicionar
 				</Button>
-
-			
 			</div>
 
 			<ProjectTypesTable
@@ -109,6 +100,4 @@ export function ProjectTypesContainer() {
 			<TablePagination table={table} />
 		</div>
 	);
-    
 }
-

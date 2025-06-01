@@ -9,7 +9,7 @@ import { toast } from "sonner";
 import { useMutation } from "@tanstack/react-query";
 import { createMunicipality } from "@/api/municipality/create-municipality";
 import { useNavigate } from "react-router";
-import { useFormMutation } from "../use-form-mutation";
+import { useFormMutation } from "../common/use-form-mutation";
 
 interface CreateMunicipalityStore {
 	currentStep: number;

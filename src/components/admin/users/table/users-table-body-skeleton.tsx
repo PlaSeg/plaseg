@@ -12,7 +12,7 @@ export function UsersTableBodySkeleton({
 		<>
 			{Array.from({ length: 10 }).map((_, index) => (
 				<TableRow key={index} className="border-none">
-					{Array.from({ length: 9 }).map((_, i) => (
+					{Array.from({ length: 8 }).map((_, i) => (
 						<TableCell key={i} className="h-14">
 							<Skeleton className={`h-5 ${widths[i] || "w-full"}`} />
 						</TableCell>
