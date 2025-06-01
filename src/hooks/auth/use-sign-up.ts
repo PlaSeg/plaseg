@@ -1,5 +1,4 @@
 import { useFormMutation } from "../use-form-mutation";
-import { formatDocument } from "@/utils/format-document";
 import { useMutation } from "@tanstack/react-query";
 import { signUp } from "@/api/auth/sign-up";
 import { useNavigate } from "react-router";
@@ -20,12 +19,12 @@ export function useSignUp() {
 			role: "MUNICIPALITY",
 		},
 		onSubmit(data) {
-			console.log(data);
+			if (data.role === "COMPANY") {
+				toast.info("O cadastro de empresa não está disponível.");
+				return;
+			}
 
-			signUpFn({
-				...data,
-				document: formatDocument(data.document),
-			});
+			signUpFn(data);
 		},
 	});
 
@@ -38,7 +37,9 @@ export function useSignUp() {
 				return;
 			}
 
-			toast.error(response.errors[0]);
+			for (const error of response.errors) {
+				toast.error(error);
+			}
 		},
 	});
 

@@ -6,7 +6,7 @@ import {
 	DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { useAuthStore } from "@/store/auth";
+import { useAuthStore } from "@/hooks/auth";
 import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import { LogOut, Settings } from "lucide-react";
 import { Link } from "react-router";

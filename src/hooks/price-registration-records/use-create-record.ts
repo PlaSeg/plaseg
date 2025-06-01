@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 import { queryClient } from "@/services/react-query";
 import { createPriceRegistrationRecord } from "@/api/company/price-registration-records/create-price-registration-record";
 import { createPriceRegistrationRecordSchema } from "@/@schemas/price-registration-record";
-import { useRecordProductsStore } from "@/store/record";
+import { useRecordProductsStore } from "@/hooks/record";
 
 export function useCreatePriceRegistrationRecord() {
 	const recordProducts = useRecordProductsStore(

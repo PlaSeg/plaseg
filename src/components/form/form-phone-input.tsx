@@ -73,7 +73,7 @@ function PhoneInputAdapter({
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const rawValue = e.target.value;
 		const numbers = removeNonNumeric(rawValue);
-		if (numbers.length > 10) return;
+		if (numbers.length > 11) return;
 
 		const formattedValue = formatPhone(rawValue);
 		setInputValue(formattedValue);
