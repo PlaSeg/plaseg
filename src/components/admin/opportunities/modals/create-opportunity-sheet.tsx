@@ -8,7 +8,7 @@ import {
 	SheetTrigger,
 } from "@/components/ui/sheet";
 import { Plus } from "lucide-react";
-import { OpportunityForm } from "../form/opportunity-form";
+import { CreateOpportunityForm } from "../form/create-opportunity-form";
 import { useCreateOpportunity } from "@/hooks/admin/opportunities/use-create-opportunity";
 
 interface CreateOpportunitySheetProps {
@@ -39,8 +39,8 @@ export function CreateOpportunitySheet({
 					<SheetDescription>Adicione uma nova oportunidade.</SheetDescription>
 				</SheetHeader>
 
-				<OpportunityForm
-					setIsOpportunitySheetOpen={setIsCreateOpportunitySheetOpen}
+				<CreateOpportunityForm
+					setIsCreateOpportunitySheetOpen={setIsCreateOpportunitySheetOpen}
 				/>
 			</SheetContent>
 		</Sheet>
