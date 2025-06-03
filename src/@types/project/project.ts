@@ -38,21 +38,21 @@ export type Project = {
 	id: string;
 	name: string;
 
-	responsibleDocument: string;
+	responsibleCpf: string;
 	responsibleName: string;
 	responsibleEmail: string;
 	responsiblePhone: string;
-	responsibleTelephone: string;
+
 
 	totalValue: number;
 	baseValue: number;
 	requestedValue: number;
 
-	counterpartCapitalInitials: string;
-	counterpartCapitalAmount: number;
+	counterpartCapitalItem: string;
+	counterpartCapitalValue: number;
 
-	counterpartCostInitials: string;
-	counterpartCostAmount: number;
+	counterpartOperatingCostCode: string;
+	counterpartOperatingCostValue: number;
 
 	counterpartDescription: string;
 	counterpartAttachedFile: string;

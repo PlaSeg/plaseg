@@ -1,6 +1,6 @@
 import { TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { flexRender, Table } from "@tanstack/react-table";
-import { Project } from "./projects-table-columns";
+import { Project } from "@/@types/project/project";
 
 interface ProjectsTableHeaderProps {
 	table: Table<Project>;
@@ -12,10 +12,8 @@ export function ProjectsTableHeader({
 	widths = [
 		"w-[50px]",
 		"w-[300px]",
-		"w-[400px]",
-		"w-[100px]",
-		"w-[100px]",
-		"w-[100px]",
+		"w-[200px]",
+		"w-[150px]",
 		"w-[100px]",
 	],
 }: ProjectsTableHeaderProps) {

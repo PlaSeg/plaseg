@@ -5,17 +5,9 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { translateProjectTableKeys } from "@/utils/translate-project-table-keys";
 import { formatDate } from "@/utils/format-date";
 import { Link } from "react-router";
+import { Project } from "@/@types/project/project";
+import { slugfy } from "@/utils/slugfy";
 
-export interface Project {
-	id: string;
-	name: string;
-	slug: string;
-	opportunity: string;
-	createdAt: string;
-	requiredValue: number;
-	contrapartValue: number;
-	completedPercentage: number;
-}
 
 export const projectsTableColumns: ColumnDef<Project>[] = [
 	{
@@ -61,25 +53,7 @@ export const projectsTableColumns: ColumnDef<Project>[] = [
 			<div className="font-semibold">{row.getValue("name")}</div>
 		),
 	},
-	{
-		accessorKey: "opportunity",
-		header: ({ column }) => (
-			<Button
-				variant="ghost"
-				className="!p-0 hover:bg-transparent"
-				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-			>
-				{translateProjectTableKeys("opportunity")}
-				{column.getIsSorted() !== "desc" && (
-					<ArrowUp className="ml-2 h-4 w-4" />
-				)}
-				{column.getIsSorted() === "desc" && (
-					<ArrowDown className="ml-2 h-4 w-4" />
-				)}
-			</Button>
-		),
-		cell: ({ row }) => <div>{row.getValue("opportunity")}</div>,
-	},
+	
 	{
 		accessorKey: "requiredValue",
 		header: ({ column }) => (
@@ -99,6 +73,11 @@ export const projectsTableColumns: ColumnDef<Project>[] = [
 		),
 		cell: ({ row }) => {
 			const value = row.getValue("requiredValue") as number;
+			
+			if (!value) {
+				return <div className="font-medium">Indefinido</div>;
+			}
+
 			return (
 				<div className="font-medium">
 					{new Intl.NumberFormat("pt-BR", {
@@ -109,35 +88,7 @@ export const projectsTableColumns: ColumnDef<Project>[] = [
 			);
 		},
 	},
-	{
-		accessorKey: "contrapartValue",
-		header: ({ column }) => (
-			<Button
-				variant="ghost"
-				className="!p-0 hover:bg-transparent"
-				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-			>
-				{translateProjectTableKeys("contrapartValue")}
-				{column.getIsSorted() !== "desc" && (
-					<ArrowUp className="ml-2 h-4 w-4" />
-				)}
-				{column.getIsSorted() === "desc" && (
-					<ArrowDown className="ml-2 h-4 w-4" />
-				)}
-			</Button>
-		),
-		cell: ({ row }) => {
-			const value = row.getValue("contrapartValue") as number;
-			return (
-				<div className="font-medium">
-					{new Intl.NumberFormat("pt-BR", {
-						style: "currency",
-						currency: "BRL",
-					}).format(value)}
-				</div>
-			);
-		},
-	},
+	
 	{
 		accessorKey: "createdAt",
 		header: ({ column }) => (
@@ -170,7 +121,7 @@ export const projectsTableColumns: ColumnDef<Project>[] = [
 					</Button>
 
 					<Button variant="outline" size="icon" asChild>
-						<Link to={`/projetos/${row.original.slug}`}>
+						<Link to={`/projetos/${slugfy(row.original.name)}`}>
 							<SquarePen />
 							<span className="sr-only">Editar</span>
 						</Link>
