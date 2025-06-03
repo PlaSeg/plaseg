@@ -5,6 +5,7 @@ import { AuthRoutes } from "./auth-routes";
 
 import { PrivateRoutes } from "./private-routes";
 import { PublicRoutes } from "./public-routes";
+import { AdminPrivateRoutes } from "./admin-private-routes";
 
 import AdminLayout from "@/layouts/admin-layout";
 
@@ -26,7 +27,7 @@ export function AppRoutes() {
 	return (
 		<Routes>
 			<Route path="/" element={<Home />} />
-			
+
 			<Route path="cadastrar-municipio" element={<RegisterMunicipality />} />
 
 			<Route element={<PublicRoutes />}>
@@ -47,14 +48,14 @@ export function AppRoutes() {
 						element={<ProjectSectionDetails />}
 					/>
 				</Route>
+			</Route>
 
+			<Route element={<AdminPrivateRoutes />}>
 				<Route path="admin" element={<AdminLayout />}>
 					<Route index element={<Navigate to="/admin/dashboard" replace />} />
 					<Route path="*" element={<AdminRoutes />} />
 				</Route>
 			</Route>
-			
-
 		</Routes>
 	);
 }

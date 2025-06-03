@@ -3,13 +3,13 @@ import { useMutation } from "@tanstack/react-query";
 import { signUp } from "@/api/auth/sign-up";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
-import { SignUpFormSchema, signUpFormSchema } from "@/@schemas/sign-up";
+import { SignUpRequestBody, signUpRequestSchema } from "@/@schemas/auth";
 
 export function useSignUp() {
 	const navigate = useNavigate();
 
-	const form = useFormMutation<SignUpFormSchema>({
-		schema: signUpFormSchema,
+	const form = useFormMutation<SignUpRequestBody>({
+		schema: signUpRequestSchema,
 		defaultValues: {
 			name: "",
 			document: "",

@@ -1,4 +1,4 @@
-import { SpecificProductsTableContainer } from "@/components/admin/specific-products/table/specific-products-table-container";
+import { SpecificProductsTableContainer } from "@/components/company/specific-products/table/specific-products-table-container";
 
 export default function SpecificProducts() {
 	return (
