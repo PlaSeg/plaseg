@@ -11,29 +11,20 @@ import {
 } from "@tanstack/react-table";
 import { CirclePlus, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Project, projectsTableColumns } from "./projects-table-columns";
+import { projectsTableColumns } from "./projects-table-columns";
 import { SearchInput } from "@/components/ui/search-input";
 import { translateProjectTableKeys } from "@/utils/translate-project-table-keys";
 import { TableSelect } from "@/components/table/table-select";
 import { ProjectsTable } from "./projects-table";
 import { TablePagination } from "@/components/table/table-footer";
 import { TableHideColumnsDropDown } from "@/components/table/table-hide-columns-dropdown";
+import { useGetProjects } from "@/hooks/projects/use-get-projects";
 
-const projects: Project[] = [
-	{
-		// should be uuid
-		id: "5a906689-3261-41bf-ad9c-5634dea1f09d",
-		name: "Projeto X",
-		slug: "projeto-x",
-		opportunity: "Modernização do Sistema de Videomonitoramento",
-		createdAt: new Date().toISOString(),
-		requiredValue: 100000,
-		contrapartValue: 50000,
-		completedPercentage: 50,
-	},
-];
+
 
 export function ProjectsTableContainer() {
+	const { projects, isLoadingGetProjects } = useGetProjects();
+	
 	const [sorting, setSorting] = React.useState<SortingState>([]);
 	const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
 		[]
@@ -41,6 +32,7 @@ export function ProjectsTableContainer() {
 	const [columnVisibility, setColumnVisibility] =
 		React.useState<VisibilityState>({});
 	const [rowSelection, setRowSelection] = React.useState({});
+	
 
 	const table = useReactTable({
 		data: projects,
@@ -114,7 +106,7 @@ export function ProjectsTableContainer() {
 
 			<ProjectsTable
 				table={table}
-				isLoadingGetProjects={false}
+				isLoadingGetProjects={isLoadingGetProjects}
 				data={projects}
 			/>
 

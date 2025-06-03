@@ -1,5 +1,52 @@
 import { z } from "zod";
 
+export const requestedItemsSchema = z.object({
+	quantity: z.number(),
+	baseProductId: z.string(),
+	allocationDepartmentId: z.string(),
+	maintenanceContractId: z.string(),
+	createdAt: z.coerce.date(),
+	updatedAt: z.coerce.date().nullable().optional(),
+});
+
+export const fieldsSchema = z.object({
+	id: z.string().uuid(),
+	name: z.string(),
+	value: z.string(),
+	parentId: z.string().uuid(),
+});
+
+export const documentsSchema = z.object({
+	name: z.string(),
+	fields: z.array(fieldsSchema),
+
+});
+
+
+export const projectSchema = z.object({
+	id: z.string().uuid(),
+	name: z.string(),
+	opportunityId: z.string().uuid(),
+	projectTypeId: z.string().uuid(),
+	responsibleCpf: z.string(),
+	responsibleName: z.string(),
+	responsibleEmail: z.string().email(),
+	responsiblePhone: z.string(),
+	counterpartCapitalItem: z.string(),
+	counterpartCapitalValue: z.number(),
+	counterpartOperatingCostCode: z.string(),
+	counterpartOperatingCostValue: z.number(),
+	totalValue: z.number(),
+	requestedValue: z.number(),
+	baseValue: z.number(),
+	createdAt: z.coerce.date(),
+	updatedAt: z.coerce.date().nullable().optional(),
+	requestedItems: z.array(requestedItemsSchema),
+	documents: z.array(documentsSchema),
+});
+
+
+
 export const createProjectSchema = z.object({
 	name: z.string().min(1, 'Nome é obrigatório'),
 

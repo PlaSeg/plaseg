@@ -1,7 +1,8 @@
 import { Table, TableBody, TableRow, TableCell } from "@/components/ui/table";
 import { flexRender, Table as TableType } from "@tanstack/react-table";
 import { ProjectsTableBodySkeleton } from "./projects-table-body-skeleton";
-import { Project, projectsTableColumns } from "./projects-table-columns";
+import { Project } from "@/@types/project/project";
+import { projectsTableColumns } from "./projects-table-columns";
 import { ProjectsTableHeader } from "./projects-table-header";
 
 interface ProjectsTableProps {

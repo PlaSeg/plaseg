@@ -26,7 +26,7 @@ export function AppRoutes() {
 	return (
 		<Routes>
 			<Route path="/" element={<Home />} />
-			
+
 			<Route path="cadastrar-municipio" element={<RegisterMunicipality />} />
 
 			<Route element={<PublicRoutes />}>
@@ -53,8 +53,6 @@ export function AppRoutes() {
 					<Route path="*" element={<AdminRoutes />} />
 				</Route>
 			</Route>
-			
-
 		</Routes>
 	);
 }
