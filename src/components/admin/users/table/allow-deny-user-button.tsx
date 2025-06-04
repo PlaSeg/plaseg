@@ -1,6 +1,6 @@
 import { User } from "@/@types/auth/user";
 import { Button } from "@/components/ui/button";
-import { useAllowUser } from "@/hooks/users/use-allow-user";
+import { useAllowUser } from "@/hooks/admin/users/use-allow-user";
 import { LoaderCircle } from "lucide-react";
 
 interface AllowUserButtonProps {

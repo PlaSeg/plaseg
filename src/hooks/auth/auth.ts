@@ -1,13 +1,16 @@
 import { create } from "zustand";
 import Cookies from "js-cookie";
+import { User } from "@/@types/auth/user";
 
 interface AuthState {
 	isAuthenticated: boolean;
+	user: User | null;
 	authenticate: (accessToken: string) => void;
 	logout: () => void;
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
+	user: null,
 	isAuthenticated: !!Cookies.get("accessToken"),
 
 	authenticate: (accessToken) => {

@@ -31,7 +31,7 @@ import { productsTableColumns } from "./products-table-columns";
 import { translateProductsTableKeys } from "@/utils/translate-products-table-keys";
 import { SearchInput } from "@/components/ui/search-input";
 import { Link } from "react-router";
-import { useGetProducts } from "@/hooks/products/use-get-products";
+import { useGetProducts } from "@/hooks/companies/products/use-get-products";
 import { ProductsTableSkeleton } from "./products-table-skeleton";
 
 export function ProductsTable() {

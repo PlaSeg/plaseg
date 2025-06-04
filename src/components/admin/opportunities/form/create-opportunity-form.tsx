@@ -302,9 +302,9 @@ export function CreateOpportunityForm({
 					</Button>
 
 					<Button
-						type="submit"
+						type="button"
 						className="w-[150px]"
-						onClick={() => console.log(form.watch())}
+						onClick={() => form.handleSubmitForm()}
 					>
 						Salvar
 					</Button>

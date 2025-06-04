@@ -3,10 +3,10 @@ import { FormInput } from "@/components/form/form-input";
 import { FormPhoneInput } from "@/components/form/form-phone-input";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
-import { useCreateProject } from "@/hooks/projects/use-create-project";
+import { useEditProject } from "@/hooks/municipalities/projects/use-edit-project";
 
 export function ProjectInformationForm() {
-	const { form } = useCreateProject();
+	const { form } = useEditProject();
 
 	return (
 		<Form {...form}>

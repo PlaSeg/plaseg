@@ -1,4 +1,4 @@
-import { useFormMutation } from "../common/use-form-mutation";
+import { useFormMutation } from "@/hooks/common/use-form-mutation";
 import { useMutation } from "@tanstack/react-query";
 import { registerCompany } from "@/api/company/register-company";
 import { useNavigate } from "react-router";

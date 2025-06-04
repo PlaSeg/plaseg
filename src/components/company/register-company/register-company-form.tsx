@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { useRegisterCompany } from "@/hooks/companies/use-register-company";
+import { useRegisterCompany } from "@/hooks/companies/register/use-register-company";
 import { Form } from "@/components/ui/form";
 import { FormInput } from "@/components/form/form-input";
 import { LoaderCircle } from "lucide-react";

@@ -29,7 +29,7 @@ export const createOpportunityRequestSchema = z.object({
 	minValue: z.number().min(0, "Valor mínimo deve ser maior que 0"),
 	maxValue: z.number().min(0, "Valor máximo deve ser maior que 0"),
 	responsibleAgency: z.string().min(1, "Órgão responsável é obrigatório"),
-	type: z.string().min(1, "Tipo é obrigatório"),
+	typeId: z.string().min(1, "Tipo é obrigatório"),
 	requiresCounterpart: z.boolean(),
 	counterpartPercentage: z.number().min(0).max(100),
 	requiredDocuments: z.array(createRequiredDocumentSchema).default([]),

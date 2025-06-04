@@ -1,7 +1,7 @@
 import { createProjectSchema } from "@/@schemas/project";
-import { useFormMutation } from "../common/use-form-mutation";
+import { useFormMutation } from "@/hooks/common/use-form-mutation";
 
-export function useCreateProject() {
+export function useEditProject() {
 	const form = useFormMutation({
 		schema: createProjectSchema,
 		defaultValues: {

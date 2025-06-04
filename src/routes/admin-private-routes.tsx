@@ -2,16 +2,15 @@ import { Navigate, Outlet } from "react-router";
 import { useAuthStore } from "@/hooks/auth/auth";
 import { useGetProfile } from "@/hooks/auth/use-get-profile";
 
-export function PublicRoutes() {
+export function AdminPrivateRoutes() {
 	const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
-
 	const { user } = useGetProfile();
 
-	if (isAuthenticated && user && user.role === "ADMIN") {
-		return <Navigate to="/admin" replace />;
+	if (!isAuthenticated) {
+		return <Navigate to="/entrar" replace />;
 	}
 
-	if (isAuthenticated && user && user.role === "MUNICIPALITY") {
+	if (user && user.role !== "ADMIN" && user.role !== "ADMIN_MASTER") {
 		return <Navigate to="/oportunidades" replace />;
 	}
 

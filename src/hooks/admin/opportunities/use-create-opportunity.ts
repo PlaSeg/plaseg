@@ -2,7 +2,6 @@ import { useFieldArray } from "react-hook-form";
 import { useState } from "react";
 import { createOpportunityRequestSchema } from "@/@schemas/opportunity";
 import { useFormMutation } from "@/hooks/common/use-form-mutation";
-import { CreateOpportunityRequest } from "@/@schemas/opportunity";
 import { v4 as uuidv4 } from "uuid";
 
 export function useCreateOpportunity() {
@@ -13,19 +12,38 @@ export function useCreateOpportunity() {
 		schema: createOpportunityRequestSchema,
 		defaultValues: {
 			title: "",
-			description: "",
+			responsibleAgency: "",
 			initialDeadline: "",
 			finalDeadline: "",
 			minValue: 0,
 			maxValue: 0,
-			responsibleAgency: "",
+			description: "",
 			requiresCounterpart: false,
 			counterpartPercentage: 0,
 			requiredDocuments: [],
 			documents: [],
 		},
-		onSubmit(data) {
-			console.log(data);
+		onSubmit: (data) => {
+			const processedData = {
+				...data,
+				availableValue: data.maxValue,
+				typeId: uuidv4(),
+				isActive: true,
+				requiredDocuments: (data.requiredDocuments || []).map((doc) => ({
+					...doc,
+					id: doc.id || uuidv4(),
+				})),
+				documents: (data.documents || []).map((doc) => ({
+					...doc,
+					id: doc.id || uuidv4(),
+					fields: (doc.fields || []).map((field) => ({
+						...field,
+						id: field.id || uuidv4(),
+					})),
+				})),
+			};
+
+			console.log(processedData);
 		},
 	});
 
@@ -116,32 +134,9 @@ export function useCreateOpportunity() {
 		return allFields;
 	};
 
-	const onSubmit = (data: CreateOpportunityRequest) => {
-		const processedData = {
-			...data,
-			availableValue: data.maxValue,
-			typeId: uuidv4(),
-			isActive: true,
-			requiredDocuments: data.requiredDocuments.map((doc) => ({
-				...doc,
-				id: doc.id || uuidv4(),
-			})),
-			documents: data.documents.map((doc) => ({
-				...doc,
-				id: doc.id || uuidv4(),
-				fields: doc.fields.map((field) => ({
-					...field,
-					id: field.id || uuidv4(),
-				})),
-			})),
-		};
-
-		console.log(processedData);
-	};
-
 	return {
 		form,
-		onSubmit,
+		onSubmit: form.handleSubmitForm,
 		requiredDocumentsFields,
 		documentsFields,
 		addRequiredDocument,

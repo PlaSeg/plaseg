@@ -17,7 +17,7 @@ import { translateUsersTableKeys } from "@/utils/translate-users-table-keys";
 import { UsersTable } from "./users-table";
 import { TablePagination } from "@/components/table/table-footer";
 import { TableHideColumnsDropDown } from "@/components/table/table-hide-columns-dropdown";
-import { useGetUsers } from "@/hooks/users/use-get-users";
+import { useGetUsers } from "@/hooks/admin/users/use-get-users";
 
 export function UsersTableContainer() {
 	const { users, isLoadingGetUsers } = useGetUsers();
