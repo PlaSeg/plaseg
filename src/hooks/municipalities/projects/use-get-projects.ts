@@ -1,7 +1,5 @@
-import { getProjects } from "@/api/projects/get-projects";  
+import { getProjects } from "@/api/projects/get-projects";
 import { useQuery } from "@tanstack/react-query";
-
-
 
 export function useGetProjects() {
 	const { data: result, isLoading: isLoadingGetProjects } = useQuery({

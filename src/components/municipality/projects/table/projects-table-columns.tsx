@@ -6,8 +6,6 @@ import { translateProjectTableKeys } from "@/utils/translate-project-table-keys"
 import { formatDate } from "@/utils/format-date";
 import { Link } from "react-router";
 import { Project } from "@/@types/project/project";
-import { slugfy } from "@/utils/slugfy";
-
 
 export const projectsTableColumns: ColumnDef<Project>[] = [
 	{
@@ -33,14 +31,14 @@ export const projectsTableColumns: ColumnDef<Project>[] = [
 		enableHiding: false,
 	},
 	{
-		accessorKey: "name",
+		accessorKey: "title",
 		header: ({ column }) => (
 			<Button
 				variant="ghost"
 				className="!p-0 hover:bg-transparent"
 				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
 			>
-				{translateProjectTableKeys("name")}
+				{translateProjectTableKeys("title")}
 				{column.getIsSorted() !== "desc" && (
 					<ArrowUp className="ml-2 h-4 w-4" />
 				)}
@@ -50,10 +48,10 @@ export const projectsTableColumns: ColumnDef<Project>[] = [
 			</Button>
 		),
 		cell: ({ row }) => (
-			<div className="font-semibold">{row.getValue("name")}</div>
+			<div className="font-semibold">{row.getValue("title")}</div>
 		),
 	},
-	
+
 	{
 		accessorKey: "requiredValue",
 		header: ({ column }) => (
@@ -73,7 +71,7 @@ export const projectsTableColumns: ColumnDef<Project>[] = [
 		),
 		cell: ({ row }) => {
 			const value = row.getValue("requiredValue") as number;
-			
+
 			if (!value) {
 				return <div className="font-medium">Indefinido</div>;
 			}
@@ -88,7 +86,7 @@ export const projectsTableColumns: ColumnDef<Project>[] = [
 			);
 		},
 	},
-	
+
 	{
 		accessorKey: "createdAt",
 		header: ({ column }) => (
@@ -121,7 +119,7 @@ export const projectsTableColumns: ColumnDef<Project>[] = [
 					</Button>
 
 					<Button variant="outline" size="icon" asChild>
-						<Link to={`/projetos/${slugfy(row.original.name)}`}>
+						<Link to={`/projetos/${row.original.id}`}>
 							<SquarePen />
 							<span className="sr-only">Editar</span>
 						</Link>

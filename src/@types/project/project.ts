@@ -36,13 +36,12 @@ export type ProjectItem = BaseProduct & {
 
 export type Project = {
 	id: string;
-	name: string;
+	title: string;
 
 	responsibleCpf: string;
 	responsibleName: string;
 	responsibleEmail: string;
 	responsiblePhone: string;
-
 
 	totalValue: number;
 	baseValue: number;

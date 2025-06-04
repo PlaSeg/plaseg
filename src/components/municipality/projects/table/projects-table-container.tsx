@@ -14,17 +14,12 @@ import { Button } from "@/components/ui/button";
 import { projectsTableColumns } from "./projects-table-columns";
 import { SearchInput } from "@/components/ui/search-input";
 import { translateProjectTableKeys } from "@/utils/translate-project-table-keys";
-import { TableSelect } from "@/components/table/table-select";
 import { ProjectsTable } from "./projects-table";
 import { TablePagination } from "@/components/table/table-footer";
 import { TableHideColumnsDropDown } from "@/components/table/table-hide-columns-dropdown";
-import { useGetProjects } from "@/hooks/projects/use-get-projects";
-
-
+import { useGetProjects } from "@/hooks/municipalities/projects/use-get-projects";
 
 export function ProjectsTableContainer() {
-	const { projects, isLoadingGetProjects } = useGetProjects();
-	
 	const [sorting, setSorting] = React.useState<SortingState>([]);
 	const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
 		[]
@@ -32,7 +27,7 @@ export function ProjectsTableContainer() {
 	const [columnVisibility, setColumnVisibility] =
 		React.useState<VisibilityState>({});
 	const [rowSelection, setRowSelection] = React.useState({});
-	
+	const { projects, isLoadingGetProjects } = useGetProjects();
 
 	const table = useReactTable({
 		data: projects,
@@ -69,18 +64,6 @@ export function ProjectsTableContainer() {
 					value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
 					onChange={(event) =>
 						table.getColumn("name")?.setFilterValue(event.target.value)
-					}
-				/>
-
-				<TableSelect
-					options={[
-						{ label: "Edital", value: "edital" },
-						{ label: "Chamada Pública", value: "chamada-publica" },
-					]}
-					className="w-full xl:w-[200px]"
-					placeholder="Categoria"
-					onChange={(value) =>
-						table.getColumn("opportunity")?.setFilterValue(value)
 					}
 				/>
 

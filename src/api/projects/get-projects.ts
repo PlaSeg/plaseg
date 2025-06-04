@@ -3,7 +3,6 @@ import { AxiosError } from "axios";
 import { api } from "@/services/axios";
 import { Project } from "@/@types/project/project";
 
-
 type GetProjectsResponse = HTTPSuccessResponse<Project[]> | HTTPErrorResponse;
 
 /**
@@ -13,8 +12,7 @@ type GetProjectsResponse = HTTPSuccessResponse<Project[]> | HTTPErrorResponse;
  */
 export async function getProjects(): Promise<GetProjectsResponse> {
 	try {
-		const response =
-			await api.get<HTTPSuccessResponse<Project[]>>("/projects");
+		const response = await api.get<HTTPSuccessResponse<Project[]>>("/projects");
 
 		return response.data;
 	} catch (error) {
@@ -29,4 +27,3 @@ export async function getProjects(): Promise<GetProjectsResponse> {
 		};
 	}
 }
-

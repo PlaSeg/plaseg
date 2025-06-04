@@ -9,13 +9,7 @@ interface ProjectsTableHeaderProps {
 
 export function ProjectsTableHeader({
 	table,
-	widths = [
-		"w-[50px]",
-		"w-[300px]",
-		"w-[200px]",
-		"w-[150px]",
-		"w-[100px]",
-	],
+	widths = ["w-[50px]", "w-[300px]", "w-[200px]", "w-[150px]", "w-[100px]"],
 }: ProjectsTableHeaderProps) {
 	return (
 		<TableHeader className="bg-slate-50">
