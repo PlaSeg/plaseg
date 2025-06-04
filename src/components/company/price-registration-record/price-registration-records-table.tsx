@@ -30,7 +30,7 @@ import { priceRegistrationRecordsTableColumns } from "./price-registration-recor
 import { translatePriceRegistrationRecordsTableKeys } from "@/utils/translate-price-register-records-table-keys";
 import { SearchInput } from "@/components/ui/search-input";
 import { Link } from "react-router";
-import { useGetPriceRegistrationRecords } from "@/hooks/price-registration-records/use-get-records";
+import { useGetPriceRegistrationRecords } from "@/hooks/companies/price-registration-records/use-get-records";
 import { ProductsTableSkeleton } from "../products/products-table-skeleton";
 
 export function PriceRegistrationRecordsTable() {

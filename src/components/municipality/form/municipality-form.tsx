@@ -1,7 +1,7 @@
 import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, LoaderCircle } from "lucide-react";
-import { useCreateMunicipality } from "@/hooks/municipalities/use-create-municipality";
+import { useCreateMunicipality } from "@/hooks/municipalities/register/use-create-municipality";
 import { StepIndicator } from "./steps-indicator";
 import { GeneralDataStep } from "./steps/general-data-step";
 import { QualifiedStaffStep } from "./steps/qualified-staff-step";

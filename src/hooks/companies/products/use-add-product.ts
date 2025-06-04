@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { useFormMutation } from "../common/use-form-mutation";
+import { useFormMutation } from "@/hooks/common/use-form-mutation";
 import { useMutation } from "@tanstack/react-query";
 import { createProduct } from "@/api/company/products/create-product";
 import { toast } from "sonner";
