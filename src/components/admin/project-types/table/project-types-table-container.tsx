@@ -18,6 +18,7 @@ import { ProjectTypesTable } from "./project-types-table";
 import { TablePagination } from "@/components/table/table-footer";
 import { TableHideColumnsDropDown } from "@/components/table/table-hide-columns-dropdown";
 import { useGetProjectTypes } from "@/hooks/admin/project-types/use-get-project-types";
+import { CreateProjectTypeSheet } from "../modals/create-project-type-sheet";
 
 export function ProjectTypesContainer() {
   const [sorting, setSorting] = React.useState<SortingState>([
@@ -86,10 +87,7 @@ export function ProjectTypesContainer() {
           translateFunction={translateProjectTypesTableKeys}
         />
 
-        <Button className="bg-primary text-white">
-          <Plus />
-          Adicionar
-        </Button>
+        <CreateProjectTypeSheet />
       </div>
 
       <ProjectTypesTable
