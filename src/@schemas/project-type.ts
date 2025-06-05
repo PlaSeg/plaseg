@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { v4 as uuidv4 } from "uuid";
 
 export const fieldSchema = z.object({
   id: z.string().uuid(),
@@ -29,3 +30,26 @@ export const projectTypeSchema = z.object({
 });
 
 export type ProjectType = z.infer<typeof projectTypeSchema>;
+
+
+const createDocumentFieldSchema = z.object({
+	id: z.string().default(() => uuidv4()),
+	name: z.string().min(1, "Nome do campo é obrigatório"),
+	value: z.string().nullable().optional(),
+});
+
+const createDocumentSchema = z.object({
+	id: z.string().default(() => uuidv4()),
+	name: z.string().min(1, "Nome do documento é obrigatório"),
+	fields: z.array(createDocumentFieldSchema).default([]),
+});
+
+export const createProjectTypeRequestSchema = z.object({
+	name: z.string().min(1, "Nome é obrigatório"),
+	documents: z.array(createDocumentSchema).default([]),
+
+});
+
+export type CreateProjectTypeRequest = z.infer<
+	typeof createProjectTypeRequestSchema
+>;
