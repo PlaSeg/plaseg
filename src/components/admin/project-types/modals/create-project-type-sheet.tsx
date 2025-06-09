@@ -8,7 +8,7 @@ import {
 	SheetTrigger,
 } from "@/components/ui/sheet";
 import { Plus } from "lucide-react";
-import { CreateProjectTypeForm } from "../form/create-project-type-form";
+import { ProjectTypeForm } from "../form/project-type-form";
 import { useCreateProjectType } from "@/hooks/admin/project-types/use-create-project-type";
 
 interface CreateProjectTypeSheetProps {
@@ -18,8 +18,12 @@ interface CreateProjectTypeSheetProps {
 export function CreateProjectTypeSheet({
 	className,
 }: CreateProjectTypeSheetProps) {
-	const { isCreateProjectTypeSheetOpen, setIsCreateProjectTypeSheetOpen } =
-		useCreateProjectType();
+	const {
+		form,
+		isCreateProjectTypeSheetOpen,
+		setIsCreateProjectTypeSheetOpen,
+		isLoadingCreateProjectType,
+	} = useCreateProjectType();
 
 	return (
 		<Sheet
@@ -39,8 +43,10 @@ export function CreateProjectTypeSheet({
 					<SheetDescription>Adicione um novo tipo de projeto.</SheetDescription>
 				</SheetHeader>
 
-				<CreateProjectTypeForm
-					setIsCreateProjectTypeSheetOpen={setIsCreateProjectTypeSheetOpen}
+				<ProjectTypeForm
+					form={form}
+					isLoading={isLoadingCreateProjectType}
+					setIsFormOpen={setIsCreateProjectTypeSheetOpen}
 				/>
 			</SheetContent>
 		</Sheet>

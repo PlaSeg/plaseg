@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import { Button } from "../ui/button";
-import { useAuthStore } from "@/hooks/auth/auth";
+import { useAuthStore } from "@/hooks/auth/use-auth";
 
 export function NavLink({
 	href,

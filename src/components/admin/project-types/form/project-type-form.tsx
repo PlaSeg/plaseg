@@ -1,50 +1,78 @@
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { Plus, Trash2 } from "lucide-react";
-import { useCreateProjectType } from "@/hooks/admin/project-types/use-create-project-type";
+import { LoaderCircle, Plus, Trash2 } from "lucide-react";
 import { FormInput } from "@/components/form/form-input";
 import { FormTextarea } from "@/components/form/form-textarea";
+import { useFieldArray, UseFormReturn } from "react-hook-form";
+import { CreateProjectTypeRequest } from "@/@schemas/project-type";
 
-
-interface CreateProjectTypeFormProps {
-	setIsCreateProjectTypeSheetOpen: (open: boolean) => void;
+interface ProjectTypeFormProps {
+	form: UseFormReturn<CreateProjectTypeRequest> & {
+		handleSubmitForm: () => void;
+	};
+	setIsFormOpen: (open: boolean) => void;
+	isLoading: boolean;
 }
 
-export function CreateProjectTypeForm({
-	setIsCreateProjectTypeSheetOpen,
-}: CreateProjectTypeFormProps) {
+export function ProjectTypeForm({
+	form,
+	isLoading,
+	setIsFormOpen,
+}: ProjectTypeFormProps) {
 	const {
-		form,
-        documentsFields,
-		addDocument,
-		removeDocument,
-		addFieldToDocument,
-		removeFieldFromDocument,
-	} = useCreateProjectType();
+		fields: documentsFields,
+		append: appendDocument,
+		remove: removeDocument,
+	} = useFieldArray({
+		control: form.control,
+		name: "documents",
+	});
+
+	const addDocument = () => {
+		appendDocument({
+			name: "",
+			fields: [],
+		});
+	};
+
+	const addFieldToDocument = (documentIndex: number) => {
+		const currentDocuments = form.getValues("documents") || [];
+		const updatedDocuments = [...currentDocuments];
+		if (!updatedDocuments[documentIndex].fields) {
+			updatedDocuments[documentIndex].fields = [];
+		}
+		updatedDocuments[documentIndex].fields.push({
+			name: "",
+			value: null,
+		});
+		form.setValue("documents", updatedDocuments);
+	};
+
+	const removeFieldFromDocument = (
+		documentIndex: number,
+		fieldIndex: number
+	) => {
+		const currentDocuments = form.getValues("documents") || [];
+		const updatedDocuments = [...currentDocuments];
+		updatedDocuments[documentIndex].fields?.splice(fieldIndex, 1);
+		form.setValue("documents", updatedDocuments);
+	};
 
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmitForm} className="space-y-6">
+			<form
+				onSubmit={form.handleSubmitForm}
+				className="space-y-6 flex flex-col justify-between h-full"
+			>
 				<div className="space-y-4">
+					<FormInput
+						form={form}
+						entity="name"
+						label="Nome"
+						placeholder="Digite o nome do tipo de projeto"
+					/>
 
-					<div >
-						<FormInput
-							form={form}
-							entity="name"
-							label="Nome"
-							placeholder="Digite o nome do tipo de projeto"
-						/>
-
-					</div>
-				</div>
-
-				<Separator />
-
-
-				<div className="space-y-4">
 					<div className="flex items-center justify-between">
 						<h3 className="text-lg font-semibold">Documentos</h3>
 						<Button
@@ -149,22 +177,26 @@ export function CreateProjectTypeForm({
 					))}
 				</div>
 
-				<div className="flex justify-end gap-3 pt-4">
+				<div className="flex justify-end gap-3">
 					<Button
 						type="button"
 						variant="outline"
-						onClick={() => setIsCreateProjectTypeSheetOpen(false)}
 						className="w-[150px]"
+						onClick={() => setIsFormOpen(false)}
+						disabled={isLoading}
 					>
 						Cancelar
 					</Button>
 
 					<Button
-						type="button"
+						type="submit"
 						className="w-[150px]"
-						onClick={() => form.handleSubmitForm()}
+						disabled={isLoading}
 					>
-						Salvar
+						{isLoading && (
+							<LoaderCircle className="animate-spin" />
+						)}
+						Confirmar
 					</Button>
 				</div>
 			</form>

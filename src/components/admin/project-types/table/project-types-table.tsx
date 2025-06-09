@@ -6,54 +6,54 @@ import { ProjectTypesTableHeader } from "./project-types-table-header";
 import { ProjectType } from "@/@types/admin/project-types";
 
 interface ProjectTypesTableProps {
-  table: TableType<ProjectType>;
-  isLoadingGetProjectTypes: boolean;
-  data: ProjectType[];
+	table: TableType<ProjectType>;
+	isLoadingGetProjectTypes: boolean;
+	data: ProjectType[];
 }
 
 export function ProjectTypesTable({
-  table,
-  isLoadingGetProjectTypes,
-  data,
+	table,
+	isLoadingGetProjectTypes,
+	data,
 }: ProjectTypesTableProps) {
-  return (
-    <Table>
-      <ProjectTypesTableHeader table={table} />
+	return (
+		<Table>
+			<ProjectTypesTableHeader table={table} />
 
-      <TableBody>
-        {isLoadingGetProjectTypes && <ProjectTypesTableBodySkeleton />}
+			<TableBody>
+				{isLoadingGetProjectTypes && <ProjectTypesTableBodySkeleton />}
 
-        {!isLoadingGetProjectTypes &&
-          data &&
-          data.length > 0 &&
-          table.getRowModel().rows?.length > 0 &&
-          table.getRowModel().rows.map((row) => (
-            <TableRow
-              key={row.id}
-              data-state={row.getIsSelected() && "selected"}
-            >
-              {row.getVisibleCells().map((cell) => (
-                <TableCell key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </TableCell>
-              ))}
-            </TableRow>
-          ))}
+				{!isLoadingGetProjectTypes &&
+					data &&
+					data.length > 0 &&
+					table.getRowModel().rows?.length > 0 &&
+					table.getRowModel().rows.map((row) => (
+						<TableRow
+							key={row.id}
+							data-state={row.getIsSelected() && "selected"}
+						>
+							{row.getVisibleCells().map((cell) => (
+								<TableCell key={cell.id}>
+									{flexRender(cell.column.columnDef.cell, cell.getContext())}
+								</TableCell>
+							))}
+						</TableRow>
+					))}
 
-        {!isLoadingGetProjectTypes &&
-          (!data ||
-            data.length === 0 ||
-            table.getRowModel().rows?.length === 0) && (
-            <TableRow>
-              <TableCell
-                colSpan={projectTypesTableColumns.length}
-                className="h-24 text-center"
-              >
-                Sem resultados
-              </TableCell>
-            </TableRow>
-          )}
-      </TableBody>
-    </Table>
-  );
+				{!isLoadingGetProjectTypes &&
+					(!data ||
+						data.length === 0 ||
+						table.getRowModel().rows?.length === 0) && (
+						<TableRow>
+							<TableCell
+								colSpan={projectTypesTableColumns.length}
+								className="h-24 text-center"
+							>
+								Sem resultados
+							</TableCell>
+						</TableRow>
+					)}
+			</TableBody>
+		</Table>
+	);
 }

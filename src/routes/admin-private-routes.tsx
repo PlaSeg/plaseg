@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from "react-router";
-import { useAuthStore } from "@/hooks/auth/auth";
+import { useAuthStore } from "@/hooks/auth/use-auth";
 import { useGetProfile } from "@/hooks/auth/use-get-profile";
 
 export function AdminPrivateRoutes() {
