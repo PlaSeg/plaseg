@@ -1,9 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { Plus, Trash2 } from "lucide-react";
+import { LoaderCircle, Plus, Trash2 } from "lucide-react";
 import { useCreateOpportunity } from "@/hooks/admin/opportunities/use-create-opportunity";
 import { FormInput } from "@/components/form/form-input";
 import { FormDatePicker } from "@/components/form/form-date-picker";
@@ -11,14 +10,16 @@ import { FormMoneyInput } from "@/components/form/form-money-input";
 import { FormTextarea } from "@/components/form/form-textarea";
 import { FormCheckbox } from "@/components/form/form-checkbox";
 import { FormCombobox } from "@/components/form/form-combobox";
+import { useGetProjectTypes } from "@/hooks/admin/project-types/use-get-project-types";
+import { FormMultiSelect } from "@/components/form/form-multi-select-input";
+import { useGetTypes } from "@/hooks/admin/types/use-get-types";
+import { TypeGroup } from "@/@types/admin/type";
 
-interface CreateOpportunityFormProps {
-	setIsCreateOpportunitySheetOpen: (open: boolean) => void;
+interface OpportunityFormProps {
+	setIsFormOpen: (open: boolean) => void;
 }
 
-export function CreateOpportunityForm({
-	setIsCreateOpportunitySheetOpen,
-}: CreateOpportunityFormProps) {
+export function OpportunityForm({ setIsFormOpen }: OpportunityFormProps) {
 	const {
 		form,
 		requiredDocumentsFields,
@@ -30,7 +31,13 @@ export function CreateOpportunityForm({
 		addFieldToDocument,
 		removeFieldFromDocument,
 		getAllFieldsForParentSelection,
-	} = useCreateOpportunity();
+		isLoadingCreateOpportunity,
+	} = useCreateOpportunity(setIsFormOpen);
+
+	const { projectTypes } = useGetProjectTypes();
+	const { types, isLoadingGetTypes } = useGetTypes({
+		group: TypeGroup.OPPORTUNITY,
+	});
 
 	return (
 		<Form {...form}>
@@ -67,18 +74,28 @@ export function CreateOpportunityForm({
 							placeholder="Selecione a data de término"
 						/>
 
-						<FormMoneyInput
+						<FormCombobox
 							form={form}
-							entity="minValue"
-							label="Valor Mínimo de Financiamento (R$)"
-							placeholder="Digite o valor mínimo"
+							entity="typeId"
+							translatedEntity="Tipo"
+							placeholder="Selecione o tipo"
+							isLoading={isLoadingGetTypes}
+							options={types.map((type) => ({
+								label: type.description,
+								value: type.id,
+							}))}
 						/>
 
-						<FormMoneyInput
+						<FormMultiSelect
 							form={form}
-							entity="maxValue"
-							label="Valor Máximo de Financiamento (R$)"
-							placeholder="Digite o valor máximo"
+							entity="projectTypeIds"
+							label="Tipos de Projeto"
+							placeholder="Selecione os tipos de projeto"
+							maxCount={0}
+							options={projectTypes.map((type) => ({
+								label: type.name,
+								value: type.id,
+							}))}
 						/>
 
 						<FormTextarea
@@ -111,15 +128,47 @@ export function CreateOpportunityForm({
 
 				<div className="space-y-4">
 					<div className="flex items-center justify-between">
+						<h3 className="text-lg font-semibold">Valores</h3>
+					</div>
+
+					<div className="grid w-full grid-cols-3 gap-4">
+						<FormMoneyInput
+							form={form}
+							entity="availableValue"
+							label="Valor Disponível (R$)"
+							placeholder="Digite o valor disponível"
+						/>
+
+						<FormMoneyInput
+							form={form}
+							entity="minValue"
+							label="Valor Mínimo de Financiamento (R$)"
+							placeholder="Digite o valor mínimo"
+						/>
+
+						<FormMoneyInput
+							form={form}
+							entity="maxValue"
+							label="Valor Máximo de Financiamento (R$)"
+							placeholder="Digite o valor máximo"
+						/>
+					</div>
+				</div>
+
+				<Separator />
+
+				<div className="space-y-4">
+					<div className="flex items-center justify-between">
 						<h3 className="text-lg font-semibold">Documentos Obrigatórios</h3>
 						<Button
 							type="button"
+							variant="secondary"
 							onClick={addRequiredDocument}
 							size="sm"
 							className="flex items-center gap-2"
 						>
 							<Plus className="h-4 w-4" />
-							Adicionar Documento Obrigatório
+							Adicionar
 						</Button>
 					</div>
 
@@ -176,12 +225,13 @@ export function CreateOpportunityForm({
 						<h3 className="text-lg font-semibold">Documentos</h3>
 						<Button
 							type="button"
+							variant="secondary"
 							onClick={addDocument}
 							size="sm"
 							className="flex items-center gap-2"
 						>
 							<Plus className="h-4 w-4" />
-							Adicionar Documento
+							Adicionar
 						</Button>
 					</div>
 
@@ -295,8 +345,9 @@ export function CreateOpportunityForm({
 					<Button
 						type="button"
 						variant="outline"
-						onClick={() => setIsCreateOpportunitySheetOpen(false)}
 						className="w-[150px]"
+						onClick={() => setIsFormOpen(false)}
+						disabled={isLoadingCreateOpportunity}
 					>
 						Cancelar
 					</Button>
@@ -305,8 +356,12 @@ export function CreateOpportunityForm({
 						type="button"
 						className="w-[150px]"
 						onClick={() => form.handleSubmitForm()}
+						disabled={isLoadingCreateOpportunity}
 					>
-						Salvar
+						{isLoadingCreateOpportunity && (
+							<LoaderCircle className="animate-spin" />
+						)}
+						Confirmar
 					</Button>
 				</div>
 			</form>

@@ -34,6 +34,7 @@ export function FormMultiSelect<TFieldValues extends FieldValues>({
 			render={({ field }) => (
 				<FormItem className={`flex flex-col text-left ${className}`}>
 					{label && <FormLabel>{label}</FormLabel>}
+
 					<FormControl>
 						<MultiSelect
 							options={options}
@@ -44,6 +45,7 @@ export function FormMultiSelect<TFieldValues extends FieldValues>({
 							maxCount={maxCount}
 						/>
 					</FormControl>
+
 					<FormMessage />
 				</FormItem>
 			)}

@@ -1,49 +1,79 @@
-import { useFieldArray } from "react-hook-form";
-import { useState } from "react";
-import { createOpportunityRequestSchema } from "@/@schemas/opportunity";
-import { useFormMutation } from "@/hooks/common/use-form-mutation";
 import { v4 as uuidv4 } from "uuid";
+import { useFieldArray } from "react-hook-form";
+import { opportunityRequestSchema } from "@/@schemas/opportunity";
+import { useFormMutation } from "@/hooks/common/use-form-mutation";
+import { useMutation } from "@tanstack/react-query";
+import { createOpportunity } from "@/api/admin/opportunities/create-opportunity";
+import { toast } from "sonner";
+import { queryClient } from "@/services/react-query";
 
-export function useCreateOpportunity() {
-	const [isCreateOpportunitySheetOpen, setIsCreateOpportunitySheetOpen] =
-		useState(false);
-
+export function useCreateOpportunity(setIsFormOpen: (open: boolean) => void) {
 	const form = useFormMutation({
-		schema: createOpportunityRequestSchema,
+		schema: opportunityRequestSchema,
 		defaultValues: {
 			title: "",
 			responsibleAgency: "",
 			initialDeadline: "",
 			finalDeadline: "",
+			availableValue: 0,
 			minValue: 0,
 			maxValue: 0,
 			description: "",
+			typeId: "",
 			requiresCounterpart: false,
 			counterpartPercentage: 0,
+			projectTypeIds: [],
 			requiredDocuments: [],
 			documents: [],
 		},
 		onSubmit: (data) => {
 			const processedData = {
 				...data,
-				availableValue: data.maxValue,
-				typeId: uuidv4(),
-				isActive: true,
+				requiresCounterpart: data.requiresCounterpart || false,
+				counterpartPercentage: data.counterpartPercentage || 0,
 				requiredDocuments: (data.requiredDocuments || []).map((doc) => ({
 					...doc,
-					id: doc.id || uuidv4(),
 				})),
 				documents: (data.documents || []).map((doc) => ({
 					...doc,
 					id: doc.id || uuidv4(),
 					fields: (doc.fields || []).map((field) => ({
 						...field,
+						value: field.value || "",
+						parentId: field.parentId || "",
 						id: field.id || uuidv4(),
 					})),
 				})),
 			};
 
 			console.log(processedData);
+			createOpportunityFn(processedData);
+		},
+	});
+
+	const {
+		mutateAsync: createOpportunityFn,
+		isPending: isLoadingCreateOpportunity,
+	} = useMutation({
+		mutationKey: ["create-opportunity"],
+		mutationFn: createOpportunity,
+		onSuccess: (response) => {
+			if (response.success) {
+				setIsFormOpen(false);
+				form.reset();
+				queryClient
+					.invalidateQueries({
+						queryKey: ["get-opportunities"],
+					})
+					.then(() => {
+						toast.success("Oportunidade criada com sucesso");
+					});
+				return;
+			}
+
+			for (const error of response.errors) {
+				toast.error(error);
+			}
 		},
 	});
 
@@ -67,7 +97,6 @@ export function useCreateOpportunity() {
 
 	const addRequiredDocument = () => {
 		appendRequiredDocument({
-			id: uuidv4(),
 			name: "",
 			description: "",
 			model: "",
@@ -146,7 +175,6 @@ export function useCreateOpportunity() {
 		addFieldToDocument,
 		removeFieldFromDocument,
 		getAllFieldsForParentSelection,
-		isCreateOpportunitySheetOpen,
-		setIsCreateOpportunitySheetOpen,
+		isLoadingCreateOpportunity,
 	};
 }
