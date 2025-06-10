@@ -91,7 +91,7 @@ export function OpportunityForm({ setIsFormOpen }: OpportunityFormProps) {
 							entity="projectTypeIds"
 							label="Tipos de Projeto"
 							placeholder="Selecione os tipos de projeto"
-							maxCount={0}
+							maxCount={undefined}
 							options={projectTypes.map((type) => ({
 								label: type.name,
 								value: type.id,
