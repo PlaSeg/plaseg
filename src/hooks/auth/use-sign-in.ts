@@ -1,7 +1,7 @@
 import { useFormMutation } from "../common/use-form-mutation";
 import { useMutation } from "@tanstack/react-query";
 import { signIn } from "@/api/auth/sign-in";
-import { useAuthStore } from "@/hooks/auth/auth";
+import { useAuthStore } from "@/hooks/auth/use-auth";
 import { toast } from "sonner";
 import { signInRequestSchema } from "@/@schemas/auth";
 

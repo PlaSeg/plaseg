@@ -15,30 +15,33 @@ const createDocumentSchema = z.object({
 });
 
 const createRequiredDocumentSchema = z.object({
-	id: z.string().default(() => uuidv4()),
 	name: z.string().min(1, "Nome é obrigatório"),
 	description: z.string().min(1, "Descrição é obrigatória"),
 	model: z.string().min(1, "Modelo é obrigatório"),
 });
 
-export const createOpportunityRequestSchema = z.object({
+export const opportunityRequestSchema = z.object({
 	title: z.string().min(1, "Título é obrigatório"),
-	description: z.string().min(1, "Descrição é obrigatória"),
+	description: z
+		.string()
+		.min(10, "A descrição deve ter no mínimo 10 caracteres"),
+	availableValue: z.number().min(0, "Valor mínimo deve ser maior que 0"),
+	minValue: z.number().min(0, "Valor mínimo deve ser maior que 0"),
+	responsibleAgency: z.string().min(1, "Órgão responsável é obrigatório"),
+	typeId: z.string().uuid().min(1, "Tipo é obrigatório"),
+	maxValue: z.number().min(0, "Valor máximo deve ser maior que 0"),
 	initialDeadline: z.string().min(1, "Data de início é obrigatória"),
 	finalDeadline: z.string().min(1, "Data de término é obrigatória"),
-	minValue: z.number().min(0, "Valor mínimo deve ser maior que 0"),
-	maxValue: z.number().min(0, "Valor máximo deve ser maior que 0"),
-	responsibleAgency: z.string().min(1, "Órgão responsável é obrigatório"),
-	typeId: z.string().min(1, "Tipo é obrigatório"),
-	requiresCounterpart: z.boolean(),
-	counterpartPercentage: z.number().min(0).max(100),
+	requiresCounterpart: z.boolean().default(false),
+	counterpartPercentage: z.coerce.number().min(0).max(100).default(0),
+	projectTypeIds: z
+		.array(z.string().uuid())
+		.min(1, "Tipo de projeto é obrigatório"),
 	requiredDocuments: z.array(createRequiredDocumentSchema).default([]),
 	documents: z.array(createDocumentSchema).default([]),
 });
 
-export type CreateOpportunityRequest = z.infer<
-	typeof createOpportunityRequestSchema
->;
+export type OpportunityRequest = z.infer<typeof opportunityRequestSchema>;
 
 export const opportunitySchema = z.object({
 	id: z.string().uuid(),

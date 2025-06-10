@@ -49,7 +49,7 @@ export const opportunitiesTableColumns: ColumnDef<Opportunity>[] = [
 			</Button>
 		),
 		cell: ({ row }) => (
-			<div className="capitalize font-semibold">{row.getValue("title")}</div>
+			<div className="font-semibold">{row.getValue("title")}</div>
 		),
 	},
 	{
