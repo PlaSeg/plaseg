@@ -7,9 +7,7 @@ import SignUp from "@/pages/sign-up/sign-up";
 export function AuthRoutes() {
 	return (
 		<Routes>
-			<Route path="entrar" element={<SignIn />} />
-			<Route path="cadastro" element={<SignUp />} />
-			<Route path="esqueceu-senha" element={<ResetPassword />} />
+			
 		</Routes>
 	);
 }
