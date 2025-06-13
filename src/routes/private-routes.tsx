@@ -10,7 +10,7 @@ export function PrivateRoutes() {
 	}
 
 	if (userRole === "ADMIN" || userRole === "ADMIN_MASTER") {
-		return <Navigate to="/admin" replace />;
+		return <Navigate to="/admin/dashboard" replace />;
 	}
 
 	return <Outlet />;
