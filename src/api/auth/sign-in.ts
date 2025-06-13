@@ -9,6 +9,12 @@ interface SignInRequest {
 
 interface SignInResponseData {
 	accessToken: string;
+	user: {
+		id: string;
+		name: string;
+		email: string;
+		role: string;
+	};
 }
 
 type SignInResponse =

@@ -1,7 +1,6 @@
 import { Navigate, Route, Routes } from "react-router";
 
 import { AdminRoutes } from "./admin-routes";
-import { AuthRoutes } from "./auth-routes";
 
 import { PrivateRoutes } from "./private-routes";
 import { PublicRoutes } from "./public-routes";
@@ -22,6 +21,9 @@ import OpportunityDetails from "@/pages/opportunities/opportunity-details";
 import Projects from "@/pages/projects/projects";
 import ProjectsDetails from "@/pages/projects/projects-details";
 import ProjectSectionDetails from "@/pages/projects/projects-section-details";
+import SignIn from "@/pages/sign-in/sign-in";
+import SignUp from "@/pages/sign-up/sign-up";
+import ResetPassword from "@/pages/reset-password/reset-password";
 
 export function AppRoutes() {
 	return (
@@ -32,7 +34,9 @@ export function AppRoutes() {
 
 			<Route element={<PublicRoutes />}>
 				<Route element={<AuthLayout />}>
-					<Route path="*" element={<AuthRoutes />} />
+					<Route path="entrar" element={<SignIn />} />
+					<Route path="cadastro" element={<SignUp />} />
+					<Route path="esqueceu-senha" element={<ResetPassword />} />
 				</Route>
 			</Route>
 
