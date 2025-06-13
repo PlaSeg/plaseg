@@ -1,5 +1,6 @@
 export enum Role {
 	ADMIN = "ADMIN",
+	ADMIN_MASTER = "ADMIN_MASTER",
 	MUNICIPALITY = "MUNICIPALITY",
 }
 
