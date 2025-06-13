@@ -90,7 +90,11 @@ export const UsersTableColumns: ColumnDef<User>[] = [
 				)}
 			</Button>
 		),
-		cell: ({ row }) => <div className="font-medium">{formatDocument(row.getValue("document"))}</div>,
+		cell: ({ row }) => (
+			<div className="font-medium">
+				{formatDocument(row.getValue("document"))}
+			</div>
+		),
 	},
 	{
 		accessorKey: "phone",
@@ -136,6 +140,7 @@ export const UsersTableColumns: ColumnDef<User>[] = [
 			const role = row.getValue("role") as Role;
 
 			const roleLabels = {
+				[Role.ADMIN_MASTER]: "Administrador Master",
 				[Role.ADMIN]: "Administrador",
 				[Role.MUNICIPALITY]: "Município",
 			};
