@@ -6,7 +6,7 @@ import { ScrollText, KanbanSquare } from "lucide-react";
 
 export default function MunicipalityLayout() {
 	return (
-		<AppLayout className="bg-muted/30">
+		<AppLayout className="bg-muted">
 			<Header>
 				<Navbar>
 					<NavbarItem

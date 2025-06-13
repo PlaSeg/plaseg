@@ -1,5 +1,23 @@
 import { z } from "zod";
 
+export const createProjectSchema = z.object({
+	title: z.string().min(1, "Título é obrigatório"),
+	opportunityId: z.string().uuid().min(1, "Oportunidade é obrigatória"),
+	projectTypeId: z.string().uuid().min(1, "Tipo de projeto é obrigatório"),
+});
+
+export const projectGeneralInfoSchema = z.object({
+	responsibleCpf: z.string().min(1, "CPF é obrigatório"),
+	responsibleName: z.string().min(1, "Nome é obrigatório"),
+	responsibleEmail: z.string().email("").min(1, "Email é obrigatório"),
+	responsiblePhone: z.string().min(1, "Telefone é obrigatório"),
+	totalValue: z.number().min(1, "Valor total é obrigatório"),
+	requestedValue: z.number().min(1, "Valor solicitado é obrigatório"),
+	baseValue: z.number().min(1, "Valor base é obrigatório"),
+});
+
+export type CreateProjectRequest = z.infer<typeof createProjectSchema>;
+
 export const requestedItemsSchema = z.object({
 	quantity: z.number(),
 	baseProductId: z.string(),
@@ -19,13 +37,11 @@ export const fieldsSchema = z.object({
 export const documentsSchema = z.object({
 	name: z.string(),
 	fields: z.array(fieldsSchema),
-
 });
-
 
 export const projectSchema = z.object({
 	id: z.string().uuid(),
-	name: z.string(),
+	title: z.string(),
 	opportunityId: z.string().uuid(),
 	projectTypeId: z.string().uuid(),
 	responsibleCpf: z.string(),
@@ -41,29 +57,9 @@ export const projectSchema = z.object({
 	baseValue: z.number(),
 	createdAt: z.coerce.date(),
 	updatedAt: z.coerce.date().nullable().optional(),
+
 	requestedItems: z.array(requestedItemsSchema),
 	documents: z.array(documentsSchema),
 });
 
-
-
-export const createProjectSchema = z.object({
-	name: z.string().min(1, 'Nome é obrigatório'),
-
-	totalValue: z.number().min(1, 'Valor total é obrigatório'),
-	requestedValue: z.number().min(1, 'Valor solicitado é obrigatório'),
-	baseValue: z.number().min(1, 'Valor base é obrigatório'),
-
-	responsibleDocument: z.string().min(1, 'Documento é obrigatório'),
-	responsibleName: z.string().min(1, 'Nome é obrigatório'),
-	responsibleEmail: z.string().email('Email inválido'),
-	responsiblePhone: z.string().min(1, 'Telefone é obrigatório'),
-	responsibleTelephone: z.string().min(1, 'Telefone é obrigatório'),
-
-	counterpartCapitalInitials: z.string().min(1, 'Iniciais do capital é obrigatório'),
-	counterpartCapitalAmount: z.number().min(1, 'Valor do capital é obrigatório'),
-	counterpartCostInitials: z.string().min(1, 'Iniciais do custo é obrigatório'),
-	counterpartCostAmount: z.number().min(1, 'Valor do custo é obrigatório'),
-	counterpartDescription: z.string().min(1, 'Descrição é obrigatória'),
-	counterpartAttachedFile: z.string().min(1, 'Arquivo é obrigatório'),
-});
+export type Project = z.infer<typeof projectSchema>;

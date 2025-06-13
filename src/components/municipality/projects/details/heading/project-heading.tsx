@@ -1,18 +1,32 @@
-import { Copy, DollarSign, Download } from "lucide-react";
+import { Copy, Download } from "lucide-react";
 import { ProjectProgress } from "./project-progress";
 import { Button } from "@/components/ui/button";
-import { ProjectResponsibles } from "./project-responsibles";
+import { Project } from "@/@schemas/project";
+import { ProjectValue } from "./project-value";
 
-export function ProjectHeading() {
+interface ProjectHeadingProps {
+	project: Project;
+}
+
+export function ProjectHeading({ project }: ProjectHeadingProps) {
 	return (
-		<div className="w-full p-6">
+		<div className="w-full py-6">
 			<div className="flex justify-between">
 				<div className="flex items-center gap-8">
-					<ProjectProgress />
+					<ProjectProgress percentage={0} />
 
-					<div className="flex flex-col gap-2">
+					<ProjectValue
+						title="Valor Solicitado"
+						value={project.requestedValue}
+					/>
+
+					<ProjectValue title="Valor Base" value={project.baseValue} />
+
+					<ProjectValue title="Valor Total" value={project.totalValue} />
+
+					{/* <div className="flex flex-col gap-2">
 						<span className="text-sm text-muted-foreground">
-							Valor Solicitado
+							Contrapartida (30%)
 						</span>
 
 						<div className="flex items-center gap-2">
@@ -20,31 +34,17 @@ export function ProjectHeading() {
 								<DollarSign size={18} />
 							</div>
 
-							<span className="font-medium">R$ 1.500.000,00</span>
-						</div>
-					</div>
-
-					<div className="flex flex-col gap-2">
-						<span className="text-sm text-muted-foreground">
-							Contrapartida (30%)
-						</span>
-
-						<div className="flex items-center gap-2">
-							<div className="w-10 h-10 border border-slate-200 rounded-full flex items-center justify-center">
-								<DollarSign size={18}/>
-							</div>
-
 							<span className="font-medium">R$ 45.000,00</span>
 						</div>
-					</div>
+					</div> */}
 
-					<div className="flex flex-col gap-2">
+					{/* <div className="flex flex-col gap-2">
 						<span className="text-sm text-muted-foreground">Responsáveis</span>
 
 						<div className="flex items-center gap-2">
 							<ProjectResponsibles />
 						</div>
-					</div>
+					</div> */}
 				</div>
 
 				<div className="flex flex-col gap-2">

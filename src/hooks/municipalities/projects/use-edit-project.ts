@@ -1,25 +1,17 @@
-import { createProjectSchema } from "@/@schemas/project";
+import { projectGeneralInfoSchema } from "@/@schemas/project";
 import { useFormMutation } from "@/hooks/common/use-form-mutation";
 
 export function useEditProject() {
 	const form = useFormMutation({
-		schema: createProjectSchema,
+		schema: projectGeneralInfoSchema,
 		defaultValues: {
-			name: "",
-			totalValue: undefined,
-			requestedValue: undefined,
-			baseValue: undefined,
-			responsibleDocument: "",
+			responsibleCpf: "",
 			responsibleName: "",
 			responsibleEmail: "",
 			responsiblePhone: "",
-			responsibleTelephone: "",
-			counterpartCapitalInitials: "",
-			counterpartCapitalAmount: undefined,
-			counterpartCostInitials: "",
-			counterpartCostAmount: undefined,
-			counterpartDescription: "",
-			counterpartAttachedFile: "",
+			totalValue: undefined,
+			requestedValue: undefined,
+			baseValue: undefined,
 		},
 		onSubmit: async (data) => {
 			console.log(data);

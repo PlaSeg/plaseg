@@ -45,9 +45,11 @@ export type OpportunityRequest = z.infer<typeof opportunityRequestSchema>;
 
 export const opportunitySchema = z.object({
 	id: z.string().uuid(),
+	slug: z.string(),
 	title: z.string(),
 	description: z.string(),
 	availableValue: z.number(),
+	responsibleAgency: z.string(),
 	minValue: z.number(),
 	maxValue: z.number(),
 	initialDeadline: z.coerce.date(),
@@ -89,4 +91,4 @@ export const getOpportunitiesResponseSchema = z
 	.array(opportunitySchema)
 	.nullable();
 
-export type OpportunitySchema = z.infer<typeof opportunitySchema>;
+export type Opportunity = z.infer<typeof opportunitySchema>;

@@ -1,5 +1,6 @@
 import { RequiredDocument } from "@/@types/common/opportunity";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router";
 
 interface OpportunityDetailsDocumentProps {
 	document: RequiredDocument;
@@ -11,14 +12,19 @@ export function OpportunityDetailsDocument({
 	return (
 		<div
 			key={document.id}
-			className="flex justify-between items-center p-4 rounded-lg border border-muted"
+			className="flex justify-between items-center p-4 rounded-lg border border-slate-200
+			gap-6"
 		>
-			<div className="flex flex-col">
+			<div className="flex flex-col gap-2">
 				<span>{document.name}</span>
 				<p className="text-muted-foreground text-sm">{document.description}</p>
 			</div>
 
-			<Button variant="secondary">Ver modelo</Button>
+			<Button variant="secondary" asChild>
+				<Link to={document.model} target="_blank">
+					Ver modelo
+				</Link>
+			</Button>
 		</div>
 	);
 }

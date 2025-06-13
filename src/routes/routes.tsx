@@ -19,7 +19,7 @@ import Opportunities from "@/pages/opportunities/opportunities";
 import OpportunityDetails from "@/pages/opportunities/opportunity-details";
 
 import Projects from "@/pages/projects/projects";
-import ProjectsDetails from "@/pages/projects/projects-details";
+import ProjectDetails from "@/pages/projects/project-details";
 import ProjectSectionDetails from "@/pages/projects/projects-section-details";
 import SignIn from "@/pages/sign-in/sign-in";
 import SignUp from "@/pages/sign-up/sign-up";
@@ -46,9 +46,9 @@ export function AppRoutes() {
 					<Route path="oportunidades/:slug" element={<OpportunityDetails />} />
 
 					<Route path="projetos" element={<Projects />} />
-					<Route path="projetos/:slug" element={<ProjectsDetails />} />
+					<Route path="projetos/:id" element={<ProjectDetails />} />
 					<Route
-						path="projetos/:slug/:secao"
+						path="projetos/:id/:secao"
 						element={<ProjectSectionDetails />}
 					/>
 				</Route>
