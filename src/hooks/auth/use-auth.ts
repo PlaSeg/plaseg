@@ -9,11 +9,15 @@ interface AuthState {
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
-	userRole: null,
+	userRole: Cookies.get("userRole") || null,
 	isAuthenticated: !!Cookies.get("accessToken"),
 
 	authenticate: (accessToken, userRole) => {
 		Cookies.set("accessToken", accessToken, {
+			expires: 1 / 24, // 1 hour
+			secure: true,
+		});
+		Cookies.set("userRole", userRole, {
 			expires: 1 / 24, // 1 hour
 			secure: true,
 		});
@@ -22,7 +26,8 @@ export const useAuthStore = create<AuthState>((set) => ({
 
 	logout: () => {
 		Cookies.remove("accessToken");
-		set({ isAuthenticated: false });
+		Cookies.remove("userRole");
+		set({ isAuthenticated: false, userRole: null });
 		window.location.href = "/entrar";
 	},
 }));
