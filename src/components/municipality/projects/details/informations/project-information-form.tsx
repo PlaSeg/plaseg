@@ -2,10 +2,21 @@ import { FormInput } from "@/components/form/form-input";
 import { FormPhoneInput } from "@/components/form/form-phone-input";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
-import { useEditProject } from "@/hooks/municipalities/projects/use-edit-project";
+import { Project } from "@/@schemas/project";
+import { useUpdateProjectGeneralInfo } from "@/hooks/municipalities/projects/use-update-project-general-info";
+import { FormCpfInput } from "@/components/form/form-cpf-input";
+import { FormMoneyInput } from "@/components/form/form-money-input";
+import { LoaderCircle } from "lucide-react";
 
-export function ProjectInformationForm() {
-	const { form } = useEditProject();
+interface ProjectInformationFormProps {
+	project: Project;
+}
+
+export function ProjectInformationForm({
+	project,
+}: ProjectInformationFormProps) {
+	const { form, isLoadingUpdateProjectGeneralInfo } =
+		useUpdateProjectGeneralInfo({ project });
 
 	return (
 		<Form {...form}>
@@ -15,10 +26,8 @@ export function ProjectInformationForm() {
 			bg-white space-y-6"
 			>
 				<div className="space-y-4">
-					<span className="font-semibold">Informações principais</span>
-
 					<div className="grid grid-cols-2 gap-4">
-						<FormInput
+						<FormCpfInput
 							form={form}
 							entity="responsibleCpf"
 							label="CPF do responsável"
@@ -47,25 +56,22 @@ export function ProjectInformationForm() {
 							placeholder="Digite o telefone do responsável"
 						/>
 
-						<FormInput
+						<FormMoneyInput
 							form={form}
-							type="number"
 							entity="totalValue"
 							label="Valor total"
 							placeholder="Digite o valor total do projeto"
 						/>
 
-						<FormInput
+						<FormMoneyInput
 							form={form}
-							type="number"
 							entity="requestedValue"
 							label="Valor solicitado"
 							placeholder="Digite o valor solicitado do projeto"
 						/>
 
-						<FormInput
+						<FormMoneyInput
 							form={form}
-							type="number"
 							entity="baseValue"
 							label="Valor base"
 							placeholder="Digite o valor base do projeto"
@@ -77,8 +83,13 @@ export function ProjectInformationForm() {
 					<Button
 						className="w-full max-w-[170px] bg-black hover:bg-black/90"
 						type="submit"
+						disabled={isLoadingUpdateProjectGeneralInfo}
 					>
-						Salvar
+						{isLoadingUpdateProjectGeneralInfo && (
+							<LoaderCircle className="animate-spin" />
+						)}
+
+						{!isLoadingUpdateProjectGeneralInfo && "Salvar"}
 					</Button>
 				</div>
 			</form>

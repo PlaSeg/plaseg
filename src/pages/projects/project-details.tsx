@@ -34,7 +34,7 @@ export default function ProjectDetails() {
 
 				<div className="grid grid-cols-3 gap-6">
 					<div className="flex flex-col gap-6 col-span-2">
-						<ProjectInformation />
+						<ProjectInformation project={project} />
 						{/* <ProjectsSections /> */}
 						{/* <ProjectItems /> */}
 						{/* <ProjectAttachments /> */}

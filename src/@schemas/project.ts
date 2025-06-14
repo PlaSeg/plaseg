@@ -6,6 +6,8 @@ export const createProjectSchema = z.object({
 	projectTypeId: z.string().uuid().min(1, "Tipo de projeto é obrigatório"),
 });
 
+export type CreateProjectRequest = z.infer<typeof createProjectSchema>;
+
 export const projectGeneralInfoSchema = z.object({
 	responsibleCpf: z.string().min(1, "CPF é obrigatório"),
 	responsibleName: z.string().min(1, "Nome é obrigatório"),
@@ -16,7 +18,7 @@ export const projectGeneralInfoSchema = z.object({
 	baseValue: z.number().min(1, "Valor base é obrigatório"),
 });
 
-export type CreateProjectRequest = z.infer<typeof createProjectSchema>;
+export type ProjectGeneralInfoRequest = z.infer<typeof projectGeneralInfoSchema>;
 
 export const requestedItemsSchema = z.object({
 	quantity: z.number(),
