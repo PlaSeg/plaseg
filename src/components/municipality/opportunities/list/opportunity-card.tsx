@@ -1,10 +1,10 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router";
-import { Opportunity } from "@/@types/common/opportunity";
 import { formatDate } from "@/utils/format-date";
 import { slugfy } from "@/utils/slugfy";
 import { formatCurrency } from "@/utils/format-currency";
+import { Opportunity } from "@/@schemas/opportunity";
 
 interface OpportunityProps {
 	opportunity: Opportunity;

@@ -1,6 +1,6 @@
-import { Opportunity } from "@/@types/common/opportunity";
 import { TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { flexRender, Table } from "@tanstack/react-table";
+import { Opportunity } from "@/@schemas/opportunity";
 
 interface OpportunitiesTableHeaderProps {
 	table: Table<Opportunity>;

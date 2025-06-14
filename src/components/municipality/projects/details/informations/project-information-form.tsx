@@ -1,12 +1,22 @@
-import { FormDocumentInput } from "@/components/form/form-document";
 import { FormInput } from "@/components/form/form-input";
 import { FormPhoneInput } from "@/components/form/form-phone-input";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
-import { useEditProject } from "@/hooks/municipalities/projects/use-edit-project";
+import { Project } from "@/@schemas/project";
+import { useUpdateProjectGeneralInfo } from "@/hooks/municipalities/projects/use-update-project-general-info";
+import { FormCpfInput } from "@/components/form/form-cpf-input";
+import { FormMoneyInput } from "@/components/form/form-money-input";
+import { LoaderCircle } from "lucide-react";
 
-export function ProjectInformationForm() {
-	const { form } = useEditProject();
+interface ProjectInformationFormProps {
+	project: Project;
+}
+
+export function ProjectInformationForm({
+	project,
+}: ProjectInformationFormProps) {
+	const { form, isLoadingUpdateProjectGeneralInfo } =
+		useUpdateProjectGeneralInfo({ project });
 
 	return (
 		<Form {...form}>
@@ -16,14 +26,12 @@ export function ProjectInformationForm() {
 			bg-white space-y-6"
 			>
 				<div className="space-y-4">
-					<span className="font-semibold">Informações principais</span>
-
 					<div className="grid grid-cols-2 gap-4">
-						<FormInput
+						<FormCpfInput
 							form={form}
-							entity="name"
-							label="Nome"
-							placeholder="Digite o nome do projeto"
+							entity="responsibleCpf"
+							label="CPF do responsável"
+							placeholder="Digite o CPF do responsável"
 						/>
 
 						<FormInput
@@ -31,13 +39,6 @@ export function ProjectInformationForm() {
 							entity="responsibleName"
 							label="Nome do responsável"
 							placeholder="Digite o nome do responsável"
-						/>
-
-						<FormDocumentInput
-							form={form}
-							entity="responsibleDocument"
-							label="Documento do responsável"
-							placeholder="Digite o documento do responsável"
 						/>
 
 						<FormInput
@@ -55,77 +56,11 @@ export function ProjectInformationForm() {
 							placeholder="Digite o telefone do responsável"
 						/>
 
-						<FormPhoneInput
+						<FormMoneyInput
 							form={form}
-							entity="responsibleTelephone"
-							label="Telefone fixo do responsável"
-							placeholder="Digite o telefone fixo do responsável"
-						/>
-
-						<FormInput
-							form={form}
-							type="number"
-							entity="totalValue"
-							label="Valor total"
-							placeholder="Digite o valor total do projeto"
-						/>
-
-						<FormInput
-							form={form}
-							type="number"
-							entity="requestedValue"
-							label="Valor solicitado"
-							placeholder="Digite o valor solicitado do projeto"
-						/>
-					</div>
-				</div>
-
-				<div className="space-y-4">
-					<span className="font-semibold">Informações sobre contraparte</span>
-
-					<div className="grid grid-cols-2 gap-4">
-						<FormInput
-							form={form}
-							entity="counterpartCapitalInitials"
-							label="Rúbrica do capital da contraparte"
-							placeholder="Digite a rúbrica do capital da contraparte"
-						/>
-
-						<FormInput
-							form={form}
-							type="number"
-							entity="counterpartCapitalAmount"
-							label="Valor do capital da contraparte"
-							placeholder="Digite o valor do capital da contraparte"
-						/>
-
-						<FormInput
-							form={form}
-							entity="counterpartCostInitials"
-							label="Rúbrica do custo da contraparte"
-							placeholder="Digite a rúbrica do custo da contraparte"
-						/>
-
-						<FormInput
-							form={form}
-							type="number"
-							entity="counterpartCostAmount"
-							label="Valor do custo da contraparte"
-							placeholder="Digite o valor do custo da contraparte"
-						/>
-
-						<FormInput
-							form={form}
-							entity="counterpartDescription"
-							label="Descrição da contraparte"
-							placeholder="Digite a descrição da contraparte"
-						/>
-
-						<FormDocumentInput
-							form={form}
-							entity="counterpartAttachedFile"
-							label="Arquivo da contraparte"
-							placeholder="Selecione o arquivo da contraparte"
+							entity="baseValue"
+							label="Valor base"
+							placeholder="Digite o valor base do projeto"
 						/>
 					</div>
 				</div>
@@ -134,8 +69,13 @@ export function ProjectInformationForm() {
 					<Button
 						className="w-full max-w-[170px] bg-black hover:bg-black/90"
 						type="submit"
+						disabled={isLoadingUpdateProjectGeneralInfo}
 					>
-						Salvar
+						{isLoadingUpdateProjectGeneralInfo && (
+							<LoaderCircle className="animate-spin" />
+						)}
+
+						{!isLoadingUpdateProjectGeneralInfo && "Salvar"}
 					</Button>
 				</div>
 			</form>

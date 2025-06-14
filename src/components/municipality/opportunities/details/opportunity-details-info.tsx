@@ -1,4 +1,4 @@
-import { Opportunity } from "@/@types/common/opportunity";
+
 import { formatCurrency } from "@/utils/format-currency";
 import { formatDate } from "@/utils/format-date";
 import {
@@ -9,6 +9,8 @@ import {
 	Percent,
 	Tag,
 } from "lucide-react";
+import { OpportunityDetailsInfoCard } from "./opportunity-details-info-card";
+import { Opportunity } from "@/@schemas/opportunity";
 
 interface OpportunityDetailsInfoProps {
 	opportunity: Opportunity;
@@ -23,112 +25,54 @@ export function OpportunityDetailsInfo({
 				<span className="text-lg font-medium">Detalhes</span>
 
 				<div className="space-y-6">
-					<div className="flex gap-4 text-sm">
-						<div className="bg-muted/50 border rounded-full w-10 h-10 flex items-center justify-center">
-							<Tag size={20} />
-						</div>
+					<OpportunityDetailsInfoCard
+						icon={Tag}
+						label="Categoria"
+						value={opportunity.type}
+					/>
 
-						<div className="flex flex-col">
-							<span className="text-muted-foreground">Categoria</span>
-							<span className="font-medium">{opportunity.type}</span>
-						</div>
-					</div>
+					<OpportunityDetailsInfoCard
+						icon={Calendar}
+						label="Data de Início"
+						value={formatDate(opportunity.initialDeadline)}
+					/>
 
-					<div className="flex gap-4 text-sm">
-						<div className="bg-muted/50 border rounded-full w-10 h-10 flex items-center justify-center">
-							<Calendar size={20} />
-						</div>
+					<OpportunityDetailsInfoCard
+						icon={CalendarCheck}
+						label="Data de Término"
+						value={formatDate(opportunity.finalDeadline)}
+					/>
 
-						<div className="flex flex-col">
-							<span className="text-muted-foreground">Data de Início</span>
-							<span className="font-medium">
-								{formatDate(opportunity.initialDeadline)}
-							</span>
-						</div>
-					</div>
+					<OpportunityDetailsInfoCard
+						icon={Banknote}
+						label="Valor Disponível"
+						value={formatCurrency(opportunity.availableValue)}
+					/>
 
-					<div className="flex gap-4 text-sm">
-						<div className="bg-muted/50 border rounded-full w-10 h-10 flex items-center justify-center">
-							<CalendarCheck size={20} />
-						</div>
+					<OpportunityDetailsInfoCard
+						icon={Banknote}
+						label="Valor Máximo"
+						value={formatCurrency(opportunity.maxValue)}
+					/>
 
-						<div className="flex flex-col">
-							<span className="text-muted-foreground">Data de Término</span>
-							<span className="font-medium">
-								{formatDate(opportunity.finalDeadline)}
-							</span>
-						</div>
-					</div>
+					<OpportunityDetailsInfoCard
+						icon={Banknote}
+						label="Valor Mínimo"
+						value={formatCurrency(opportunity.minValue)}
+					/>
 
-					<div className="flex gap-4 text-sm">
-						<div className="bg-muted/50 border rounded-full w-10 h-10 flex items-center justify-center">
-							<Banknote size={20} />
-						</div>
-
-						<div className="flex flex-col">
-							<span className="text-muted-foreground">Valor Disponível</span>
-							<span className="font-medium">
-								{formatCurrency(opportunity.availableValue)}
-							</span>
-						</div>
-					</div>
-
-					<div className="flex gap-4 text-sm">
-						<div className="bg-muted/50 border rounded-full w-10 h-10 flex items-center justify-center">
-							<Banknote size={20} />
-						</div>
-
-						<div className="flex flex-col">
-							<span className="text-muted-foreground">Valor Máximo</span>
-							<span className="font-medium">
-								{formatCurrency(opportunity.maxValue)}
-							</span>
-						</div>
-					</div>
-
-					<div className="flex gap-4 text-sm">
-						<div className="bg-muted/50 border rounded-full w-10 h-10 flex items-center justify-center">
-							<Banknote size={20} />
-						</div>
-
-						<div className="flex flex-col">
-							<span className="text-muted-foreground">Valor Mínimo</span>
-							<span className="font-medium">
-								{formatCurrency(opportunity.minValue)}
-							</span>
-						</div>
-					</div>
-
-					<div className="flex gap-4 text-sm">
-						<div className="bg-muted/50 border rounded-full w-10 h-10 flex items-center justify-center">
-							<HandCoins size={20} />
-						</div>
-
-						<div className="flex flex-col">
-							<span className="text-muted-foreground">
-								Requer Contrapartida
-							</span>
-							<span className="font-medium">
-								{opportunity.requiresCounterpart ? "Sim" : "Não"}
-							</span>
-						</div>
-					</div>
+					<OpportunityDetailsInfoCard
+						icon={HandCoins}
+						label="Requer Contrapartida"
+						value={opportunity.requiresCounterpart ? "Sim" : "Não"}
+					/>
 
 					{opportunity.requiresCounterpart && (
-						<div className="flex gap-4 text-sm">
-							<div className="bg-muted/50 border rounded-full w-10 h-10 flex items-center justify-center">
-								<Percent size={20} />
-							</div>
-
-							<div className="flex flex-col">
-								<span className="text-muted-foreground">
-									Percentual de Contrapartida
-								</span>
-								<span className="font-medium">
-									{opportunity.counterpartPercentage}%
-								</span>
-							</div>
-						</div>
+						<OpportunityDetailsInfoCard
+							icon={Percent}
+							label="Percentual de Contrapartida"
+							value={`${opportunity.counterpartPercentage}%`}
+						/>
 					)}
 				</div>
 			</div>

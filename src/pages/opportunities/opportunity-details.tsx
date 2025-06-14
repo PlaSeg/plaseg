@@ -1,9 +1,9 @@
 import { useParams } from "react-router";
 import { OpportunityDetailsInfo } from "@/components/municipality/opportunities/details/opportunity-details-info";
 import { useGetOpportunities } from "@/hooks/admin/opportunities/use-get-opportunities";
-import { OpportunityDetailsOverview } from "@/components/municipality/opportunities/details/opportunity-details-overview";
+import { OpportunityDetails } from "@/components/municipality/opportunities/details/opportunity-details";
 
-export default function OpportunityDetails() {
+export default function OpportunityDetailsPage() {
 	const { slug } = useParams<{ slug: string }>();
 
 	const { opportunities } = useGetOpportunities();
@@ -24,7 +24,7 @@ export default function OpportunityDetails() {
 		<div className="w-full flex">
 			<OpportunityDetailsInfo opportunity={opportunity} />
 
-			<OpportunityDetailsOverview opportunity={opportunity} />
+			<OpportunityDetails opportunity={opportunity} />
 		</div>
 	);
 }

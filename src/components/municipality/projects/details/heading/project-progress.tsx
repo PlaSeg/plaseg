@@ -1,5 +1,9 @@
 import CircleProgress from "@/components/ui/circle-progress";
 
-export function ProjectProgress() {
-	return <CircleProgress percentage={60} size={80} />;
+interface ProjectProgressProps {
+	percentage: number;
+}
+
+export function ProjectProgress({ percentage }: ProjectProgressProps) {
+	return <CircleProgress percentage={percentage} size={80} />;
 }

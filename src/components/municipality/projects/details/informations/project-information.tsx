@@ -6,8 +6,13 @@ import {
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import { ProjectInformationForm } from "./project-information-form";
+import { Project } from "@/@schemas/project";
 
-export function ProjectInformation() {
+interface ProjectInformationProps {
+	project: Project;
+}
+
+export function ProjectInformation({ project }: ProjectInformationProps) {
 	const [isOpen, setIsOpen] = useState(true);
 
 	return (
@@ -22,7 +27,7 @@ export function ProjectInformation() {
 				</CollapsibleTrigger>
 
 				<CollapsibleContent className="space-y-4">
-					<ProjectInformationForm />
+					<ProjectInformationForm project={project} />
 				</CollapsibleContent>
 			</Collapsible>
 		</div>
