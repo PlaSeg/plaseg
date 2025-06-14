@@ -9,7 +9,7 @@ import {
 	getSortedRowModel,
 	useReactTable,
 } from "@tanstack/react-table";
-import { CirclePlus, X } from "lucide-react";
+import { Plus, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { projectsTableColumns } from "./projects-table-columns";
 import { SearchInput } from "@/components/ui/search-input";
@@ -18,6 +18,7 @@ import { ProjectsTable } from "./projects-table";
 import { TablePagination } from "@/components/table/table-footer";
 import { TableHideColumnsDropDown } from "@/components/table/table-hide-columns-dropdown";
 import { useGetProjects } from "@/hooks/municipalities/projects/use-get-projects";
+import { Link } from "react-router";
 
 export function ProjectsTableContainer() {
 	const [sorting, setSorting] = React.useState<SortingState>([]);
@@ -81,9 +82,15 @@ export function ProjectsTableContainer() {
 					translateFunction={translateProjectTableKeys}
 				/>
 
-				<Button>
-					<CirclePlus />
-					Criar novo projeto
+				<Button
+					className="bg-dark hover:bg-dark/90 text-primary-foreground
+				transition-colors"
+					asChild
+				>
+					<Link to="/oportunidades">
+						<Plus />
+						Criar novo projeto
+					</Link>
 				</Button>
 			</div>
 

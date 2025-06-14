@@ -5,6 +5,8 @@ import { useParams } from "react-router";
 import { Tag } from "@/components/ui/tag";
 import { useGetProjectById } from "@/hooks/municipalities/projects/use-get-project-by-id";
 import { ProjectsDetailsSkeleton } from "./project-details-skeleton";
+import { ProjectsSections } from "@/components/municipality/projects/details/sections/project-sections";
+import { ProjectItems } from "@/components/municipality/projects/details/items/project-items";
 
 export default function ProjectDetails() {
 	const { id } = useParams<{ id: string }>();
@@ -35,8 +37,8 @@ export default function ProjectDetails() {
 				<div className="grid grid-cols-3 gap-6">
 					<div className="flex flex-col gap-6 col-span-2">
 						<ProjectInformation project={project} />
-						{/* <ProjectsSections /> */}
-						{/* <ProjectItems /> */}
+						<ProjectsSections project={project} />
+						<ProjectItems project={project} />
 						{/* <ProjectAttachments /> */}
 					</div>
 

@@ -58,20 +58,6 @@ export function ProjectInformationForm({
 
 						<FormMoneyInput
 							form={form}
-							entity="totalValue"
-							label="Valor total"
-							placeholder="Digite o valor total do projeto"
-						/>
-
-						<FormMoneyInput
-							form={form}
-							entity="requestedValue"
-							label="Valor solicitado"
-							placeholder="Digite o valor solicitado do projeto"
-						/>
-
-						<FormMoneyInput
-							form={form}
 							entity="baseValue"
 							label="Valor base"
 							placeholder="Digite o valor base do projeto"

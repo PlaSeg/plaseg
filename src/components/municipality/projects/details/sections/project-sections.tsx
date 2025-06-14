@@ -6,42 +6,14 @@ import {
 	CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { ProjectSectionCard } from "./project-section-card";
+import { Project } from "@/@schemas/project";
 
-const sections = [
-	{
-		title: "Declaração de capacidade técnica e gerencial",
-		done: 0,
-		total: 10,
-	},
-	{
-		title: "Justificativa completa do projeto",
-		done: 2,
-		total: 6,
-	},
-	{
-		title: "Termo de referência",
-		done: 8,
-		total: 8,
-	},
-	{
-		title: "Declaração de contrapartida",
-		done: 0,
-		total: 10,
-	},
-	{
-		title: "Cronograma de execução",
-		done: 0,
-		total: 10,
-	},
-	{
-		title: "Sustentabilidade e localização de bens do projeto",
-		done: 0,
-		total: 10,
-	},
-];
+interface ProjectsSectionsProps {
+	project: Project;
+}
 
-export function ProjectsSections() {
-	const [isOpen, setIsOpen] = useState(false);
+export function ProjectsSections({ project }: ProjectsSectionsProps) {
+	const [isOpen, setIsOpen] = useState(true);
 
 	return (
 		<div className="w-full">
@@ -55,12 +27,11 @@ export function ProjectsSections() {
 				</CollapsibleTrigger>
 
 				<CollapsibleContent className="space-y-4">
-					{sections.map((section) => (
+					{project.documents.map((document) => (
 						<ProjectSectionCard
-							key={section.title}
-							title={section.title}
-							done={section.done}
-							total={section.total}
+							key={document.name}
+							projectId={project.id}
+							title={document.name}
 						/>
 					))}
 				</CollapsibleContent>

@@ -12,17 +12,33 @@ export function ProjectHeading({ project }: ProjectHeadingProps) {
 	return (
 		<div className="w-full py-6">
 			<div className="flex justify-between">
-				<div className="flex items-center gap-8">
+				<div className="flex items-center gap-10">
 					<ProjectProgress percentage={0} />
 
 					<ProjectValue
-						title="Valor Solicitado"
-						value={project.requestedValue}
+						title="Valor Base"
+						tooltipText="Uma estimativa do valor do projeto"
+						value={project.baseValue}
 					/>
 
-					<ProjectValue title="Valor Base" value={project.baseValue} />
+					<ProjectValue
+						title="Valor Solicitado"
+						tooltipText="Soma dos valores totais dos itens solicitados
+						(não pode ultrapassar o valor base do projeto)"
+						value={0}
+					/>
 
-					<ProjectValue title="Valor Total" value={project.totalValue} />
+					<ProjectValue
+						title="Valor da Contrapartida"
+						tooltipText="% da contrapartida calculado em cima do valor solicitado"
+						value={0}
+					/>
+
+					<ProjectValue
+						title="Valor Total"
+						tooltipText="Valor total do projeto, somando o valor soloicitado e o valor de contrapartida"
+						value={0}
+					/>
 
 					{/* <div className="flex flex-col gap-2">
 						<span className="text-sm text-muted-foreground">

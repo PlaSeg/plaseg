@@ -23,8 +23,6 @@ export function useUpdateProjectGeneralInfo({
 			responsibleName: project.responsibleName,
 			responsibleEmail: project.responsibleEmail,
 			responsiblePhone: project.responsiblePhone,
-			totalValue: project.totalValue,
-			requestedValue: project.requestedValue,
 			baseValue: project.baseValue,
 		},
 		onSubmit: (data) => {

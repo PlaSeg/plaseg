@@ -35,7 +35,10 @@ export function CreateProjectDialog({
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
-				<Button className="bg-dark hover:bg-dark/90 text-primary-foreground transition-colors	w-[100px]">
+				<Button
+					className="bg-dark hover:bg-dark/90 text-primary-foreground
+				transition-colors	w-[100px]"
+				>
 					Participar
 				</Button>
 			</DialogTrigger>

@@ -1,15 +1,21 @@
 import { formatCurrency } from "@/utils/format-currency";
 import { DollarSign } from "lucide-react";
+import { ProjectValueInfoTooltip } from "./project-value-info-tooltip";
 
 interface ProjectValueProps {
 	title: string;
 	value: number;
+	tooltipText: string;
 }
 
-export function ProjectValue({ title, value }: ProjectValueProps) {
+export function ProjectValue({ title, value, tooltipText }: ProjectValueProps) {
 	return (
 		<div className="flex flex-col gap-2">
-			<span className="text-sm text-muted-foreground">{title}</span>
+			<div className="flex items-center gap-2">
+				<span className="text-sm text-muted-foreground">{title}</span>
+
+				<ProjectValueInfoTooltip text={tooltipText} />
+			</div>
 
 			<div className="flex items-center gap-2">
 				<div
@@ -20,9 +26,9 @@ export function ProjectValue({ title, value }: ProjectValueProps) {
 				</div>
 
 				<span className="font-medium">
-					{value && formatCurrency(value)}
+					{value > 0 && formatCurrency(value)}
 
-					{!value && "Indefinito"}
+					{value === 0 && "Indefinido"}
 				</span>
 			</div>
 		</div>

@@ -13,20 +13,28 @@ export const projectGeneralInfoSchema = z.object({
 	responsibleName: z.string().min(1, "Nome é obrigatório"),
 	responsibleEmail: z.string().email("").min(1, "Email é obrigatório"),
 	responsiblePhone: z.string().min(1, "Telefone é obrigatório"),
-	totalValue: z.number().min(1, "Valor total é obrigatório"),
-	requestedValue: z.number().min(1, "Valor solicitado é obrigatório"),
 	baseValue: z.number().min(1, "Valor base é obrigatório"),
 });
 
-export type ProjectGeneralInfoRequest = z.infer<typeof projectGeneralInfoSchema>;
+export type ProjectGeneralInfoRequest = z.infer<
+	typeof projectGeneralInfoSchema
+>;
+
+export const addRequestedItemSchema = z.object({
+	quantity: z.number().min(1, "Quantidade é obrigatória"),
+	baseProductId: z.string().min(1, "Produto é obrigatório"),
+	allocationDepartmentId: z.string().min(1, "Departamento é obrigatório"),
+	maintenanceContractId: z.string().min(1, "Contrato é obrigatório"),
+});
+
+export type AddRequestedItemRequest = z.infer<typeof addRequestedItemSchema>;
 
 export const requestedItemsSchema = z.object({
+	id: z.string().uuid(),
+	name: z.string(),
 	quantity: z.number(),
-	baseProductId: z.string(),
-	allocationDepartmentId: z.string(),
-	maintenanceContractId: z.string(),
-	createdAt: z.coerce.date(),
-	updatedAt: z.coerce.date().nullable().optional(),
+	unitValue: z.number(),
+	totalValue: z.number(),
 });
 
 export const fieldsSchema = z.object({
