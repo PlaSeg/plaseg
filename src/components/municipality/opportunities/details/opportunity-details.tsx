@@ -49,7 +49,7 @@ export function OpportunityDetails({ opportunity }: OpportunityDetailsProps) {
 					<span className="text-lg font-medium">Documentos do Projeto</span>
 
 					{opportunity.documents.map((document, index) => (
-						<div className="flex flex-col gap-2">
+						<div key={document.id} className="flex flex-col gap-2">
 							<span className="text-lg font-medium flex items-center gap-2">
 								<div
 									className="w-6 h-6 rounded-full bg-muted text-foreground flex items-center
