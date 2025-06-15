@@ -21,7 +21,7 @@ export function OpportunityDetailsInfo({
 }: OpportunityDetailsInfoProps) {
 	return (
 		<div className="py-6">
-			<div className="p-6 w-[300px] space-y-4 rounded-2xl border border-muted bg-white">
+			<div className="p-6 space-y-4 rounded-2xl border border-muted bg-white">
 				<span className="text-lg font-medium">Detalhes</span>
 
 				<div className="space-y-6">

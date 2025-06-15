@@ -20,8 +20,8 @@ export function Header({ children }: HeaderProps) {
 
 				{isLoadingGetProfile && <MenuSkeleton />}
 
-				{!isLoadingGetProfile && user && (
-					<Menu name={user.name} email={user.email} />
+				{!isLoadingGetProfile && (
+					<Menu name={user?.name ?? ""} email={user?.email ?? ""} />
 				)}
 			</div>
 

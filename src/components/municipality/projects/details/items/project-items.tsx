@@ -96,16 +96,22 @@ export function ProjectItems({ project }: ProjectItemsProps) {
 
 										<TableCell>
 											<div className="flex items-center gap-2">
-												{item.name}
+												{item.baseProduct.name}
 												<Info className="h-4 w-4 text-muted-foreground" />
 											</div>
 										</TableCell>
 
 										<TableCell>{item.quantity}</TableCell>
 
-										<TableCell>{formatCurrency(item.unitValue)}</TableCell>
+										<TableCell>
+											{formatCurrency(item.baseProduct.unitValue)}
+										</TableCell>
 
-										<TableCell>{formatCurrency(item.totalValue)}</TableCell>
+										<TableCell>
+											{formatCurrency(
+												item.baseProduct.unitValue * item.quantity
+											)}
+										</TableCell>
 
 										<TableCell>
 											<TableActionButton type="delete" />
