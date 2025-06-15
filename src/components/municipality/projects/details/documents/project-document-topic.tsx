@@ -37,7 +37,7 @@ export function ProjectDocumentTopic({ field }: ProjectDocumentTopicProps) {
 							{!isEditing && (
 								<Button variant="outline" onClick={() => setIsDone(true)}>
 									<Check />
-									Aceitar alterações
+									Aceitar sugestão
 								</Button>
 							)}
 
@@ -45,7 +45,7 @@ export function ProjectDocumentTopic({ field }: ProjectDocumentTopicProps) {
 								<ProjectFieldCancelationDialog>
 									<Button variant="outline">
 										<Check />
-										Aceitar alterações
+										Aceitar sugestão
 									</Button>
 								</ProjectFieldCancelationDialog>
 							)}

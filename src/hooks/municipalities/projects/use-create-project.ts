@@ -7,7 +7,11 @@ import { queryClient } from "@/services/react-query";
 import { toast } from "sonner";
 import { useNavigate } from "react-router";
 
-export function useCreateProject() {
+interface UseCreateProjectProps {
+	opportunityId: string;
+}
+
+export function useCreateProject({ opportunityId }: UseCreateProjectProps) {
 	const navigate = useNavigate();
 
 	const [isCreateProjectSheetOpen, setIsCreateProjectSheetOpen] =
@@ -17,7 +21,7 @@ export function useCreateProject() {
 		schema: createProjectSchema,
 		defaultValues: {
 			title: "",
-			opportunityId: "",
+			opportunityId: opportunityId,
 			projectTypeId: "",
 		},
 		onSubmit: (data) => {

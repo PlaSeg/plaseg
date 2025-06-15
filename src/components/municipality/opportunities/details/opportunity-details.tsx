@@ -52,13 +52,19 @@ export function OpportunityDetails({ opportunity }: OpportunityDetailsProps) {
 						<div key={document.id} className="flex flex-col gap-2">
 							<span className="text-lg font-medium flex items-center gap-2">
 								<div
+									key={`number-${document.id}`}
 									className="w-6 h-6 rounded-full bg-muted text-foreground flex items-center
 								justify-center text-sm"
 								>
 									{index + 1}
 								</div>
 
-								<span className="text-base font-normal">{document.name}</span>
+								<span
+									key={`name-${document.id}`}
+									className="text-base font-normal"
+								>
+									{document.name}
+								</span>
 							</span>
 						</div>
 					))}

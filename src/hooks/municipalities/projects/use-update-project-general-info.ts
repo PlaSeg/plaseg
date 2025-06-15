@@ -19,11 +19,11 @@ export function useUpdateProjectGeneralInfo({
 	const form = useFormMutation({
 		schema: projectGeneralInfoSchema,
 		defaultValues: {
-			responsibleCpf: project.responsibleCpf,
-			responsibleName: project.responsibleName,
-			responsibleEmail: project.responsibleEmail,
-			responsiblePhone: project.responsiblePhone,
-			baseValue: project.baseValue,
+			responsibleCpf: project.responsibleCpf ?? undefined,
+			responsibleName: project.responsibleName ?? undefined,
+			responsibleEmail: project.responsibleEmail ?? undefined,
+			responsiblePhone: project.responsiblePhone ?? undefined,
+			baseValue: project.baseValue ?? undefined,
 		},
 		onSubmit: (data) => {
 			updateProjectGeneralInfoFn({ projectId: project.id, data });

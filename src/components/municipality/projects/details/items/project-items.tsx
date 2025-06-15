@@ -1,4 +1,4 @@
-import { ArrowDownUp, ChevronDown, ChevronUp, Info } from "lucide-react";
+import { ArrowDownUp, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import {
 	Collapsible,
@@ -90,14 +90,13 @@ export function ProjectItems({ project }: ProjectItemsProps) {
 							</TableHeader>
 
 							<TableBody>
-								{project.requestedItems.map((item) => (
+								{project.requestedItems.map((item, index) => (
 									<TableRow key={item.id}>
-										<TableCell className="font-medium">{item.id}</TableCell>
+										<TableCell className="font-medium">{index + 1}</TableCell>
 
 										<TableCell>
 											<div className="flex items-center gap-2">
 												{item.baseProduct.name}
-												<Info className="h-4 w-4 text-muted-foreground" />
 											</div>
 										</TableCell>
 
@@ -113,8 +112,9 @@ export function ProjectItems({ project }: ProjectItemsProps) {
 											)}
 										</TableCell>
 
-										<TableCell>
-											<TableActionButton type="delete" />
+										<TableCell className="flex items-center gap-4">
+											<TableActionButton type="delete" disabled />
+											<TableActionButton type="edit" disabled />
 										</TableCell>
 									</TableRow>
 								))}

@@ -18,7 +18,7 @@ export default function ProjectDetails() {
 
 	if (project)
 		return (
-			<main className="flex flex-col gap-6 py-6 h-full box-content">
+			<main className="flex flex-col gap-6 py-6 h-full box-content pb-24">
 				<div className="space-y-2">
 					<h1 className="text-2xl font-semibold">{project.title}</h1>
 

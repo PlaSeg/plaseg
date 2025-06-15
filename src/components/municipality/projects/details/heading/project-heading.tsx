@@ -18,7 +18,7 @@ export function ProjectHeading({ project }: ProjectHeadingProps) {
 					<ProjectValue
 						title="Valor Base"
 						tooltipText="Uma estimativa do valor do projeto"
-						value={project.baseValue}
+						value={project.baseValue ?? 0}
 					/>
 
 					<ProjectValue

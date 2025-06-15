@@ -36,6 +36,7 @@ export function AddItemForm({
 					<div className="space-y-4">
 						<FormInput
 							form={form}
+							type="number"
 							entity="quantity"
 							label="Quantidade"
 							placeholder="Digite a quantidade do item"
