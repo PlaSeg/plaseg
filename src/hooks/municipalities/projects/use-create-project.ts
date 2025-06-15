@@ -5,8 +5,11 @@ import { createProjectSchema } from "@/@schemas/project";
 import { useState } from "react";
 import { queryClient } from "@/services/react-query";
 import { toast } from "sonner";
+import { useNavigate } from "react-router";
 
 export function useCreateProject() {
+	const navigate = useNavigate();
+
 	const [isCreateProjectSheetOpen, setIsCreateProjectSheetOpen] =
 		useState(false);
 
@@ -22,7 +25,7 @@ export function useCreateProject() {
 		},
 	});
 
-	const { mutateAsync: createProjectFn, isPending: isCreatingProject } =
+	const { mutateAsync: createProjectFn, isPending: isLoadingCreateProject } =
 		useMutation({
 			mutationFn: createProject,
 			onSuccess: (response) => {
@@ -31,6 +34,7 @@ export function useCreateProject() {
 					form.reset();
 					setIsCreateProjectSheetOpen(false);
 					toast.success("Projeto criado com sucesso!");
+					navigate(`/projetos/${response.data.projectId}`);
 					return;
 				}
 
@@ -42,7 +46,7 @@ export function useCreateProject() {
 
 	return {
 		form,
-		isCreatingProject,
+		isLoadingCreateProject,
 		isCreateProjectSheetOpen,
 		setIsCreateProjectSheetOpen,
 	};

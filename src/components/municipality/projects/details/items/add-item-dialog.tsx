@@ -29,8 +29,8 @@ export function AddItemDialog({ projectId }: AddItemDialogProps) {
 			onOpenChange={setIsAddRequestedItemSheetOpen}
 		>
 			<DialogTrigger asChild>
-				<Button variant="outline">
-					<Plus className="h-4 w-4" />
+				<Button className="bg-slate-950 hover:bg-slate-950/90 outline-none">
+					<Plus className="h-4 w-4 " />
 					Adicionar Item
 				</Button>
 			</DialogTrigger>

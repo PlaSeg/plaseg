@@ -19,10 +19,10 @@ export function ProjectValue({ title, value, tooltipText }: ProjectValueProps) {
 
 			<div className="flex items-center gap-2">
 				<div
-					className="w-10 h-10 border-2 border-slate-300 rounded-full flex
+					className="w-8 h-8 border-2 border-slate-300 rounded-full flex
 							items-center justify-center"
 				>
-					<DollarSign size={18} />
+					<DollarSign size={18} className="text-muted-foreground" />
 				</div>
 
 				<span className="font-medium">

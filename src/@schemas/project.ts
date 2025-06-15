@@ -31,10 +31,12 @@ export type AddRequestedItemRequest = z.infer<typeof addRequestedItemSchema>;
 
 export const requestedItemsSchema = z.object({
 	id: z.string().uuid(),
-	name: z.string(),
 	quantity: z.number(),
-	unitValue: z.number(),
-	totalValue: z.number(),
+	baseProduct: z.object({
+		id: z.string().uuid(),
+		name: z.string(),
+		unitValue: z.number(),
+	}),
 });
 
 export const fieldsSchema = z.object({
@@ -45,8 +47,31 @@ export const fieldsSchema = z.object({
 });
 
 export const documentsSchema = z.object({
+	id: z.string().uuid(),
 	name: z.string(),
 	fields: z.array(fieldsSchema),
+});
+
+export type Document = z.infer<typeof documentsSchema>;
+
+export const municipalitySchema = z.object({
+	id: z.string().uuid(),
+	name: z.string(),
+})
+
+export const opportunitySchema = z.object({
+	id: z.string().uuid(),
+	title: z.string(),
+	counterpartPercentage: z.number(),
+	requiresCounterpart: z.boolean(),
+	minValue: z.number(),
+	maxValue: z.number(),
+	availableValue: z.number(),
+});
+
+export const projectTypeSchema = z.object({
+	id: z.string().uuid(),
+	name: z.string(),
 });
 
 export const projectSchema = z.object({
@@ -67,6 +92,10 @@ export const projectSchema = z.object({
 	baseValue: z.number(),
 	createdAt: z.coerce.date(),
 	updatedAt: z.coerce.date().nullable().optional(),
+
+	municipality: municipalitySchema,
+	opportunity: opportunitySchema,
+	projectType: projectTypeSchema,
 
 	requestedItems: z.array(requestedItemsSchema),
 	documents: z.array(documentsSchema),

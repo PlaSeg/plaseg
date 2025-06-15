@@ -1,20 +1,20 @@
-import { TableSelect } from "@/components/table/table-select";
 import { Button } from "@/components/ui/button";
 import {
 	Dialog,
 	DialogClose,
 	DialogContent,
 	DialogDescription,
-	DialogFooter,
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Link } from "react-router";
-import { LoaderCircle } from "lucide-react";
 import { useGetProjectTypesByOpportunity } from "@/hooks/admin/project-types/use-get-project-types-by-opportunity";
+import { useCreateProject } from "@/hooks/municipalities/projects/use-create-project";
+import { Form } from "@/components/ui/form";
+import { FormInput } from "@/components/form/form-input";
+import { FormInputSkeleton } from "../../projects/details/items/form-input-skeleton";
+import { FormSelect } from "@/components/form/form-select";
+import { LoaderCircle } from "lucide-react";
 
 interface CreateProjectDialogProps {
 	opportunityId: string;
@@ -23,7 +23,7 @@ interface CreateProjectDialogProps {
 export function CreateProjectDialog({
 	opportunityId,
 }: CreateProjectDialogProps) {
-	const { projectTypes, isLoadingGetProjectTypesByOpportunity, error } =
+	const { projectTypes, isLoadingGetProjectTypesByOpportunity } =
 		useGetProjectTypesByOpportunity({ opportunityId });
 
 	const projectTypeOptions =
@@ -31,6 +31,8 @@ export function CreateProjectDialog({
 			label: projectType.name,
 			value: projectType.id,
 		})) ?? [];
+
+	const { form, isLoadingCreateProject } = useCreateProject();
 
 	return (
 		<Dialog>
@@ -52,54 +54,52 @@ export function CreateProjectDialog({
 					</DialogDescription>
 				</DialogHeader>
 
-				<div className="grid gap-4 py-4">
-					<div className="space-y-2">
-						<Label htmlFor="name" className="text-right">
-							Nome do Projeto
-						</Label>
+				<Form {...form}>
+					<form onSubmit={form.handleSubmitForm} className="space-y-4">
+						<FormInput
+							form={form}
+							entity="title"
+							label="Nome do Projeto"
+							placeholder="Digite o nome do projeto"
+						/>
 
-						<Input id="name" placeholder="Digite o nome do projeto" />
-					</div>
+						{isLoadingGetProjectTypesByOpportunity && (
+							<FormInputSkeleton
+								label="Tipo de Projeto"
+								message="Carregando tipos de projeto..."
+							/>
+						)}
 
-					<div className="space-y-2">
-						<Label htmlFor="type" className="text-right">
-							Tipo de Projeto
-						</Label>
-
-						{isLoadingGetProjectTypesByOpportunity ? (
-							<div className="flex items-center justify-center py-4">
-								<LoaderCircle className="h-4 w-4 animate-spin mr-2" />
-								<span className="text-sm text-muted-foreground">
-									Carregando tipos de projeto...
-								</span>
-							</div>
-						) : error ? (
-							<div className="text-sm text-red-500 py-2">
-								Erro ao carregar tipos de projeto. Tente novamente.
-							</div>
-						) : (
-							<TableSelect
-								className="!w-full"
+						{!isLoadingGetProjectTypesByOpportunity && (
+							<FormSelect
+								form={form}
+								entity="projectTypeId"
+								label="Tipo de Projeto"
 								placeholder="Selecione o tipo de projeto"
 								options={projectTypeOptions}
 							/>
 						)}
-					</div>
-				</div>
 
-				<DialogFooter>
-					<Button variant="outline" asChild>
-						<DialogClose>Cancelar</DialogClose>
-					</Button>
+						<div className="flex items-center justify-end gap-4">
+							<Button variant="outline" asChild>
+								<DialogClose>Cancelar</DialogClose>
+							</Button>
 
-					<Button
-						className="bg-dark hover:bg-dark/90 text-primary-foreground transition-colors"
-						asChild
-						disabled={isLoadingGetProjectTypesByOpportunity || !!error}
-					>
-						<Link to="/projetos/projeto-x">Criar Projeto</Link>
-					</Button>
-				</DialogFooter>
+							<Button
+								type="submit"
+								className="bg-dark hover:bg-dark/90 text-primary-foreground
+								transition-colors"
+								disabled={isLoadingCreateProject}
+							>
+								{isLoadingCreateProject && (
+									<LoaderCircle className="animate-spin" />
+								)}
+
+								{!isLoadingCreateProject && "Criar Projeto"}
+							</Button>
+						</div>
+					</form>
+				</Form>
 			</DialogContent>
 		</Dialog>
 	);

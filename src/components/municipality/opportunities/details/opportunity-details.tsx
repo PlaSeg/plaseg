@@ -10,7 +10,7 @@ interface OpportunityDetailsProps {
 
 export function OpportunityDetails({ opportunity }: OpportunityDetailsProps) {
 	return (
-		<div className="p-6 w-full">
+		<div className="col-span-3 py-6">
 			<div className="p-6 flex flex-col gap-6 rounded-2xl border border-muted bg-white">
 				<div className="w-full flex items-start justify-between">
 					<div className="flex flex-col gap-1">

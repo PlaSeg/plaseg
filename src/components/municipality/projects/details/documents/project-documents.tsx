@@ -5,14 +5,14 @@ import {
 	CollapsibleContent,
 	CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import { ProjectSectionCard } from "./project-section-card";
+import { ProjectDocumentCard } from "./project-document-card";
 import { Project } from "@/@schemas/project";
 
-interface ProjectsSectionsProps {
+interface ProjectDocumentsProps {
 	project: Project;
 }
 
-export function ProjectsSections({ project }: ProjectsSectionsProps) {
+export function ProjectDocuments({ project }: ProjectDocumentsProps) {
 	const [isOpen, setIsOpen] = useState(true);
 
 	return (
@@ -23,15 +23,15 @@ export function ProjectsSections({ project }: ProjectsSectionsProps) {
 
 					{isOpen && <ChevronUp className="animate-in spin-in-90" />}
 
-					<h2 className="text-xl font-semibold">Seções</h2>
+					<h2 className="text-xl font-semibold">Documentos</h2>
 				</CollapsibleTrigger>
 
 				<CollapsibleContent className="space-y-4">
 					{project.documents.map((document) => (
-						<ProjectSectionCard
+						<ProjectDocumentCard
 							key={document.name}
 							projectId={project.id}
-							title={document.name}
+							document={document}
 						/>
 					))}
 				</CollapsibleContent>

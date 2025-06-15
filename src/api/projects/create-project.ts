@@ -3,7 +3,13 @@ import { HTTPErrorResponse, HTTPSuccessResponse } from "@/@types/http/http";
 import { api } from "@/services/axios";
 import { AxiosError } from "axios";
 
-type CreateProjectResponse = HTTPSuccessResponse<null> | HTTPErrorResponse;
+type CreateProjectResponseBody = {
+	projectId: string;
+};
+
+type CreateProjectResponse =
+	| HTTPSuccessResponse<CreateProjectResponseBody>
+	| HTTPErrorResponse;
 
 /**
  * Cria um novo projeto
@@ -14,10 +20,9 @@ export async function createProject(
 	request: CreateProjectRequest
 ): Promise<CreateProjectResponse> {
 	try {
-		const response = await api.post<HTTPSuccessResponse<null>>(
-			"/projects",
-			request
-		);
+		const response = await api.post<
+			HTTPSuccessResponse<CreateProjectResponseBody>
+		>("/projects", request);
 
 		return response.data;
 	} catch (error) {
