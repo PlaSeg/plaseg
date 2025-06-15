@@ -25,7 +25,7 @@ export function ProjectDocument({ document, projectId }: ProjectDocumentProps) {
 			<div className="grid grid-cols-3 gap-8">
 				<ProjectDocumentTopics document={document} />
 
-				<div className="col-span-2 flex flex-col gap-6">
+				<div className="col-span-2 flex flex-col">
 					{document.fields.map((field) => (
 						<ProjectDocumentTopic key={field.id} field={field} />
 					))}

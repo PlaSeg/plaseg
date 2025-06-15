@@ -23,11 +23,11 @@ export default function ProjectDetails() {
 					<h1 className="text-2xl font-semibold">{project.title}</h1>
 
 					<div className="flex gap-2">
-						<Link to={`/oportunidades/${slugfy(project.opportunity.title)}`}>
-							<Tag className="bg-black hover:bg-black/90 text-primary-foreground">
+						<Tag className="bg-black hover:bg-black/90 text-primary-foreground">
+							<Link to={`/oportunidades/${slugfy(project.opportunity.title)}`}>
 								{project.opportunity.title}
-							</Tag>
-						</Link>
+							</Link>
+						</Tag>
 
 						<Tag className="bg-black hover:bg-black/90 text-primary-foreground">
 							{project.municipality.name}

@@ -9,6 +9,23 @@ interface ProjectHeadingProps {
 }
 
 export function ProjectHeading({ project }: ProjectHeadingProps) {
+	const requestedValue = project.requestedItems.reduce(
+		(acc, item) => acc + item.baseProduct.unitValue * item.quantity,
+		0
+	);
+
+	const counterpartValue = () => {
+		if (project.opportunity.counterpartPercentage === 0) return 0;
+
+		return (
+			(requestedValue * (project.opportunity.counterpartPercentage ?? 0)) / 100
+		);
+	};
+
+	const totalValue = () => {
+		return requestedValue + counterpartValue();
+	};
+
 	return (
 		<div className="w-full py-6">
 			<div className="flex justify-between">
@@ -25,19 +42,19 @@ export function ProjectHeading({ project }: ProjectHeadingProps) {
 						title="Valor Solicitado"
 						tooltipText="Soma dos valores totais dos itens solicitados
 						(não pode ultrapassar o valor base do projeto)"
-						value={0}
+						value={requestedValue}
 					/>
 
 					<ProjectValue
 						title="Valor da Contrapartida"
 						tooltipText="% da contrapartida calculado em cima do valor solicitado"
-						value={0}
+						value={counterpartValue()}
 					/>
 
 					<ProjectValue
 						title="Valor Total"
 						tooltipText="Valor total do projeto, somando o valor soloicitado e o valor de contrapartida"
-						value={0}
+						value={totalValue()}
 					/>
 
 					{/* <div className="flex flex-col gap-2">

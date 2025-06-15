@@ -25,14 +25,14 @@ export function ProjectDocumentTopic({ field }: ProjectDocumentTopicProps) {
 		});
 
 	return (
-		<div className="flex flex-col gap-6">
-			<div className="flex items-end justify-between">
+		<div className={`flex flex-col ${field.value ? "mb-12" : ""}`}>
+			<div className="flex items-end justify-between mb-3">
 				<div className="flex flex-col gap-6">
 					<h2 className="text-xl font-semibold">{field.name}</h2>
 				</div>
 
 				<div className="flex items-center gap-2">
-					{!isDone && (
+					{!isDone && field.value && (
 						<>
 							{!isEditing && (
 								<Button variant="outline" onClick={() => setIsDone(true)}>
@@ -52,13 +52,15 @@ export function ProjectDocumentTopic({ field }: ProjectDocumentTopicProps) {
 						</>
 					)}
 
-					<Button
-						variant="outline"
-						size="icon"
-						onClick={() => setIsEditing(true)}
-					>
-						<SquarePen />
-					</Button>
+					{field.value && (
+						<Button
+							variant="outline"
+							size="icon"
+							onClick={() => setIsEditing(true)}
+						>
+							<SquarePen />
+						</Button>
+					)}
 				</div>
 			</div>
 
@@ -74,7 +76,7 @@ export function ProjectDocumentTopic({ field }: ProjectDocumentTopicProps) {
 
 			{isEditing && (
 				<Textarea
-					className="bg-white !text-base resize-y h-[150px]"
+					className="bg-white !text-base resize-y h-[150px] mb-4"
 					value={fieldValue ?? ""}
 					onChange={(e) => setFieldValue(e.target.value)}
 				/>

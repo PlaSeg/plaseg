@@ -18,6 +18,7 @@ import { AddItemDialog } from "./add-item-dialog";
 import { formatCurrency } from "@/utils/format-currency";
 import { TableActionButton } from "@/components/table/table-action-button";
 import { SearchInput } from "@/components/ui/search-input";
+import { ReferenceTermDialog } from "./reference-term-dialog";
 
 interface ProjectItemsProps {
 	project: Project;
@@ -113,8 +114,8 @@ export function ProjectItems({ project }: ProjectItemsProps) {
 										</TableCell>
 
 										<TableCell className="flex items-center gap-4">
-											<TableActionButton type="delete" disabled />
 											<TableActionButton type="edit" disabled />
+											<TableActionButton type="delete" disabled />
 										</TableCell>
 									</TableRow>
 								))}
@@ -130,6 +131,10 @@ export function ProjectItems({ project }: ProjectItemsProps) {
 						)}
 					</div>
 				</CollapsibleContent>
+
+				<div className="flex w-full justify-end">
+					<ReferenceTermDialog />
+				</div>
 			</Collapsible>
 		</div>
 	);
