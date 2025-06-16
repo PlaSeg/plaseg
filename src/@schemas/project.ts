@@ -21,7 +21,7 @@ export type ProjectGeneralInfoRequest = z.infer<
 >;
 
 export const addRequestedItemSchema = z.object({
-	quantity: z.number().min(1, "Quantidade é obrigatória"),
+	quantity: z.coerce.number().min(1, "Quantidade é obrigatória"),
 	baseProductId: z.string().min(1, "Produto é obrigatório"),
 	allocationDepartmentId: z.string().min(1, "Departamento é obrigatório"),
 	maintenanceContractId: z.string().min(1, "Contrato é obrigatório"),

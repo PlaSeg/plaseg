@@ -32,7 +32,9 @@ export function CreateProjectDialog({
 			value: projectType.id,
 		})) ?? [];
 
-	const { form, isLoadingCreateProject } = useCreateProject();
+	const { form, isLoadingCreateProject } = useCreateProject({
+		opportunityId,
+	});
 
 	return (
 		<Dialog>
@@ -88,7 +90,7 @@ export function CreateProjectDialog({
 							<Button
 								type="submit"
 								className="bg-dark hover:bg-dark/90 text-primary-foreground
-								transition-colors"
+								transition-colors w-[150px]"
 								disabled={isLoadingCreateProject}
 							>
 								{isLoadingCreateProject && (

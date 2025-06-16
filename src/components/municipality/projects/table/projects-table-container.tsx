@@ -62,9 +62,9 @@ export function ProjectsTableContainer() {
 				<SearchInput
 					className="w-full xl:w-[300px]"
 					placeholder="Pesquisar projetos..."
-					value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
+					value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
 					onChange={(event) =>
-						table.getColumn("name")?.setFilterValue(event.target.value)
+						table.getColumn("title")?.setFilterValue(event.target.value)
 					}
 				/>
 

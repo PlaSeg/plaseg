@@ -18,16 +18,16 @@ export default function ProjectDetails() {
 
 	if (project)
 		return (
-			<main className="flex flex-col gap-6 py-6 h-full box-content">
+			<main className="flex flex-col gap-6 py-6 h-full box-content pb-24">
 				<div className="space-y-2">
 					<h1 className="text-2xl font-semibold">{project.title}</h1>
 
 					<div className="flex gap-2">
-						<Link to={`/oportunidades/${slugfy(project.opportunity.title)}`}>
-							<Tag className="bg-black hover:bg-black/90 text-primary-foreground">
+						<Tag className="bg-black hover:bg-black/90 text-primary-foreground">
+							<Link to={`/oportunidades/${slugfy(project.opportunity.title)}`}>
 								{project.opportunity.title}
-							</Tag>
-						</Link>
+							</Link>
+						</Tag>
 
 						<Tag className="bg-black hover:bg-black/90 text-primary-foreground">
 							{project.municipality.name}

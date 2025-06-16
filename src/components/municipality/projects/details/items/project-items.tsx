@@ -1,4 +1,4 @@
-import { ArrowDownUp, ChevronDown, ChevronUp, Info } from "lucide-react";
+import { ArrowDownUp, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import {
 	Collapsible,
@@ -18,6 +18,7 @@ import { AddItemDialog } from "./add-item-dialog";
 import { formatCurrency } from "@/utils/format-currency";
 import { TableActionButton } from "@/components/table/table-action-button";
 import { SearchInput } from "@/components/ui/search-input";
+import { ReferenceTermDialog } from "./reference-term-dialog";
 
 interface ProjectItemsProps {
 	project: Project;
@@ -90,14 +91,13 @@ export function ProjectItems({ project }: ProjectItemsProps) {
 							</TableHeader>
 
 							<TableBody>
-								{project.requestedItems.map((item) => (
+								{project.requestedItems.map((item, index) => (
 									<TableRow key={item.id}>
-										<TableCell className="font-medium">{item.id}</TableCell>
+										<TableCell className="font-medium">{index + 1}</TableCell>
 
 										<TableCell>
 											<div className="flex items-center gap-2">
 												{item.baseProduct.name}
-												<Info className="h-4 w-4 text-muted-foreground" />
 											</div>
 										</TableCell>
 
@@ -113,8 +113,9 @@ export function ProjectItems({ project }: ProjectItemsProps) {
 											)}
 										</TableCell>
 
-										<TableCell>
-											<TableActionButton type="delete" />
+										<TableCell className="flex items-center gap-4">
+											<TableActionButton type="edit" disabled />
+											<TableActionButton type="delete" disabled />
 										</TableCell>
 									</TableRow>
 								))}
@@ -130,6 +131,10 @@ export function ProjectItems({ project }: ProjectItemsProps) {
 						)}
 					</div>
 				</CollapsibleContent>
+
+				<div className="flex w-full justify-end">
+					<ReferenceTermDialog />
+				</div>
 			</Collapsible>
 		</div>
 	);

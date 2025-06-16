@@ -83,8 +83,10 @@ function CpfInputAdapter({
 	const [inputValue, setInputValue] = useState<string>("");
 
 	useEffect(() => {
-		if (value !== undefined) {
+		if (value !== undefined && value !== null) {
 			setInputValue(formatCPF(value.toString()));
+		} else {
+			setInputValue("");
 		}
 	}, [value]);
 
@@ -105,7 +107,7 @@ function CpfInputAdapter({
 		<Input
 			className={cn(className)}
 			placeholder={placeholder}
-			value={inputValue}
+			value={inputValue || ""}
 			onChange={handleChange}
 			id={id}
 			maxLength={14} // 000.000.000-00 = 14 characters

@@ -24,7 +24,7 @@ export function OpportunityDetails({ opportunity }: OpportunityDetailsProps) {
 					</div>
 
 					<div className="flex items-center gap-4">
-						<Button variant="outline" className="w-[100px]">
+						<Button variant="outline" className="w-[100px]" asChild>
 							<Link to="/oportunidades">Cancelar</Link>
 						</Button>
 
@@ -58,7 +58,12 @@ export function OpportunityDetails({ opportunity }: OpportunityDetailsProps) {
 									{index + 1}
 								</div>
 
-								<span className="text-base font-normal">{document.name}</span>
+								<span
+									key={`name-${document.id}`}
+									className="text-base font-normal"
+								>
+									{document.name}
+								</span>
 							</span>
 						</div>
 					))}
