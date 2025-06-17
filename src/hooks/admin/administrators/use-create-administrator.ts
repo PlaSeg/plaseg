@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { createAdministrator } from "@/api/admin/administrators/create-administrator";
-import { useFormMutation } from "@/hooks/use-form-mutation";
+import { useFormMutation } from "@/hooks/common/use-form-mutation";
 import { createAdministratorBodySchema } from "@/@schemas/administrator";
 import { useState } from "react";
 import { queryClient } from "@/services/react-query";

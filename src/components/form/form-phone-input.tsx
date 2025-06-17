@@ -65,15 +65,17 @@ function PhoneInputAdapter({
 	const [inputValue, setInputValue] = useState<string>("");
 
 	useEffect(() => {
-		if (value !== undefined) {
+		if (value !== undefined && value !== null) {
 			setInputValue(formatPhone(value.toString()));
+		} else {
+			setInputValue("");
 		}
 	}, [value]);
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const rawValue = e.target.value;
 		const numbers = removeNonNumeric(rawValue);
-		if (numbers.length > 10) return;
+		if (numbers.length > 11) return;
 
 		const formattedValue = formatPhone(rawValue);
 		setInputValue(formattedValue);
@@ -85,7 +87,7 @@ function PhoneInputAdapter({
 		<Input
 			className={cn(className)}
 			placeholder={placeholder}
-			value={inputValue}
+			value={inputValue || ""}
 			onChange={handleChange}
 			id={id}
 			type="tel"

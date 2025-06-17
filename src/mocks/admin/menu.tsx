@@ -1,11 +1,11 @@
 import {
 	Package,
 	Tags,
-	FileText,
 	UserCog,
 	Banknote,
 	FolderKanban,
 	Settings,
+	Users,
 } from "lucide-react";
 import { ReactNode } from "react";
 
@@ -35,14 +35,6 @@ export const adminMenuItems: MenuItem[] = [
 		ready: true,
 	},
 	{
-		icon: <UserCog size={24} className="text-blue-500" />,
-		title: "Administradores",
-		description:
-			"Controle o acesso ao sistema, gerencie perfis, permissões e dados dos administradores",
-		url: "/admin/administradores",
-		ready: true,
-	},
-	{
 		icon: <Package size={24} className="text-blue-500" />,
 		title: "Produtos Base",
 		description:
@@ -56,15 +48,23 @@ export const adminMenuItems: MenuItem[] = [
 		description:
 			"Defina e gerencie os tipos de projetos que podem ser cadastrados no sistema",
 		url: "/admin/tipos-de-projeto",
-		ready: false,
+		ready: true,
 	},
 	{
-		icon: <FileText size={24} className="text-blue-500" />,
-		title: "Contratos",
+		icon: <Users size={24} className="text-blue-500" />,
+		title: "Usuários",
 		description:
-			"Gerencie a documentação contratual, incluindo modelos, versões e status dos contratos ativos",
-		url: "/admin/contratos",
-		ready: false,
+			"Aprove ou bloqueie os usuários para acessarem o sistema e suas funcionalidades",
+		url: "/admin/usuarios",
+		ready: true,
+	},
+	{
+		icon: <UserCog size={24} className="text-blue-500" />,
+		title: "Administradores",
+		description:
+			"Controle o acesso ao sistema, gerencie perfis, permissões e dados dos administradores",
+		url: "/admin/administradores",
+		ready: true,
 	},
 	{
 		icon: <Settings size={24} className="text-blue-500" />,

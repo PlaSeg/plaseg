@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/sheet";
 import { Plus } from "lucide-react";
 import { OpportunityForm } from "../form/opportunity-form";
-import { useCreateOpportunity } from "@/hooks/admin/opportunities/use-create-opportunity";
+import { useState } from "react";
 
 interface CreateOpportunitySheetProps {
 	className?: string;
@@ -18,8 +18,8 @@ interface CreateOpportunitySheetProps {
 export function CreateOpportunitySheet({
 	className,
 }: CreateOpportunitySheetProps) {
-	const { isCreateOpportunitySheetOpen, setIsCreateOpportunitySheetOpen } =
-		useCreateOpportunity();
+	const [isCreateOpportunitySheetOpen, setIsCreateOpportunitySheetOpen] =
+		useState(false);
 
 	return (
 		<Sheet
@@ -40,7 +40,7 @@ export function CreateOpportunitySheet({
 				</SheetHeader>
 
 				<OpportunityForm
-					setIsOpportunitySheetOpen={setIsCreateOpportunitySheetOpen}
+					setIsFormOpen={setIsCreateOpportunitySheetOpen}
 				/>
 			</SheetContent>
 		</Sheet>

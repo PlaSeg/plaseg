@@ -8,8 +8,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { PlusCircle } from "lucide-react";
 import { ItensTable } from "@/components/company/price-registration-record/add-price-registration-record-form/itens-table";
 import { AddItemDialog } from "@/components/company/price-registration-record/add-price-registration-record-form/add-item-dialog";
-import { useCreatePriceRegistrationRecord } from "@/hooks/price-registration-records/use-create-record";
-import { useRecordProductsStore } from "@/store/record";
+import { useCreatePriceRegistrationRecord } from "@/hooks/companies/price-registration-records/use-create-record";
+import { useRecordProductsStore } from "@/hooks/companies/price-registration-records/record";
 
 export function AddPriceRegistrationRecordForm() {
 	const { form } = useCreatePriceRegistrationRecord();

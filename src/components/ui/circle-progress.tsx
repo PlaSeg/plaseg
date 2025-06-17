@@ -1,3 +1,5 @@
+import { cn } from "@/lib/utils";
+
 export default function CircleProgress({
 	percentage = 60,
 	size = 120,
@@ -59,7 +61,12 @@ export default function CircleProgress({
 				</svg>
 
 				<div className="absolute inset-0 flex items-center justify-center">
-					<span className="text-2xl font-semibold text-blue-600">
+					<span
+						className={cn(
+							"text-2xl font-semibold",
+							percentage === 0 ? "text-muted-foreground" : "text-blue-600"
+						)}
+					>
 						{percentage}%
 					</span>
 				</div>
