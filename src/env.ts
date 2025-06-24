@@ -5,8 +5,8 @@ const envSchema = z.object({
 		.string()
 		.transform((val) => val.toLowerCase() === "true")
 		.default("false"),
+	VITE_SECRET: z.string(),
 	VITE_DATABASE_URL: z.string(),
-	VITE_GOOGLE_GENERATIVE_AI_API_KEY: z.string(),
 });
 
 export const env = envSchema.parse(import.meta.env);
