@@ -2,15 +2,22 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Check, LoaderCircle, SquarePen } from "lucide-react";
 import { useState } from "react";
-import { Document } from "@/@schemas/project";
 import { ProjectFieldCancelationDialog } from "./project-field-cancelation-dialog";
 import { useUpdateDocumentFieldValue } from "@/hooks/municipalities/projects/use-update-document-field-value";
 
-interface ProjectDocumentTopicProps {
-	field: Document["fields"][number];
+interface Field {
+	id: string;
+	name: string;
+	value: string | null;
+	fields: Field[] | null;
+	order: string;
 }
 
-export function ProjectDocumentTopic({ field }: ProjectDocumentTopicProps) {
+interface ProjectDocumentFieldProps {
+	field: Field;
+}
+
+export function ProjectDocumentField({ field }: ProjectDocumentFieldProps) {
 	const [fieldValue, setFieldValue] = useState(field.value);
 	const [isEditing, setIsEditing] = useState(false);
 	const [isDone, setIsDone] = useState(false);
@@ -28,7 +35,9 @@ export function ProjectDocumentTopic({ field }: ProjectDocumentTopicProps) {
 		<div className={`flex flex-col ${field.value ? "mb-12" : ""}`}>
 			<div className="flex items-end justify-between mb-3">
 				<div className="flex flex-col gap-6">
-					<h2 className="text-xl font-semibold">{field.name}</h2>
+					<h2 className="text-xl font-semibold flex gap-2">
+						{field.order}.<span>{field.name}</span>
+					</h2>
 				</div>
 
 				<div className="flex items-center gap-2">
@@ -64,19 +73,9 @@ export function ProjectDocumentTopic({ field }: ProjectDocumentTopicProps) {
 				</div>
 			</div>
 
-			{/* {isEditing && (
-				<span className="text-xs text-slate-600">
-					Em relação a esse tópico o proponente deverá evidenciar a
-					compatibilidade entre as atribuições institucionais dos partícipes e o
-					objeto proposto. (Realizar conexão com os preceitos constitucionais e
-					demais normativos vigentes aplicados ao caso, como por exemplo a Lei
-					nº 13.675/2018 (Institui o Sistema Único de Segurança.
-				</span>
-			)} */}
-
 			{isEditing && (
 				<Textarea
-					className="bg-white !text-base resize-y h-[150px] mb-4"
+					className="bg-white !text-base h-[150px] mb-4"
 					value={fieldValue ?? ""}
 					onChange={(e) => setFieldValue(e.target.value)}
 				/>
@@ -85,16 +84,16 @@ export function ProjectDocumentTopic({ field }: ProjectDocumentTopicProps) {
 			{!isEditing && <p className="text-slate-600">{fieldValue}</p>}
 
 			{isEditing && (
-				<div className="flex items-center gap-2 self-end">
+				<div className="flex items-center gap-2">
 					<Button variant="outline" onClick={() => setIsEditing(false)}>
-						Descartar alterações
+						Cancelar
 					</Button>
 
 					<Button
 						variant="outline"
 						className="w-[150px] bg-black hover:bg-black/90 text-white hover:text-white outline-none"
 						onClick={() => {
-							updateDocumentFieldValueFn(fieldValue);
+							updateDocumentFieldValueFn(fieldValue ?? "");
 						}}
 						disabled={isLoadingUpdateDocumentFieldValue}
 					>
@@ -104,6 +103,18 @@ export function ProjectDocumentTopic({ field }: ProjectDocumentTopicProps) {
 
 						{!isLoadingUpdateDocumentFieldValue && "Salvar"}
 					</Button>
+				</div>
+			)}
+
+			{field.fields && field.fields.length > 0 && (
+				<div className="flex flex-col gap-4">
+					{[...field.fields]
+						.sort((a, b) =>
+							a.order.localeCompare(b.order, undefined, { numeric: true })
+						)
+						.map((childField) => (
+							<ProjectDocumentField key={childField.id} field={childField} />
+						))}
 				</div>
 			)}
 		</div>
