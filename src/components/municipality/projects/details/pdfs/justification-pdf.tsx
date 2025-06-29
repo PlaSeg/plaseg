@@ -2,47 +2,16 @@ import { Card } from "@/components/ui/card";
 import { Document } from "@/@schemas/project";
 import { nestFields } from "@/utils/nested-fields";
 import { Button } from "@/components/ui/button";
+import { renderFields } from "./render-fields";
 import html2pdf from "html2pdf.js";
 
-interface ProjectDocumentPdfProps {
+interface JustificationPdfProps {
 	document: Document;
 }
 
-const isIntegerString = (str: string): boolean => {
-	const num = parseFloat(str);
-	return !isNaN(num) && Number.isInteger(num);
-};
-
-function renderFields(fields: ReturnType<typeof nestFields>) {
-	return (
-		<div className="space-y-2">
-			{fields.map((field) => (
-				<div key={field.id}>
-					<div
-						className={`text-black p-2 border-y border-black
-						${isIntegerString(field.order) ? "bg-muted font-bold uppercase" : "font-medium"}
-						${!isIntegerString(field.order) ? "border-0" : ""}
-						${field.order === "1" ? "!border-0" : ""}`}
-					>
-						{field.order}. {field.name}
-					</div>
-
-					{field.value && (
-						<div className="text-black text-sm px-3 py-2">{field.value}</div>
-					)}
-
-					{field.fields &&
-						field.fields.length > 0 &&
-						renderFields(field.fields)}
-				</div>
-			))}
-		</div>
-	);
-}
-
-export default function ProjectDocumentPdf({
+export function JustificationPdf({
 	document: projectDocument,
-}: ProjectDocumentPdfProps) {
+}: JustificationPdfProps) {
 	const nestedFields = nestFields(projectDocument.fields);
 
 	function handleDownloadPDF() {

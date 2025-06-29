@@ -18,12 +18,12 @@ export function ReferenceTermDialog() {
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
-				<Button variant="outline">Gerar termo de referência</Button>
+				<Button variant="outline">Concluir seleção de itens</Button>
 			</DialogTrigger>
 
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
-					<DialogTitle>Gerar Termo de Referência</DialogTitle>
+					<DialogTitle>Concluir seleção de itens</DialogTitle>
 
 					<DialogDescription>
 						Confirme que você adicionou todos os produtos que precisará no seu
