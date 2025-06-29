@@ -1,0 +1,38 @@
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Eye } from "lucide-react";
+import { Document } from "@/@schemas/project";
+import { JustificationPdf } from "../pdfs/justification-pdf";
+import { SustentabilityPdf } from "../pdfs/sustainability-pdf";
+import { CounterpartPdf } from "../pdfs/counterpart-pdf";
+
+export function ProjectDocumentPdfSheet({ document }: { document: Document }) {
+	return (
+		<Sheet>
+			<SheetTrigger asChild>
+				<Button variant="outline" className="ml-auto">
+					<Eye />
+					Vizualizar Documento
+				</Button>
+			</SheetTrigger>
+
+			<SheetContent
+				className="!max-w-max outline-none overflow-y-scroll py-6"
+				side="right"
+			>
+				{document.name === "Justificativa Completa do Projeto" && (
+					<JustificationPdf document={document} />
+				)}
+
+				{document.name ===
+					"Sustentabilidade e Localização de Bens do Projeto" && (
+					<SustentabilityPdf document={document} />
+				)}
+
+				{document.name === "Declaração de Contrapartida" && (
+					<CounterpartPdf document={document} />
+				)}
+			</SheetContent>
+		</Sheet>
+	);
+}

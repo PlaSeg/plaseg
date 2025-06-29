@@ -97,3 +97,9 @@ body {
 *::-webkit-scrollbar-button {
 	display: none;
 }
+
+@layer base {
+	img {
+		display: initial;
+	}
+}

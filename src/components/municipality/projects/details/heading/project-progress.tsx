@@ -5,5 +5,5 @@ interface ProjectProgressProps {
 }
 
 export function ProjectProgress({ percentage }: ProjectProgressProps) {
-	return <CircleProgress percentage={percentage} size={80} />;
+	return <CircleProgress percentage={percentage} size={90} />;
 }
