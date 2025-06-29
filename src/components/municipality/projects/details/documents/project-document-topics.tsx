@@ -21,7 +21,7 @@ export function ProjectDocumentTopics({
 				<h2 className="text-xl font-semibold">Tópicos</h2>
 
 				<span className="text-muted-foreground text-sm">
-					3 de {fieldsWithoutValue.length} concluídos
+					{fieldsWithoutValue.length} de {document.fields.length} concluídos
 				</span>
 			</div>
 
