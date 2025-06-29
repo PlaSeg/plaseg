@@ -7,10 +7,12 @@ import html2pdf from "html2pdf.js";
 
 interface CounterpartPdfProps {
 	document: Document;
+	hideButton?: boolean;
 }
 
 export function CounterpartPdf({
 	document: projectDocument,
+	hideButton = false,
 }: CounterpartPdfProps) {
 	const nestedFields = nestFields(projectDocument.fields);
 
@@ -22,13 +24,15 @@ export function CounterpartPdf({
 
 	return (
 		<div className="min-h-screen py-8 max-w-4xl mx-auto flex flex-col gap-6">
-			<Button
-				variant="outline"
-				className="max-w-max"
-				onClick={handleDownloadPDF}
-			>
-				Baixar PDF
-			</Button>
+			{!hideButton && (
+				<Button
+					variant="outline"
+					className="max-w-max"
+					onClick={handleDownloadPDF}
+				>
+					Baixar PDF
+				</Button>
+			)}
 
 			<Card
 				id="pdf-content"
