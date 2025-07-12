@@ -1,10 +1,12 @@
 import { ArrowDownUp, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
+import type { Project } from "@/@schemas/project";
 import {
 	Collapsible,
 	CollapsibleContent,
 	CollapsibleTrigger,
 } from "@/components/ui/collapsible";
+import { SearchInput } from "@/components/ui/search-input";
 import {
 	Table,
 	TableBody,
@@ -13,11 +15,10 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/components/ui/table";
-import { Project } from "@/@schemas/project";
-import { AddItemDialog } from "./add-item-dialog";
 import { formatCurrency } from "@/utils/format-currency";
-import { TableActionButton } from "@/components/table/table-action-button";
-import { SearchInput } from "@/components/ui/search-input";
+import { AddItemDialog } from "./add-project-item-dialog";
+import { DeleteItemDialog } from "./delete-project-item-dialog";
+import { EditProjectItemDialog } from "./edit-project-item-dialog";
 import { ReferenceTermDialog } from "./reference-term-dialog";
 
 interface ProjectItemsProps {
@@ -67,7 +68,7 @@ export function ProjectItems({ project }: ProjectItemsProps) {
 
 									<TableHead>
 										<div className="flex items-center gap-2">
-											Valor Unitário
+											Orçamento
 											<ArrowDownUp className="h-4 w-4 text-muted-foreground" />
 										</div>
 									</TableHead>
@@ -101,11 +102,11 @@ export function ProjectItems({ project }: ProjectItemsProps) {
 											</div>
 										</TableCell>
 
-										<TableCell>{item.quantity}</TableCell>
-
 										<TableCell>
-											{formatCurrency(item.baseProduct.unitValue)}
+											{formatCurrency(item.budget)}
 										</TableCell>
+
+										<TableCell>{item.quantity}</TableCell>
 
 										<TableCell>
 											{formatCurrency(
@@ -114,8 +115,21 @@ export function ProjectItems({ project }: ProjectItemsProps) {
 										</TableCell>
 
 										<TableCell className="flex items-center gap-4">
-											<TableActionButton type="edit" disabled />
-											<TableActionButton type="delete" disabled />
+											<EditProjectItemDialog
+												projectId={project.id}
+												requestedItemId={item.id}
+												initialData={{
+													quantity: item.quantity,
+													allocationDepartmentId: item.allocationDepartmentId,
+													maintenanceContractId: item.maintenanceContractId,
+												}}
+											/>
+
+											<DeleteItemDialog
+												projectId={project.id}
+												requestedItemId={item.id}
+												requestedItemName={item.baseProduct.name}
+											/>
 										</TableCell>
 									</TableRow>
 								))}

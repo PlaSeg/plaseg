@@ -9,7 +9,7 @@ import {
 	DialogTrigger,
 } from "@/components/ui/dialog";
 import { useAddRequestedItem } from "@/hooks/projects/use-add-project-item";
-import { AddItemForm } from "./add-item-form";
+import { AddItemForm } from "./add-project-item-form";
 
 interface AddItemDialogProps {
 	projectId: string;

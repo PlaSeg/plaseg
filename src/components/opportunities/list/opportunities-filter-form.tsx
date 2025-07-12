@@ -1,3 +1,7 @@
+import { Funnel, X } from "lucide-react";
+import { FormCombobox } from "@/components/form/form-combobox";
+import { FormDatePicker } from "@/components/form/form-date-picker";
+import { Button } from "@/components/ui/button";
 import {
 	Form,
 	FormControl,
@@ -7,14 +11,9 @@ import {
 	FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { FormCombobox } from "@/components/form/form-combobox";
-import { opportunitiesCategories } from "@/mocks/opportunity/opportunities-categories";
-import { opportunitiesAreas } from "@/mocks/opportunity/opportunities-areas";
-import { FormDatePicker } from "@/components/form/form-date-picker";
-import { Button } from "@/components/ui/button";
-import { Funnel } from "lucide-react";
 import { useFilterOpportunities } from "@/hooks/opportunities/use-filter-opportunities";
-import { X } from "lucide-react";
+import { opportunitiesAreas } from "@/mocks/opportunity/opportunities-areas";
+import { opportunitiesCategories } from "@/mocks/opportunity/opportunities-categories";
 
 export function OpportunitiesFilterForm() {
 	const { form } = useFilterOpportunities();
@@ -113,7 +112,7 @@ export function OpportunitiesFilterForm() {
 				entity="finalDate"
 			/>
 
-			<Button type="submit" className="w-full" variant="secondary">
+			<Button type="submit" className="w-full" variant="secondary" disabled>
 				<Funnel />
 				Aplicar Filtros
 			</Button>
@@ -121,6 +120,7 @@ export function OpportunitiesFilterForm() {
 			<Button
 				className="w-full text-black shadow-none bg-white hover:bg-white border
 			border-muted"
+				disabled
 			>
 				<X />
 				Limpar Filtros
