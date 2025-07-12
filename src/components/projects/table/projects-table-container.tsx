@@ -8,20 +8,19 @@ import {
 	useReactTable,
 	type VisibilityState,
 } from "@tanstack/react-table";
-import { X } from "lucide-react";
+import { Plus, X } from "lucide-react";
 import * as React from "react";
+import { Link } from "react-router";
 import { TablePagination } from "@/components/table/table-footer";
 import { TableHideColumnsDropDown } from "@/components/table/table-hide-columns-dropdown";
-import { TableSelect } from "@/components/table/table-select";
 import { Button } from "@/components/ui/button";
 import { SearchInput } from "@/components/ui/search-input";
-import { useGetOpportunities } from "@/hooks/opportunities/use-get-opportunities";
-import { translateOpportunitiesTableKeys } from "@/utils/translate-opportunities-table-keys";
-import { CreateOpportunitySheet } from "../modals/create-opportunity-sheet";
-import { OpportunitiesTable } from "./opportunities-table";
-import { opportunitiesTableColumns } from "./opportunities-table-columns";
+import { useGetProjects } from "@/hooks/projects/use-get-projects";
+import { translateProjectTableKeys } from "@/utils/translate-project-table-keys";
+import { ProjectsTable } from "./projects-table";
+import { projectsTableColumns } from "./projects-table-columns";
 
-export function OpportunitiesTableContainer() {
+export function ProjectsTableContainer() {
 	const [sorting, setSorting] = React.useState<SortingState>([]);
 	const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
 		[]
@@ -29,11 +28,11 @@ export function OpportunitiesTableContainer() {
 	const [columnVisibility, setColumnVisibility] =
 		React.useState<VisibilityState>({});
 	const [rowSelection, setRowSelection] = React.useState({});
-	const { opportunities, isLoadingGetOpportunities } = useGetOpportunities();
+	const { projects, isLoadingGetProjects } = useGetProjects();
 
 	const table = useReactTable({
-		data: opportunities,
-		columns: opportunitiesTableColumns,
+		data: projects,
+		columns: projectsTableColumns,
 		onSortingChange: setSorting,
 		onColumnFiltersChange: setColumnFilters,
 		getCoreRowModel: getCoreRowModel(),
@@ -53,36 +52,20 @@ export function OpportunitiesTableContainer() {
 	return (
 		<div className="w-full space-y-4 bg-white p-4 border border-muted rounded-lg">
 			<div>
-				<h1 className="text-2xl font-semibold">Oportunidades</h1>
+				<h1 className="text-2xl font-semibold">Projetos</h1>
 				<span className="text-sm text-muted-foreground">
-					Adicione, edite e exclua as oportunidades da aplicação.
+					Visualize e gerencie os seus projetos.
 				</span>
 			</div>
 
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:flex items-center gap-4">
 				<SearchInput
 					className="w-full xl:w-[300px]"
-					placeholder="Pesquisar oportunidades..."
+					placeholder="Pesquisar projetos..."
 					value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
 					onChange={(event) =>
 						table.getColumn("title")?.setFilterValue(event.target.value)
 					}
-				/>
-
-				<TableSelect
-					options={[
-						{
-							label: "Todos",
-							value: "all",
-						},
-						{
-							label: "Edital",
-							value: "edital",
-						},
-					]}
-					className="w-full xl:w-[200px]"
-					placeholder="Tipo"
-					onChange={(value) => table.getColumn("type")?.setFilterValue(value)}
 				/>
 
 				<Button
@@ -96,16 +79,25 @@ export function OpportunitiesTableContainer() {
 
 				<TableHideColumnsDropDown
 					table={table}
-					translateFunction={translateOpportunitiesTableKeys}
+					translateFunction={translateProjectTableKeys}
 				/>
 
-				<CreateOpportunitySheet className="font-semibold" />
+				<Button
+					className="bg-dark hover:bg-dark/90 text-primary-foreground
+				transition-colors"
+					asChild
+				>
+					<Link to="/oportunidades">
+						<Plus />
+						Criar novo projeto
+					</Link>
+				</Button>
 			</div>
 
-			<OpportunitiesTable
+			<ProjectsTable
 				table={table}
-				isLoadingGetOpportunities={isLoadingGetOpportunities}
-				data={opportunities}
+				isLoadingGetProjects={isLoadingGetProjects}
+				data={projects}
 			/>
 
 			<TablePagination table={table} />

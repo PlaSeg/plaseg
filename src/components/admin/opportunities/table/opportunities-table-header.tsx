@@ -1,6 +1,6 @@
+import { flexRender, type Table } from "@tanstack/react-table";
 import { TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { flexRender, Table } from "@tanstack/react-table";
-import { Opportunity } from "@/@schemas/opportunity";
+import type { Opportunity } from "@/hooks/opportunities/use-get-opportunities";
 
 interface OpportunitiesTableHeaderProps {
 	table: Table<Opportunity>;
