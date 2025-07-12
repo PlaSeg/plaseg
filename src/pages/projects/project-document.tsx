@@ -1,6 +1,6 @@
-import { ProjectDocument } from "@/components/municipality/projects/details/documents/project-document";
-import { useGetProjectById } from "@/hooks/municipalities/projects/use-get-project-by-id";
 import { useParams } from "react-router";
+import { ProjectDocument } from "@/components/projects/details/documents/project-document";
+import { useGetProjectById } from "@/hooks/projects/use-get-project-by-id";
 import { ProjectDocumentSkeleton } from "./project-document-skeleton";
 
 export default function ProjectDocumentPage() {

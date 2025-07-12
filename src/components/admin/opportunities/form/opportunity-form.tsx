@@ -3,7 +3,7 @@ import { Form } from "@/components/ui/form";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { LoaderCircle, Plus, Trash2 } from "lucide-react";
-import { useCreateOpportunity } from "@/hooks/admin/opportunities/use-create-opportunity";
+import { useCreateOpportunity } from "@/hooks/opportunities/use-create-opportunity";
 import { FormInput } from "@/components/form/form-input";
 import { FormDatePicker } from "@/components/form/form-date-picker";
 import { FormMoneyInput } from "@/components/form/form-money-input";

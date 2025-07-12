@@ -43,7 +43,7 @@ export function AppRoutes() {
 			<Route element={<PrivateRoutes />}>
 				<Route path="*" element={<MunicipalityLayout />}>
 					<Route path="oportunidades" element={<Opportunities />} />
-					<Route path="oportunidades/:slug" element={<OpportunityDetails />} />
+					<Route path="oportunidades/:id" element={<OpportunityDetails />} />
 
 					<Route path="projetos" element={<Projects />} />
 					<Route path="projetos/:projectId" element={<ProjectDetails />} />

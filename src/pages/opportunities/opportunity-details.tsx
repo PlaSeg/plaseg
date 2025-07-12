@@ -1,17 +1,17 @@
 import { useParams } from "react-router";
-import { OpportunityDetailsInfo } from "@/components/municipality/opportunities/details/opportunity-details-info";
-import { useGetOpportunities } from "@/hooks/admin/opportunities/use-get-opportunities";
-import { OpportunityDetails } from "@/components/municipality/opportunities/details/opportunity-details";
+import { OpportunityDetails } from "@/components/opportunities/details/opportunity-details";
+import { OpportunityDetailsInfo } from "@/components/opportunities/details/opportunity-details-info";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useGetOpportunityById } from "@/hooks/opportunities/use-get-opportunity-by-id";
 
 export default function OpportunityDetailsPage() {
-	const { slug } = useParams<{ slug: string }>();
+	const { id } = useParams<{ id: string }>();
 
-	const { opportunities } = useGetOpportunities();
+	const { opportunity, isGetOpportunityByIdLoading } = useGetOpportunityById(
+		id || ""
+	);
 
-	const opportunity = opportunities.find((opp) => opp.slug === slug);
-
-	if (!opportunity) {
+	if (isGetOpportunityByIdLoading) {
 		return (
 			<div className="w-full h-[520px] my-6 grid grid-cols-4 gap-6">
 				<Skeleton className="h-full rounded-xl bg-slate-200" />
@@ -21,11 +21,22 @@ export default function OpportunityDetailsPage() {
 		);
 	}
 
-	return (
-		<div className="w-full grid grid-cols-4 gap-6">
-			<OpportunityDetailsInfo opportunity={opportunity} />
+	if (!isGetOpportunityByIdLoading && !opportunity) {
+		return (
+			<div className="w-full h-[500px] flex items-center justify-center">
+				<strong className="text-muted-foreground">
+					Oportunidade não encontrada.
+				</strong>
+			</div>
+		);
+	}
 
-			<OpportunityDetails opportunity={opportunity} />
-		</div>
-	);
+	if (!isGetOpportunityByIdLoading && opportunity)
+		return (
+			<div className="w-full grid grid-cols-4 gap-6">
+				<OpportunityDetailsInfo opportunity={opportunity} />
+
+				<OpportunityDetails opportunity={opportunity} />
+			</div>
+		);
 }

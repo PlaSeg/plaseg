@@ -1,9 +1,9 @@
-import { Table, TableBody, TableRow, TableCell } from "@/components/ui/table";
-import { flexRender, Table as TableType } from "@tanstack/react-table";
+import { flexRender, type Table as TableType } from "@tanstack/react-table";
+import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
+import type { Opportunity } from "@/hooks/opportunities/use-get-opportunities";
 import { OpportunitiesTableBodySkeleton } from "./opportunities-table-body-skeleton";
 import { opportunitiesTableColumns } from "./opportunities-table-columns";
 import { OpportunitiesTableHeader } from "./opportunities-table-header";
-import { Opportunity } from "@/@schemas/opportunity";
 
 interface OpportunitiesTableProps {
 	table: TableType<Opportunity>;

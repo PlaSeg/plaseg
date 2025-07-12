@@ -1,13 +1,13 @@
-import { ProjectHeading } from "@/components/municipality/projects/details/heading/project-heading";
-import { ProjectTasks } from "@/components/municipality/projects/details/tasks/project-tasks";
-import { ProjectInformation } from "@/components/municipality/projects/details/informations/project-information";
 import { Link, useParams } from "react-router";
+import { ProjectDocuments } from "@/components/projects/details/documents/project-documents";
+import { ProjectHeading } from "@/components/projects/details/heading/project-heading";
+import { ProjectInformation } from "@/components/projects/details/informations/project-information";
+import { ProjectItems } from "@/components/projects/details/items/project-items";
+import { ProjectTasks } from "@/components/projects/details/tasks/project-tasks";
 import { Tag } from "@/components/ui/tag";
-import { useGetProjectById } from "@/hooks/municipalities/projects/use-get-project-by-id";
-import { ProjectsDetailsSkeleton } from "./project-details-skeleton";
-import { ProjectDocuments } from "@/components/municipality/projects/details/documents/project-documents";
-import { ProjectItems } from "@/components/municipality/projects/details/items/project-items";
+import { useGetProjectById } from "@/hooks/projects/use-get-project-by-id";
 import { slugfy } from "@/utils/slugfy";
+import { ProjectsDetailsSkeleton } from "./project-details-skeleton";
 
 export default function ProjectDetails() {
 	const { projectId } = useParams<{ projectId: string }>();

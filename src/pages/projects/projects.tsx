@@ -1,4 +1,4 @@
-import { ProjectsTableContainer } from "@/components/municipality/projects/table/projects-table-container";
+import { ProjectsTableContainer } from "@/components/projects/table/projects-table-container";
 
 export default function Projects() {
 	return (
