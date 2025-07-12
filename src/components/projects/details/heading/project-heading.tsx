@@ -1,15 +1,15 @@
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 import { Copy, Download } from "lucide-react";
-import { ProjectProgress } from "./project-progress";
+import ReactDOMServer from "react-dom/server";
+import type { Project } from "@/@schemas/project";
 import { Button } from "@/components/ui/button";
-import { Project } from "@/@schemas/project";
-import { ProjectValue } from "./project-value";
-import { measureProjectProgress } from "./functions/measure-project-progress";
+import { CounterpartPdf } from "../pdfs/counterpart-pdf";
 import { JustificationPdf } from "../pdfs/justification-pdf";
 import { SustentabilityPdf } from "../pdfs/sustainability-pdf";
-import { CounterpartPdf } from "../pdfs/counterpart-pdf";
-import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
-import ReactDOMServer from "react-dom/server";
+import { measureProjectProgress } from "./functions/measure-project-progress";
+import { ProjectProgress } from "./project-progress";
+import { ProjectValue } from "./project-value";
 
 interface ProjectHeadingProps {
 	project: Project;
@@ -117,7 +117,7 @@ export function ProjectHeading({ project }: ProjectHeadingProps) {
 					<span className="text-muted-foreground text-sm">Ações</span>
 
 					<div className="flex items-center gap-4">
-						<Button variant="outline">
+						<Button variant="outline" disabled>
 							<Copy />
 							Duplicar
 						</Button>

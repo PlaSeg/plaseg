@@ -10,7 +10,8 @@ import {
 } from "@tanstack/react-table";
 import { Plus, X } from "lucide-react";
 import * as React from "react";
-import { Link } from "react-router";
+import { useNavigate } from "react-router";
+import { toast } from "sonner";
 import { TablePagination } from "@/components/table/table-footer";
 import { TableHideColumnsDropDown } from "@/components/table/table-hide-columns-dropdown";
 import { Button } from "@/components/ui/button";
@@ -29,6 +30,7 @@ export function ProjectsTableContainer() {
 		React.useState<VisibilityState>({});
 	const [rowSelection, setRowSelection] = React.useState({});
 	const { projects, isLoadingGetProjects } = useGetProjects();
+	const navigate = useNavigate();
 
 	const table = useReactTable({
 		data: projects,
@@ -48,6 +50,12 @@ export function ProjectsTableContainer() {
 			rowSelection,
 		},
 	});
+
+	function handleCreateProject() {
+		navigate("/oportunidades");
+
+		toast.info("Acesse uma oportunidade para criar um projeto");
+	}
 
 	return (
 		<div className="w-full space-y-4 bg-white p-4 border border-muted rounded-lg">
@@ -85,12 +93,10 @@ export function ProjectsTableContainer() {
 				<Button
 					className="bg-dark hover:bg-dark/90 text-primary-foreground
 				transition-colors"
-					asChild
+					onClick={handleCreateProject}
 				>
-					<Link to="/oportunidades">
-						<Plus />
-						Criar novo projeto
-					</Link>
+					<Plus />
+					Criar novo projeto
 				</Button>
 			</div>
 

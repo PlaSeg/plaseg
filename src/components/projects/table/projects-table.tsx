@@ -1,7 +1,7 @@
-import { Table, TableBody, TableRow, TableCell } from "@/components/ui/table";
-import { flexRender, Table as TableType } from "@tanstack/react-table";
+import { flexRender, type Table as TableType } from "@tanstack/react-table";
+import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
+import type { Project } from "@/hooks/projects/use-get-projects";
 import { ProjectsTableBodySkeleton } from "./projects-table-body-skeleton";
-import { Project } from "@/@types/project/project";
 import { projectsTableColumns } from "./projects-table-columns";
 import { ProjectsTableHeader } from "./projects-table-header";
 

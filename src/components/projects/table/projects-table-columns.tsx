@@ -1,11 +1,12 @@
 import type { ColumnDef } from "@tanstack/react-table";
 import { ArrowDown, ArrowUp, Eye, SquarePen } from "lucide-react";
 import { Link } from "react-router";
-import type { Project } from "@/@types/project/project";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import type { Project } from "@/hooks/projects/use-get-projects";
 import { formatDateTime } from "@/utils/format-date";
 import { translateProjectTableKeys } from "@/utils/translate-project-table-keys";
+import { ProjectStatusSwitch } from "./project-status-switch";
 
 export const projectsTableColumns: ColumnDef<Project>[] = [
 	{
@@ -105,6 +106,30 @@ export const projectsTableColumns: ColumnDef<Project>[] = [
 		),
 		cell: ({ row }) => <div>{formatDateTime(row.getValue("createdAt"))}</div>,
 		sortingFn: "datetime",
+	},
+	{
+		accessorKey: "isActive",
+		header: ({ column }) => (
+			<Button
+				variant="ghost"
+				className="!p-0 hover:bg-transparent"
+				onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+			>
+				{translateProjectTableKeys("isActive")}
+				{column.getIsSorted() !== "desc" && (
+					<ArrowUp className="ml-2 h-4 w-4" />
+				)}
+				{column.getIsSorted() === "desc" && (
+					<ArrowDown className="ml-2 h-4 w-4" />
+				)}
+			</Button>
+		),
+		cell: ({ row }) => (
+			<ProjectStatusSwitch
+				projectId={row.original.id}
+				isActive={row.getValue("isActive")}
+			/>
+		),
 	},
 	{
 		id: "actions",
