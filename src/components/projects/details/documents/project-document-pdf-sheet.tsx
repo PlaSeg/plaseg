@@ -1,10 +1,10 @@
+import { Eye } from "lucide-react";
+import type { Document } from "@/@schemas/project";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Eye } from "lucide-react";
-import { Document } from "@/@schemas/project";
+import { CounterpartPdf } from "../pdfs/counterpart-pdf";
 import { JustificationPdf } from "../pdfs/justification-pdf";
 import { SustentabilityPdf } from "../pdfs/sustainability-pdf";
-import { CounterpartPdf } from "../pdfs/counterpart-pdf";
 
 export function ProjectDocumentPdfSheet({ document }: { document: Document }) {
 	return (
@@ -12,7 +12,7 @@ export function ProjectDocumentPdfSheet({ document }: { document: Document }) {
 			<SheetTrigger asChild>
 				<Button variant="outline" className="ml-auto">
 					<Eye />
-					Vizualizar Documento
+					Visualizar Documento
 				</Button>
 			</SheetTrigger>
 

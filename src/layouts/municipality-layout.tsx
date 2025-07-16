@@ -1,12 +1,12 @@
+import { KanbanSquare, ScrollText } from "lucide-react";
 import { Header } from "@/components/header/header";
-import { AppLayout } from "./app-layout";
 import { Navbar } from "@/components/navbar/navbar";
 import { NavbarItem } from "@/components/navbar/navbar-item";
-import { ScrollText, KanbanSquare } from "lucide-react";
+import { AppLayout } from "./app-layout";
 
 export default function MunicipalityLayout() {
 	return (
-		<AppLayout className="bg-muted/50">
+		<AppLayout className="bg-slate-100">
 			<Header>
 				<Navbar>
 					<NavbarItem

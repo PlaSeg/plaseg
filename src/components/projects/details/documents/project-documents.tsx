@@ -1,12 +1,12 @@
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
+import type { Project } from "@/@schemas/project";
 import {
 	Collapsible,
 	CollapsibleContent,
 	CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { ProjectDocumentCard } from "./project-document-card";
-import { Project } from "@/@schemas/project";
 
 interface ProjectDocumentsProps {
 	project: Project;

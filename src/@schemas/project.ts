@@ -49,7 +49,11 @@ export const fieldsSchema = z.object({
 	id: z.string().uuid(),
 	name: z.string(),
 	value: z.string(),
-	parentId: z.string().uuid(),
+	isTitle: z.boolean(),
+	section: z.string(),
+	level: z.number(),
+	parentId: z.string().nullable(),
+	order: z.number(),
 });
 
 export const documentsSchema = z.object({

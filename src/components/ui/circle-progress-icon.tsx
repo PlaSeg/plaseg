@@ -1,11 +1,14 @@
 import { CircleCheckBig } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export function CircleProgressIcon({
 	percentage = 0,
 	size = 24,
+	className,
 }: {
 	percentage?: number;
 	size?: number;
+	className?: string;
 }) {
 	const normalizedPercentage = Math.max(0, Math.min(100, percentage));
 
@@ -25,8 +28,10 @@ export function CircleProgressIcon({
 			width={size}
 			height={size}
 			viewBox="0 0 24 24"
-			className="transform -rotate-90"
+			className={cn("transform -rotate-90", className)}
+			aria-label={`Ícone de progresso: ${normalizedPercentage}%`}
 		>
+			<title>Progresso: {normalizedPercentage}%</title>
 			{/* Círculo de fundo (slate) */}
 			<circle
 				cx={center}
