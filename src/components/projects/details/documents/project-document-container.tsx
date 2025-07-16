@@ -14,7 +14,7 @@ export function ProjectDocumentContainer({
 	document,
 	projectId,
 }: ProjectDocumentProps) {
-	console.log(document);
+// Line removed as it was a debug statement.
 
 	return (
 		<div className="w-full flex flex-col gap-6">
