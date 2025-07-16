@@ -1,20 +1,20 @@
 import {
 	ChevronDown,
 	ChevronUp,
-	Paperclip,
-	Eye,
 	Download,
-	Trash2,
+	Eye,
+	Paperclip,
 	Search,
+	Trash2,
 	Upload,
 } from "lucide-react";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import {
 	Collapsible,
 	CollapsibleContent,
 	CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import { Button } from "@/components/ui/button";
 
 // Sample attachments data based on the image
 const attachments = [

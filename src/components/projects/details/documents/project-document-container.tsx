@@ -1,18 +1,20 @@
 import { ArrowLeft } from "lucide-react";
-import { ProjectDocumentField } from "./project-document-field";
-import { ProjectDocumentTopics } from "./project-document-topics";
-import { Document } from "@/@schemas/project";
 import { Link } from "react-router";
+import type { ProjectDocument } from "@/hooks/projects/use-get-project-document-by-id";
+import { ProjectDocumentField } from "./project-document-field";
 import { ProjectDocumentPdfSheet } from "./project-document-pdf-sheet";
-import { nestFields } from "@/utils/nested-fields";
+import { ProjectDocumentTopics } from "./project-document-topics";
 
 interface ProjectDocumentProps {
-	document: Document;
+	document: ProjectDocument;
 	projectId: string;
 }
 
-export function ProjectDocument({ document, projectId }: ProjectDocumentProps) {
-	const nestedFields = nestFields(document.fields);
+export function ProjectDocumentContainer({
+	document,
+	projectId,
+}: ProjectDocumentProps) {
+// Line removed as it was a debug statement.
 
 	return (
 		<div className="w-full flex flex-col gap-6">
@@ -32,8 +34,13 @@ export function ProjectDocument({ document, projectId }: ProjectDocumentProps) {
 				<ProjectDocumentTopics document={document} />
 
 				<div className="col-span-2 flex flex-col">
-					{nestedFields.map((field) => (
-						<ProjectDocumentField key={field.id} field={field} />
+					{document.fields.map((field) => (
+						<ProjectDocumentField
+							key={field.id}
+							field={field}
+							projectId={projectId}
+							documentId={document.id}
+						/>
 					))}
 				</div>
 			</div>

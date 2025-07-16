@@ -1,8 +1,8 @@
-import { Document } from "@/@schemas/project";
-import { Button } from "@/components/ui/button";
-import { CircleProgressIcon } from "@/components/ui/circle-progress-icon";
 import { SquarePen } from "lucide-react";
 import { Link } from "react-router";
+import type { Document } from "@/@schemas/project";
+import { Button } from "@/components/ui/button";
+import { CircleProgressIcon } from "@/components/ui/circle-progress-icon";
 
 interface ProjectDocumentCardProps {
 	projectId: string;
