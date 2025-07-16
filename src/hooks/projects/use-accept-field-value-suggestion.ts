@@ -26,7 +26,7 @@ interface AcceptFieldValueSuggestionParams {
 const acceptFieldValueSuggestion = async ({
 	projectId,
 	fieldId,
-}: AcceptFieldValueSuggestionParams): Promise<void> => {
+}: Omit<AcceptFieldValueSuggestionParams, "documentId">): Promise<void> => {
 	const response = await api.patch<AcceptFieldValueSuggestionResponse>(
 		`/projects/${projectId}/document/field/${fieldId}/ready`
 	);
