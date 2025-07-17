@@ -23,6 +23,7 @@ export function useCreateOpportunity(setIsFormOpen: (open: boolean) => void) {
 			requiresCounterpart: false,
 			counterpartPercentage: 0,
 			projectTypeIds: [],
+			baseProductsIds: [],
 			requiredDocuments: [],
 			documents: [],
 		},

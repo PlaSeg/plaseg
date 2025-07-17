@@ -14,6 +14,7 @@ import { useGetProjectTypes } from "@/hooks/admin/project-types/use-get-project-
 import { FormMultiSelect } from "@/components/form/form-multi-select-input";
 import { useGetTypes } from "@/hooks/admin/types/use-get-types";
 import { TypeGroup } from "@/@types/admin/type";
+import { useGetBaseProducts } from "@/hooks/admin/base-products/use-get-base-products";
 
 interface OpportunityFormProps {
 	setIsFormOpen: (open: boolean) => void;
@@ -35,6 +36,7 @@ export function OpportunityForm({ setIsFormOpen }: OpportunityFormProps) {
 	} = useCreateOpportunity(setIsFormOpen);
 
 	const { projectTypes } = useGetProjectTypes();
+	const { baseProducts } = useGetBaseProducts();
 	const { types, isLoadingGetTypes } = useGetTypes({
 		group: TypeGroup.OPPORTUNITY,
 	});
@@ -95,6 +97,18 @@ export function OpportunityForm({ setIsFormOpen }: OpportunityFormProps) {
 							options={projectTypes.map((type) => ({
 								label: type.name,
 								value: type.id,
+							}))}
+						/>
+
+						<FormMultiSelect
+							form={form}
+							entity="baseProductsIds"
+							label="Produtos base"
+							placeholder="Selecione os produtos base"
+							maxCount={undefined}
+							options={baseProducts.map((product) => ({
+								label: product.name,
+								value: product.id,
 							}))}
 						/>
 
