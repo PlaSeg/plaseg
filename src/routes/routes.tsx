@@ -2,9 +2,7 @@ import { Navigate, Route, Routes } from "react-router";
 
 import { AdminRoutes } from "./admin-routes";
 
-import { PrivateRoutes } from "./private-routes";
 import { PublicRoutes } from "./public-routes";
-import { AdminPrivateRoutes } from "./admin-private-routes";
 
 import AdminLayout from "@/layouts/admin-layout";
 
@@ -24,6 +22,8 @@ import ProjectDocumentDetails from "@/pages/projects/project-document";
 import SignIn from "@/pages/sign-in/sign-in";
 import SignUp from "@/pages/sign-up/sign-up";
 import ResetPassword from "@/pages/reset-password/reset-password";
+import { PrivateRoutes } from "./private-routes";
+import { AdminPrivateRoutes } from "./admin-private-routes";
 
 export function AppRoutes() {
 	return (
@@ -39,7 +39,6 @@ export function AppRoutes() {
 					<Route path="esqueceu-senha" element={<ResetPassword />} />
 				</Route>
 			</Route>
-
 			<Route element={<PrivateRoutes />}>
 				<Route path="*" element={<MunicipalityLayout />}>
 					<Route path="oportunidades" element={<Opportunities />} />
@@ -53,7 +52,6 @@ export function AppRoutes() {
 					/>
 				</Route>
 			</Route>
-
 			<Route element={<AdminPrivateRoutes />}>
 				<Route path="admin" element={<AdminLayout />}>
 					<Route index element={<Navigate to="/admin/dashboard" replace />} />
