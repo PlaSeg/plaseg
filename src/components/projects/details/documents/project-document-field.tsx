@@ -117,7 +117,7 @@ export function ProjectDocumentField({
 			{!isEditing && <p className="text-slate-600">{fieldValue}</p>}
 
 			{isEditing && (
-				<div className="flex items-center gap-2">
+				<div className="flex items-center gap-2 justify-end">
 					<Button variant="outline" onClick={() => setIsEditing(false)}>
 						Cancelar
 					</Button>

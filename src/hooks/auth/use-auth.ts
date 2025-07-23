@@ -1,5 +1,5 @@
-import { create } from "zustand";
 import Cookies from "js-cookie";
+import { create } from "zustand";
 
 interface AuthState {
 	isAuthenticated: boolean;
@@ -10,10 +10,10 @@ interface AuthState {
 
 export const useAuthStore = create<AuthState>((set) => ({
 	userRole: Cookies.get("userRole") || null,
-	isAuthenticated: !!Cookies.get("accessToken"),
+	isAuthenticated: !!Cookies.get("plaseg-access-token"),
 
 	authenticate: (accessToken, userRole) => {
-		Cookies.set("accessToken", accessToken, {
+		Cookies.set("plaseg-access-token", accessToken, {
 			expires: 1 / 24, // 1 hour
 			secure: true,
 		});
@@ -25,7 +25,7 @@ export const useAuthStore = create<AuthState>((set) => ({
 	},
 
 	logout: () => {
-		Cookies.remove("accessToken");
+		Cookies.remove("plaseg-access-token");
 		Cookies.remove("userRole");
 		set({ isAuthenticated: false, userRole: null });
 		window.location.href = "/entrar";
