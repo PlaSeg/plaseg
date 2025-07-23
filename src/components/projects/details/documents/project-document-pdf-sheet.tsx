@@ -2,9 +2,7 @@ import { Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import type { ProjectDocument } from "@/hooks/projects/use-get-project-document-by-id";
-import { CounterpartPdf } from "../pdfs/counterpart-pdf";
-import { JustificationPdf } from "../pdfs/justification-pdf";
-import { SustentabilityPdf } from "../pdfs/sustainability-pdf";
+import { DefaultDocument } from "../pdfs/default-document";
 
 interface ProjectDocumentPdfSheetProps {
 	document: ProjectDocument;
@@ -27,16 +25,16 @@ export function ProjectDocumentPdfSheet({
 				side="right"
 			>
 				{document.name === "Justificativa Completa do Projeto" && (
-					<JustificationPdf document={document} />
+					<DefaultDocument document={document} />
 				)}
 
 				{document.name ===
 					"Sustentabilidade e Localização de Bens do Projeto" && (
-					<SustentabilityPdf document={document} />
+					<DefaultDocument document={document} />
 				)}
 
 				{document.name === "Declaração de Contrapartida" && (
-					<CounterpartPdf document={document} />
+					<DefaultDocument document={document} />
 				)}
 			</SheetContent>
 		</Sheet>
