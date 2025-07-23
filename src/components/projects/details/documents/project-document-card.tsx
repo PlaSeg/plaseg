@@ -19,13 +19,15 @@ export function ProjectDocumentCard({
 					flex justify-between items-center gap-4"
 		>
 			<div className="flex items-center gap-4">
-				<CircleProgressIcon percentage={(0 / 1) * 100} />
+				<CircleProgressIcon
+					percentage={(document.readyFields / document.fields) * 100}
+				/>
 
 				<div className="flex flex-col">
 					<strong className="font-medium">{document.name}</strong>
 
 					<span className="text-muted-foreground text-sm">
-						{0} de {0} concluídos
+						{document.readyFields} de {document.fields} concluídos
 					</span>
 				</div>
 			</div>

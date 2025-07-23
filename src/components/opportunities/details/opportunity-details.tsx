@@ -40,7 +40,7 @@ export function OpportunityDetails({ opportunity }: OpportunityDetailsProps) {
 				<div className="flex flex-col gap-2">
 					<span className="text-lg font-medium">Documentação Obrigatória</span>
 
-					{opportunity.requiredDocuments.map((document) => (
+					{opportunity.attachments.map((document) => (
 						<OpportunityDetailsDocument
 							key={document.id}
 							requiredDocument={document}

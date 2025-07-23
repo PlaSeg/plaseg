@@ -7,33 +7,20 @@ import type {
 } from "@/@types/http/http";
 import { api } from "@/services/axios";
 
-const documentFieldSchema = z.object({
-	id: z.string(),
+const attachmentSchema = z.object({
+	id: z.string().uuid(),
 	name: z.string(),
-	isTitle: z.boolean(),
-	value: z.string(),
-	section: z.string(),
-	level: z.number(),
-	parentId: z.string(),
-	order: z.number(),
+	description: z.string(),
+	model: z.string().url(),
 });
 
 const documentSchema = z.object({
+	id: z.string().uuid(),
 	name: z.string(),
-	fields: z.array(documentFieldSchema),
-});
-
-const requiredDocumentSchema = z.object({
-	id: z.string(),
-	name: z.string(),
-	description: z.string(),
-	model: z.string(),
-	createdAt: z.string(),
-	updatedAt: z.string(),
 });
 
 export const opportunityByIdSchema = z.object({
-	id: z.string(),
+	id: z.string().uuid(),
 	title: z.string(),
 	slug: z.string(),
 	responsibleAgency: z.string(),
@@ -46,18 +33,16 @@ export const opportunityByIdSchema = z.object({
 	requiresCounterpart: z.boolean(),
 	counterpartPercentage: z.number(),
 	type: z.string(),
-	typeId: z.string(),
+	typeId: z.string().uuid(),
 	isActive: z.boolean(),
 	createdAt: z.string(),
 	updatedAt: z.string(),
-	requiredDocuments: z.array(requiredDocumentSchema),
+	attachments: z.array(attachmentSchema),
 	documents: z.array(documentSchema),
 });
 
 export type OpportunityById = z.infer<typeof opportunityByIdSchema>;
-export type DocumentField = z.infer<typeof documentFieldSchema>;
 export type Document = z.infer<typeof documentSchema>;
-export type RequiredDocument = z.infer<typeof requiredDocumentSchema>;
 
 type GetOpportunityByIdResponse =
 	| HTTPSuccessResponse<OpportunityById>
@@ -68,7 +53,7 @@ const getOpportunityById = async (
 ): Promise<GetOpportunityByIdResponse> => {
 	try {
 		const response = await api.get<GetOpportunityByIdResponse>(
-			`/opportunities/${id}`
+			`/v2/opportunities/${id}`
 		);
 
 		return response.data;

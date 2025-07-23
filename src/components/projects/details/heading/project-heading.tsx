@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { CounterpartPdf } from "../pdfs/counterpart-pdf";
 import { JustificationPdf } from "../pdfs/justification-pdf";
 import { SustentabilityPdf } from "../pdfs/sustainability-pdf";
-import { measureProjectProgress } from "./functions/measure-project-progress";
 import { ProjectProgress } from "./project-progress";
 import { ProjectValue } from "./project-value";
 
@@ -32,8 +31,6 @@ export function ProjectHeading({ project }: ProjectHeadingProps) {
 	const totalValue = () => {
 		return requestedValue + counterpartValue();
 	};
-
-	const projectProgress = measureProjectProgress(project);
 
 	async function handleExportAllPDFs() {
 		const docNames = [
@@ -80,12 +77,18 @@ export function ProjectHeading({ project }: ProjectHeadingProps) {
 
 		pdf.save("Projeto_Completo.pdf");
 	}
+	function projectProgress() {
+		if (project.progress === 33.33) return 33;
+		if (project.progress === 66.66) return 66;
+		if (project.progress === 100) return 100;
+		return 0;
+	}
 
 	return (
 		<div className="w-full py-6">
 			<div className="flex justify-between">
 				<div className="flex items-center gap-10">
-					<ProjectProgress percentage={projectProgress} />
+					<ProjectProgress percentage={projectProgress()} />
 
 					<ProjectValue
 						title="Valor Base"
