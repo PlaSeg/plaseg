@@ -14,14 +14,14 @@ export const getProjectDocumentByIdResponseSchema = z.object({
 		z.object({
 			id: z.string(),
 			name: z.string(),
+			description: z.string(),
 			value: z.string(),
 			isTitle: z.boolean(),
-			section: z.string(),
-			level: z.number(),
-			parentId: z.string(),
-			order: z.number(),
-			hasChildren: z.boolean(),
 			ready: z.boolean(),
+			section: z.string(),
+			type: z.string(),
+			tableType: z.string(),
+			parentId: z.string().nullable(),
 		})
 	),
 });
@@ -40,7 +40,7 @@ export async function getProjectDocumentById(
 ): Promise<GetProjectDocumentByIdResponse> {
 	try {
 		const response = await api.get<HTTPSuccessResponse<ProjectDocument>>(
-			`/projects/${projectId}/documents/${documentId}`
+			`/v2/projects/${projectId}/documents/${documentId}`
 		);
 		return response.data;
 	} catch (error) {

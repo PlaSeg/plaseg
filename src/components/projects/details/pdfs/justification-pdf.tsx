@@ -1,12 +1,10 @@
-import { Card } from "@/components/ui/card";
-import { Document } from "@/@schemas/project";
-import { nestFields } from "@/utils/nested-fields";
-import { Button } from "@/components/ui/button";
-import { renderFields } from "./render-fields";
 import html2pdf from "html2pdf.js";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import type { ProjectDocument } from "@/hooks/projects/use-get-project-document-by-id";
 
 interface JustificationPdfProps {
-	document: Document;
+	document: ProjectDocument;
 	hideButton?: boolean;
 }
 
@@ -14,8 +12,6 @@ export function JustificationPdf({
 	document: projectDocument,
 	hideButton = false,
 }: JustificationPdfProps) {
-	const nestedFields = nestFields(projectDocument.fields);
-
 	function handleDownloadPDF() {
 		const element = document.querySelector("#pdf-content");
 
@@ -75,7 +71,21 @@ export function JustificationPdf({
 					</div>
 
 					<div className="border border-black mt-8">
-						{renderFields(nestedFields)}
+						<div className="space-y-2">
+							{projectDocument.fields.map((field) => (
+								<div key={field.id}>
+									<div className={`text-black p-2 border-y border-black`}>
+										{field.section}. {field.name}
+									</div>
+
+									{field.value && (
+										<div className="text-black text-sm px-3 py-2">
+											{field.value}
+										</div>
+									)}
+								</div>
+							))}
+						</div>
 					</div>
 				</div>
 			</Card>

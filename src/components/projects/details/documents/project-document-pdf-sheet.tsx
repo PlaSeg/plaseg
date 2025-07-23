@@ -1,12 +1,18 @@
 import { Eye } from "lucide-react";
-import type { Document } from "@/@schemas/project";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import type { ProjectDocument } from "@/hooks/projects/use-get-project-document-by-id";
 import { CounterpartPdf } from "../pdfs/counterpart-pdf";
 import { JustificationPdf } from "../pdfs/justification-pdf";
 import { SustentabilityPdf } from "../pdfs/sustainability-pdf";
 
-export function ProjectDocumentPdfSheet({ document }: { document: Document }) {
+interface ProjectDocumentPdfSheetProps {
+	document: ProjectDocument;
+}
+
+export function ProjectDocumentPdfSheet({
+	document,
+}: ProjectDocumentPdfSheetProps) {
 	return (
 		<Sheet>
 			<SheetTrigger asChild>

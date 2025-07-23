@@ -1,17 +1,51 @@
 import { useMutation } from "@tanstack/react-query";
+import { AxiosError } from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
-import { createProjectSchema } from "@/@schemas/project";
-import { createProject } from "@/api/projects/create-project";
+import {
+	type CreateProjectRequest,
+	createProjectSchema,
+} from "@/@schemas/project";
+import type {
+	HTTPErrorResponse,
+	HTTPSuccessResponse,
+} from "@/@types/http/http";
 import { useFormMutation } from "@/hooks/common/use-form-mutation";
+import { api } from "@/services/axios";
 import { queryClient } from "@/services/react-query";
 
-interface UseCreateProjectProps {
-	opportunityId: string;
+type CreateProjectResponseBody = {
+	projectId: string;
+};
+
+type CreateProjectResponse =
+	| HTTPSuccessResponse<CreateProjectResponseBody>
+	| HTTPErrorResponse;
+
+export async function createProject(
+	request: CreateProjectRequest
+): Promise<CreateProjectResponse> {
+	try {
+		const response = await api.post<
+			HTTPSuccessResponse<CreateProjectResponseBody>
+		>("/v2/projects", request);
+
+		return response.data;
+	} catch (error) {
+		if (error instanceof AxiosError && error.response?.data) {
+			return error.response.data;
+		}
+
+		return {
+			success: false,
+			errors: ["Erro desconhecido"],
+			data: null,
+		};
+	}
 }
 
-export function useCreateProject({ opportunityId }: UseCreateProjectProps) {
+export function useCreateProject({ opportunityId }: { opportunityId: string }) {
 	const navigate = useNavigate();
 
 	const [isCreateProjectSheetOpen, setIsCreateProjectSheetOpen] =
@@ -22,7 +56,6 @@ export function useCreateProject({ opportunityId }: UseCreateProjectProps) {
 		defaultValues: {
 			title: "",
 			opportunityId: opportunityId,
-			projectTypeId: "",
 		},
 		onSubmit: (data) => {
 			createProjectFn(data);

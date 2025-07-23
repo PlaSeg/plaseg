@@ -3,7 +3,6 @@ import { z } from "zod";
 export const createProjectSchema = z.object({
 	title: z.string().min(1, "Título é obrigatório"),
 	opportunityId: z.string().uuid().min(1, "Oportunidade é obrigatória"),
-	projectTypeId: z.string().uuid().min(1, "Tipo de projeto é obrigatório"),
 });
 
 export type CreateProjectRequest = z.infer<typeof createProjectSchema>;
@@ -59,7 +58,8 @@ export const fieldsSchema = z.object({
 export const documentsSchema = z.object({
 	id: z.string().uuid(),
 	name: z.string(),
-	fields: z.array(fieldsSchema),
+	fields: z.number(),
+	readyFields: z.number(),
 });
 
 export type Document = z.infer<typeof documentsSchema>;
@@ -86,17 +86,14 @@ export const projectTypeSchema = z.object({
 
 export const projectSchema = z.object({
 	id: z.string().uuid(),
+	progress: z.number(),
 	title: z.string(),
-	opportunityId: z.string().uuid(),
-	projectTypeId: z.string().uuid(),
 	responsibleCpf: z.string(),
 	responsibleName: z.string(),
 	responsibleEmail: z.string().email(),
 	responsiblePhone: z.string(),
-	counterpartCapitalItem: z.string(),
-	counterpartCapitalValue: z.number(),
+	counterpartCapitalItem: z.number(),
 	counterpartOperatingCostCode: z.string(),
-	counterpartOperatingCostValue: z.number(),
 	totalValue: z.number(),
 	requestedValue: z.number(),
 	baseValue: z.number(),
@@ -105,7 +102,6 @@ export const projectSchema = z.object({
 
 	municipality: municipalitySchema,
 	opportunity: opportunitySchema,
-	projectType: projectTypeSchema,
 
 	requestedItems: z.array(requestedItemsSchema),
 	documents: z.array(documentsSchema),

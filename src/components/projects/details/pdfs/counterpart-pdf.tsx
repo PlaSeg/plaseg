@@ -1,12 +1,10 @@
-import { Card } from "@/components/ui/card";
-import { Document } from "@/@schemas/project";
-import { nestFields } from "@/utils/nested-fields";
-import { Button } from "@/components/ui/button";
-import { renderFields } from "./render-fields";
 import html2pdf from "html2pdf.js";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import type { ProjectDocument } from "@/hooks/projects/use-get-project-document-by-id";
 
 interface CounterpartPdfProps {
-	document: Document;
+	document: ProjectDocument;
 	hideButton?: boolean;
 }
 
@@ -14,11 +12,8 @@ export function CounterpartPdf({
 	document: projectDocument,
 	hideButton = false,
 }: CounterpartPdfProps) {
-	const nestedFields = nestFields(projectDocument.fields);
-
 	function handleDownloadPDF() {
 		const element = document.querySelector("#pdf-content");
-
 		html2pdf(element as HTMLElement);
 	}
 
@@ -44,7 +39,7 @@ export function CounterpartPdf({
 					aspectRatio: "1/1.414",
 				}}
 			>
-				<div className="p-8 flex flex-col gap-2">
+				<div className="p-8 space-y-6">
 					<div className="flex justify-center mb-8">
 						<div className="relative">
 							<img
@@ -62,7 +57,7 @@ export function CounterpartPdf({
 					</div>
 
 					<div className="text-sm text-black leading-relaxed text-justify">
-						<h2 className="text-base font-semibold text-black block mb-2">
+						<h2 className="text-base font-semibold text-black">
 							Proposta Transferegov.br nº: 000064/2023
 						</h2>
 
@@ -79,25 +74,20 @@ export function CounterpartPdf({
 					</div>
 
 					<div className="border border-black mt-8">
-						{renderFields(nestedFields)}
-					</div>
-
-					<div className="my-12 text-center">
-						TERESINA-PI,{" "}
-						{new Date().toLocaleDateString("pt-BR", {
-							day: "numeric",
-							month: "long",
-							year: "numeric",
-						})}
-						.
-					</div>
-
-					<div
-						className="text-center mt-8 flex flex-col gap-2 border-t-[1.5px] max-w-max
-					mx-auto py-2 border-black px-12"
-					>
-						<strong>JOSÉ PESSOAL LEAL</strong>
-						<i>Prefeito Municipal</i>
+						<div className="space-y-2">
+							{projectDocument.fields.map((field) => (
+								<div key={field.id}>
+									<div className={`text-black p-2 border-y border-black`}>
+										{field.section}. {field.name}
+									</div>
+									{field.value && (
+										<div className="text-black text-sm px-3 py-2">
+											{field.value}
+										</div>
+									)}
+								</div>
+							))}
+						</div>
 					</div>
 				</div>
 			</Card>
