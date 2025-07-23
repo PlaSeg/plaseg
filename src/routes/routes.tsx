@@ -52,6 +52,7 @@ export function AppRoutes() {
 					/>
 				</Route>
 			</Route>
+
 			<Route element={<AdminPrivateRoutes />}>
 				<Route path="admin" element={<AdminLayout />}>
 					<Route index element={<Navigate to="/admin/dashboard" replace />} />
