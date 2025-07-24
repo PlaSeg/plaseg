@@ -16,7 +16,7 @@ export function ProjectDetailsContainer({ project }: { project: Project }) {
 
 				<div className="flex gap-2">
 					<Tag className="bg-black hover:bg-black/90 text-primary-foreground">
-						<Link to={`/oportunidades/${slugfy(project.opportunity.title)}`}>
+						<Link to={`/oportunidades/${project.opportunity.id}`}>
 							{project.opportunity.title}
 						</Link>
 					</Tag>
