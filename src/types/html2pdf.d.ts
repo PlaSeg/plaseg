@@ -1,4 +1,4 @@
-declare module "html2pdf.js" {
+declare module "html2pdf" {
 	interface Html2PdfOptions {
 		margin?: number | [number, number, number, number];
 		filename?: string;
@@ -19,18 +19,10 @@ declare module "html2pdf.js" {
 		};
 	}
 
-	interface Html2PdfInstance {
-		from(element: HTMLElement | string): Html2PdfInstance;
-		set(options: Html2PdfOptions): Html2PdfInstance;
-		save(): Promise<void>;
-		outputPdf(): Promise<Blob>;
-		outputImg(): Promise<string>;
-	}
-
 	function html2pdf(
-		element?: HTMLElement | string,
+		element: HTMLElement,
 		options?: Html2PdfOptions
-	): Html2PdfInstance;
+	): Promise<void>;
 
 	export = html2pdf;
 }

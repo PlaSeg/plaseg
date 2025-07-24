@@ -1,4 +1,4 @@
-import html2pdf from "html2pdf.js";
+import html2pdf from "html2pdf";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import type { ProjectDocument } from "@/hooks/projects/use-get-project-document-by-id";
