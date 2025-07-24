@@ -1,25 +1,25 @@
-import * as React from "react";
 import {
-	ColumnFiltersState,
-	SortingState,
-	VisibilityState,
+	type ColumnFiltersState,
 	getCoreRowModel,
 	getFilteredRowModel,
 	getPaginationRowModel,
 	getSortedRowModel,
+	type SortingState,
 	useReactTable,
+	type VisibilityState,
 } from "@tanstack/react-table";
 import { X } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { opportunitiesTableColumns } from "./opportunities-table-columns";
-import { SearchInput } from "@/components/ui/search-input";
-import { translateOpportunitiesTableKeys } from "@/utils/translate-opportunities-table-keys";
-import { useGetOpportunities } from "@/hooks/admin/opportunities/use-get-opportunities";
-import { TableSelect } from "@/components/table/table-select";
-import { CreateOpportunitySheet } from "../modals/create-opportunity-sheet";
-import { OpportunitiesTable } from "./opportunities-table";
+import * as React from "react";
 import { TablePagination } from "@/components/table/table-footer";
 import { TableHideColumnsDropDown } from "@/components/table/table-hide-columns-dropdown";
+import { TableSelect } from "@/components/table/table-select";
+import { Button } from "@/components/ui/button";
+import { SearchInput } from "@/components/ui/search-input";
+import { useGetOpportunities } from "@/hooks/opportunities/use-get-opportunities";
+import { translateOpportunitiesTableKeys } from "@/utils/translate-opportunities-table-keys";
+import { CreateOpportunitySheet } from "../modals/create-opportunity-sheet";
+import { OpportunitiesTable } from "./opportunities-table";
+import { opportunitiesTableColumns } from "./opportunities-table-columns";
 
 export function OpportunitiesTableContainer() {
 	const [sorting, setSorting] = React.useState<SortingState>([]);

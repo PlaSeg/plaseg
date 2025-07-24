@@ -1,4 +1,4 @@
-import { MunicipalityForm } from "@/components/municipality/form/municipality-form";
+import { MunicipalityForm } from "@/components/municipality/create-municipality-form/municipality-form";
 
 export default function RegisterMunicipality() {
 	return <MunicipalityForm />;

@@ -3,7 +3,7 @@ import { Form } from "@/components/ui/form";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { LoaderCircle, Plus, Trash2 } from "lucide-react";
-import { useCreateOpportunity } from "@/hooks/admin/opportunities/use-create-opportunity";
+import { useCreateOpportunity } from "@/hooks/opportunities/use-create-opportunity";
 import { FormInput } from "@/components/form/form-input";
 import { FormDatePicker } from "@/components/form/form-date-picker";
 import { FormMoneyInput } from "@/components/form/form-money-input";
@@ -14,6 +14,7 @@ import { useGetProjectTypes } from "@/hooks/admin/project-types/use-get-project-
 import { FormMultiSelect } from "@/components/form/form-multi-select-input";
 import { useGetTypes } from "@/hooks/admin/types/use-get-types";
 import { TypeGroup } from "@/@types/admin/type";
+import { useGetBaseProducts } from "@/hooks/admin/base-products/use-get-base-products";
 
 interface OpportunityFormProps {
 	setIsFormOpen: (open: boolean) => void;
@@ -35,6 +36,7 @@ export function OpportunityForm({ setIsFormOpen }: OpportunityFormProps) {
 	} = useCreateOpportunity(setIsFormOpen);
 
 	const { projectTypes } = useGetProjectTypes();
+	const { baseProducts } = useGetBaseProducts();
 	const { types, isLoadingGetTypes } = useGetTypes({
 		group: TypeGroup.OPPORTUNITY,
 	});
@@ -95,6 +97,18 @@ export function OpportunityForm({ setIsFormOpen }: OpportunityFormProps) {
 							options={projectTypes.map((type) => ({
 								label: type.name,
 								value: type.id,
+							}))}
+						/>
+
+						<FormMultiSelect
+							form={form}
+							entity="baseProductsIds"
+							label="Produtos base"
+							placeholder="Selecione os produtos base"
+							maxCount={undefined}
+							options={baseProducts.map((product) => ({
+								label: product.name,
+								value: product.id,
 							}))}
 						/>
 
@@ -159,7 +173,7 @@ export function OpportunityForm({ setIsFormOpen }: OpportunityFormProps) {
 
 				<div className="space-y-4">
 					<div className="flex items-center justify-between">
-						<h3 className="text-lg font-semibold">Documentos Obrigatórios</h3>
+						<h3 className="text-lg font-semibold">Anexos</h3>
 						<Button
 							type="button"
 							variant="secondary"
@@ -176,9 +190,7 @@ export function OpportunityForm({ setIsFormOpen }: OpportunityFormProps) {
 						<Card key={field.id} className="shadow-none">
 							<CardHeader className="pb-3">
 								<div className="flex items-center justify-between">
-									<CardTitle className="text-sm">
-										Documento Obrigatório {index + 1}
-									</CardTitle>
+									<CardTitle className="text-sm">Anexo {index + 1}</CardTitle>
 
 									<Button
 										type="button"
@@ -197,21 +209,21 @@ export function OpportunityForm({ setIsFormOpen }: OpportunityFormProps) {
 									form={form}
 									entity={`requiredDocuments.${index}.name`}
 									label="Nome"
-									placeholder="Digite o nome do documento"
+									placeholder="Digite o nome do anexo"
 								/>
 
 								<FormTextarea
 									form={form}
 									entity={`requiredDocuments.${index}.description`}
 									label="Descrição"
-									placeholder="Digite a descrição do documento"
+									placeholder="Digite a descrição do anexo"
 								/>
 
 								<FormInput
 									form={form}
 									entity={`requiredDocuments.${index}.model`}
 									label="Modelo"
-									placeholder="Digite o modelo do documento"
+									placeholder="Digite o modelo do anexo"
 								/>
 							</CardContent>
 						</Card>

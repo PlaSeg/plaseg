@@ -37,6 +37,9 @@ export const opportunityRequestSchema = z.object({
 	projectTypeIds: z
 		.array(z.string().uuid())
 		.min(1, "Tipo de projeto é obrigatório"),
+	baseProductsIds: z
+		.array(z.string().uuid())
+		.min(1, "Produto base é obrigatório"),
 	requiredDocuments: z.array(createRequiredDocumentSchema).default([]),
 	documents: z.array(createDocumentSchema).default([]),
 });

@@ -4,6 +4,7 @@ export function translateProjectTableKeys(key: string): string {
 		title: "Título",
 		opportunity: "Oportunidade",
 		createdAt: "Criado em",
+		isActive: "Ativo",
 		requiredValue: "Valor Solicitado",
 		contrapartValue: "Contrapartida",
 		actions: "Ações",

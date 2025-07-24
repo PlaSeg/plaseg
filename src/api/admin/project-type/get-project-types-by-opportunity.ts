@@ -17,7 +17,7 @@ export async function getProjectTypesByOpportunity(
 ): Promise<GetProjectTypesByOpportunityResponse> {
   try {
     const response = await api.get<HTTPSuccessResponse<ProjectType[]>>(
-      `/project-types/${opportunityId}`
+      `/project-types/opportunity/${opportunityId}`
     );
 
     return response.data;

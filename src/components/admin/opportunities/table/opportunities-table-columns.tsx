@@ -1,12 +1,12 @@
-import { Button } from "@/components/ui/button";
-import { ColumnDef } from "@tanstack/react-table";
+import type { ColumnDef } from "@tanstack/react-table";
 import { ArrowDown, ArrowUp, Eye, SquarePen } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { translateOpportunitiesTableKeys } from "@/utils/translate-opportunities-table-keys";
-import { formatDate } from "@/utils/format-date";
-import { Tag } from "@/components/ui/tag";
 import { Switch } from "@/components/ui/switch";
-import { Opportunity } from "@/@schemas/opportunity";
+import { Tag } from "@/components/ui/tag";
+import type { Opportunity } from "@/hooks/opportunities/use-get-opportunities";
+import { formatDate } from "@/utils/format-date";
+import { translateOpportunitiesTableKeys } from "@/utils/translate-opportunities-table-keys";
 
 export const opportunitiesTableColumns: ColumnDef<Opportunity>[] = [
 	{
