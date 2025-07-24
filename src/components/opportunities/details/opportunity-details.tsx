@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import { Button } from "@/components/ui/button";
 import type { OpportunityById } from "@/hooks/opportunities/use-get-opportunity-by-id";
 import { CreateProjectDialog } from "./create-project-dialog";
-import { OpportunityDetailsDocument } from "./opportunity-details-document";
+import { OpportunityDetailsAttachment } from "./opportunity-details-document";
 
 interface OpportunityDetailsProps {
 	opportunity: OpportunityById;
@@ -40,10 +40,10 @@ export function OpportunityDetails({ opportunity }: OpportunityDetailsProps) {
 				<div className="flex flex-col gap-2">
 					<span className="text-lg font-medium">Documentação Obrigatória</span>
 
-					{opportunity.attachments.map((document) => (
-						<OpportunityDetailsDocument
-							key={document.id}
-							requiredDocument={document}
+					{opportunity.attachments.map((attachment) => (
+						<OpportunityDetailsAttachment
+							key={attachment.id}
+							attachment={attachment}
 						/>
 					))}
 				</div>

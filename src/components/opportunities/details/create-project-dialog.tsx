@@ -1,6 +1,5 @@
 import { LoaderCircle } from "lucide-react";
 import { FormInput } from "@/components/form/form-input";
-import { FormSelect } from "@/components/form/form-select";
 import { Button } from "@/components/ui/button";
 import {
 	Dialog,
@@ -25,12 +24,6 @@ export function CreateProjectDialog({
 }: CreateProjectDialogProps) {
 	const { projectTypes, isLoadingGetProjectTypesByOpportunity } =
 		useGetProjectTypesByOpportunity({ opportunityId });
-
-	const projectTypeOptions =
-		projectTypes?.map((projectType) => ({
-			label: projectType.name,
-			value: projectType.id,
-		})) ?? [];
 
 	const { form, isLoadingCreateProject } = useCreateProject({
 		opportunityId,
@@ -69,16 +62,6 @@ export function CreateProjectDialog({
 							<FormInputSkeleton
 								label="Tipo de Projeto"
 								message="Carregando tipos de projeto..."
-							/>
-						)}
-
-						{!isLoadingGetProjectTypesByOpportunity && (
-							<FormSelect
-								form={form}
-								entity="projectTypeId"
-								label="Tipo de Projeto"
-								placeholder="Selecione o tipo de projeto"
-								options={projectTypeOptions}
 							/>
 						)}
 

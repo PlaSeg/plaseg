@@ -42,7 +42,6 @@ export const opportunityByIdSchema = z.object({
 });
 
 export type OpportunityById = z.infer<typeof opportunityByIdSchema>;
-export type Document = z.infer<typeof documentSchema>;
 
 type GetOpportunityByIdResponse =
 	| HTTPSuccessResponse<OpportunityById>
