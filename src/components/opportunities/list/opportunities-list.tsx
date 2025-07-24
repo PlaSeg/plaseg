@@ -8,8 +8,8 @@ export function OpportunitiesList() {
 	if (isLoadingGetOpportunities) {
 		return (
 			<div className="flex-1 py-6 space-y-6 overflow-y-auto max-h-[calc(100vh-8rem)]">
-				{Array.from({ length: 10 }).map(() => (
-					<OpportunityCardSkeleton key={`${Math.random()}`} />
+				{Array.from({ length: 10 }).map((_, index) => (
+					<OpportunityCardSkeleton key={index} />
 				))}
 			</div>
 		);
