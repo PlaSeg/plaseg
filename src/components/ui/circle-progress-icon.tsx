@@ -29,7 +29,11 @@ export function CircleProgressIcon({
 			height={size}
 			viewBox="0 0 24 24"
 			className={cn("transform -rotate-90", className)}
-			aria-label={`Ícone de progresso: ${normalizedPercentage}%`}
+			aria-label={
+				locale === "pt"
+					? `Ícone de progresso: ${normalizedPercentage}%`
+					: `Progress icon: ${normalizedPercentage}%`
+			}
 		>
 			<title>Progresso: {normalizedPercentage}%</title>
 			{/* Círculo de fundo (slate) */}
