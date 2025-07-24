@@ -19,6 +19,7 @@ export function ProjectDocumentField({
 	documentId,
 }: ProjectDocumentFieldProps) {
 	const [fieldValue, setFieldValue] = useState(field.value);
+	const [lastFieldValue, setLastFieldValue] = useState(field.value);
 	const [isEditing, setIsEditing] = useState(false);
 	const [isDone, setIsDone] = useState(false);
 
@@ -28,6 +29,7 @@ export function ProjectDocumentField({
 			onSuccess: () => {
 				setIsEditing(false);
 				setIsDone(true);
+				setLastFieldValue(fieldValue);
 			},
 		});
 
@@ -118,7 +120,13 @@ export function ProjectDocumentField({
 
 			{isEditing && (
 				<div className="flex items-center gap-2 justify-end">
-					<Button variant="outline" onClick={() => setIsEditing(false)}>
+					<Button
+						variant="outline"
+						onClick={() => {
+							setIsEditing(false);
+							setFieldValue(lastFieldValue);
+						}}
+					>
 						Cancelar
 					</Button>
 
