@@ -43,6 +43,7 @@ export function useCreateOpportunity(setIsFormOpen: (open: boolean) => void) {
 						value: field.value || "",
 						parentId: field.parentId || "",
 						id: field.id || uuidv4(),
+						isTitle: true,
 					})),
 				})),
 			};
@@ -123,6 +124,12 @@ export function useCreateOpportunity(setIsFormOpen: (open: boolean) => void) {
 			name: "",
 			value: null,
 			parentId: null,
+			section: "",
+			type: ["STRING"],
+			tableType: ["CRONOGRAMA_DE_EXECUCAO"],
+			description: "",
+			parentSection: "",
+			isTitle: true,
 		});
 		form.setValue("documents", updatedDocuments);
 	};
