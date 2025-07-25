@@ -7,16 +7,14 @@ const createDocumentFieldSchema = z.object({
 	value: z.string().nullable().optional(),
 	parentId: z.string().nullable().optional(),
 	section: z.string().min(1, "Seção é obrigatória"),
-	type: z
-		.array(z.enum(["STRING", "TABLE"]))
-		.min(1, "Selecione pelo menos um tipo"),
+	type: z.array(z.enum(["STRING", "TABLE"])),
 	tableType: z
 		.array(z.enum(["CRONOGRAMA_DE_EXECUCAO", "TERMO_DE_REFERENCIA"]))
 		.nullable()
 		.optional(),
 	description: z.string().nullable().optional(),
 	parentSection: z.string().nullable().optional(),
-	isTitle: z.boolean().default(true),
+	isTitle: z.boolean().default(false),
 });
 
 const createDocumentSchema = z.object({

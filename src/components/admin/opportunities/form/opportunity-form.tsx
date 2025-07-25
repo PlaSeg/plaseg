@@ -377,8 +377,8 @@ export function OpportunityForm({ setIsFormOpen }: OpportunityFormProps) {
 													<FormCombobox
 														form={form}
 														entity={`documents.${docIndex}.fields.${fieldIndex}.tableType`}
-														translatedEntity="Tipo da tabela"
-														placeholder="Selecione o tipo de tabela"
+														translatedEntity="Tipo de Tabela"
+														placeholder="Selecione o Tipo de Tabela"
 														emptyMessage="Nenhum tipo encontrado"
 														options={tableTypes.map((table) => ({
 															label: table.label,
