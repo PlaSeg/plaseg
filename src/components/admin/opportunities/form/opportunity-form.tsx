@@ -111,7 +111,7 @@ export function OpportunityForm({ setIsFormOpen }: OpportunityFormProps) {
 
 						<FormMultiSelect
 							form={form}
-							entity="baseProductsIds"
+							entity="baseProductIds"
 							label="Produtos base"
 							placeholder="Selecione os produtos base"
 							maxCount={undefined}
@@ -354,12 +354,12 @@ export function OpportunityForm({ setIsFormOpen }: OpportunityFormProps) {
 														inputClassName="bg-white"
 													/>
 
-													<FormMultiSelect
+													<FormCombobox
 														form={form}
 														entity={`documents.${docIndex}.fields.${fieldIndex}.type`}
-														label="Tipo"
-														placeholder="Selecione o tipo do campo"
-														maxCount={undefined}
+														translatedEntity="Tipo do Campo"
+														placeholder="Selecione o Tipo do Campo"
+														emptyMessage="Nenhum tipo encontrado"
 														options={typesField.map((type) => ({
 															label: type.label,
 															value: type.value,
