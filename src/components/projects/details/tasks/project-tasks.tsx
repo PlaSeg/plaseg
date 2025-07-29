@@ -1,5 +1,5 @@
 import { CopyCheck } from "lucide-react";
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import type { Project } from "@/@schemas/project";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
@@ -42,11 +42,7 @@ export function ProjectTasks({ project }: ProjectTasksProps) {
 	}
 
 	const tasks = [task1(), task2(), task3()];
-
-	const [completedCount] = useReducer(
-		() => tasks.reduce((acc, curr) => acc + (curr ? 1 : 0), 0),
-		tasks.reduce((acc, curr) => acc + (curr ? 1 : 0), 0)
-	);
+	const completedCount = tasks.reduce((acc, curr) => acc + (curr ? 1 : 0), 0);
 
 	return (
 		<div className="flex flex-col space-y-4">

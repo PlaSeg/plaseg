@@ -15,11 +15,11 @@ export const getProjectDocumentByIdResponseSchema = z.object({
 			id: z.string(),
 			name: z.string(),
 			description: z.string(),
-			value: z.string(),
+			value: z.union([z.string(), z.array(z.record(z.unknown()))]),
 			isTitle: z.boolean(),
 			ready: z.boolean(),
 			section: z.string(),
-			type: z.string(),
+			type: z.enum(["STRING", "TABLE"]),
 			tableType: z.string(),
 			parentId: z.string().nullable(),
 		})
