@@ -1,17 +1,17 @@
-import html2pdf from "html2pdf";
+import html2pdf from "html2pdf.js";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import type { ProjectDocument } from "@/hooks/projects/use-get-project-document-by-id";
 
-interface DefaultDocumentProps {
+interface SustainabilityPDFProps {
 	document: ProjectDocument;
 	hideButton?: boolean;
 }
 
-export function DefaultDocument({
+export function SustainabilityPDF({
 	document: projectDocument,
 	hideButton = false,
-}: DefaultDocumentProps) {
+}: SustainabilityPDFProps) {
 	function handleDownloadPDF() {
 		const element = document.querySelector("#pdf-content");
 
@@ -61,31 +61,23 @@ export function DefaultDocument({
 						<h2 className="text-base font-semibold text-black">
 							Proposta Transferegov.br nº: 000001/2025
 						</h2>
-
-						<p className="indent-8">
-							Na qualidade de dirigente máximo do proponente (outra autoridade,
-							por delegação de competência), complemento a justificativa do
-							projeto estruturado no âmbito da Proposta Transferegov.br acima
-							identificada nos seguintes termos:
-						</p>
 					</div>
 
-					<div className="border border-black mt-8">
+					<div className="mt-8">
 						<div>
 							{projectDocument.fields.map((field) => (
 								<div key={field.id}>
 									<div
-										className={`text-black p-2 border-y border-black
-									${field.isTitle && "border-y-0"}
-									${!field.parentId && "font-semibold"}
-									${field.value && field.value !== "" && "border-b-0"}`}
+										className={`text-black py-2
+											${!field.parentId && "font-semibold"}
+											${field.parentId && "pl-4"}`}
 									>
 										{field.section}. {field.name}
 									</div>
 
 									{field.value && field.value !== "" && (
-										<div className="text-sm px-3 pb-2 text-zinc-600">
-											{field.value}
+										<div className="text-sm pb-2 pl-4 text-zinc-600">
+											{field.value as string}
 										</div>
 									)}
 								</div>

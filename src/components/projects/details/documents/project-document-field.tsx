@@ -106,7 +106,13 @@ export function ProjectDocumentField({
 				</div>
 			</div>
 
-			{isEditing && (
+			{typeof fieldValue !== "string" && (
+				<div className="text-slate-600">
+					Este campo não pode ser editado.
+				</div>
+			)}
+
+			{typeof fieldValue === "string" && isEditing && (
 				<Textarea
 					className="bg-white !text-base h-[150px] mb-4"
 					value={fieldValue ?? ""}
@@ -114,7 +120,9 @@ export function ProjectDocumentField({
 				/>
 			)}
 
-			{!isEditing && <p className="text-slate-600">{fieldValue}</p>}
+			{typeof fieldValue === "string" && !isEditing && (
+				<p className="text-slate-600">{fieldValue}</p>
+			)}
 
 			{isEditing && (
 				<div className="flex items-center gap-2 justify-end">
@@ -126,7 +134,11 @@ export function ProjectDocumentField({
 						variant="outline"
 						className="w-[150px] bg-black hover:bg-black/90 text-white hover:text-white outline-none"
 						onClick={() => {
-							updateDocumentFieldValueFn(fieldValue ?? "");
+							updateDocumentFieldValueFn(
+								typeof fieldValue === "string"
+									? fieldValue
+									: JSON.stringify(fieldValue)
+							);
 						}}
 						disabled={isLoadingUpdateDocumentFieldValue}
 					>

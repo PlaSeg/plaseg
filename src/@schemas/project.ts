@@ -47,7 +47,7 @@ export const requestedItemsSchema = z.object({
 export const fieldsSchema = z.object({
 	id: z.string().uuid(),
 	name: z.string(),
-	value: z.string(),
+	value: z.union([z.string(), z.array(z.record(z.unknown()))]),
 	isTitle: z.boolean(),
 	section: z.string(),
 	level: z.number(),

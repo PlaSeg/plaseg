@@ -19,7 +19,7 @@ import { formatCurrency } from "@/utils/format-currency";
 import { AddItemDialog } from "./add-project-item-dialog";
 import { DeleteItemDialog } from "./delete-project-item-dialog";
 import { EditProjectItemDialog } from "./edit-project-item-dialog";
-import { ReferenceTermDialog } from "./reference-term-dialog";
+import { CompleteItemSelectionDialog } from "./reference-term-dialog";
 
 interface ProjectItemsProps {
 	project: Project;
@@ -102,9 +102,7 @@ export function ProjectItems({ project }: ProjectItemsProps) {
 											</div>
 										</TableCell>
 
-										<TableCell>
-											{formatCurrency(item.budget)}
-										</TableCell>
+										<TableCell>{formatCurrency(item.budget)}</TableCell>
 
 										<TableCell>{item.quantity}</TableCell>
 
@@ -147,7 +145,7 @@ export function ProjectItems({ project }: ProjectItemsProps) {
 				</CollapsibleContent>
 
 				<div className="flex w-full justify-end">
-					<ReferenceTermDialog />
+					<CompleteItemSelectionDialog project={project} />
 				</div>
 			</Collapsible>
 		</div>

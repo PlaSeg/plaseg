@@ -11,9 +11,7 @@ import {
 	DialogTrigger,
 } from "@/components/ui/dialog";
 import { Form } from "@/components/ui/form";
-import { useGetProjectTypesByOpportunity } from "@/hooks/admin/project-types/use-get-project-types-by-opportunity";
 import { useCreateProject } from "@/hooks/projects/use-create-project";
-import { FormInputSkeleton } from "../../projects/details/items/form-input-skeleton";
 
 interface CreateProjectDialogProps {
 	opportunityId: string;
@@ -22,9 +20,6 @@ interface CreateProjectDialogProps {
 export function CreateProjectDialog({
 	opportunityId,
 }: CreateProjectDialogProps) {
-	const { projectTypes, isLoadingGetProjectTypesByOpportunity } =
-		useGetProjectTypesByOpportunity({ opportunityId });
-
 	const { form, isLoadingCreateProject } = useCreateProject({
 		opportunityId,
 	});
@@ -57,13 +52,6 @@ export function CreateProjectDialog({
 							label="Nome do Projeto"
 							placeholder="Digite o nome do projeto"
 						/>
-
-						{isLoadingGetProjectTypesByOpportunity && (
-							<FormInputSkeleton
-								label="Tipo de Projeto"
-								message="Carregando tipos de projeto..."
-							/>
-						)}
 
 						<div className="flex items-center justify-end gap-4">
 							<Button variant="outline" asChild>
