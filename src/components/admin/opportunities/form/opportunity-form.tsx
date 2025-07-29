@@ -41,6 +41,15 @@ export function OpportunityForm({ setIsFormOpen }: OpportunityFormProps) {
 		group: TypeGroup.OPPORTUNITY,
 	});
 
+	const tableTypes = [
+		{ label: "Cronograma de execução", value: "CRONOGRAMA_DE_EXECUCAO" },
+		{ label: "Termo de referência", value: "TERMO_DE_REFERENCIA" },
+	];
+	const typesField = [
+		{ label: "String", value: "STRING" },
+		{ label: "Table", value: "TABLE" },
+	];
+
 	return (
 		<Form {...form}>
 			<form onSubmit={form.handleSubmitForm} className="space-y-6">
@@ -102,7 +111,7 @@ export function OpportunityForm({ setIsFormOpen }: OpportunityFormProps) {
 
 						<FormMultiSelect
 							form={form}
-							entity="baseProductsIds"
+							entity="baseProductIds"
 							label="Produtos base"
 							placeholder="Selecione os produtos base"
 							maxCount={undefined}
@@ -275,6 +284,20 @@ export function OpportunityForm({ setIsFormOpen }: OpportunityFormProps) {
 									placeholder="Digite o nome do documento"
 								/>
 
+								<FormTextarea
+									form={form}
+									entity={`documents.${docIndex}.value`}
+									label="Valor do Documento"
+									placeholder="Digite o valor do documento"
+								/>
+
+								<FormTextarea
+									form={form}
+									entity={`documents.${docIndex}.description`}
+									label="Descrição do Documento"
+									placeholder="Digite a descrição do documento"
+								/>
+
 								<div className="space-y-3">
 									<div className="flex items-center justify-between">
 										<h4 className="text-sm font-medium">Campos</h4>
@@ -322,7 +345,27 @@ export function OpportunityForm({ setIsFormOpen }: OpportunityFormProps) {
 													placeholder="Digite o nome do campo"
 													inputClassName="bg-white"
 												/>
+												<div className=" grid w-full grid-cols-2 gap-4">
+													<FormInput
+														form={form}
+														entity={`documents.${docIndex}.fields.${fieldIndex}.section`}
+														label="Seção do Campo"
+														placeholder="Digite a seção do campo"
+														inputClassName="bg-white"
+													/>
 
+													<FormCombobox
+														form={form}
+														entity={`documents.${docIndex}.fields.${fieldIndex}.type`}
+														translatedEntity="Tipo do Campo"
+														placeholder="Selecione o Tipo do Campo"
+														emptyMessage="Nenhum tipo encontrado"
+														options={typesField.map((type) => ({
+															label: type.label,
+															value: type.value,
+														}))}
+													/>
+												</div>
 												<FormTextarea
 													form={form}
 													entity={`documents.${docIndex}.fields.${fieldIndex}.value`}
@@ -330,20 +373,39 @@ export function OpportunityForm({ setIsFormOpen }: OpportunityFormProps) {
 													placeholder="Digite o valor do campo"
 													textAreaClassName="bg-white"
 												/>
+												<div className=" grid w-full grid-cols-2 gap-4">
+													<FormCombobox
+														form={form}
+														entity={`documents.${docIndex}.fields.${fieldIndex}.tableType`}
+														translatedEntity="Tipo de Tabela"
+														placeholder="Selecione o Tipo de Tabela"
+														emptyMessage="Nenhum tipo encontrado"
+														options={tableTypes.map((table) => ({
+															label: table.label,
+															value: table.value,
+														}))}
+													/>
 
-												<FormCombobox
+													<FormInput
+														form={form}
+														entity={`documents.${docIndex}.fields.${fieldIndex}.parentSection`}
+														label="Seção Pai"
+														placeholder="Digite a seção pai do campo"
+														inputClassName="bg-white"
+													/>
+												</div>
+												<FormTextarea
 													form={form}
-													entity={`documents.${docIndex}.fields.${fieldIndex}.parentId`}
-													translatedEntity="Campo pai"
-													placeholder="Busque por um campo pai"
-													emptyMessage="Nenhum campo pai encontrado"
-													options={getAllFieldsForParentSelection(
-														docIndex,
-														fieldIndex
-													).map((field) => ({
-														label: field.name,
-														value: field.id,
-													}))}
+													entity={`documents.${docIndex}.fields.${fieldIndex}.description`}
+													label="Descrição (Opcional)"
+													placeholder="Digite a descrição do campo"
+													textAreaClassName="bg-white"
+												/>
+
+												<FormCheckbox
+													form={form}
+													entity={`documents.${docIndex}.fields.${fieldIndex}.isTitle`}
+													label="É título"
 												/>
 											</div>
 										))}
