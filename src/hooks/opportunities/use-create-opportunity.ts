@@ -23,7 +23,7 @@ export function useCreateOpportunity(setIsFormOpen: (open: boolean) => void) {
 			requiresCounterpart: false,
 			counterpartPercentage: 0,
 			projectTypeIds: [],
-			baseProductsIds: [],
+			baseProductIds: [],
 			requiredDocuments: [],
 			documents: [],
 		},
@@ -41,8 +41,8 @@ export function useCreateOpportunity(setIsFormOpen: (open: boolean) => void) {
 					fields: (doc.fields || []).map((field) => ({
 						...field,
 						value: field.value || "",
-						parentId: field.parentId || "",
 						id: field.id || uuidv4(),
+						isTitle: field.isTitle ?? false,
 					})),
 				})),
 			};
@@ -122,7 +122,12 @@ export function useCreateOpportunity(setIsFormOpen: (open: boolean) => void) {
 			id: uuidv4(),
 			name: "",
 			value: null,
-			parentId: null,
+			section: "",
+			type: "STRING",
+			tableType: null,
+			description: "",
+			parentSection: "",
+			isTitle: false,
 		});
 		form.setValue("documents", updatedDocuments);
 	};

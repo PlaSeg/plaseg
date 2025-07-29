@@ -5,12 +5,22 @@ const createDocumentFieldSchema = z.object({
 	id: z.string().default(() => uuidv4()),
 	name: z.string().min(1, "Nome do campo é obrigatório"),
 	value: z.string().nullable().optional(),
-	parentId: z.string().nullable().optional(),
+	section: z.string().min(1, "Seção é obrigatória"),
+	type: z.enum(["STRING", "TABLE"]),
+	tableType: z
+		.enum(["CRONOGRAMA_DE_EXECUCAO", "TERMO_DE_REFERENCIA"])
+		.nullable()
+		.optional(),
+	description: z.string().nullable().optional(),
+	parentSection: z.string().nullable().optional(),
+	isTitle: z.boolean().default(false),
 });
 
 const createDocumentSchema = z.object({
 	id: z.string().default(() => uuidv4()),
-	name: z.string().min(1, "Nome do documento é obrigatório"),
+	name: z.string().min(3, "Nome do documento é obrigatório"),
+	value: z.string().nullable().optional(),
+	description: z.string().nullable().optional(),
 	fields: z.array(createDocumentFieldSchema).default([]),
 });
 
@@ -37,7 +47,7 @@ export const opportunityRequestSchema = z.object({
 	projectTypeIds: z
 		.array(z.string().uuid())
 		.min(1, "Tipo de projeto é obrigatório"),
-	baseProductsIds: z
+	baseProductIds: z
 		.array(z.string().uuid())
 		.min(1, "Produto base é obrigatório"),
 	requiredDocuments: z.array(createRequiredDocumentSchema).default([]),
