@@ -7,6 +7,7 @@ import { Tag } from "@/components/ui/tag";
 import type { Opportunity } from "@/hooks/opportunities/use-get-opportunities";
 import { formatDate } from "@/utils/format-date";
 import { translateOpportunitiesTableKeys } from "@/utils/translate-opportunities-table-keys";
+import { OpportunityDetailSheet } from "../modals/opportunity-detail-sheet";
 
 export const opportunitiesTableColumns: ColumnDef<Opportunity>[] = [
 	{
@@ -146,15 +147,12 @@ export const opportunitiesTableColumns: ColumnDef<Opportunity>[] = [
 	{
 		id: "actions",
 		header: "Ações",
-		cell: () => {
-			// const opportunity = row.original;
+		cell: (row) => {
+			const opportunity = row.row.original;
 
 			return (
 				<div className="flex items-center gap-4">
-					<Button variant="outline" size="icon" disabled>
-						<Eye className="h-4 w-4" />
-						<span className="sr-only">Ver detalhes</span>
-					</Button>
+					<OpportunityDetailSheet opportunityId={opportunity.id} />
 
 					<Button variant="outline" size="icon" disabled>
 						<SquarePen />
