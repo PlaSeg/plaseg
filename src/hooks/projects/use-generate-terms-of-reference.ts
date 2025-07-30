@@ -1,5 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
+import { useState } from "react";
 import { toast } from "sonner";
 import type {
 	HTTPErrorResponse,
@@ -7,7 +8,6 @@ import type {
 } from "@/@types/http/http";
 import { api } from "@/services/axios";
 import { queryClient } from "@/services/react-query";
-import { useState } from "react";
 
 type GenerateTermsOfReferenceDocumentResponse =
 	| HTTPSuccessResponse<null>
@@ -54,6 +54,9 @@ export const useGenerateTermsOfReferenceDocument = (projectId: string) => {
 			if (response.success) {
 				queryClient.invalidateQueries({
 					queryKey: ["get-project-by-id", projectId],
+				});
+				queryClient.invalidateQueries({
+					queryKey: ["get-project-document-by-id", projectId],
 				});
 				setIsConfirmationDialogOpen(false);
 				toast.success("Documento gerado com sucesso!");

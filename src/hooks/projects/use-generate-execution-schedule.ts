@@ -58,6 +58,9 @@ export const useGenerateExecutionScheduleDocument = (projectId: string) => {
 				queryClient.invalidateQueries({
 					queryKey: ["get-project-by-id", projectId],
 				});
+				queryClient.invalidateQueries({
+					queryKey: ["get-project-document-by-id", projectId],
+				});
 				setIsConfirmationDialogOpen(false);
 				toast.success("Documento gerado com sucesso!");
 				return;
