@@ -44,7 +44,10 @@ export const useAcceptFieldValueSuggestion = () => {
 		) => acceptFieldValueSuggestion(acceptFieldValueSuggestionParams),
 		onSuccess: (_, { projectId, documentId }) => {
 			queryClient.invalidateQueries({
-				queryKey: ["get-project-document", projectId, documentId],
+				queryKey: ["get-project-document-by-id", projectId, documentId],
+			});
+			queryClient.invalidateQueries({
+				queryKey: ["get-project-by-id", projectId],
 			});
 		},
 	});

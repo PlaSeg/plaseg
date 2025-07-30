@@ -61,7 +61,7 @@ export function useGetProjectDocumentById(
 ) {
 	const { data: result, isLoading: isLoadingGetProjectDocumentById } = useQuery(
 		{
-			queryKey: ["get-project-document", projectId, documentId],
+			queryKey: ["get-project-document-by-id", projectId, documentId],
 			queryFn: () => getProjectDocumentById(projectId, documentId),
 			enabled: !!projectId && !!documentId,
 		}

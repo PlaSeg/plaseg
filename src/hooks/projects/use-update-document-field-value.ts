@@ -21,7 +21,7 @@ export function useUpdateDocumentFieldValue({
 			if (response.success) {
 				toast.success("Campo atualizado com sucesso!");
 				queryClient.invalidateQueries({
-					queryKey: ["get-project-by-id"],
+					queryKey: ["get-project-document-by-id"],
 				});
 				onSuccess?.();
 				return;

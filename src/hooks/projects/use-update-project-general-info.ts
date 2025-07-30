@@ -45,7 +45,7 @@ export function useUpdateProjectGeneralInfo({
 			if (response.success) {
 				toast.success("Informações atualizadas com sucesso!");
 				queryClient.invalidateQueries({
-					queryKey: ["get-project-by-id"],
+					queryKey: ["get-project-by-id", project.id],
 				});
 				return;
 			}

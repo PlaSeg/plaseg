@@ -6,6 +6,7 @@ import { CounterpartPDF } from "../pdfs/counterpart";
 import { JustificationPDF } from "../pdfs/justification";
 import { SustainabilityPDF } from "../pdfs/sustainability";
 import { TermsOfReferencePDF } from "../pdfs/terms-of-reference";
+import { ExecutionSchedulePDF } from "../pdfs/execution-schedule";
 
 interface ProjectDocumentPdfSheetProps {
 	document: ProjectDocument;
@@ -42,6 +43,10 @@ export function ProjectDocumentPdfSheet({
 
 				{document.name === "Termo de Referência" && (
 					<TermsOfReferencePDF document={document} />
+				)}
+
+				{document.name === "Cronograma de Execução" && (
+					<ExecutionSchedulePDF document={document} />
 				)}
 			</SheetContent>
 		</Sheet>
