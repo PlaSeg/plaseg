@@ -40,9 +40,11 @@ export function useCreateOpportunity(setIsFormOpen: (open: boolean) => void) {
 					id: doc.id || uuidv4(),
 					fields: (doc.fields || []).map((field) => ({
 						...field,
-						value: field.value || "",
+						value: field.type === "TABLE" ? null : (field.value ?? null),
 						id: field.id || uuidv4(),
 						isTitle: field.isTitle ?? false,
+						parentSection:
+							field.parentSection !== undefined ? field.parentSection : "",
 					})),
 				})),
 			};
@@ -108,6 +110,8 @@ export function useCreateOpportunity(setIsFormOpen: (open: boolean) => void) {
 		appendDocument({
 			id: uuidv4(),
 			name: "",
+			description: "",
+			value: "",
 			fields: [],
 		});
 	};
