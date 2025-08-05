@@ -107,6 +107,9 @@ importers:
       js-cookie:
         specifier: ^3.0.5
         version: 3.0.5
+      jspdf:
+        specifier: ^3.0.1
+        version: 3.0.1
       lucide-react:
         specifier: ^0.511.0
         version: 0.511.0(react@18.3.1)

@@ -16,7 +16,6 @@ import {
 	CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 
-// Sample attachments data based on the image
 const attachments = [
 	{
 		id: 1,

@@ -1,7 +1,6 @@
-import { Copy, Download } from "lucide-react";
-import { toast } from "sonner";
 import type { Project } from "@/@schemas/project";
 import { Button } from "@/components/ui/button";
+import { ProjectPdfSheet } from "./project-pdf-sheet";
 import { ProjectProgress } from "./project-progress";
 import { ProjectValue } from "./project-value";
 
@@ -28,19 +27,8 @@ export function ProjectHeading({ project }: ProjectHeadingProps) {
 	function projectProgress() {
 		if (project.progress === 33.33) return 33;
 		if (project.progress === 66.66) return 66;
-		if (project.progress === 100) return 100;
+		if (project.progress > 66.66) return 100;
 		return 0;
-	}
-
-	function handleExportPDF() {
-		if (projectProgress() !== 100) {
-			toast.warning(
-				"O projeto não está completo, não é possível exportar o PDF"
-			);
-			return;
-		}
-
-		console.log("A exportação de PDF não está disponível no momento");
 	}
 
 	return (
@@ -79,17 +67,10 @@ export function ProjectHeading({ project }: ProjectHeadingProps) {
 					<span className="text-muted-foreground text-sm">Ações</span>
 
 					<div className="flex items-center gap-4">
-						<Button variant="outline" disabled>
-							<Copy />
-							Duplicar
-						</Button>
-
-						<Button
-							className="bg-slate-950 hover:bg-slate-950/90"
-							onClick={handleExportPDF}
-						>
-							<Download />
-							Exportar
+						<ProjectPdfSheet projectId={project.id} />
+						
+						<Button className="bg-dark hover:bg-dark/90" disabled>
+							Exportar PDF
 						</Button>
 					</div>
 				</div>
