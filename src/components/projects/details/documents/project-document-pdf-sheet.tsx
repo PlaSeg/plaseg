@@ -2,6 +2,7 @@ import { Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import type { ProjectDocument } from "@/hooks/projects/use-get-project-document-by-id";
+import { CounterpartPDF } from "../pdfs/counterpart/counterpart-pdf";
 import { JustificationPDF } from "../pdfs/justification/justification-pdf";
 import { PDFPreview } from "./pdf-preview";
 
@@ -23,7 +24,7 @@ export function ProjectDocumentPdfSheet({
 	document,
 }: ProjectDocumentPdfSheetProps) {
 	return (
-		<Sheet open={true}>
+		<Sheet>
 			<SheetTrigger asChild>
 				<Button variant="outline" className="ml-auto">
 					<Eye />
@@ -39,6 +40,13 @@ export function ProjectDocumentPdfSheet({
 					<PDFPreview
 						pdfName={projectDocuments[0]}
 						pdfPath={<JustificationPDF document={document} />}
+					/>
+				)}
+
+				{document.name === projectDocuments[2] && (
+					<PDFPreview
+						pdfName={projectDocuments[2]}
+						pdfPath={<CounterpartPDF document={document} />}
 					/>
 				)}
 			</SheetContent>
