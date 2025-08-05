@@ -40,7 +40,7 @@ export async function getProjectDocumentById(
 ): Promise<GetProjectDocumentByIdResponse> {
 	try {
 		const response = await api.get<HTTPSuccessResponse<ProjectDocument>>(
-			`/v2/projects/${projectId}/documents/${documentId}`
+			`/projects/${projectId}/documents/${documentId}`
 		);
 		return response.data;
 	} catch (error) {

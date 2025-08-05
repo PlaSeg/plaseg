@@ -22,7 +22,7 @@ const generateTermsOfReferenceDocument = async ({
 }: GenerateTermsOfReferenceDocumentParams): Promise<GenerateTermsOfReferenceDocumentResponse> => {
 	try {
 		const response = await api.patch<GenerateTermsOfReferenceDocumentResponse>(
-			`/v2/projects/${projectId}/document/terms-of-reference`
+			`/projects/${projectId}/document/terms-of-reference`
 		);
 
 		return response.data;

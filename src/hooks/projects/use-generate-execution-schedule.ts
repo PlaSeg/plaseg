@@ -22,7 +22,7 @@ const generateExecutionScheduleDocument = async ({
 }: GenerateExecutionScheduleDocumentParams): Promise<GenerateExecutionScheduleDocumentResponse> => {
 	try {
 		const response = await api.patch<GenerateExecutionScheduleDocumentResponse>(
-			`/v2/projects/${projectId}/document/timeline`
+			`/projects/${projectId}/document/timeline`
 		);
 
 		return response.data;

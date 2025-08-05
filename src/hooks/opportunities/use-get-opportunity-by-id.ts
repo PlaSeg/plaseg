@@ -52,7 +52,7 @@ const getOpportunityById = async (
 ): Promise<GetOpportunityByIdResponse> => {
 	try {
 		const response = await api.get<GetOpportunityByIdResponse>(
-			`/v2/opportunities/${id}`
+			`/opportunities/${id}`
 		);
 
 		return response.data;
