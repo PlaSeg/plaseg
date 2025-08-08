@@ -1,8 +1,8 @@
-import { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http/http";
+import type { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http/http";
 import { AxiosError } from "axios";
 import { api } from "@/services/axios";
-import { PriceRegistrationRecordData } from "@/@types/company/price-registration-record";
-import { CreatePriceRegistrationRecordRequest } from "@/@schemas/price-registration-record";
+import type { PriceRegistrationRecordData } from "@/@types/company/price-registration-record";
+import type { CreatePriceRegistrationRecordRequest } from "@/@schemas/price-registration-record";
 
 type CreatePriceRegistrationRecordResponse =
 	| HTTPSuccessResponse<PriceRegistrationRecordData>

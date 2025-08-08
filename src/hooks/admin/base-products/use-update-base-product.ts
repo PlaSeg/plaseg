@@ -2,10 +2,10 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateBaseProduct } from "@/api/admin/base-products/update-base-product";
 import { useState } from "react";
 import { toast } from "sonner";
-import { BaseProduct } from "@/@types/admin/base-product";
+import type { BaseProduct } from "@/@types/admin/base-product";
 import { useFormMutation } from "@/hooks/common/use-form-mutation";
 import {
-	CreateBaseProductRequest,
+	type CreateBaseProductRequest,
 	createBaseProductRequestSchema,
 } from "@/@schemas/base-product";
 

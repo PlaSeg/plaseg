@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/alt-text */
 "use client";
 import { type DocumentProps, pdf } from "@react-pdf/renderer";
 import { useEffect, useState } from "react";
@@ -14,30 +13,24 @@ export function PDFPreview({ pdfPath, pdfName }: PDFPreviewProps) {
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
 
-	// Function to download PDF with custom name
 	const downloadPDF = async () => {
 		if (!pdfUrl) return;
 
 		try {
-			// Fetch the PDF blob from the URL
 			const response = await fetch(pdfUrl);
 			const blob = await response.blob();
 
-			// Create a download link
 			const downloadUrl = URL.createObjectURL(blob);
 			const link = document.createElement("a");
 			link.href = downloadUrl;
 
-			// Use pdfName for the filename, ensuring it has .pdf extension
 			const fileName = pdfName.endsWith(".pdf") ? pdfName : `${pdfName}.pdf`;
 			link.download = fileName;
 
-			// Trigger download
 			document.body.appendChild(link);
 			link.click();
 			document.body.removeChild(link);
 
-			// Clean up the temporary URL
 			URL.revokeObjectURL(downloadUrl);
 		} catch (err) {
 			console.error("Error downloading PDF:", err);

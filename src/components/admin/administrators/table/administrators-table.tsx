@@ -1,6 +1,6 @@
 import { Table, TableBody, TableRow, TableCell } from "@/components/ui/table";
-import { flexRender, Table as TableType } from "@tanstack/react-table";
-import { Administrator } from "@/@types/admin/administrator";
+import { flexRender, type Table as TableType } from "@tanstack/react-table";
+import type { Administrator } from "@/@types/admin/administrator";
 import { administratorsTableColumns } from "./administrators-table-columns";
 import { AdministratorsTableHeader } from "./administrators-table-header";
 import { AdministratorsTableBodySkeleton } from "./administrators-table-skeleton";

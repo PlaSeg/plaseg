@@ -3,7 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import { signUp } from "@/api/auth/sign-up";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
-import { SignUpRequestBody, signUpRequestSchema } from "@/@schemas/auth";
+import { type SignUpRequestBody, signUpRequestSchema } from "@/@schemas/auth";
 
 export function useSignUp() {
 	const navigate = useNavigate();

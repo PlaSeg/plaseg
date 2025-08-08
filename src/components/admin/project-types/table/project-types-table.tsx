@@ -1,9 +1,9 @@
 import { Table, TableBody, TableRow, TableCell } from "@/components/ui/table";
-import { flexRender, Table as TableType } from "@tanstack/react-table";
+import { flexRender, type Table as TableType } from "@tanstack/react-table";
 import { ProjectTypesTableBodySkeleton } from "./project-types-skeleton";
 import { projectTypesTableColumns } from "./project-types-table-columns";
 import { ProjectTypesTableHeader } from "./project-types-table-header";
-import { ProjectType } from "@/@types/admin/project-types";
+import type { ProjectType } from "@/@types/admin/project-types";
 
 interface ProjectTypesTableProps {
 	table: TableType<ProjectType>;

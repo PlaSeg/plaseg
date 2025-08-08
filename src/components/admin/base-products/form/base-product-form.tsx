@@ -7,9 +7,9 @@ import { LoaderCircle } from "lucide-react";
 import { FormTextarea } from "@/components/form/form-textarea";
 import { TypeGroup } from "@/@types/admin/type";
 import { useGetTypes } from "@/hooks/admin/types/use-get-types";
-import { UseFormReturn } from "react-hook-form";
+import type { UseFormReturn } from "react-hook-form";
 import { FormCombobox } from "@/components/form/form-combobox";
-import { CreateBaseProductRequest } from "@/@schemas/base-product";
+import type { CreateBaseProductRequest } from "@/@schemas/base-product";
 
 interface BaseProductFormProps {
 	form: UseFormReturn<CreateBaseProductRequest> & {

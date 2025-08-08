@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ColumnDef } from "@tanstack/react-table";
+import type { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -10,7 +10,7 @@ import {
 	DropdownMenuItem,
 	DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { PriceRegistrationRecordData } from "@/@types/company/price-registration-record";
+import type { PriceRegistrationRecordData } from "@/@types/company/price-registration-record";
 
 export const priceRegistrationRecordsTableColumns: ColumnDef<PriceRegistrationRecordData>[] =
 	[

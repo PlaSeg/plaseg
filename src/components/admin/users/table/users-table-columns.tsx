@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { ColumnDef } from "@tanstack/react-table";
+import type { ColumnDef } from "@tanstack/react-table";
 import { ArrowDown, ArrowUp } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { translateUsersTableKeys } from "@/utils/translate-users-table-keys";
-import { User, Role } from "@/@types/auth/user";
+import { type User, Role } from "@/@types/auth/user";
 import { formatDate } from "@/utils/format-date";
 import { Tag } from "@/components/ui/tag";
 import { AllowUserButton } from "./allow-deny-user-button";

@@ -1,5 +1,5 @@
-import { ProjectGeneralInfoRequest } from "@/@schemas/project";
-import { HTTPErrorResponse, HTTPSuccessResponse } from "@/@types/http/http";
+import type { ProjectGeneralInfoRequest } from "@/@schemas/project";
+import type { HTTPErrorResponse, HTTPSuccessResponse } from "@/@types/http/http";
 import { api } from "@/services/axios";
 import { AxiosError } from "axios";
 

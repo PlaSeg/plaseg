@@ -1,6 +1,6 @@
-import { Type } from "@/@types/admin/type";
+import type { Type } from "@/@types/admin/type";
 import { TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { flexRender, Table } from "@tanstack/react-table";
+import { flexRender, type Table } from "@tanstack/react-table";
 
 interface TypesTableHeaderProps {
 	table: Table<Type>;

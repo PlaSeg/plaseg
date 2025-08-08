@@ -1,7 +1,7 @@
-import { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http/http";
+import type { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http/http";
 import { AxiosError } from "axios";
 import { api } from "@/services/axios";
-import { Administrator } from "@/@types/admin/administrator";
+import type { Administrator } from "@/@types/admin/administrator";
 
 type GetAdministratorsResponse =
 	| HTTPSuccessResponse<Administrator[]>

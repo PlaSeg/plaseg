@@ -1,7 +1,10 @@
-import { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http/http";
 import { AxiosError } from "axios";
+import type { CreateAdministratorRequest } from "@/@schemas/administrator";
+import type {
+	HTTPErrorResponse,
+	HTTPSuccessResponse,
+} from "@/@types/http/http";
 import { api } from "@/services/axios";
-import { CreateAdministratorRequest } from "@/@schemas/administrator";
 
 type CreateAdministratorResponse =
 	| HTTPSuccessResponse<null>

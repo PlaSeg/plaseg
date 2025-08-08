@@ -65,7 +65,7 @@ export function ProjectDocumentPdfSheet({
 								<PDFPreview
 									key={projectDocument.name}
 									pdfName={projectDocument.name}
-									pdfPath={<JustificationPDF document={document} />}
+									pdfPath={<projectDocument.pdf document={document} />	}
 								/>
 							);
 						}

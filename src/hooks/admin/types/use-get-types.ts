@@ -1,6 +1,6 @@
 import { getTypes } from "@/api/admin/types/get-types";
 import { useQuery } from "@tanstack/react-query";
-import { TypeGroup } from "@/@types/admin/type";
+import type { TypeGroup } from "@/@types/admin/type";
 
 interface UseGetTypesProps {
 	group?: TypeGroup;

@@ -43,9 +43,10 @@ Abaixo, descrevemos cada componente da stack e como eles se integram para criar 
 ### Lucide React
 * **Ícones SVG:** Fornece um conjunto de ícones modernos e customizáveis, facilitando a criação de interfaces visuais atrativas.
 
-### ESLint
-* **Linter de código:** Garante a qualidade do código, verificando erros e sugerindo boas práticas.
-* **Plugins adicionais:** Uso de plugins como `eslint-plugin-react-hooks` para garantir conformidade com as regras do React.
+### BiomeJS
+* **Linter e formatter:** Ferramenta all-in-one que substitui ESLint + Prettier, oferecendo linting e formatação de código.
+* **Performance superior:** Até 35x mais rápido que ESLint, escrito em Rust.
+* **Zero configuração:** Funciona out-of-the-box com configurações sensatas para JavaScript, TypeScript, JSX e JSON.
 
 ### TypeScript
 * **Superset do JavaScript:** Introduz tipagem estática, ajudando a prevenir erros comuns e a melhorar a produtividade durante o desenvolvimento.
@@ -60,7 +61,7 @@ Abaixo, descrevemos cada componente da stack e como eles se integram para criar 
 2. **React Router:** Gerencia a navegação entre diferentes páginas da aplicação sem recarregar a página.
 3. **@tanstack/react-query e Axios:** Trabalham juntos para buscar e gerenciar dados de APIs externas.
 4. **Tailwind CSS e shadcn:** Proporcionam uma interface visual estilosa, com componentes prontos para uso e estilos responsivos.
-5. **ESLint e TypeScript:** Garantem um código limpo e confiável, com tipagem estática e validações automáticas.
+5. **BiomeJS e TypeScript:** Garantem um código limpo e confiável, com tipagem estática e validações automáticas.
 
 ## Em resumo:
 
@@ -68,6 +69,6 @@ Abaixo, descrevemos cada componente da stack e como eles se integram para criar 
 * **React Router:** Gerencia a navegação da aplicação.
 * **Axios e React Query:** Facilitam a integração com APIs externas.
 * **Tailwind CSS e shadcn:** Garantem uma interface responsiva e estilosa.
-* **TypeScript e ESLint:** Aumentam a confiabilidade e a qualidade do código.
+* **TypeScript e BiomeJS:** Aumentam a confiabilidade e a qualidade do código.
 
 Essa stack é ideal para criar aplicações web modernas, escaláveis e de alta performance, focadas na experiência do usuário e na eficiência do desenvolvimento.

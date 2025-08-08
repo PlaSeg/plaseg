@@ -10,7 +10,7 @@ import {
 import { SquarePen } from "lucide-react";
 import { TypeForm } from "../form/type-form";
 import { useEditType } from "@/hooks/admin/types/use-edit-type";
-import { Type } from "@/@types/admin/type";
+import type { Type } from "@/@types/admin/type";
 
 interface EditTypeSheetProps {
 	type: Type;

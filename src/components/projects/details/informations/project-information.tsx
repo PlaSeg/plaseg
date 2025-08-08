@@ -6,7 +6,7 @@ import {
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import { ProjectInformationForm } from "./project-information-form";
-import { Project } from "@/@schemas/project";
+import type { Project } from "@/@schemas/project";
 
 interface ProjectInformationProps {
 	project: Project;

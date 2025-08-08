@@ -65,8 +65,8 @@ export function CounterpartPDF({
 					<View>
 						{projectDocument.fields.map((field) => (
 							<View key={field.id}>
-								<View style={tw("text-black p-2")}>
-									<Text>
+								<View style={tw("text-black flex flex-col gap-2")}>
+									<Text style={tw("mb-4")}>
 										{field.name}:{" "}
 										{Array.isArray(field.value)
 											? field.value.map((item) => item.name).join(", ")

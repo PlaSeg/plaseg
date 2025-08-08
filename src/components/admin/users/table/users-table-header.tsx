@@ -1,6 +1,6 @@
-import { User } from "@/@types/auth/user";
+import type { User } from "@/@types/auth/user";
 import { TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { flexRender, Table } from "@tanstack/react-table";
+import { flexRender, type Table } from "@tanstack/react-table";
 
 interface UsersTableHeaderProps {
 	table: Table<User>;

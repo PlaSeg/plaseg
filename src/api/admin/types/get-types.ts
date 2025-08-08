@@ -1,7 +1,7 @@
-import { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http/http";
+import type { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http/http";
 import { AxiosError } from "axios";
 import { api } from "@/services/axios";
-import { Type, TypeGroup } from "@/@types/admin/type";
+import type { Type, TypeGroup } from "@/@types/admin/type";
 
 type GetTypesRequest = {
 	group?: TypeGroup;

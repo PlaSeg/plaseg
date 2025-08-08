@@ -1,5 +1,5 @@
-import { GetProfileResponseBody } from "@/@schemas/auth";
-import { HTTPErrorResponse, HTTPSuccessResponse } from "@/@types/http/http";
+import type { GetProfileResponseBody } from "@/@schemas/auth";
+import type { HTTPErrorResponse, HTTPSuccessResponse } from "@/@types/http/http";
 import { api } from "@/services/axios";
 import { AxiosError } from "axios";
 
