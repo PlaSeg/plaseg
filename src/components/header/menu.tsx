@@ -8,7 +8,7 @@ import {
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { useAuthStore } from "@/hooks/auth/use-auth";
 import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
-import { LogOut, Settings } from "lucide-react";
+import { LogOut, Settings, User } from "lucide-react";
 import { Link } from "react-router";
 
 interface MenuProps {
@@ -46,6 +46,18 @@ export function Menu({ name, email }: MenuProps) {
 							<Settings className="h-4 w-4" />
 
 							<span>Configurações</span>
+						</Link>
+					</DropdownMenuItem>
+				</DropdownMenuGroup>
+
+				<DropdownMenuSeparator />
+
+				<DropdownMenuGroup>
+					<DropdownMenuItem className="cursor-pointer w-full">
+						<Link to="/perfil" className="flex items-center gap-2">
+							<User className="h-4 w-4" />
+
+							<span>Perfil</span>
 						</Link>
 					</DropdownMenuItem>
 				</DropdownMenuGroup>
