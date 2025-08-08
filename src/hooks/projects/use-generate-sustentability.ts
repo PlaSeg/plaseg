@@ -9,20 +9,20 @@ import type {
 import { api } from "@/services/axios";
 import { queryClient } from "@/services/react-query";
 
-type GenerateExecutionScheduleDocumentResponse =
+type GenerateSustainabilityDocumentResponse =
 	| HTTPSuccessResponse<null>
 	| HTTPErrorResponse;
 
-interface GenerateExecutionScheduleDocumentParams {
+interface GenerateSustainabilityDocumentParams {
 	projectId: string;
 }
 
-const generateExecutionScheduleDocument = async ({
+const generateSustainabilityDocument = async ({
 	projectId,
-}: GenerateExecutionScheduleDocumentParams): Promise<GenerateExecutionScheduleDocumentResponse> => {
+}: GenerateSustainabilityDocumentParams): Promise<GenerateSustainabilityDocumentResponse> => {
 	try {
-		const response = await api.patch<GenerateExecutionScheduleDocumentResponse>(
-			`/projects/${projectId}/document/timeline`
+		const response = await api.patch<GenerateSustainabilityDocumentResponse>(
+			`/projects/${projectId}/document/sustainability-location`
 		);
 
 		return response.data;
@@ -39,20 +39,16 @@ const generateExecutionScheduleDocument = async ({
 	}
 };
 
-export const useGenerateExecutionScheduleDocument = (projectId: string) => {
+export const useGenerateSustainabilityDocument = (projectId: string) => {
 	const [isConfirmationDialogOpen, setIsConfirmationDialogOpen] =
 		useState(false);
-
 	const {
-		mutateAsync: generateExecutionScheduleDocumentFn,
-		isPending: isLoadingGenerateExecutionScheduleDocument,
+		mutateAsync: generateSustainabilityDocumentFn,
+		isPending: isLoadingGenerateSustainabilityDocument,
 	} = useMutation({
 		mutationFn: (
-			generateExecutionScheduleDocumentParams: GenerateExecutionScheduleDocumentParams
-		) =>
-			generateExecutionScheduleDocument(
-				generateExecutionScheduleDocumentParams
-			),
+			generateSustainabilityDocumentParams: GenerateSustainabilityDocumentParams
+		) => generateSustainabilityDocument(generateSustainabilityDocumentParams),
 		onSuccess: (response) => {
 			if (response.success) {
 				queryClient.invalidateQueries({
@@ -62,7 +58,7 @@ export const useGenerateExecutionScheduleDocument = (projectId: string) => {
 					queryKey: ["get-project-document-by-id", projectId],
 				});
 				setIsConfirmationDialogOpen(false);
-				toast.success("Documento de cronograma de execução gerado com sucesso!");
+				toast.success("Documento de sustentabilidade gerado com sucesso!");
 				return;
 			}
 
@@ -73,8 +69,8 @@ export const useGenerateExecutionScheduleDocument = (projectId: string) => {
 	});
 
 	return {
-		generateExecutionScheduleDocumentFn,
-		isLoadingGenerateExecutionScheduleDocument,
+		generateSustainabilityDocumentFn,
+		isLoadingGenerateSustainabilityDocument,
 		isConfirmationDialogOpen,
 		setIsConfirmationDialogOpen,
 	};

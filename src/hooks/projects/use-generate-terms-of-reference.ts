@@ -59,7 +59,7 @@ export const useGenerateTermsOfReferenceDocument = (projectId: string) => {
 					queryKey: ["get-project-document-by-id", projectId],
 				});
 				setIsConfirmationDialogOpen(false);
-				toast.success("Documento gerado com sucesso!");
+				toast.success("Documento de termos de referência gerado com sucesso!");
 				return;
 			}
 

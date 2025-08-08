@@ -19,7 +19,7 @@ import { formatCurrency } from "@/utils/format-currency";
 import { AddItemDialog } from "./add-project-item-dialog";
 import { DeleteItemDialog } from "./delete-project-item-dialog";
 import { EditProjectItemDialog } from "./edit-project-item-dialog";
-import { CompleteItemSelectionDialog } from "./reference-term-dialog";
+import { CompleteItemSelectionDialog } from "./complete-item-selection-dialog";
 
 interface ProjectItemsProps {
 	project: Project;

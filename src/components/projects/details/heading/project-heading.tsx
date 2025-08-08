@@ -1,6 +1,5 @@
 import type { Project } from "@/@schemas/project";
 import { Button } from "@/components/ui/button";
-import { ProjectPdfSheet } from "./project-pdf-sheet";
 import { ProjectProgress } from "./project-progress";
 import { ProjectValue } from "./project-value";
 
@@ -67,8 +66,6 @@ export function ProjectHeading({ project }: ProjectHeadingProps) {
 					<span className="text-muted-foreground text-sm">Ações</span>
 
 					<div className="flex items-center gap-4">
-						<ProjectPdfSheet projectId={project.id} />
-						
 						<Button className="bg-dark hover:bg-dark/90" disabled>
 							Exportar PDF
 						</Button>
