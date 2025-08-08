@@ -12,6 +12,7 @@ import MunicipalityLayout from "@/layouts/municipality-layout";
 import Home from "@/pages/home";
 
 import RegisterMunicipality from "@/pages/municipality/register-municipality";
+import MunicipalityProfile from "@/pages/municipality/municipality-profile";
 
 import Opportunities from "@/pages/opportunities/opportunities";
 import OpportunityDetails from "@/pages/opportunities/opportunity-details";
@@ -50,6 +51,8 @@ export function AppRoutes() {
 						path="projetos/:projectId/documentos/:documentId"
 						element={<ProjectDocumentDetails />}
 					/>
+
+					<Route path="perfil" element={<MunicipalityProfile />} />
 				</Route>
 			</Route>
 

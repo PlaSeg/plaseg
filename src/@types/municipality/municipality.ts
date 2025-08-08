@@ -50,3 +50,21 @@ export interface maintenanceContract {
 	description: string;
 	attachment: string;
 }
+
+export interface GetMunipality {
+	id: string;
+	name: string;
+	guardInitialDate: Date;
+	guardCount: number;
+	trafficInitialDate: Date;
+	trafficCount: number;
+	federativeUnit: string;
+	unitType: string;
+	createdAt?: Date;
+	updatedAt?: Date;
+	allocationDepartments: allocationDepartment[];
+	maintenanceContracts: maintenanceContract[];
+	qualifiedStaff: qualifiedStaff[];
+	projectPartnerships: projectPartnership[];
+	managements: management[];
+}
