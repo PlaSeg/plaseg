@@ -35,7 +35,7 @@ export function TermsOfReferencePDF({
 			creator="Transferegov.br"
 			producer="EzPDF"
 		>
-			<Page size="A4" style={tw("p-8 px-16 font-default bg-white text-base")}>
+			<Page size="A4" orientation="landscape" style={tw("p-8 px-16 font-default bg-white text-base")}>
 				<View style={tw("flex mb-8")}>
 					<View style={tw("w-[99px] h-[111px] mx-auto")}>
 						<Image src="/teresina.png" style={tw("w-full h-full")} />

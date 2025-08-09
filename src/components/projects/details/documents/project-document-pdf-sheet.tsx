@@ -8,6 +8,7 @@ import { MonitoringReportPDF } from "../pdfs/monitoring-report/monitoring-report
 import { SustainabilityPDF } from "../pdfs/sustentability/sustentability-pdf";
 import { TermsOfReferencePDF } from "../pdfs/terms-of-reference/terms-of-reference-pdf";
 import { PDFPreview } from "./pdf-preview";
+import { ExecutionSchedulePDF } from "../pdfs/execution-schedule/execution-schedule";
 
 const projectDocuments = [
 	{
@@ -28,6 +29,7 @@ const projectDocuments = [
 	},
 	{
 		name: "Cronograma de Execução",
+		pdf: ExecutionSchedulePDF,
 	},
 	{
 		name: "Relatório Detalhado de Monitoramento e Avaliação",
