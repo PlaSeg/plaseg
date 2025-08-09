@@ -18,7 +18,7 @@ export async function createOpportunity(
 ): Promise<CreateOpportunityResponse> {
 	try {
 		const response = await api.post<HTTPSuccessResponse<Opportunity>>(
-			"/v2/opportunities",
+			"/opportunities",
 			request
 		);
 
