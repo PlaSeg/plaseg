@@ -42,9 +42,12 @@ export function OpportunityDetailSheet({
 				{opportunityData && (
 					<div className="flex flex-col gap-6">
 						<SheetHeader className="space-y-3">
-							<SheetTitle className="text-xl font-bold leading-tight">
-								{opportunityData?.title}
-							</SheetTitle>
+							<div
+								className="text-xl font-bold leading-tight"
+								aria-hidden="true"
+							>
+								{opportunityData.title}
+							</div>
 							<SheetDescription className="flex items-center gap-2 text-base">
 								{opportunityData?.responsibleAgency}
 							</SheetDescription>

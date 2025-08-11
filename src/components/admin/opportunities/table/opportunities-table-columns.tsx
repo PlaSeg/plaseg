@@ -1,5 +1,5 @@
 import type { ColumnDef } from "@tanstack/react-table";
-import { ArrowDown, ArrowUp, Eye, SquarePen } from "lucide-react";
+import { ArrowDown, ArrowUp, SquarePen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Switch } from "@/components/ui/switch";

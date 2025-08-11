@@ -44,10 +44,24 @@ export function OpportunityForm({ setIsFormOpen }: OpportunityFormProps) {
 	const tableTypes = [
 		{ label: "Cronograma de execução", value: "CRONOGRAMA_DE_EXECUCAO" },
 		{ label: "Termo de referência", value: "TERMO_DE_REFERENCIA" },
+		{
+			label: "Sustentabilidade e localização de bens",
+			value: "SUSTENTABILIDADE_E_LOCALIZACAO_DE_BENS",
+		},
+		{ label: "Pesquisa de mercado", value: "PESQUISA_DE_MERCADO" },
+		{ label: "Capacidade técnica - dados", value: "CAPACIDADE_TECNICA_DADOS" },
+		{
+			label: "Capacidade técnica - experiência",
+			value: "CAPACIDADE_TECNICA_EXPERIENCIA",
+		},
+		{
+			label: "Capacidade técnica - pessoal",
+			value: "CAPACIDADE_TECNICA_PESSOAL",
+		},
 	];
 	const typesField = [
-		{ label: "String", value: "STRING" },
-		{ label: "Table", value: "TABLE" },
+		{ label: "Texto", value: "STRING" },
+		{ label: "Tabela", value: "TABLE" },
 	];
 
 	return (

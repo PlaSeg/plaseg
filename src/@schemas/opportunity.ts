@@ -8,7 +8,15 @@ const createDocumentFieldSchema = z.object({
 	section: z.string().min(1, "Seção é obrigatória"),
 	type: z.enum(["STRING", "TABLE"]),
 	tableType: z
-		.enum(["CRONOGRAMA_DE_EXECUCAO", "TERMO_DE_REFERENCIA"])
+		.enum([
+			"CRONOGRAMA_DE_EXECUCAO",
+			"TERMO_DE_REFERENCIA",
+			"SUSTENTABILIDADE_E_LOCALIZACAO_DE_BENS",
+			"PESQUISA_DE_MERCADO",
+			"CAPACIDADE_TECNICA_DADOS",
+			"CAPACIDADE_TECNICA_EXPERIENCIA",
+			"CAPACIDADE_TECNICA_PESSOAL",
+		])
 		.nullable()
 		.optional(),
 	description: z.string().min(1, "Descrição é obrigatória"),
@@ -100,7 +108,15 @@ export const opportunitySchema = z.object({
 					section: z.string(),
 					type: z.enum(["STRING", "TABLE"]),
 					tableType: z
-						.enum(["CRONOGRAMA_DE_EXECUCAO", "TERMO_DE_REFERENCIA"])
+						.enum([
+							"CRONOGRAMA_DE_EXECUCAO",
+							"TERMO_DE_REFERENCIA",
+							"SUSTENTABILIDADE_E_LOCALIZACAO_DE_BENS",
+							"PESQUISA_DE_MERCADO",
+							"CAPACIDADE_TECNICA_DADOS",
+							"CAPACIDADE_TECNICA_EXPERIENCIA",
+							"CAPACIDADE_TECNICA_PESSOAL",
+						])
 						.nullable()
 						.optional(),
 					description: z.string(),
