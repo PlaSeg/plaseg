@@ -11,6 +11,7 @@ import {
 	DialogTrigger,
 } from "@/components/ui/dialog";
 import { useGenerateExecutionScheduleDocument } from "@/hooks/projects/use-generate-execution-schedule";
+import { useGeneratePriceRecordSpreadsheet } from "@/hooks/projects/use-generate-price-record-spreadsheet";
 import { useGenerateSustainabilityDocument } from "@/hooks/projects/use-generate-sustentability";
 import { useGenerateTermsOfReferenceDocument } from "@/hooks/projects/use-generate-terms-of-reference";
 
@@ -30,6 +31,10 @@ export function CompleteItemSelectionDialog({
 		isLoadingGenerateSustainabilityDocument,
 	} = useGenerateSustainabilityDocument(project.id);
 	const {
+		generatePriceRecordSpreadsheetFn,
+		isLoadingGeneratePriceRecordSpreadsheet,
+	} = useGeneratePriceRecordSpreadsheet(project.id);
+	const {
 		generateExecutionScheduleDocumentFn,
 		isLoadingGenerateExecutionScheduleDocument,
 		isConfirmationDialogOpen,
@@ -39,13 +44,15 @@ export function CompleteItemSelectionDialog({
 	function handleConfirm() {
 		generateTermsOfReferenceDocumentFn({ projectId: project.id });
 		generateSustainabilityDocumentFn({ projectId: project.id });
+		generatePriceRecordSpreadsheetFn({ projectId: project.id });
 		generateExecutionScheduleDocumentFn({ projectId: project.id });
 	}
 
 	const isButtonLoading =
 		isLoadingGenerateTermsOfReferenceDocument ||
 		isLoadingGenerateExecutionScheduleDocument ||
-		isLoadingGenerateSustainabilityDocument;
+		isLoadingGenerateSustainabilityDocument ||
+		isLoadingGeneratePriceRecordSpreadsheet;
 
 	return (
 		<Dialog
