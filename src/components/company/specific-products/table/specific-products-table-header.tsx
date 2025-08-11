@@ -1,6 +1,6 @@
-import { SpecificProduct } from "@/@types/company/specific-product";
+import type { SpecificProduct } from "@/@types/company/specific-product";
 import { TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { flexRender, Table } from "@tanstack/react-table";
+import { flexRender, type Table } from "@tanstack/react-table";
 
 interface SpecificProductsTableHeaderProps {
 	table: Table<SpecificProduct>;

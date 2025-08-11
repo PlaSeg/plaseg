@@ -1,8 +1,8 @@
-import { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http/http";
+import type { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http/http";
 import { AxiosError } from "axios";
 import { api } from "@/services/axios";
-import { ProjectType } from "@/@types/admin/project-types";
-import { CreateProjectTypeRequest } from "@/@schemas/project-type";
+import type { ProjectType } from "@/@types/admin/project-types";
+import type { CreateProjectTypeRequest } from "@/@schemas/project-type";
 
 type CreateProjectTypeResponse =
 	| HTTPSuccessResponse<ProjectType>

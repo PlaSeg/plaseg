@@ -19,7 +19,7 @@ import {
 	PopoverTrigger,
 } from "@/components/ui/popover";
 import { Check, ChevronsUpDown, LoaderCircle } from "lucide-react";
-import { Control, FieldValues, Path, UseFormReturn } from "react-hook-form";
+import type { Control, FieldValues, Path, UseFormReturn } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useState } from "react";

@@ -1,6 +1,6 @@
-import { BaseProduct } from "@/@types/admin/base-product";
+import type { BaseProduct } from "@/@types/admin/base-product";
 import { TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { flexRender, Table } from "@tanstack/react-table";
+import { flexRender, type Table } from "@tanstack/react-table";
 
 interface BaseProductsTableHeaderProps {
 	table: Table<BaseProduct>;

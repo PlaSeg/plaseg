@@ -1,5 +1,5 @@
-import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import {
 	Table,
 	TableBody,
@@ -11,6 +11,7 @@ import {
 
 export function ProductsTableSkeleton() {
 	const skeletonRows = 10;
+	const id = crypto.randomUUID();
 
 	return (
 		<div className="w-full">
@@ -51,8 +52,8 @@ export function ProductsTableSkeleton() {
 					<TableBody>
 						{Array(skeletonRows)
 							.fill(0)
-							.map((_, index) => (
-								<TableRow key={index} className="border-none">
+							.map((_) => (
+								<TableRow key={id} className="border-none">
 									{/* Checkbox skeleton */}
 									<TableCell>
 										<Skeleton className="h-4 w-4" />
@@ -93,7 +94,6 @@ export function ProductsTableSkeleton() {
 				</Table>
 			</div>
 
-			{/* Footer com paginação */}
 			<div className="flex items-center justify-end space-x-2 py-4">
 				<div className="flex-1 text-sm text-muted-foreground">
 					<Skeleton className="h-4 w-64" />

@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { ColumnDef } from "@tanstack/react-table";
+import type { ColumnDef } from "@tanstack/react-table";
 import { ArrowDown, ArrowUp, Eye } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { translateBaseProductsTableKeys } from "@/utils/translate-base-products-table-keys";
-import { BaseProduct } from "@/@types/admin/base-product";
+import type { BaseProduct } from "@/@types/admin/base-product";
 import { formatDate } from "@/utils/format-date";
 import { formatCurrency } from "@/utils/format-currency";
 import { Tag } from "@/components/ui/tag";

@@ -1,7 +1,7 @@
 import { allowUser } from "@/api/users/allow-user";
 import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "@/services/react-query";
-import { GetUsersResponse } from "@/api/users/get-users";
+import type { GetUsersResponse } from "@/api/users/get-users";
 import { toast } from "sonner";
 
 export function useAllowUser(userId: string) {

@@ -1,15 +1,8 @@
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { CheckIcon, X, ChevronDown, XIcon } from "lucide-react";
-import { Separator } from "@/components/ui/separator";
-import { Button } from "@/components/ui/button";
+import { CheckIcon, ChevronDown, X, XIcon } from "lucide-react";
+import * as React from "react";
 import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
-import {
-	Popover,
-	PopoverContent,
-	PopoverTrigger,
-} from "@/components/ui/popover";
+import { Button } from "@/components/ui/button";
 import {
 	Command,
 	CommandEmpty,
@@ -19,6 +12,13 @@ import {
 	CommandList,
 	CommandSeparator,
 } from "@/components/ui/command";
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/components/ui/popover";
+import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
 
 export const multiSelectVariants = cva(
 	"m-1 bg-transparent border-red-500 text-black shadow-none! hover:bg-muted",
@@ -58,19 +58,20 @@ interface MultiSelectProps
 	className?: string;
 }
 
-export const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>(
+export const MultiSelect = React.forwardRef<
+	HTMLButtonElement,
+	MultiSelectProps
+>(
 	(
 		{
 			options,
 			onValueChange,
-			// eslint-disable-next-line @typescript-eslint/no-unused-vars
 			variant,
 			defaultValue = [],
 			placeholder = "Select options",
 			animation = 0,
 			maxCount = 3,
 			modalPopover = false,
-			// eslint-disable-next-line @typescript-eslint/no-unused-vars
 			asChild = false,
 			className,
 			...props

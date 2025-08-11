@@ -11,6 +11,8 @@ import {
 	DialogTrigger,
 } from "@/components/ui/dialog";
 import { useGenerateExecutionScheduleDocument } from "@/hooks/projects/use-generate-execution-schedule";
+import { useGeneratePriceRecordSpreadsheet } from "@/hooks/projects/use-generate-price-record-spreadsheet";
+import { useGenerateSustainabilityDocument } from "@/hooks/projects/use-generate-sustentability";
 import { useGenerateTermsOfReferenceDocument } from "@/hooks/projects/use-generate-terms-of-reference";
 
 interface CompleteItemSelectionDialogProps {
@@ -25,6 +27,14 @@ export function CompleteItemSelectionDialog({
 		isLoadingGenerateTermsOfReferenceDocument,
 	} = useGenerateTermsOfReferenceDocument(project.id);
 	const {
+		generateSustainabilityDocumentFn,
+		isLoadingGenerateSustainabilityDocument,
+	} = useGenerateSustainabilityDocument(project.id);
+	const {
+		generatePriceRecordSpreadsheetFn,
+		isLoadingGeneratePriceRecordSpreadsheet,
+	} = useGeneratePriceRecordSpreadsheet(project.id);
+	const {
 		generateExecutionScheduleDocumentFn,
 		isLoadingGenerateExecutionScheduleDocument,
 		isConfirmationDialogOpen,
@@ -33,8 +43,16 @@ export function CompleteItemSelectionDialog({
 
 	function handleConfirm() {
 		generateTermsOfReferenceDocumentFn({ projectId: project.id });
+		generateSustainabilityDocumentFn({ projectId: project.id });
+		generatePriceRecordSpreadsheetFn({ projectId: project.id });
 		generateExecutionScheduleDocumentFn({ projectId: project.id });
 	}
+
+	const isButtonLoading =
+		isLoadingGenerateTermsOfReferenceDocument ||
+		isLoadingGenerateExecutionScheduleDocument ||
+		isLoadingGenerateSustainabilityDocument ||
+		isLoadingGeneratePriceRecordSpreadsheet;
 
 	return (
 		<Dialog
@@ -68,11 +86,7 @@ export function CompleteItemSelectionDialog({
 					<Button
 						className="bg-slate-950 hover:bg-slate-950/90 outline-none"
 						onClick={handleConfirm}
-						disabled={
-							isLoadingGenerateTermsOfReferenceDocument ||
-							isLoadingGenerateExecutionScheduleDocument ||
-							project.requestedItems.length === 0
-						}
+						disabled={isButtonLoading || project.requestedItems.length === 0}
 					>
 						{isLoadingGenerateTermsOfReferenceDocument ||
 							(isLoadingGenerateExecutionScheduleDocument && (

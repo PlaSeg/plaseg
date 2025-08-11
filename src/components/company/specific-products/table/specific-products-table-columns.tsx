@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
-import { ColumnDef } from "@tanstack/react-table";
+import type { ColumnDef } from "@tanstack/react-table";
 import { ArrowDown, ArrowUp, Eye, SquarePen } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
-import { SpecificProduct } from "@/@types/company/specific-product";
+import type { SpecificProduct } from "@/@types/company/specific-product";
 import { formatDate } from "@/utils/format-date";
 import { formatCurrency } from "@/utils/format-currency";
 

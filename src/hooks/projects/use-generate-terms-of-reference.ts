@@ -22,7 +22,7 @@ const generateTermsOfReferenceDocument = async ({
 }: GenerateTermsOfReferenceDocumentParams): Promise<GenerateTermsOfReferenceDocumentResponse> => {
 	try {
 		const response = await api.patch<GenerateTermsOfReferenceDocumentResponse>(
-			`/v2/projects/${projectId}/document/terms-of-reference`
+			`/projects/${projectId}/document/terms-of-reference`
 		);
 
 		return response.data;
@@ -59,7 +59,7 @@ export const useGenerateTermsOfReferenceDocument = (projectId: string) => {
 					queryKey: ["get-project-document-by-id", projectId],
 				});
 				setIsConfirmationDialogOpen(false);
-				toast.success("Documento gerado com sucesso!");
+				toast.success("Documento de termos de referência gerado com sucesso!");
 				return;
 			}
 

@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ColumnDef } from "@tanstack/react-table";
+import type { ColumnDef } from "@tanstack/react-table";
 import {
 	ArrowUpDown,
 	Copy,
@@ -17,7 +17,7 @@ import {
 	DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import { Link } from "react-router";
-import { Product } from "@/@types/company/product";
+import type { Product } from "@/@types/company/product";
 
 export const productsTableColumns: ColumnDef<Product>[] = [
 	{

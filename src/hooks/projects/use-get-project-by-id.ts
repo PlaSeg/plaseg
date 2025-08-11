@@ -15,7 +15,7 @@ export async function getProjectById(
 ): Promise<GetProjectByIdResponse> {
 	try {
 		const response = await api.get<HTTPSuccessResponse<Project>>(
-			`/v2/projects/${id}`
+			`/projects/${id}`
 		);
 
 		return response.data;

@@ -1,5 +1,5 @@
-import { CreateMunicipalityRequest } from "@/@schemas/municipality-schema";
-import { HTTPErrorResponse, HTTPSuccessResponse } from "@/@types/http/http";
+import type { CreateMunicipalityRequest } from "@/@schemas/municipality-schema";
+import type { HTTPErrorResponse, HTTPSuccessResponse } from "@/@types/http/http";
 import { api } from "@/services/axios";
 import { AxiosError } from "axios";
 

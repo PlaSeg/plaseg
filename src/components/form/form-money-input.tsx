@@ -1,4 +1,6 @@
 import { useReducer } from "react";
+import type { FieldValues, Path, UseFormReturn } from "react-hook-form";
+import { cn } from "@/lib/utils";
 import {
 	FormControl,
 	FormField,
@@ -7,8 +9,6 @@ import {
 	FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
-import { FieldValues, Path, UseFormReturn } from "react-hook-form";
-import { cn } from "@/lib/utils";
 
 interface TextInputProps<TFieldValues extends FieldValues> {
 	form: UseFormReturn<TFieldValues>;
@@ -39,8 +39,10 @@ export function FormMoneyInput<TFieldValues extends FieldValues>(
 		return moneyFormatter.format(Number(digits) / 100);
 	}, initialValue);
 
-	// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
-	function handleChange(realChangeFn: Function, formattedValue: string) {
+	function handleChange(
+		realChangeFn: (value: number) => void,
+		formattedValue: string
+	) {
 		const digits = formattedValue.replace(/\D/g, "");
 		const realValue = Number(digits) / 100;
 		realChangeFn(realValue);

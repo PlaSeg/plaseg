@@ -29,7 +29,7 @@ export async function createProject(
 	try {
 		const response = await api.post<
 			HTTPSuccessResponse<CreateProjectResponseBody>
-		>("/v2/projects", request);
+		>("/projects", request);
 
 		return response.data;
 	} catch (error) {

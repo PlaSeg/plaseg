@@ -22,7 +22,7 @@ const generateExecutionScheduleDocument = async ({
 }: GenerateExecutionScheduleDocumentParams): Promise<GenerateExecutionScheduleDocumentResponse> => {
 	try {
 		const response = await api.patch<GenerateExecutionScheduleDocumentResponse>(
-			`/v2/projects/${projectId}/document/timeline`
+			`/projects/${projectId}/document/timeline`
 		);
 
 		return response.data;
@@ -62,7 +62,7 @@ export const useGenerateExecutionScheduleDocument = (projectId: string) => {
 					queryKey: ["get-project-document-by-id", projectId],
 				});
 				setIsConfirmationDialogOpen(false);
-				toast.success("Documento gerado com sucesso!");
+				toast.success("Documento de cronograma de execução gerado com sucesso!");
 				return;
 			}
 

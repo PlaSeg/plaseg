@@ -1,5 +1,5 @@
 import { Button } from "../ui/button";
-import { Table as TableType } from "@tanstack/react-table";
+import type { Table as TableType } from "@tanstack/react-table";
 
 interface TableFooterProps<T> {
 	table: TableType<T>;

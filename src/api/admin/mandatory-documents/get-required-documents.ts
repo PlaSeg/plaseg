@@ -1,7 +1,7 @@
-import { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http/http";
+import type { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http/http";
 import { AxiosError } from "axios";
 import { api } from "@/services/axios";
-import { RequiredDocument } from "@/@types/admin/required-document";
+import type { RequiredDocument } from "@/@types/admin/required-document";
 
 type GetRequiredDocumentsResponse =
 	| HTTPSuccessResponse<RequiredDocument[]>

@@ -1,4 +1,4 @@
-import { CreateMunicipalityRequest } from "@/@schemas/municipality-schema";
+import type { CreateMunicipalityRequest } from "@/@schemas/municipality-schema";
 import { FormTextarea } from "@/components/form/form-textarea";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";

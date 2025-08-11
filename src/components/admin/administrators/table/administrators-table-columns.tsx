@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
-import { ColumnDef } from "@tanstack/react-table";
+import type { ColumnDef } from "@tanstack/react-table";
 import { ArrowDown, ArrowUp, Eye, SquarePen } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Administrator } from "@/@types/admin/administrator";
+import type { Administrator } from "@/@types/admin/administrator";
 import { formatDate } from "@/utils/format-date";
 import { DeleteAdministratorDialog } from "../modals/delete-administrator-dialog";
 import { Tag } from "@/components/ui/tag";

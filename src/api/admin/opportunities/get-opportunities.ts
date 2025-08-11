@@ -1,7 +1,7 @@
-import { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http/http";
+import type { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http/http";
 import { AxiosError } from "axios";
 import { api } from "@/services/axios";
-import { Opportunity } from "@/@schemas/opportunity";
+import type { Opportunity } from "@/@schemas/opportunity";
 
 type GetOpportunitiesResponse =
 	| HTTPSuccessResponse<Opportunity[]>

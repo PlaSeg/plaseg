@@ -1,7 +1,7 @@
-import { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http/http";
+import type { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http/http";
 import { AxiosError } from "axios";
 import { api } from "@/services/axios";
-import { User } from "@/@types/auth/user";
+import type { User } from "@/@types/auth/user";
 
 export type GetUsersResponse = HTTPSuccessResponse<User[]> | HTTPErrorResponse;
 

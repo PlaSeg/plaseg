@@ -1,15 +1,15 @@
-import * as React from "react";
 import { FileText, Upload, X } from "lucide-react";
+import * as React from "react";
 import Dropzone, {
 	type DropzoneProps,
 	type FileRejection,
 } from "react-dropzone";
 import { toast } from "sonner";
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useControllableState } from "@/hooks/common/use-controllable-state";
+import { cn } from "@/lib/utils";
 import { formatBytes } from "@/utils/format-bytes";
 
 interface FileUploaderProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -168,7 +168,6 @@ export function FileUploader(props: FileUploaderProps) {
 		onValueChange?.(newFiles);
 	}
 
-	// Revoke preview url when component unmounts
 	React.useEffect(() => {
 		return () => {
 			if (!files) return;
@@ -178,8 +177,7 @@ export function FileUploader(props: FileUploaderProps) {
 				}
 			});
 		};
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [files]);
 
 	const isDisabled = disabled || (files?.length ?? 0) >= maxFileCount;
 
@@ -236,7 +234,7 @@ export function FileUploader(props: FileUploaderProps) {
 										{maxFileCount > 1
 											? ` ${
 													maxFileCount === Infinity ? "multiple" : maxFileCount
-											  }
+												}
                       arquivos (de até ${formatBytes(maxSize)} cada)`
 											: `um arquivo com ${formatBytes(maxSize)}`}
 									</p>
@@ -252,7 +250,7 @@ export function FileUploader(props: FileUploaderProps) {
 					<div className="flex flex-col gap-4">
 						{files?.map((file, index) => (
 							<FileCard
-								key={index}
+								key={file.name}
 								file={file}
 								onRemove={() => onRemove(index)}
 								progress={progresses?.[file.name]}

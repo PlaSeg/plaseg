@@ -1,4 +1,4 @@
-import { SpecificProduct } from "@/@types/company/specific-product";
+import type { SpecificProduct } from "@/@types/company/specific-product";
 
 export const specificProducts: SpecificProduct[] = [
 	{

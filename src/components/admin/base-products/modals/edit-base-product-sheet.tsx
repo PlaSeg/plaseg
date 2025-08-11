@@ -10,7 +10,7 @@ import {
 import { SquarePen } from "lucide-react";
 import { BaseProductForm } from "../form/base-product-form";
 import { useUpdateBaseProduct } from "@/hooks/admin/base-products/use-update-base-product";
-import { BaseProduct } from "@/@types/admin/base-product";
+import type { BaseProduct } from "@/@types/admin/base-product";
 
 interface EditBaseProductSheetProps {
 	baseProduct: BaseProduct;

@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { updateAdministrator } from "@/api/admin/administrators/update-administrator";
-import { UpdateAdministratorRequest } from "@/@schemas/administrator";
+import type { UpdateAdministratorRequest } from "@/@schemas/administrator";
 
 export function useUpdateAdministrator() {
 	return useMutation({

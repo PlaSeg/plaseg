@@ -4,8 +4,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LoaderCircle, Plus, Trash2 } from "lucide-react";
 import { FormInput } from "@/components/form/form-input";
 import { FormTextarea } from "@/components/form/form-textarea";
-import { useFieldArray, UseFormReturn } from "react-hook-form";
-import { CreateProjectTypeRequest } from "@/@schemas/project-type";
+import { useFieldArray, type UseFormReturn } from "react-hook-form";
+import type { CreateProjectTypeRequest } from "@/@schemas/project-type";
 
 interface ProjectTypeFormProps {
 	form: UseFormReturn<CreateProjectTypeRequest> & {

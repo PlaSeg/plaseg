@@ -6,7 +6,7 @@ import {
 	FormMessage,
 } from "@/components/ui/form";
 import { Switch } from "@/components/ui/switch";
-import { FieldValues, Path, UseFormReturn } from "react-hook-form";
+import type { FieldValues, Path, UseFormReturn } from "react-hook-form";
 
 interface FormSwitchProps<TFieldValues extends FieldValues> {
 	form: UseFormReturn<TFieldValues>;

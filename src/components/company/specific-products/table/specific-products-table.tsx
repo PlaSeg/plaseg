@@ -1,8 +1,8 @@
 import { Table, TableBody, TableRow, TableCell } from "@/components/ui/table";
-import { flexRender, Table as TableType } from "@tanstack/react-table";
+import { flexRender, type Table as TableType } from "@tanstack/react-table";
 import { specificProductsTableColumns } from "./specific-products-table-columns";
 import { SpecificProductsTableHeader } from "./specific-products-table-header";
-import { SpecificProduct } from "@/@types/company/specific-product";
+import type { SpecificProduct } from "@/@types/company/specific-product";
 import { SpecificProductsTableBodySkeleton } from "./specific-products-table-skeleton";
 
 interface SpecificProductsTableProps {

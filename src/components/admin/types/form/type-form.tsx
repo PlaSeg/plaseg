@@ -7,8 +7,8 @@ import { TypeGroup } from "@/@types/admin/type";
 import { useGetTypes } from "@/hooks/admin/types/use-get-types";
 import { useState } from "react";
 import { SetHasParentCheckbox } from "./set-has-parent-checkbox";
-import { UseFormReturn } from "react-hook-form";
-import { CreateTypeRequest } from "@/@schemas/type";
+import type { UseFormReturn } from "react-hook-form";
+import type { CreateTypeRequest } from "@/@schemas/type";
 
 interface TypeFormProps {
 	form: UseFormReturn<CreateTypeRequest> & {

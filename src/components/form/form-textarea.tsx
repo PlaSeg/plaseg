@@ -5,7 +5,7 @@ import {
 	FormControl,
 	FormMessage,
 } from "@/components/ui/form";
-import { FieldValues, Path, UseFormReturn } from "react-hook-form";
+import type { FieldValues, Path, UseFormReturn } from "react-hook-form";
 import { Textarea } from "@/components/ui/textarea";
 
 interface FormTextareaProps<TFieldValues extends FieldValues> {

@@ -1,8 +1,11 @@
-import { HTTPSuccessResponse, HTTPErrorResponse } from "@/@types/http/http";
 import { AxiosError } from "axios";
+import type { OpportunityRequest } from "@/@schemas/opportunity";
+import type { Opportunity } from "@/@types/common/opportunity";
+import type {
+	HTTPErrorResponse,
+	HTTPSuccessResponse,
+} from "@/@types/http/http";
 import { api } from "@/services/axios";
-import { Opportunity } from "@/@types/common/opportunity";
-import { OpportunityRequest } from "@/@schemas/opportunity";
 
 type CreateOpportunityResponse =
 	| HTTPSuccessResponse<Opportunity>
@@ -18,7 +21,7 @@ export async function createOpportunity(
 ): Promise<CreateOpportunityResponse> {
 	try {
 		const response = await api.post<HTTPSuccessResponse<Opportunity>>(
-			"/v2/opportunities",
+			"/opportunities",
 			request
 		);
 

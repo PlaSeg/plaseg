@@ -1,6 +1,6 @@
-import { ProjectType } from "@/@types/admin/project-types";
+import type { ProjectType } from "@/@types/admin/project-types";
 import { TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { flexRender, Table } from "@tanstack/react-table";
+import { flexRender, type Table } from "@tanstack/react-table";
 
 interface ProjectTypesHeaderProps {
 	table: Table<ProjectType>;

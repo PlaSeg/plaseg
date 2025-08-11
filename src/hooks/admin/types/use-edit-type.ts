@@ -1,9 +1,9 @@
-import { Type } from "@/@types/admin/type";
+import type { Type } from "@/@types/admin/type";
 import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "@/services/react-query";
 import { toast } from "sonner";
 import { useState } from "react";
-import { CreateTypeRequest, createTypeSchema } from "@/@schemas/type";
+import { type CreateTypeRequest, createTypeSchema } from "@/@schemas/type";
 import { useFormMutation } from "@/hooks/common/use-form-mutation";
 import { useGetTypes } from "./use-get-types";
 import { editType } from "@/api/admin/types/edit-type";

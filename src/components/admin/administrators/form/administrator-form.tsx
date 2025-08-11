@@ -2,8 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { FormInput } from "@/components/form/form-input";
 import { LoaderCircle } from "lucide-react";
-import { CreateAdministratorRequest } from "@/@schemas/administrator";
-import { UseFormReturn } from "react-hook-form";
+import type { CreateAdministratorRequest } from "@/@schemas/administrator";
+import type { UseFormReturn } from "react-hook-form";
 import { FormPhoneInput } from "@/components/form/form-phone-input";
 import { FormDocumentInput } from "@/components/form/form-document";
 
