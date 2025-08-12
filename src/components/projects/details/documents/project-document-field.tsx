@@ -110,7 +110,7 @@ export function ProjectDocumentField({
 
 			{typeof fieldValue !== "string" && (
 				<div className="text-slate-600">
-					Este campo não pode ser editado.
+					Este campo não pode ser editado, pois ele é uma tabela.
 				</div>
 			)}
 
