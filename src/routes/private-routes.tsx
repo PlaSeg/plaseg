@@ -4,6 +4,7 @@ import { useAuthStore } from "@/hooks/auth/use-auth";
 export function PrivateRoutes() {
 	const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
 	const userRole = useAuthStore((state) => state.userRole);
+	const isProfileComplete = useAuthStore((state) => state.isProfileComplete);
 
 	if (!isAuthenticated) {
 		return <Navigate to="/entrar" replace />;

@@ -10,6 +10,7 @@ import {
 } from "@/@schemas/municipality-schema";
 import { createMunicipality } from "@/api/municipality/create-municipality";
 import { useFormMutation } from "@/hooks/common/use-form-mutation";
+import { useAuthStore } from "@/hooks/auth/use-auth";
 
 interface CreateMunicipalityStore {
 	currentStep: number;
@@ -24,7 +25,7 @@ const initialFormData: Partial<CreateMunicipalityRequest> = {
 	guardCount: 0,
 	trafficCount: 0,
 	federativeUnit: "",
-	unitType: "MUNICIPIO",
+	unitType: "MUNICIPALITY",
 	qualifiedStaff: [
 		{
 			name: "",
@@ -90,6 +91,7 @@ const useCreateMunicipalityForm = create<CreateMunicipalityStore>()(
 
 export function useCreateMunicipality() {
 	const navigate = useNavigate();
+	const { setProfileComplete } = useAuthStore();
 
 	const { currentStep, formData, setCurrentStep, updateFormData } =
 		useCreateMunicipalityForm();
@@ -103,7 +105,7 @@ export function useCreateMunicipality() {
 			trafficInitialDate: formData.trafficInitialDate || new Date(),
 			trafficCount: formData.trafficCount || 0,
 			federativeUnit: formData.federativeUnit || "",
-			unitType: formData.unitType || "MUNICIPIO",
+			unitType: formData.unitType || "MUNICIPALITY",
 			qualifiedStaff: formData.qualifiedStaff || initialFormData.qualifiedStaff,
 			projectsPartnerships: formData.projectsPartnerships || [],
 			allocationDepartments: formData.allocationDepartments || [],
@@ -202,7 +204,10 @@ export function useCreateMunicipality() {
 		mutationFn: createMunicipality,
 		onSuccess(response) {
 			if (response.success) {
-				form.reset();
+				setProfileComplete(true);
+
+				useCreateMunicipalityForm.getState().resetForm();
+
 				navigate("/oportunidades");
 				return;
 			}

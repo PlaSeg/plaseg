@@ -9,8 +9,8 @@ interface GeneralDataStepProps {
 }
 
 const unitTypeOptions = [
-	{ value: "ESTADO", label: "Estado" },
-	{ value: "MUNICIPIO", label: "Município" },
+	{ value: "UF", label: "UF" },
+	{ value: "MUNICIPALITY", label: "Município" },
 ];
 
 export function GeneralDataStep({ form }: GeneralDataStepProps) {
@@ -71,7 +71,7 @@ export function GeneralDataStep({ form }: GeneralDataStepProps) {
 					options={unitTypeOptions}
 				/>
 
-				{form.watch("unitType") === "MUNICIPIO" && (
+				{form.watch("unitType") === "MUNICIPALITY" && (
 					<FormInput
 						form={form}
 						entity="federativeUnit"
@@ -80,7 +80,7 @@ export function GeneralDataStep({ form }: GeneralDataStepProps) {
 					/>
 				)}
 
-				{form.watch("unitType") === "ESTADO" && (
+				{form.watch("unitType") === "UF" && (
 					<FormInput
 						form={form}
 						entity="federativeUnit"

@@ -65,6 +65,6 @@ export interface GetMunipality {
 	allocationDepartments: allocationDepartment[];
 	maintenanceContracts: maintenanceContract[];
 	qualifiedStaff: qualifiedStaff[];
-	projectPartnerships: projectPartnership[];
+	projectsPartnerships: projectPartnership[];
 	managements: management[];
 }
