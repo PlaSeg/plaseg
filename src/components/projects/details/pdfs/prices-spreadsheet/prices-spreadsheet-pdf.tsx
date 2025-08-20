@@ -513,7 +513,6 @@ export function PricesSpreadsheetPDF({
 
 				<View style={tw("mt-4")}>
 					{projectDocument.fields.map((field) => {
-						console.log(field);
 						if (field.type === "STRING") {
 							return (
 								<View
