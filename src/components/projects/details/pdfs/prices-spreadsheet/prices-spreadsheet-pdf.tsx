@@ -430,7 +430,11 @@ export function PricesSpreadsheetPDF({
 									tw("w-20 border-r-[1px] border-t-[1px] border-black"),
 								]}
 							>
-								<Text style={normalText}>{item.desvio_padrao.toFixed(2)}</Text>
+								<Text style={normalText}>
+									{typeof item.desvio_padrao === "number"
+										? item.desvio_padrao.toFixed(2)
+										: "-"}
+								</Text>
 							</View>
 
 							{/* Quote 1 */}
