@@ -1,10 +1,10 @@
 import {
-	Package,
-	Tags,
-	UserCog,
 	Banknote,
 	FolderKanban,
+	Package,
 	Settings,
+	Tags,
+	UserCog,
 	Users,
 } from "lucide-react";
 import type { ReactNode } from "react";
@@ -66,12 +66,12 @@ export const adminMenuItems: MenuItem[] = [
 		url: "/admin/administradores",
 		ready: true,
 	},
-	{
-		icon: <Settings size={24} className="text-blue-500" />,
-		title: "Configurações",
-		description:
-			"Gerencie as configurações do sistema, incluindo parâmetros, templates e notificações",
-		url: "/admin/configuracoes",
-		ready: false,
-	},
+	// {
+	// 	icon: <Settings size={24} className="text-blue-500" />,
+	// 	title: "Configurações",
+	// 	description:
+	// 		"Gerencie as configurações do sistema, incluindo parâmetros, templates e notificações",
+	// 	url: "/admin/configuracoes",
+	// 	ready: false,
+	// },
 ];
