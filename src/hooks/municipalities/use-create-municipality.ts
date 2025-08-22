@@ -206,7 +206,7 @@ export function useCreateMunicipality() {
 			if (response.success) {
 				setProfileComplete(true);
 
-				useCreateMunicipalityForm.getState().resetForm();
+				resetForm();
 
 				navigate("/oportunidades");
 				return;
