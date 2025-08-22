@@ -23,7 +23,7 @@ export default function MunicipalityProfilePage() {
 	const departmentsData = municipality?.allocationDepartments || [];
 	const contractsData = municipality?.maintenanceContracts || [];
 	const staffData = municipality?.qualifiedStaff || [];
-	const projectsData = municipality?.projectPartnerships || [];
+	const projectsData = municipality?.projectsPartnerships || [];
 	const managementData = municipality?.managements || [];
 
 	return (

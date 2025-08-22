@@ -33,7 +33,7 @@ export function useSignUp() {
 		mutationFn: signUp,
 		onSuccess: (response) => {
 			if (response.success) {
-				navigate(`/entrar?email=${form.watch("email")}`);
+				navigate(`/entrar`);
 				return;
 			}
 

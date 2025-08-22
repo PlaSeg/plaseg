@@ -30,7 +30,6 @@ export function AppRoutes() {
 	return (
 		<Routes>
 			<Route path="/" element={<Home />} />
-
 			<Route path="cadastrar-municipio" element={<RegisterMunicipality />} />
 
 			<Route element={<PublicRoutes />}>

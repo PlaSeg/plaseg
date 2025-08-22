@@ -4,13 +4,18 @@ import { create } from "zustand";
 interface AuthState {
 	isAuthenticated: boolean;
 	userRole: string | null;
+
+	isProfileComplete: boolean;
+
 	authenticate: (accessToken: string, userRole: string) => void;
 	logout: () => void;
+	setProfileComplete: (isComplete: boolean) => void;
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
 	userRole: Cookies.get("userRole") || null,
 	isAuthenticated: !!Cookies.get("plaseg-access-token"),
+	isProfileComplete: false,
 
 	authenticate: (accessToken, userRole) => {
 		Cookies.set("plaseg-access-token", accessToken, {
@@ -30,4 +35,6 @@ export const useAuthStore = create<AuthState>((set) => ({
 		set({ isAuthenticated: false, userRole: null });
 		window.location.href = "/entrar";
 	},
+
+	setProfileComplete: (isComplete) => set({ isProfileComplete: isComplete }),
 }));

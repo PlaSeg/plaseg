@@ -6,7 +6,6 @@ import { LoaderCircle } from "lucide-react";
 import { FormDocumentInput } from "../form/form-document";
 import { FormPhoneInput } from "../form/form-phone-input";
 import { FormRadioGroup } from "../form/form-radio-group";
-import { Link } from "react-router";
 
 const roleOptions = [
 	{ label: "Município", value: "MUNICIPALITY" },
@@ -67,13 +66,11 @@ export function SignUpForm() {
 				<Button
 					type="button"
 					className="mt-2 w-full"
+					onClick={() => form.handleSubmitForm()}
 					disabled={isLoadingSignUp}
-					asChild
 				>
-					<Link to="/cadastrar-municipio">
-						{isLoadingSignUp && <LoaderCircle className="animate-spin" />}
-						Confirmar
-					</Link>
+					{isLoadingSignUp && <LoaderCircle className="animate-spin" />}
+					Confirmar
 				</Button>
 			</form>
 		</Form>

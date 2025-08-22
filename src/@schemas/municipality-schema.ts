@@ -91,7 +91,7 @@ export const municipalityFormSchema = z.object({
 				"Quantidade de registros de trânsito deve ser maior ou igual a 0",
 		}),
 	federativeUnit: z.string().min(2, "Unidade federativa é obrigatória"),
-	unitType: z.enum(["ESTADO", "MUNICIPIO"]),
+	unitType: z.enum(["UF", "MUNICIPALITY"]),
 	qualifiedStaff: z
 		.array(qualifiedStaffSchema)
 		.min(1, "Pelo menos um membro da equipe é obrigatório"),

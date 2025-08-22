@@ -12,9 +12,5 @@ export function PublicRoutes() {
 		return <Navigate to="/admin/dashboard" replace />;
 	}
 
-	if (isAuthenticated && userRole === "MUNICIPALITY") {
-		return <Navigate to="/oportunidades" replace />;
-	}
-
 	return <Outlet />;
 }
