@@ -9,8 +9,8 @@ import {
 	municipalityFormSchema,
 } from "@/@schemas/municipality-schema";
 import { createMunicipality } from "@/api/municipality/create-municipality";
-import { useFormMutation } from "@/hooks/common/use-form-mutation";
 import { useAuthStore } from "@/hooks/auth/use-auth";
+import { useFormMutation } from "@/hooks/common/use-form-mutation";
 
 interface CreateMunicipalityStore {
 	currentStep: number;
@@ -205,9 +205,7 @@ export function useCreateMunicipality() {
 		onSuccess(response) {
 			if (response.success) {
 				setProfileComplete(true);
-
-				resetForm();
-
+				form.reset();
 				navigate("/oportunidades");
 				return;
 			}

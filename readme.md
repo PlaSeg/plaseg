@@ -7,10 +7,11 @@ Uma plataforma que dá apoio na construção de projetos para editais de financi
 1. [Como usar](#como-usar)
 2. [Funcionalidades](#funcionalidades)
 3. [Aspectos Técnicos](#aspectos-técnicos)
-4. [Quadro de atividades Kanban](#quadro-de-atividades-kanban)
-5. [Regras de Negócio](#regras-de-negócio)
-6. [Testes da aplicação front-end](#testes-da-aplicação-front-end)
-7. [Referências](#referências)
+4. [Estrutura do Projeto](#estrutura-do-projeto)
+5. [Quadro de atividades Kanban](#quadro-de-atividades-kanban)
+6. [Regras de Negócio](#regras-de-negócio)
+7. [Testes da aplicação front-end](#testes-da-aplicação-front-end)
+8. [Referências](#referências)
 
 ## Como Usar
 
@@ -55,6 +56,94 @@ Uma plataforma que dá apoio na construção de projetos para editais de financi
 - Uso do React para criar componentes dinâmicos para criar aplicações HTML dinâmicas assíncronas.
 - Uso do [TypeScript](https://www.typescriptlang.org/) para adicionar tipagem estática ao JavaScript, o que ajuda a prevenir erros comuns e torna o código mais robusto e confiável.
 - Mais detalhes sobre a stack escolhida em [link](https://github.com/PlaSeg/plaseg/blob/master/stack.md)
+
+## Estrutura do Projeto
+
+```
+plaseg/
+├── src/
+│   ├── @schemas/               # Schemas de validação (Zod)
+│   ├── @types/                 # Tipos TypeScript globais
+│   ├── api/                    # Endpoints da API organizados por domínio
+│   │   ├── admin/              # APIs administrativas
+│   │   ├── auth/               # APIs de autenticação
+│   │   ├── company/            # APIs de empresas
+│   │   ├── municipality/       # APIs de municípios
+│   │   ├── projects/           # APIs de projetos
+│   │   └── users/              # APIs de usuários
+│   ├── assets/                 # Assets estáticos (imagens, ícones, etc.)
+│   ├── components/             # Componentes React reutilizáveis
+│   │   ├── ui/                 # Sistema de UI components (shadcn-ui)
+│   │   ├── admin/              # Componentes administrativos
+│   │   ├── company/            # Componentes de empresas
+│   │   ├── file-uploader/      # Componentes de upload de arquivos
+│   │   ├── form/               # Componentes de formulários
+│   │   ├── header/             # Componentes de cabeçalho
+│   │   ├── home/               # Componentes da página inicial
+│   │   ├── municipality/       # Componentes de municípios
+│   │   ├── navbar/             # Componentes de navegação
+│   │   ├── opportunities/      # Componentes de oportunidades
+│   │   ├── payment/            # Componentes de pagamento
+│   │   ├── plans/              # Componentes de planos
+│   │   ├── price-registration/ # Componentes de registro de preços
+│   │   ├── projects/           # Componentes de projetos
+│   │   ├── sign-in/            # Componentes de login
+│   │   ├── sign-up/            # Componentes de cadastro
+│   │   └── table/              # Componentes de tabelas
+│   ├── constants/              # Constantes da aplicação
+│   ├── hooks/                  # Custom hooks do React
+│   ├── layouts/                # Layouts da aplicação
+│   │   ├── admin-layout.tsx    # Layout administrativo
+│   │   ├── app-layout.tsx      # Layout principal da aplicação
+│   │   ├── auth-layout.tsx     # Layout de autenticação
+│   │   ├── company-layout.tsx  # Layout de empresas
+│   │   └── municipality-layout.tsx # Layout de municípios
+│   ├── lib/                    # Configurações e utilitários
+│   ├── mocks/                  # Dados mockados para desenvolvimento
+│   ├── pages/                  # Páginas da aplicação
+│   │   ├── admin/              # Páginas administrativas
+│   │   ├── company/            # Páginas de empresas
+│   │   ├── consultant/         # Páginas de consultores
+│   │   ├── municipality/       # Páginas de municípios
+│   │   ├── opportunities/      # Páginas de oportunidades
+│   │   ├── payment/            # Páginas de pagamento
+│   │   ├── plans/              # Páginas de planos
+│   │   ├── projects/           # Páginas de projetos
+│   │   ├── reset-password/     # Páginas de redefinição de senha
+│   │   ├── settings/           # Páginas de configurações
+│   │   ├── sign-in/            # Páginas de login
+│   │   └── sign-up/            # Páginas de cadastro
+│   ├── routes/                 # Configuração de rotas
+│   │   ├── admin-private-routes.tsx # Rotas privadas administrativas
+│   │   ├── admin-routes.tsx    # Rotas administrativas
+│   │   ├── company-routes.tsx  # Rotas de empresas
+│   │   ├── private-routes.tsx  # Rotas privadas
+│   │   ├── public-routes.tsx   # Rotas públicas
+│   │   └── routes.tsx          # Configuração principal de rotas
+│   ├── services/               # Serviços de API e integração
+│   │   ├── axios.ts            # Configuração do Axios
+│   │   └── react-query.ts      # Configuração do React Query
+│   ├── types/                  # Tipos TypeScript específicos
+│   ├── utils/                  # Funções utilitárias
+│   ├── env.ts                  # Configurações de ambiente
+│   ├── index.css               # Estilos globais
+│   ├── main.tsx                # Ponto de entrada da aplicação
+│   └── vite-env.d.ts           # Tipos do Vite
+├── public/                     # Assets públicos
+├── docs/                       # Documentação adicional
+├── dist/                       # Build de produção
+├── node_modules/               # Dependências do projeto
+├── .git/                       # Controle de versão Git
+├── package.json                # Configurações e dependências
+├── pnpm-lock.yaml             # Lock file do pnpm
+├── tsconfig.json              # Configuração do TypeScript
+├── vite.config.ts             # Configuração do Vite
+├── tailwind.config.js         # Configuração do Tailwind CSS
+├── postcss.config.js          # Configuração do PostCSS
+├── components.json            # Configuração do shadcn/ui
+├── stack.md                   # Documentação da stack técnica
+└── readme.md                  # Este arquivo
+```
 
 ## Quadro de Atividades Kanban
 
