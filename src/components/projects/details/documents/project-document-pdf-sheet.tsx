@@ -3,12 +3,13 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import type { ProjectDocument } from "@/hooks/projects/use-get-project-document-by-id";
 import { CounterpartPDF } from "../pdfs/counterpart/counterpart-pdf";
+import { ExecutionSchedulePDF } from "../pdfs/execution-schedule/execution-schedule";
 import { JustificationPDF } from "../pdfs/justification/justification-pdf";
 import { MonitoringReportPDF } from "../pdfs/monitoring-report/monitoring-report-pdf";
+import { PricesSpreadsheetPDF } from "../pdfs/prices-spreadsheet/prices-spreadsheet-pdf";
 import { SustainabilityPDF } from "../pdfs/sustentability/sustentability-pdf";
 import { TermsOfReferencePDF } from "../pdfs/terms-of-reference/terms-of-reference-pdf";
 import { PDFPreview } from "./pdf-preview";
-import { ExecutionSchedulePDF } from "../pdfs/execution-schedule/execution-schedule";
 
 const projectDocuments = [
 	{
@@ -37,6 +38,7 @@ const projectDocuments = [
 	},
 	{
 		name: "Planilha de Pesquisa de Preços",
+		pdf: PricesSpreadsheetPDF,
 	},
 ];
 
@@ -67,7 +69,7 @@ export function ProjectDocumentPdfSheet({
 								<PDFPreview
 									key={projectDocument.name}
 									pdfName={projectDocument.name}
-									pdfPath={<projectDocument.pdf document={document} />	}
+									pdfPath={<projectDocument.pdf document={document} />}
 								/>
 							);
 						}
