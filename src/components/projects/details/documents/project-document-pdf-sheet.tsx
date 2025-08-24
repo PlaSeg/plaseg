@@ -40,6 +40,9 @@ const projectDocuments = [
 		name: "Planilha de Pesquisa de Preços",
 		pdf: PricesSpreadsheetPDF,
 	},
+	{
+		name: "Declaração de Capacidade Técnica e Gerencial",
+	},
 ];
 
 interface ProjectDocumentPdfSheetProps {

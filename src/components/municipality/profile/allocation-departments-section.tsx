@@ -14,6 +14,7 @@ export function AllocationDepartmentsSection({
 				<Building2 className="h-5 w-5 text-gray-600" />
 				Departamentos
 			</h3>
+			
 			<div className="space-y-4">
 				{departments.map((dept) => (
 					<div className="border-l-2 border-gray-200 pl-4">

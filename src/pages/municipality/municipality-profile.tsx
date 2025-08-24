@@ -1,4 +1,4 @@
-import MunicipalityProfilePage from "@/components/municipality/view-profile/profile";
+import MunicipalityProfilePage from "@/components/municipality/profile/profile";
 
 export default function MunicipalityProfile() {
 	return (

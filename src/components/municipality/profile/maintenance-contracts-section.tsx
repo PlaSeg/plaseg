@@ -14,12 +14,14 @@ export function MaintenanceContractsSection({
 				<FileText className="h-5 w-5 text-gray-600" />
 				Contratos
 			</h3>
+
 			<div className="space-y-4">
 				{contracts.map((contract) => (
 					<div className="border-l-2 border-gray-200 pl-4">
 						<h4 className="font-medium text-gray-900">
 							{contract.description}
 						</h4>
+
 						<div className="flex items-center justify-between mt-3">
 							<a
 								href={contract.attachment}
