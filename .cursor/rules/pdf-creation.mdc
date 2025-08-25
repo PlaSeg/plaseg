@@ -1,0 +1,453 @@
+---
+alwaysApply: false
+---
+
+# PDF Component Specification
+
+## Overview
+
+This specification defines the standards and patterns for creating PDF components using `@react-pdf/renderer` and `react-pdf-tailwind`. The components should generate professional, consistent PDF documents with proper styling, layout, and data presentation.
+
+## Core Dependencies and Setup
+
+### Required Dependencies
+
+```typescript
+import { Document, Font, Image, Page, Text, View } from "@react-pdf/renderer";
+import { createTw } from "react-pdf-tailwind";
+```
+
+### Font Configuration
+
+All PDF components must register Arial font family:
+
+```typescript
+import { ARIAL_FONT } from "@/constants/pdf-fonts";
+
+Font.register({
+	family: "Arial",
+	fonts: ARIAL_FONT,
+});
+```
+
+### Tailwind Configuration
+
+Standard Tailwind configuration for PDF components:
+
+```typescript
+const tw = createTw({
+	theme: {
+		fontFamily: {
+			default: ["Arial"],
+		},
+	},
+});
+```
+
+## Document Structure
+
+### Base Document Template
+
+```typescript
+<Document
+    title={documentTitle}
+    author="Transferegov.br"
+    creator="Transferegov.br"
+    producer="EzPDF"
+>
+    <Page size="A4" style={tw("p-16 font-default bg-white text-base")}>
+        {/* Content */}
+    </Page>
+</Document>
+```
+
+### Page Orientations
+
+- **Portrait (default)**: `size="A4"`
+- **Landscape**: `size="A4" orientation="landscape"`
+
+### Standard Padding
+
+- **Portrait**: `p-16` (64px equivalent)
+- **Landscape**: `p-8 px-16` (32px vertical, 64px horizontal)
+
+## Header Components
+
+### Logo Section
+
+```typescript
+<View style={tw("flex mb-8")}>
+    <View style={tw("w-[99px] h-[111px] mx-auto")}>
+        <Image src="/teresina.png" style={tw("w-full h-full")} />
+    </View>
+</View>
+```
+
+### Document Title
+
+```typescript
+<View style={tw("text-center mb-4")}>
+    <Text style={tw("text-xl font-bold text-black")}>
+        {documentTitle}
+    </Text>
+</View>
+```
+
+For landscape orientation, use smaller text:
+
+```typescript
+<Text style={tw("text-lg font-bold text-black uppercase")}>
+```
+
+### Metadata Section
+
+```typescript
+<View style={tw("text-black")}>
+    <Text style={tw("font-semibold mb-2")}>
+        Proposta Transferegov.br nº: 000001/2025
+    </Text>
+</View>
+```
+
+## Content Structure
+
+### Field Rendering Pattern
+
+```typescript
+{projectDocument.fields.map((field) => (
+    <View key={field.id}>
+        <View style={tw(`text-black py-2
+            ${!field.parentId ? "font-semibold" : ""}
+            ${field.parentId ? "pl-4" : ""}`)}>
+            <Text>
+                {field.section}. {field.name}
+            </Text>
+        </View>
+
+        {/* Conditional rendering based on field type */}
+        {field.value && field.value !== "" && field.type === "TABLE" && (
+            // Render table component
+        )}
+
+        {field.value && field.value !== "" && field.type === "STRING" && (
+            <View style={tw("text-sm pb-2 pl-4 text-zinc-600")}>
+                <Text>{field.value as string}</Text>
+            </View>
+        )}
+    </View>
+))}
+```
+
+### Hierarchical Structure Rules
+
+- **Parent fields**: `font-semibold`, no left padding
+- **Child fields**: normal weight, `pl-4` padding
+- **Section numbering**: Always display as `{field.section}. {field.name}`
+
+## Table Components
+
+### Table Container Structure
+
+```typescript
+<View style={tw("mb-4")}>
+    <View style={tw("w-full border-[1px] border-black")}>
+        {/* Table content */}
+    </View>
+</View>
+```
+
+### Header Row Pattern
+
+```typescript
+<View style={tw("flex-row border-b-[1px] border-black bg-gray-100")}>
+    {/* Header cells */}
+</View>
+```
+
+### Header Cell Styling
+
+- Background: `bg-gray-100` or `bg-neutral-400`
+- Text: `font-bold text-xs`
+- Text color: `text-black` (gray background) or `text-white` (dark background)
+- Alignment: `text-center`
+
+### Data Row Pattern
+
+```typescript
+{data.map((item, index) => (
+    <View key={item.id} style={tw("flex-row")}>
+        {/* Data cells */}
+    </View>
+))}
+```
+
+### Cell Styling Rules
+
+#### Border Management
+
+- **Right borders**: `border-r-[1px] border-black` (except last column)
+- **Bottom borders**: Conditional based on row position
+  ```typescript
+  ${index < data.length - 1 ? "border-b-[1px] border-black" : ""}
+  ```
+- **Top border**: `border-t-0` for first data row
+
+#### Cell Widths
+
+- **Fixed width**: `w-[40px]`, `w-[60px]`, `w-[80px]`
+- **Flexible width**: `flex-1`
+- **Auto width**: No width class
+
+#### Padding and Alignment
+
+- **Standard padding**: `px-2 py-1` (small) or `px-3 py-2` (medium)
+- **Text alignment**:
+  - `text-center` (default)
+  - `text-right` (for currency values)
+  - `text-left` (for descriptions)
+
+### Currency Formatting
+
+```typescript
+function formatCurrency(amount: number) {
+	return amount.toLocaleString("pt-BR", {
+		style: "currency",
+		currency: "BRL",
+	});
+}
+```
+
+### Total Row Pattern
+
+```typescript
+<View style={tw("flex-row bg-gray-100 font-bold")}>
+    <View style={tw("border-[1px] border-black px-2 py-1 border-b-0 border-r-0 border-l-0 flex-1")}>
+        <Text style={tw("text-center font-bold text-xs")}>VALOR TOTAL</Text>
+    </View>
+    <View style={tw("border-[1px] border-black px-2 py-1 w-[80px] border-b-0 border-r-0")}>
+        <Text style={tw("text-right font-bold text-xs")}>
+            {formatCurrency(totalValue)}
+        </Text>
+    </View>
+</View>
+```
+
+## Typography Standards
+
+### Font Sizes
+
+- **Extra large**: `text-xl` (titles)
+- **Large**: `text-lg` (landscape titles)
+- **Base**: `text-base` (default body text)
+- **Small**: `text-sm` (metadata, descriptions)
+- **Extra small**: `text-xs` (table content)
+
+### Font Weights
+
+- **Bold**: `font-bold` (titles, headers)
+- **Semibold**: `font-semibold` (section headers)
+- **Normal**: Default weight
+
+### Text Colors
+
+- **Primary**: `text-black` (main content)
+- **Secondary**: `text-zinc-600` (descriptions, metadata)
+- **Inverted**: `text-white` (on dark backgrounds)
+
+### Text Alignment
+
+- **Center**: `text-center` (titles, headers)
+- **Justify**: `text-justify` (paragraph text)
+- **Left**: Default alignment
+- **Right**: `text-right` (dates, currency)
+
+## Spacing System
+
+### Margins
+
+- **Small**: `mb-2`, `mt-2`
+- **Medium**: `mb-4`, `mt-4`, `mb-8`, `mt-8`
+- **Large**: `mb-12`, `mt-12`
+
+### Padding
+
+- **Small**: `px-2 py-1`, `pb-1`, `pb-2`
+- **Medium**: `px-3 py-2`, `p-4`
+- **Large**: `p-8`, `p-16`
+
+## Special Components
+
+### Paragraph Text
+
+```typescript
+{value.paragrafo && (
+    <View style={tw("mb-4")}>
+        <Text style={tw("text-sm text-justify pb-2 text-zinc-600")}>
+            {value.paragrafo}
+        </Text>
+    </View>
+)}
+```
+
+### Address Lists
+
+```typescript
+{addresses && addresses.length > 0 && (
+    <View style={tw("mt-4")}>
+        <Text style={tw("text-sm font-semibold mb-2")}>
+            Endereço completo com CEP dos locais:
+        </Text>
+        {addresses.map((address) => (
+            <Text key={address} style={tw("text-sm text-zinc-600 pb-1")}>
+                • {address}
+            </Text>
+        ))}
+    </View>
+)}
+```
+
+### Signature Section
+
+```typescript
+<View style={tw("w-full text-center mt-12 w-[400px] mx-auto")}>
+    <Text style={tw("font-semibold")}>
+        Assinatura do Dirigente máximo ou outra autoridade, por delegação de competência
+    </Text>
+</View>
+```
+
+## Footer Components
+
+### Date Footer
+
+```typescript
+<View style={tw("w-full mt-12 text-center")}>
+    <Text style={tw("text-sm")}>
+        TERESINA-PI, {formatDateToBrazilian(new Date().toISOString())}
+    </Text>
+</View>
+```
+
+For landscape orientation:
+
+```typescript
+<View style={tw("w-full mt-12 text-right")}>
+```
+
+## Data Type Interfaces
+
+### Table Item Structure
+
+```typescript
+interface TableItem {
+	unit: string;
+	order: number;
+	quantity: number;
+	description: string;
+	estimatedUnitValue: number;
+	estimatedTotalValue: number;
+}
+
+interface TableValue {
+	items: TableItem[];
+	totalValue: number;
+}
+```
+
+### Sustainability Table Structure
+
+```typescript
+interface SustainabilityTableValue {
+	bens?: Array<{
+		vida_util: string;
+		identificacao_do_bem: string;
+	}>;
+	localizacao_bens?: Array<{
+		quantidade: number;
+		identificacao_do_bem: string;
+		identificacao_do_local: string;
+	}>;
+	paragrafo?: string;
+	enderecos_completos?: string[];
+}
+```
+
+### Project Document Structure
+
+```typescript
+interface ProjectDocument {
+	name: string;
+	fields: Array<{
+		id: string;
+		name: string;
+		section: string;
+		parentId?: string;
+		type: "STRING" | "TABLE";
+		value: string | object;
+	}>;
+}
+```
+
+## Responsive Design
+
+### Column Width Guidelines
+
+- **Order/Index columns**: `w-[40px]`
+- **Quantity columns**: `w-[40px]`
+- **Unit columns**: `w-[60px]`
+- **Value columns**: `w-[80px]`
+- **Description columns**: `flex-1`
+
+### Border Optimization
+
+To avoid double borders, use conditional border classes:
+
+- Remove `border-t-0` for first row
+- Remove `border-b-[1px]` for last row
+- Always use `border-r-0` and `border-l-0` to prevent double borders
+
+## Best Practices
+
+### Performance
+
+1. Use conditional rendering for optional sections
+2. Implement proper key props for mapped elements
+3. Minimize nested View components where possible
+
+### Accessibility
+
+1. Always provide meaningful text content
+2. Use semantic structure with proper hierarchy
+3. Ensure sufficient color contrast
+
+### Maintainability
+
+1. Extract common patterns into reusable functions
+2. Use consistent naming conventions
+3. Document complex calculations and logic
+4. Separate styling concerns using the tw utility
+
+### Error Handling
+
+1. Always check for data existence before rendering
+2. Provide fallback values for missing data
+3. Handle empty arrays and null values gracefully
+
+## Implementation Checklist
+
+When creating a new PDF component:
+
+- [ ] Register Arial font family
+- [ ] Configure Tailwind with default font
+- [ ] Set up Document with proper metadata
+- [ ] Implement header with logo and title
+- [ ] Create field rendering loop with proper hierarchy
+- [ ] Handle different field types (STRING, TABLE)
+- [ ] Apply consistent spacing and typography
+- [ ] Implement table components with proper borders
+- [ ] Add signature and date footer sections
+- [ ] Test with various data scenarios
+- [ ] Verify responsive behavior
+- [ ] Validate against design requirements
+
+This specification ensures consistency across all PDF components while maintaining flexibility for different document types and layouts.

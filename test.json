@@ -1,34 +1,22 @@
-{
-	"success": true,
-	"errors": null,
-	"data": {
-		"id": "a0866c7f-6f48-4499-9d09-8d61da4e2e7f",
-		"name": "Sustentabilidade e Localização de Bens do Projeto",
-		"fields": [
-			{
-				"id": "dcf75804-cdf7-4cb3-ba27-2bb35c06b83d",
-				"name": "Sustentabilidade",
-				"description": "",
-				"value": null,
-				"isTitle": true,
-				"ready": true,
-				"section": "1",
-				"type": "TABLE",
-				"tableType": "SUSTENTABILIDADE_E_LOCALIZACAO_DE_BENS",
-				"parentId": null
+[
+	{
+		"id": "794fb31e-3cfb-43ab-9f3a-67db0fbccce6",
+		"name": "Experiência",
+		"description": "Tabela listando convênios/projetos executados e com prestação de contas aprovada, preferencialmente na mesma área da proposta.",
+		"value": {
+			"resumo": {
+				"projetos_aprovados": 0,
+				"projetos_concluidos": 0,
+				"projetos_em_execucao": 0
 			},
-			{
-				"id": "337c3e79-1e5d-4bbb-aeba-b9bf976e9990",
-				"name": "Localização de Bens",
-				"description": "",
-				"value": null,
-				"isTitle": true,
-				"ready": true,
-				"section": "2",
-				"type": "TABLE",
-				"tableType": "SUSTENTABILIDADE_E_LOCALIZACAO_DE_BENS",
-				"parentId": null
-			}
-		]
+			"projetos": [],
+			"total_projetos": 0
+		},
+		"isTitle": false,
+		"ready": false,
+		"section": "3",
+		"type": "TABLE",
+		"tableType": "CAPACIDADE_TECNICA_EXPERIENCIA",
+		"parentId": null
 	}
-}
+]

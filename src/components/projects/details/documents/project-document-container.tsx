@@ -1,5 +1,7 @@
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Check, CheckCheck, LoaderCircle } from "lucide-react";
 import { Link } from "react-router";
+import { Button } from "@/components/ui/button";
+import { useAcceptFieldValueSuggestion } from "@/hooks/projects/use-accept-field-value-suggestion";
 import type { ProjectDocument } from "@/hooks/projects/use-get-project-document-by-id";
 import { ProjectDocumentField } from "./project-document-field";
 import { ProjectDocumentPdfSheet } from "./project-document-pdf-sheet";
@@ -14,7 +16,28 @@ export function ProjectDocumentContainer({
 	document,
 	projectId,
 }: ProjectDocumentProps) {
-// Line removed as it was a debug statement.
+	const { acceptFieldValueSuggestionFn, isLoadingAcceptFieldValueSuggestion } =
+		useAcceptFieldValueSuggestion();
+
+	const fieldsWithPendingSuggestions = document.fields.filter(
+		(field) => field.value && !field.ready
+	);
+
+	const hasFieldsWithSuggestions = fieldsWithPendingSuggestions.length > 0;
+
+	const handleAcceptAllSuggestions = async () => {
+		try {
+			for (const field of fieldsWithPendingSuggestions) {
+				await acceptFieldValueSuggestionFn({
+					projectId,
+					fieldId: field.id,
+					documentId: document.id,
+				});
+			}
+		} catch (error) {
+			console.error("Error accepting all suggestions:", error);
+		}
+	};
 
 	return (
 		<div className="w-full flex flex-col gap-6">
@@ -27,7 +50,25 @@ export function ProjectDocumentContainer({
 
 				<h1 className="text-2xl font-semibold">{document.name}</h1>
 
-				<ProjectDocumentPdfSheet document={document} />
+				<div className="flex items-center gap-2 ml-auto">
+					{hasFieldsWithSuggestions && (
+						<Button
+							variant="outline"
+							onClick={handleAcceptAllSuggestions}
+							disabled={isLoadingAcceptFieldValueSuggestion}
+							className="ml-auto mr-2"
+						>
+							{isLoadingAcceptFieldValueSuggestion ? (
+								<LoaderCircle className="animate-spin mr-2" size={16} />
+							) : (
+								<CheckCheck className="mr-2" size={16} />
+							)}
+							Aceitar Tudo
+						</Button>
+					)}
+
+					<ProjectDocumentPdfSheet document={document} />
+				</div>
 			</div>
 
 			<div className="grid grid-cols-3 gap-8">

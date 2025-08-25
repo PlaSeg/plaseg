@@ -10,6 +10,7 @@ import { PricesSpreadsheetPDF } from "../pdfs/prices-spreadsheet/prices-spreadsh
 import { SustainabilityPDF } from "../pdfs/sustentability/sustentability-pdf";
 import { TermsOfReferencePDF } from "../pdfs/terms-of-reference/terms-of-reference-pdf";
 import { PDFPreview } from "./pdf-preview";
+import { DeclarationOfTechnicalCapacityPDF } from "../pdfs/declaration-of-technical-capacity-pdf/declaration-of-technical-capacity-pdf";
 
 const projectDocuments = [
 	{
@@ -42,6 +43,7 @@ const projectDocuments = [
 	},
 	{
 		name: "Declaração de Capacidade Técnica e Gerencial",
+		pdf: DeclarationOfTechnicalCapacityPDF,
 	},
 ];
 
@@ -55,7 +57,7 @@ export function ProjectDocumentPdfSheet({
 	return (
 		<Sheet>
 			<SheetTrigger asChild>
-				<Button variant="outline" className="ml-auto">
+				<Button variant="outline">
 					<Eye />
 					Visualizar Documento
 				</Button>
